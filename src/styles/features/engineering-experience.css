@@ -1,0 +1,1017 @@
+/* This narrative layout is confined to Engineering; shared route skin is unchanged. */
+.wiki-page--engineering {
+  --route-frame-image: none;
+  --eng-ink: #243d2c;
+  --eng-t: #2d6898;
+  --eng-i: #2f8a6c;
+  --eng-m: #c08a1e;
+  --eng-e: #c0574b;
+  --eng-design: #2d6898;
+  --eng-build: #2f6f4e;
+  --eng-test: #c84b3e;
+  --eng-learn: #9c6818;
+}
+.wiki-page--engineering [data-wiki-reveal] {
+  opacity: 1;
+  transform: none;
+}
+.wiki-page--engineering .eng-introduction,
+.wiki-page--engineering .eng-outcome {
+  width: min(1040px, calc(100% - 64px));
+  margin: 0 auto;
+  padding: 48px 0;
+  --wiki-section-reveal: 1;
+  --wiki-section-focus: 1;
+  --wiki-section-shift: 0px;
+  --wiki-section-drift: 0px;
+}
+.wiki-page--engineering .eng-introduction__heading {
+  margin: 0 0 24px;
+  padding: 0;
+}
+.wiki-page--engineering .eng-introduction h2 {
+  margin: 0;
+  color: var(--route-heading-ink);
+  font-family: var(--font-sans), sans-serif !important;
+  font-size: clamp(21px, 2.2vw, 25px);
+  font-weight: 700;
+  line-height: 1.35;
+}
+.wiki-page--engineering
+  .eng-introduction
+  h2
+  .wiki-heading-line
+  + .wiki-heading-line {
+  margin-top: 6px;
+}
+.wiki-page--engineering .eng-reading-tips {
+  overflow: hidden;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--route-paper) 50%, transparent);
+  box-shadow: 0 0 0 1px var(--route-line);
+}
+.wiki-page--engineering .eng-reading-tips summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 52px;
+  padding: 14px 18px;
+  color: var(--route-subheading-ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+  list-style: none;
+  cursor: pointer;
+  transition: background-color 160ms ease;
+}
+.wiki-page--engineering .eng-reading-tips summary::-webkit-details-marker {
+  display: none;
+}
+.wiki-page--engineering .eng-reading-tips summary:hover {
+  background: color-mix(in srgb, var(--route-marker-bg) 15%, transparent);
+}
+.wiki-page--engineering .eng-reading-tips summary:focus-visible {
+  outline: 2px solid var(--route-subheading-ink);
+  outline-offset: -3px;
+  border-radius: 12px;
+}
+.wiki-page--engineering .eng-reading-tips summary svg {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 160ms ease;
+}
+.wiki-page--engineering .eng-reading-tips[open] summary svg {
+  transform: rotate(180deg);
+}
+.wiki-page--engineering .eng-reading-tips__body {
+  padding: 0 18px 18px;
+  color: var(--route-muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+.wiki-page--engineering .eng-reading-tips__subtitle {
+  margin: 0 0 10px;
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--route-subheading-ink);
+  letter-spacing: -0.01em;
+}
+.wiki-page--engineering .eng-reading-tips__body p {
+  margin: 0;
+}
+.wiki-page--engineering .eng-reading-tips__stages {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--route-line);
+}
+.wiki-page--engineering .eng-reading-tips__hint {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--route-subheading-ink);
+}
+.wiki-page--engineering .eng-reading-tips__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: color-mix(in srgb, var(--route-paper) 70%, #ffffff);
+  box-shadow: 0 0 0 1px var(--route-line);
+}
+.wiki-page--engineering .eng-reading-tips__pill--design {
+  color: var(--eng-design);
+  border-left: 2px solid var(--eng-design);
+}
+.wiki-page--engineering .eng-reading-tips__pill--build {
+  color: var(--eng-build);
+  border-left: 2px solid var(--eng-build);
+}
+.wiki-page--engineering .eng-reading-tips__pill--test {
+  color: var(--eng-test);
+  border-left: 2px solid var(--eng-test);
+}
+.wiki-page--engineering .eng-reading-tips__pill--learn {
+  color: var(--eng-learn);
+  border-left: 2px solid var(--eng-learn);
+}
+.wiki-page--engineering .eng-reading-tips__arrow {
+  font-size: 13px;
+  font-weight: 900;
+  opacity: 0.7;
+}
+.wiki-page--engineering .eng-introduction .wiki-blocks {
+  display: grid;
+  gap: 24px;
+}
+.wiki-page--engineering .wiki-prose {
+  max-width: none;
+}
+.wiki-page--engineering .wiki-prose p + p {
+  margin-top: 16px !important;
+}
+.wiki-page--engineering .eng-outcome {
+  border-top: 1px solid var(--route-line);
+  padding-bottom: 96px;
+}
+.wiki-page--engineering .eng-outcome h3 {
+  margin: 0 0 16px;
+  color: var(--route-subheading-ink);
+  font-family: var(--font-sans), sans-serif !important;
+  font-size: clamp(20px, 2.2vw, 26px);
+  line-height: 1.35;
+}
+.wiki-page--engineering .eng-outcome p {
+  line-height: 1.75;
+}
+.wiki-page--engineering .eng-cycle-scenes {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(280px, 34%) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(32px, 5vw, 80px);
+  padding: var(--reader-pad) clamp(24px, 4vw, 64px);
+  background: var(--route-base);
+  box-sizing: border-box;
+}
+.wiki-page--engineering .eng-mech-nav {
+  position: relative;
+  align-self: start;
+  padding: 0;
+}
+.wiki-page--engineering .eng-mech-figure-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 0;
+}
+.wiki-page--engineering .eng-dial {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  aspect-ratio: 1;
+  overflow: visible;
+  font-family: var(--font-heading);
+}
+.wiki-page--engineering .eng-current-iteration {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  width: 100%;
+  margin: 0;
+  color: var(--route-subheading-ink);
+  font-family: var(--font-heading);
+  font-size: clamp(18px, 1.45vw, 25px);
+  font-weight: 700;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+.wiki-page--engineering .eng-current-iteration__index {
+  flex: 0 0 auto;
+  color: var(--route-heading-ink);
+  font-variant-numeric: tabular-nums;
+}
+.wiki-page--engineering .eng-slides-clip {
+  min-width: 0;
+}
+.wiki-page--engineering .eng-scene-heading {
+  padding: 12px 0 28px;
+}
+.wiki-page--engineering .eng-scene-cycle {
+  margin: 0 0 14px 56px;
+  color: var(--route-muted);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.wiki-page--engineering .eng-scene-heading__row {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 12px;
+}
+.wiki-page--engineering .eng-scene-heading h3 {
+  margin: 0;
+  color: var(--route-heading-ink);
+  font-family: var(--font-heading);
+  font-size: clamp(23px, 2.3vw, 34px);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+.wiki-page--engineering .eng-scene-heading .eng-iteration-index {
+  margin-right: 12px;
+  color: var(--route-subheading-ink);
+  font-variant-numeric: tabular-nums;
+}
+.wiki-page--engineering .eng-scene-heading h3:focus {
+  outline: none;
+}
+.wiki-page--engineering .eng-iteration-arrow {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--route-heading-ink);
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+.wiki-page--engineering .eng-iteration-arrow svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.wiki-page--engineering .eng-iteration-arrow:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--route-heading-ink) 7%, transparent);
+}
+.wiki-page--engineering .eng-iteration-arrow:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+.wiki-page--engineering .eng-iteration-arrow:focus-visible {
+  outline: 2px solid var(--route-heading-ink);
+  outline-offset: 2px;
+}
+.wiki-page--engineering .eng-iteration-arrow:active:not(:disabled) {
+  transform: scale(0.96);
+}
+.wiki-page--engineering .eng-scene,
+.wiki-page--engineering .eng-stage {
+  scroll-margin-top: calc(var(--header-height) + 24px);
+}
+.wiki-page--engineering .eng-stage-content {
+  padding: 2px 6px 22px;
+}
+.wiki-page--engineering .eng-stage-content > * + * {
+  margin-top: 18px;
+}
+/* Tighten figure-to-text rhythm inside the pinned reading stage (issues #10/#14). */
+.wiki-page--engineering .eng-stage-content > .wiki-figure {
+  margin-top: 10px;
+}
+.wiki-page--engineering .eng-stage-content .wiki-figure figcaption {
+  margin-top: 10px;
+}
+.wiki-page--engineering .eng-stage .wiki-figure:has(img[src*="engineering-c2-01"]),
+.wiki-page--engineering .eng-stage .wiki-figure:has(img[src*="engineering-c2-02a"]),
+.wiki-page--engineering .eng-stage .wiki-figure:has(img[src*="engineering-c2-06"]) {
+  margin-top: 4px;
+}
+.wiki-page--engineering .eng-stage .wiki-figure img[src*="engineering-c2-01"],
+.wiki-page--engineering .eng-stage .wiki-figure img[src*="engineering-c2-02a"],
+.wiki-page--engineering .eng-stage .wiki-figure img[src*="engineering-c2-06"] {
+  aspect-ratio: 3000 / 1780;
+  object-fit: cover;
+  object-position: 50% 52%;
+}
+.wiki-page--engineering .eng-stage .wiki-figure:has(img[src*="engineering-c2-01"]) figcaption,
+.wiki-page--engineering .eng-stage .wiki-figure:has(img[src*="engineering-c2-02a"]) figcaption,
+.wiki-page--engineering .eng-stage .wiki-figure:has(img[src*="engineering-c2-06"]) figcaption {
+  margin-top: 6px;
+}
+.wiki-page--engineering .eng-stage .wiki-prose p {
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.6;
+}
+.wiki-page--engineering .eng-stage .wiki-prose p + p {
+  margin-top: 12px !important;
+}
+.wiki-page--engineering .eng-stage-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 0 6px 10px;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--eng-design) 25%, transparent);
+  color: var(--eng-design);
+}
+.wiki-page--engineering [data-dbtl-stage="build"] .eng-stage-header {
+  color: var(--eng-build);
+  border-color: color-mix(in srgb, var(--eng-build) 45%, transparent);
+}
+.wiki-page--engineering [data-dbtl-stage="test"] .eng-stage-header {
+  color: var(--eng-test);
+  border-color: color-mix(in srgb, var(--eng-test) 45%, transparent);
+}
+.wiki-page--engineering [data-dbtl-stage="learn"] .eng-stage-header {
+  color: var(--eng-learn);
+  border-color: color-mix(in srgb, var(--eng-learn) 45%, transparent);
+}
+.wiki-page--engineering .eng-stage-title {
+  margin: 0;
+  padding: 0;
+  border-bottom: none;
+  color: inherit;
+  font-family: var(--font-sans);
+  font-size: clamp(21px, 2vw, 25px);
+  font-weight: 650;
+  line-height: 1.3;
+}
+.wiki-page--engineering .eng-stage-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease,
+    opacity 160ms ease;
+}
+.wiki-page--engineering .eng-stage-arrow:hover:not(:disabled) {
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  transform: scale(1.08);
+}
+.wiki-page--engineering .eng-stage-arrow:active:not(:disabled) {
+  transform: scale(0.92);
+}
+.wiki-page--engineering .eng-stage-arrow:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+.wiki-page--engineering .eng-stage-arrow:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+.wiki-page--engineering .eng-stage-arrow svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.wiki-page--engineering .eng-stage-references {
+  margin: 24px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--route-line);
+  color: var(--route-muted);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+.wiki-page--engineering .eng-stage-references ol {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.wiki-page--engineering .eng-stage-references a {
+  color: var(--route-subheading-ink);
+  text-underline-offset: 3px;
+}
+.wiki-page--engineering .eng-stage .wiki-image-placeholder {
+  min-height: 150px;
+}
+.wiki-page--engineering .eng-stage .wiki-table {
+  min-width: 650px;
+}
+.wiki-page--engineering .eng-stage .wiki-table th,
+.wiki-page--engineering .eng-stage .wiki-table td {
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 12px;
+}
+/* The floating TIME bar lives in a portal, clear of the pinned scene transforms. */
+.eng-gear-nav {
+  --eng-t: #2d6898;
+  --eng-i: #2f8a6c;
+  --eng-m: #c08a1e;
+  --eng-e: #c0574b;
+  position: fixed;
+  z-index: 40;
+  left: 50%;
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  width: min(420px, calc(100% - 48px));
+  transform: translateX(-50%);
+  color: #243d2c;
+}
+.eng-gear-nav[data-open="true"]::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  width: 100%;
+  height: 16px;
+}
+.eng-time-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 999px;
+  background: linear-gradient(
+    110deg,
+    color-mix(in srgb, var(--eng-t) 20%, #f5f8ed) 0%,
+    color-mix(in srgb, var(--eng-i) 20%, #f5f8ed) 34%,
+    color-mix(in srgb, var(--eng-m) 20%, #f5f8ed) 67%,
+    color-mix(in srgb, var(--eng-e) 20%, #f5f8ed) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(36, 61, 44, 0.04),
+    0 2px 5px rgba(36, 61, 44, 0.06),
+    0 12px 32px rgba(36, 61, 44, 0.12);
+}
+.eng-time-letter {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 56px;
+  padding: 0 0 4px;
+  border: 0;
+  border-radius: 28px;
+  background: transparent;
+  color: var(--gear-color);
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    transform 160ms ease;
+}
+.eng-gear-nav [data-letter="t"] {
+  --gear-color: #2d6898;
+}
+.eng-gear-nav [data-letter="i"] {
+  --gear-color: #2f8a6c;
+}
+.eng-gear-nav [data-letter="m"] {
+  --gear-color: #c08a1e;
+}
+.eng-gear-nav [data-letter="e"] {
+  --gear-color: #c0574b;
+}
+.eng-time-letter::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  width: 12px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  opacity: 0;
+  transform: scaleX(0.5);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+.eng-time-letter[aria-current]::after {
+  opacity: 0.75;
+  transform: scaleX(1);
+}
+.eng-time-letter:hover,
+.eng-time-letter[aria-expanded="true"] {
+  background: rgba(255, 255, 255, 0.35);
+}
+.eng-time-letter:focus-visible {
+  outline: 2px solid var(--gear-color);
+  outline-offset: 1px;
+}
+.eng-time-letter:active {
+  transform: scale(0.96);
+}
+.eng-cycle-flyout {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  width: min(560px, calc(100vw - 32px));
+  padding: 18px 22px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--route-base, #f3f7e0) 92%, #fff);
+  box-shadow:
+    0 0 0 1px rgba(36, 61, 44, 0.06),
+    0 2px 5px rgba(36, 61, 44, 0.04),
+    0 16px 40px rgba(36, 61, 44, 0.13);
+  transform: translateX(-50%);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+.eng-cycle-flyout[hidden] {
+  display: none;
+}
+.eng-cycle-flyout::after {
+  content: "";
+  position: absolute;
+  top: calc(100% - 5px);
+  left: calc(50% + 98.5px * var(--flyout-slot) - 5px);
+  width: 10px;
+  height: 10px;
+  background: var(--route-base, #f3f7e0);
+  transform: rotate(45deg);
+  box-shadow: 1px 1px 0 rgba(36, 61, 44, 0.08);
+}
+.eng-cycle-flyout__heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+  color: var(--gear-color);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+.eng-cycle-flyout__heading span:last-child {
+  flex: 0 0 auto;
+  color: #607366;
+  font-size: 11px;
+  font-weight: 400;
+}
+.eng-gear-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px 10px;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 4px 4px 0;
+  overflow: visible;
+}
+.eng-gear-cluster:empty {
+  display: none;
+}
+@starting-style {
+  .eng-cycle-flyout {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+}
+.eng-small-gear {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px;
+  width: 58px;
+  flex: 0 0 58px;
+  height: 74px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--gear-color);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  transition:
+    color 180ms ease,
+    transform 160ms ease;
+}
+.eng-small-gear__img {
+  display: block;
+  flex: 0 0 auto;
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  pointer-events: none;
+  transform: rotate(var(--gear-phase, 0deg));
+  filter: drop-shadow(0 1px 2px rgba(36, 61, 44, 0.08));
+  transition:
+    transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 200ms ease;
+}
+.eng-small-gear:hover .eng-small-gear__img {
+  transform: scale(1.08) rotate(var(--gear-phase, 0deg));
+  filter: drop-shadow(0 3px 8px rgba(36, 61, 44, 0.16));
+}
+.eng-small-gear.is-active .eng-small-gear__img {
+  transform: scale(1.06) rotate(var(--gear-phase, 0deg));
+  filter: drop-shadow(0 2px 8px color-mix(in srgb, var(--gear-color) 45%, transparent));
+}
+.eng-small-gear.is-active span {
+  font-weight: 750;
+}
+.eng-small-gear.is-active::before {
+  content: "";
+  position: absolute;
+  left: calc(50% - 3px);
+  top: -2px;
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  border-radius: 50%;
+}
+.eng-small-gear:focus-visible {
+  outline: 2px solid var(--gear-color);
+  outline-offset: 2px;
+  border-radius: 7px;
+}
+.eng-small-gear:active {
+  transform: scale(0.96);
+}
+@media (min-width: 981px) and (prefers-reduced-motion: no-preference) {
+  .wiki-page--engineering .eng-cycle-scenes {
+    height: var(--reader-h);
+    align-items: stretch;
+    padding-bottom: 110px;
+  }
+  .wiki-page--engineering .eng-mech-nav {
+    align-self: center;
+  }
+  .wiki-page--engineering .eng-dial {
+    width: min(100%, calc(var(--reader-h) - 174px));
+  }
+  .wiki-page--engineering .eng-slides-clip {
+    height: 100%;
+    overflow: hidden;
+  }
+  .wiki-page--engineering .eng-slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  .wiki-page--engineering .eng-scene {
+    position: relative;
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .wiki-page--engineering .eng-scene-heading {
+    flex: 0 0 auto;
+    min-height: clamp(130px, 19dvh, 190px);
+  }
+  .wiki-page--engineering .eng-stage-stack {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+  }
+  .wiki-page--engineering .eng-stage {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .wiki-page--engineering .eng-stage-title,
+  .wiki-page--engineering .eng-stage-body {
+    width: min(100%, 680px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .wiki-page--engineering .eng-stage-body {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .wiki-page--engineering .eng-current-iteration {
+    display: none;
+  }
+}
+@media (max-width: 980px), (prefers-reduced-motion: reduce) {
+  .wiki-page--engineering .eng-cycle-scenes {
+    display: block;
+  }
+  .wiki-page--engineering .eng-mech-nav {
+    width: min(380px, 100%);
+    margin: 0 auto 28px;
+  }
+  .wiki-page--engineering .eng-dial {
+    max-width: 260px;
+  }
+  .wiki-page--engineering .eng-mech-figure-box {
+    gap: 12px;
+    padding: 12px;
+  }
+  .wiki-page--engineering .eng-current-iteration {
+    font-size: 18px;
+  }
+  .wiki-page--engineering .eng-scene + .eng-scene {
+    border-top: 1px solid var(--route-line);
+  }
+  .wiki-page--engineering .eng-stage + .eng-stage {
+    border-top: 1px solid var(--route-line);
+  }
+  .wiki-page--engineering .eng-stage {
+    padding-top: 20px;
+  }
+  .wiki-page--engineering .eng-stage-title {
+    padding-top: 4px;
+  }
+  .wiki-page--engineering .eng-outcome {
+    padding-bottom: 110px;
+  }
+}
+@media (max-width: 1280px) {
+  body:has(.eng-gear-nav) .circure-back-to-top {
+    width: 56px;
+    height: 56px;
+    right: 16px;
+    bottom: calc(24px + env(safe-area-inset-bottom));
+  }
+}
+@media (max-width: 640px) {
+  .wiki-page--engineering .eng-introduction,
+  .wiki-page--engineering .eng-outcome {
+    width: calc(100% - 36px);
+    padding-top: 32px;
+  }
+  .wiki-page--engineering .eng-stage-content {
+    padding: 2px 0 24px;
+  }
+  .wiki-page--engineering .eng-cycle-scenes {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .wiki-page--engineering .eng-scene-cycle {
+    margin-left: 0;
+  }
+  .wiki-page--engineering .eng-scene-heading__row {
+    grid-template-columns: minmax(0, 1fr) 44px 44px;
+    gap: 4px;
+  }
+  .wiki-page--engineering .eng-scene-heading h3 {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 23px;
+  }
+  .wiki-page--engineering .eng-iteration-arrow {
+    grid-row: 1;
+    grid-column: 2;
+  }
+  .wiki-page--engineering .eng-iteration-arrow:last-child {
+    grid-column: 3;
+  }
+  .eng-gear-nav {
+    width: clamp(194px, calc(100% - 112px), 264px);
+    bottom: calc(14px + env(safe-area-inset-bottom));
+  }
+  .eng-time-bar {
+    padding: 4px 8px;
+  }
+  .eng-time-letter {
+    height: 48px;
+    font-size: 30px;
+  }
+  .eng-cycle-flyout {
+    padding: 16px 14px;
+  }
+  .eng-gear-cluster {
+    gap: 8px 6px;
+  }
+  .eng-small-gear {
+    width: 48px;
+    flex: 0 0 48px;
+    height: 66px;
+    font-size: 11px;
+  }
+  .eng-small-gear__img {
+    width: 46px;
+    height: 46px;
+  }
+  .eng-cycle-flyout::after {
+    left: calc(
+      50% + (min(264px, 100vw - 112px) - 18px) / 4 * var(--flyout-slot) - 5px
+    );
+  }
+  body:has(.eng-gear-nav) .circure-back-to-top {
+    width: 44px;
+    height: 44px;
+    right: 8px;
+    bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wiki-page--engineering .eng-dial *,
+  .wiki-page--engineering .eng-reading-tips summary,
+  .wiki-page--engineering .eng-reading-tips summary svg,
+  .wiki-page--engineering .eng-iteration-arrow,
+  .eng-time-letter,
+  .eng-time-letter::after,
+  .eng-cycle-flyout,
+  .eng-small-gear,
+  .eng-small-gear * {
+    transition: none;
+  }
+  .eng-small-gear:active,
+  .eng-time-letter:active,
+  .wiki-page--engineering .eng-iteration-arrow:active:not(:disabled) {
+    transform: none;
+  }
+}
+
+/* Reusable Photo Reel in Engineering Stages */
+.wiki-page--engineering .sust-stake-reel {
+  margin: 20px 0;
+}
+.wiki-page--engineering .sust-stake-reel__frame {
+  aspect-ratio: 16 / 10;
+  max-height: 480px;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* Collapsible Code Blocks */
+.wiki-page--engineering .eng-code-fold {
+  margin: 16px 0;
+  border-radius: 10px;
+  border: 1px solid var(--route-line);
+  background: color-mix(in srgb, var(--route-paper) 60%, transparent);
+  overflow: hidden;
+  contain: paint;
+}
+.wiki-page--engineering .eng-code-fold[open] {
+  background: var(--route-paper);
+}
+.wiki-page--engineering .eng-code-fold__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--route-heading-ink);
+  background: color-mix(in srgb, var(--route-line) 20%, transparent);
+}
+.wiki-page--engineering .eng-code-fold__summary::-webkit-details-marker {
+  display: none;
+}
+.wiki-page--engineering .eng-code-fold__summary:hover {
+  background: color-mix(in srgb, var(--route-line) 35%, transparent);
+}
+.wiki-page--engineering .eng-code-fold__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.wiki-page--engineering .eng-code-fold__badge {
+  font-size: 11px;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--route-marker-bg, rgba(0, 0, 0, 0.06));
+  color: var(--route-subheading-ink);
+  font-family: var(--font-mono, monospace);
+}
+.wiki-page--engineering .eng-code-fold__icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 180ms ease;
+}
+.wiki-page--engineering .eng-code-fold[open] .eng-code-fold__icon {
+  transform: rotate(180deg);
+}
+.wiki-page--engineering .eng-code-fold__pre {
+  margin: 0;
+  padding: 14px 16px;
+  max-height: 280px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  font-family: var(--font-mono, monospace);
+  font-size: 13px;
+  line-height: 1.55;
+  background: #f8fafc;
+  color: #1e293b;
+  border-top: 1px solid var(--route-line);
+}
+
+/* Stage Notes */
+.wiki-page--engineering .eng-stage-note {
+  margin: 20px 0;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--route-paper) 80%, transparent);
+  border-left: 4px solid var(--route-heading-ink);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+.wiki-page--engineering .eng-stage-note__label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--route-heading-ink);
+  margin-bottom: 6px;
+}
+.wiki-page--engineering .eng-stage-note__body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--route-muted);
+}
+
+/* Engineering Outcome Final Section */
+.wiki-page--engineering .eng-outcome-final {
+  width: min(1040px, calc(100% - 64px));
+  margin: 48px auto;
+  padding: 48px 0;
+  border-top: 1px solid var(--route-line);
+}
+.wiki-page--engineering .eng-outcome-final__heading {
+  margin: 0 0 24px;
+}
+.wiki-page--engineering .eng-outcome-final h2 {
+  margin: 0;
+  color: var(--route-heading-ink);
+  font-family: var(--font-sans), sans-serif !important;
+  font-size: clamp(24px, 2.5vw, 30px);
+  font-weight: 700;
+  line-height: 1.35;
+}
+.wiki-page--engineering .eng-outcome-final h2 .wiki-heading-marker {
+  background: linear-gradient(
+    transparent 58%,
+    color-mix(in srgb, var(--eng-i) 24%, transparent) 58%
+  );
+  padding: 0 0.15em;
+}
+.wiki-page--engineering .eng-outcome-final__links {
+  margin-top: 24px;
+}
+

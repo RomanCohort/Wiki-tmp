@@ -1,0 +1,191 @@
+/**
+ * Styling for EpitopeStructuralValidationChart
+ * Conforms to CirCure Wiki academic editorial standards.
+ */
+
+.epitope-validation-panel {
+  margin: 2.2rem 0;
+  padding: 1.5rem 1.25rem;
+  background: var(--route-surface, #ffffff);
+  border: 1px solid var(--route-border, #e5e9ea);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px -2px rgba(18, 43, 37, 0.05);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #1a2522;
+}
+
+/* Header & Controls */
+.epitope-validation-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid #edf1f0;
+}
+
+.epitope-validation-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #12322a;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.epitope-validation-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(32, 112, 98, 0.1);
+  color: #207062;
+}
+
+.epitope-validation-modes {
+  display: inline-flex;
+  background: #f1f5f3;
+  padding: 3px;
+  border-radius: 8px;
+  gap: 2px;
+}
+
+.epitope-mode-btn {
+  border: none;
+  background: transparent;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #4b635c;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.epitope-mode-btn:hover {
+  color: #1b4d3e;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.epitope-mode-btn.is-active {
+  background: #ffffff;
+  color: #1b4d3e;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Chart Canvas Area */
+.epitope-charts-container {
+  display: grid;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.epitope-charts-container--dual {
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 960px) {
+  .epitope-charts-container--dual {
+    grid-template-columns: 1fr;
+  }
+}
+
+.epitope-charts-container--heatmap-only,
+.epitope-charts-container--volume-only {
+  grid-template-columns: 1fr;
+}
+
+.epitope-chart-card {
+  background: #ffffff;
+  border: 1px solid #eef2f1;
+  border-radius: 8px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.epitope-chart-card__header {
+  margin-bottom: 0.5rem;
+}
+
+.epitope-chart-card__title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #1a322c;
+  margin: 0 0 0.2rem 0;
+}
+
+.epitope-chart-card__subtitle {
+  font-size: 0.76rem;
+  color: #5d756e;
+  margin: 0;
+}
+
+.epitope-chart-instance {
+  width: 100%;
+  height: 520px;
+  min-height: 480px;
+}
+
+/* Captions & Academic Notes Underneath */
+.epitope-validation-caption {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #edf1f0;
+}
+
+.epitope-caption-entry {
+  margin-bottom: 1rem;
+}
+
+.epitope-caption-entry strong {
+  display: block;
+  font-size: 0.88rem;
+  color: #12322a;
+  margin-bottom: 0.25rem;
+}
+
+.epitope-caption-entry p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: #435b54;
+}
+
+.epitope-academic-note {
+  background: #f8faf9;
+  border-left: 3px solid #207062;
+  padding: 0.75rem 1rem;
+  border-radius: 0 6px 6px 0;
+  margin-top: 1rem;
+}
+
+.epitope-academic-note h4 {
+  margin: 0 0 0.3rem 0;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #12322a;
+}
+
+.epitope-academic-note p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: #3b534d;
+}
+
+.epitope-highlight-pass {
+  color: #1b6351;
+  font-weight: 600;
+}
+
+.epitope-highlight-fail {
+  color: #b34d3f;
+  font-weight: 600;
+}

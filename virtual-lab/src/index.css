@@ -1,0 +1,1745 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.lab-language-toggle {
+  position: fixed;
+  top: 7px;
+  right: 60px;
+  z-index: 250;
+  display: grid;
+  width: 58px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  border-radius: 999px;
+  background: #153e34;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+  color: #fff;
+  cursor: pointer;
+  font: 700 12px/1 "Lexend", "PingFang SC", "Microsoft YaHei", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.lab-language-toggle:hover,
+.lab-language-toggle:focus-visible {
+  background: #245c4d;
+}
+
+.lab-language-toggle:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .lab-language-toggle {
+    top: 9px;
+    right: 52px;
+    width: 46px;
+    height: 30px;
+  }
+}
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("https://static.igem.wiki/teams/6056/wiki/files/fonts/site/fraunces-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("https://static.igem.wiki/teams/6056/wiki/files/fonts/site/newsreader-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fredoka";
+  src: url("https://static.igem.wiki/teams/6056/wiki/files/fonts/site/fredoka-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("https://static.igem.wiki/teams/6056/wiki/files/fonts/site/lexend-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("https://static.igem.wiki/teams/6056/wiki/files/fonts/site/ibm-plex-mono.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --background: 38 65% 97%;
+    --foreground: 330 8% 10%;
+    --card: 38 33% 90%;
+    --card-foreground: 330 8% 10%;
+    --popover: 38 65% 97%;
+    --popover-foreground: 330 8% 10%;
+    --primary: 215 68% 28%;
+    --primary-foreground: 38 65% 97%;
+    --secondary: 333 23% 83%;
+    --secondary-foreground: 330 8% 10%;
+    --muted: 22 25% 86%;
+    --muted-foreground: 330 10% 34%;
+    --accent: 326 51% 68%;
+    --accent-foreground: 330 8% 10%;
+    --destructive: 9 68% 62%;
+    --destructive-foreground: 38 65% 97%;
+    --border: 330 8% 76%;
+    --input: 330 8% 76%;
+    --ring: 326 51% 68%;
+    --radius: 0.625rem;
+    
+    /* 自定义颜色 */
+    --highlight: 326 51% 68%;
+    --success: 326 34% 52%;
+    --easy: 326 34% 52%;
+    --medium: 38 48% 55%;
+    --hard: 9 68% 62%;
+
+    /* CirCure 统一学术设计系统变量 */
+    --font-heading: "Fraunces", "Newsreader", Georgia, serif;
+    --font-display: "Fraunces", "Newsreader", Georgia, serif;
+    --font-body: "Lexend", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    --font-sans: "Lexend", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    --font-mono: "IBM Plex Mono", Consolas, monospace;
+
+    --font-round: "Fredoka", "Lexend", "PingFang SC", "Microsoft YaHei", sans-serif;
+
+    /* CirCure field-notebook palette (mirrors src/styles/circure-tokens.css) */
+    --lab-paper: #eee7dc;
+    --lab-paper-warm: #eee7dc;
+    --lab-paper-card: #fcf8f1;
+    --lab-surface-map: #e5d9d2;
+    --lab-surface-blush: #ddcbd3;
+    --lab-ink: #1b1719;
+    --lab-ink-deep: #102f59;
+    --lab-ink-muted: rgba(27, 23, 25, 0.68);
+    --lab-line: rgba(27, 23, 25, 0.16);
+    --lab-line-strong: rgba(27, 23, 25, 0.26);
+    --lab-line-subtle: rgba(27, 23, 25, 0.07);
+    --lab-navy: #173f78;
+    --lab-navy-deep: #102f59;
+    --lab-care: #d784b3;
+    --lab-care-soft: #ecc6dc;
+    --lab-care-strong: #754356;
+    --lab-coral: #df705b;
+    --lab-gold: #c39a55;
+    --lab-blue: #667e8c;
+    --lab-success: #2f6f68;
+    --lab-green-deep: #153e34;
+    --lab-green-rich: #1b4d41;
+    --lab-green-mint: #9bd6c0;
+    --lab-active-card-bg: linear-gradient(145deg, #133a30 0%, #1a4d41 52%, #153e34 100%);
+    --lab-active-card-ink: #fcf8f1;
+    --lab-radius-panel: 28px;
+    --lab-shadow-paper: inset 0 0 0 4px rgba(252, 248, 241, 0.6), 0 12px 28px -20px rgba(66, 45, 54, 0.5);
+    --lab-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --lab-fast: 220ms;
+    --lab-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.26 0 0 0 0 0.18 0 0 0 0 0.21 0 0 0 0.07 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+  }
+}
+
+/* 高亮脉冲动画 */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(215, 132, 179, 0.55),
+                0 0 40px rgba(215, 132, 179, 0.34),
+                0 0 60px rgba(215, 132, 179, 0.18);
+    border-color: rgba(215, 132, 179, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(215, 132, 179, 0.86),
+                0 0 60px rgba(215, 132, 179, 0.56),
+                0 0 90px rgba(215, 132, 179, 0.32);
+    border-color: rgba(215, 132, 179, 1);
+  }
+}
+
+/* 呼吸缩放动画 */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* 闪烁动画 */
+@keyframes flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* 火焰动画 */
+@keyframes flame {
+  0%, 100% { 
+    transform: scaleY(1) scaleX(1);
+    filter: brightness(1);
+  }
+  25% { 
+    transform: scaleY(1.1) scaleX(0.95);
+    filter: brightness(1.1);
+  }
+  50% { 
+    transform: scaleY(0.95) scaleX(1.05);
+    filter: brightness(0.95);
+  }
+  75% { 
+    transform: scaleY(1.05) scaleX(0.98);
+    filter: brightness(1.05);
+  }
+}
+
+/* 成功勾选动画 */
+@keyframes check-pop {
+  0% { 
+    transform: scale(0) rotate(-45deg);
+    opacity: 0;
+  }
+  50% { 
+    transform: scale(1.2) rotate(0deg);
+    opacity: 1;
+  }
+  100% { 
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* 淡入上滑动画 */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 淡入动画 */
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* 滑入动画 */
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 热量红晕动画 */
+@keyframes heat-glow {
+  0%, 100% {
+    filter: brightness(1) drop-shadow(0 0 0 transparent);
+  }
+  50% {
+    filter: brightness(1.3) drop-shadow(0 0 20px rgba(223, 112, 91, 0.8));
+  }
+}
+
+/* 划线动画 */
+@keyframes streak-line {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* 时间流逝动画 */
+@keyframes time-pass {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+/* 应用动画的类 */
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-breathe {
+  animation: breathe 2s ease-in-out infinite;
+}
+
+.animate-flash {
+  animation: flash 1s ease-in-out infinite;
+}
+
+.animate-flame {
+  animation: flame 0.5s ease-in-out infinite;
+}
+
+.animate-check-pop {
+  animation: check-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-heat-glow {
+  animation: heat-glow 1s ease-in-out infinite;
+}
+
+.animate-time-pass {
+  animation: time-pass 2s linear forwards;
+}
+
+/* 高亮边框样式 */
+.highlight-border {
+  border: 3px solid rgba(215, 132, 179, 0.8);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(215, 132, 179, 0.55),
+              0 0 40px rgba(215, 132, 179, 0.34);
+}
+
+/* 步骤指示器样式 */
+.step-indicator {
+  @apply flex items-center gap-3 p-3 rounded-lg transition-all duration-300;
+}
+
+.step-indicator.active {
+  @apply bg-primary/20 border border-primary/50;
+}
+
+.step-indicator.completed {
+  @apply bg-green-500/20 border border-green-500/50;
+}
+
+.step-indicator.pending {
+  @apply bg-secondary/50 opacity-50;
+}
+
+/* 器材卡片样式 */
+.lab-item {
+  @apply relative cursor-pointer transition-all duration-300;
+}
+
+.lab-item:hover {
+  transform: translateY(-2px);
+}
+
+.lab-item.highlighted {
+  @apply animate-pulse-glow animate-breathe;
+}
+
+.lab-item.disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* 信息面板样式 */
+.info-panel {
+  @apply bg-card/80 backdrop-blur-sm border border-border rounded-xl p-4;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--secondary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* 玻璃态效果 */
+.glass {
+  @apply bg-white/5 backdrop-blur-md border border-white/10;
+}
+
+/* 渐变文字 */
+.gradient-text {
+  background-image: linear-gradient(90deg, #173f78, #d784b3);
+  @apply bg-clip-text text-transparent;
+}
+
+@keyframes catalog-next {
+  from { opacity: 0; transform: translateX(34px) scale(0.985); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes catalog-previous {
+  from { opacity: 0; transform: translateX(-34px) scale(0.985); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+.animate-catalog-next {
+  animation: catalog-next 460ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-catalog-previous {
+  animation: catalog-previous 460ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.catalog-arrow {
+  @apply flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-primary transition-all duration-300;
+}
+
+.catalog-arrow:hover:not(:disabled) {
+  @apply -translate-y-0.5 border-primary/40 bg-primary text-primary-foreground shadow-md;
+}
+
+.catalog-arrow:disabled {
+  @apply cursor-not-allowed opacity-35;
+}
+
+/* ============================================================================
+   Catalog — CirCure field notebook (navy + rose on kraft paper)
+   ========================================================================== */
+
+.catalog-carousel {
+  touch-action: pan-y;
+}
+
+.catalog-page {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100svh;
+  min-height: 600px;
+  overflow: hidden;
+  background: var(--lab-paper);
+  color: var(--lab-navy-deep);
+  font-family: var(--font-body);
+}
+
+.catalog-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 92% 12%, rgba(215, 132, 179, 0.18), transparent 28rem),
+    var(--lab-grain) 0 0 / 160px 160px,
+    var(--lab-paper);
+}
+
+.catalog-stage::before {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(238, 231, 220, 0.2), rgba(252, 248, 241, 0.4) 54%, rgba(238, 231, 220, 0.15));
+  content: "";
+  pointer-events: none;
+}
+
+.catalog-stage-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: min(100%, 1560px);
+  height: 100%;
+  grid-template-columns: minmax(240px, 17.5vw) minmax(0, 1fr);
+  margin: 0 auto;
+  padding: clamp(36px, 5vh, 60px) clamp(48px, 5.5vw, 96px) clamp(24px, 3.5vh, 42px) clamp(24px, 4vw, 64px);
+}
+
+/* --- Left Route Navigation --- */
+
+.catalog-route {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4px clamp(24px, 2.5vw, 38px) 4px 0;
+  border-right: 1px dashed rgba(27, 23, 25, 0.11);
+}
+
+.catalog-route-heading h1 {
+  margin: 0;
+  color: var(--lab-navy-deep);
+  font-family: var(--font-heading);
+  font-size: clamp(30px, 2.6vw, 44px);
+  font-weight: 550;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.catalog-route nav {
+  display: grid;
+  gap: 8px;
+  margin: auto 0;
+}
+
+.catalog-route-button {
+  position: relative;
+  display: grid;
+  min-height: 74px;
+  grid-template-columns: 34px 1fr;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--lab-navy-deep);
+  text-align: left;
+  transition: all 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+}
+
+.catalog-route-button > span {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border: 1px solid var(--lab-line);
+  border-radius: 50%;
+  color: var(--lab-ink-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  transition: all 260ms ease;
+}
+
+.catalog-route-button strong {
+  font-family: var(--font-heading);
+  font-size: 21px;
+  font-weight: 550;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.catalog-route-button small {
+  display: block;
+  font-family: var(--font-round) !important;
+  letter-spacing: 0.02em;
+  margin-top: 4px;
+  color: var(--lab-ink-muted);
+  font-family: var(--font-body);
+  font-size: 12px;
+  transition: color 260ms ease;
+}
+
+.catalog-route-button:hover {
+  background: rgba(221, 203, 211, 0.55);
+  transform: translateX(4px);
+}
+
+.catalog-route-button.is-active {
+  background: var(--lab-green-mint);
+  color: var(--lab-green-deep);
+  box-shadow: 0 6px 20px -4px rgba(21, 62, 52, 0.28);
+}
+
+.catalog-route-button.is-active > span {
+  border-color: var(--lab-green-deep);
+  background: var(--lab-green-deep);
+  color: #fcf8f1;
+}
+
+.catalog-route-button.is-active small {
+  color: rgba(21, 62, 52, 0.78);
+  font-weight: 500;
+}
+
+/* --- Right Stage & Copy --- */
+
+.catalog-workspace {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+}
+
+.catalog-stage-copy {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  right: clamp(8px, 2vw, 30px);
+  left: clamp(24px, 3.5vw, 56px);
+  padding-bottom: 14px;
+  border-bottom: 1px dashed rgba(27, 23, 25, 0.11);
+}
+
+.catalog-stage-copy h2 {
+  margin: 0;
+  color: var(--lab-navy-deep);
+  font-family: var(--font-heading);
+  font-size: clamp(34px, 3.6vw, 54px);
+  font-weight: 550;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.catalog-stage-copy p {
+  max-width: 540px;
+  margin: 8px 0 0;
+  color: var(--lab-ink-muted);
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.1vw, 16px);
+  line-height: 1.5;
+}
+
+/* --- 3D Carousel Stage & Cards --- */
+
+.catalog-carousel-stage {
+  position: absolute;
+  inset: clamp(84px, 13.5vh, 126px) 0 clamp(64px, 8.5vh, 84px);
+  height: auto;
+  perspective: 1600px;
+}
+
+.catalog-experiment-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(58%, 560px);
+  min-height: clamp(290px, 39vh, 390px);
+  padding: clamp(28px, 3.5vw, 48px);
+  border-radius: var(--lab-radius-panel);
+  text-align: left;
+  transition: all 460ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+  cursor: pointer;
+  border: 1px solid var(--lab-line);
+  background: var(--lab-paper-card);
+  color: var(--lab-navy-deep);
+  box-shadow: 0 16px 42px rgba(16, 47, 89, 0.1);
+}
+
+/* 3D Carousel 相对定位与景深状态 */
+.catalog-experiment-card--active {
+  z-index: 10;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  border: 1px solid rgba(155, 214, 192, 0.45);
+  background: var(--lab-active-card-bg);
+  color: var(--lab-active-card-ink);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.28),
+    0 24px 60px -15px rgba(19, 56, 47, 0.5),
+    0 0 0 1px rgba(155, 214, 192, 0.2);
+}
+
+/* 丝绸微光质感层 (Silk Sheen & fine inner luster) */
+.catalog-experiment-card--active::after {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--lab-radius-panel);
+  background: linear-gradient(
+    130deg,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.04) 28%,
+    transparent 52%,
+    rgba(215, 132, 179, 0.15) 75%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  pointer-events: none;
+  content: "";
+}
+
+.catalog-experiment-card--previous {
+  z-index: 5;
+  transform: translate(-104%, -50%) scale(0.88) rotateY(16deg);
+  opacity: 0.68;
+}
+
+.catalog-experiment-card--next {
+  z-index: 5;
+  transform: translate(4%, -50%) scale(0.88) rotateY(-16deg);
+  opacity: 0.68;
+}
+
+.catalog-experiment-card--far-previous {
+  z-index: 1;
+  transform: translate(-140%, -50%) scale(0.76) rotateY(25deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.catalog-experiment-card--far-next {
+  z-index: 1;
+  transform: translate(40%, -50%) scale(0.76) rotateY(-25deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.catalog-experiment-card--previous:hover,
+.catalog-experiment-card--next:hover {
+  opacity: 0.9;
+  filter: brightness(1.02);
+}
+
+.catalog-experiment-card strong {
+  display: block;
+  max-width: 88%;
+  color: var(--lab-navy-deep);
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 2.3vw, 36px);
+  font-weight: 550;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+}
+
+.catalog-card-description {
+  display: block;
+  max-width: 88%;
+  margin-top: 18px;
+  color: var(--lab-ink-muted);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.catalog-card-action {
+  font-family: var(--font-round) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 26px;
+  padding-bottom: 2px;
+  border-bottom: 1.5px solid var(--lab-care);
+  color: var(--lab-navy-deep);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.catalog-experiment-card--active strong {
+  color: #fcf8f1;
+}
+
+.catalog-experiment-card--active .catalog-card-description {
+  color: rgba(252, 248, 241, 0.82);
+}
+
+.catalog-experiment-card--active .catalog-card-action {
+  border-bottom: 1.5px solid var(--lab-green-mint);
+  color: var(--lab-green-mint);
+  transition: all 0.2s ease;
+}
+
+.catalog-experiment-card--active .catalog-card-action:hover {
+  color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+.catalog-card-number {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  font-family: var(--font-heading);
+  font-size: clamp(52px, 5.5vw, 80px);
+  font-weight: 300;
+  line-height: 1;
+  pointer-events: none;
+  opacity: 0.12;
+}
+
+.catalog-experiment-card--active .catalog-card-number {
+  color: #ffffff;
+  opacity: 0.15;
+}
+
+/* --- Bottom Controls & Progress --- */
+
+.catalog-controls {
+  position: absolute;
+  z-index: 10;
+  right: auto;
+  bottom: 12px;
+  left: 50%;
+  width: min(44%, 420px);
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  transform: translateX(-50%);
+}
+
+.catalog-progress {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(27, 23, 25, 0.1);
+}
+
+.catalog-progress-fill {
+  position: absolute;
+  z-index: 1;
+  inset: 0 auto 0 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--lab-green-deep), var(--lab-green-rich), var(--lab-green-mint));
+  transition: width 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.catalog-progress-knot {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  width: 24px;
+  height: 34px;
+  color: var(--lab-green-deep);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: left 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.catalog-progress-knot svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.catalog-progress-knot path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.8;
+}
+
+.catalog-progress button {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  flex: 1;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.catalog-transition-wave {
+  position: absolute;
+  z-index: 8;
+  inset: clamp(56px, 8vh, 78px) 0 clamp(52px, 7vh, 70px);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 8% 50%, rgba(215, 132, 179, 0.3), transparent 22%),
+    linear-gradient(90deg, rgba(16, 47, 89, 0.2), rgba(16, 47, 89, 0.05) 58%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* --- Responsive Adjustments --- */
+
+@media (max-width: 900px) {
+  .catalog-page {
+    height: auto;
+    min-height: 100svh;
+    overflow: visible;
+  }
+
+  .catalog-stage {
+    height: auto;
+    min-height: 100svh;
+  }
+
+  .catalog-stage-grid {
+    min-height: 100svh;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(580px, 1fr);
+    padding: 24px 36px 28px 18px;
+  }
+
+  .catalog-route {
+    padding: 0 0 18px;
+    border-right: 0;
+    border-bottom: 1px dashed rgba(27, 23, 25, 0.11);
+  }
+
+  .catalog-route nav {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .catalog-route-button {
+    min-height: 58px;
+    grid-template-columns: 22px 1fr;
+    padding: 8px 10px;
+  }
+
+  .catalog-route-button strong {
+    font-size: 17px;
+  }
+
+  .catalog-route-button small {
+    display: none;
+  }
+
+  .catalog-carousel-stage {
+    inset: 100px 0 76px;
+  }
+
+  .catalog-experiment-card {
+    width: min(84%, 480px);
+    min-height: 320px;
+    padding: 26px;
+  }
+
+  .catalog-controls {
+    width: min(60%, 380px);
+  }
+}
+
+@media (max-width: 600px) {
+  .catalog-stage-grid {
+    padding: 16px;
+  }
+
+  .catalog-route nav {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .catalog-experiment-card {
+    width: 92%;
+    min-height: 300px;
+    padding: 22px;
+  }
+
+  .catalog-stage-copy h2 {
+    font-size: 30px;
+  }
+
+  .catalog-controls {
+    width: 80%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .catalog-route-button,
+  .catalog-experiment-card,
+  .catalog-progress-fill {
+    transition-duration: 1ms !important;
+  }
+}
+
+/* Washi tape on the open experiment card with delicate edges. */
+.catalog-experiment-card--active::before {
+  position: absolute;
+  top: -12px;
+  left: 48px;
+  width: 104px;
+  height: 24px;
+  border-radius: 2px;
+  background: rgba(215, 132, 179, 0.68);
+  box-shadow: 0 1px 4px rgba(19, 56, 47, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+  content: "";
+  transform: rotate(-2.5deg);
+  border-left: 2px dashed rgba(255, 255, 255, 0.45);
+  border-right: 2px dashed rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 12;
+}
+
+.catalog-page::after {
+  position: absolute;
+  z-index: 20;
+  inset: 12px;
+  border: 1px solid var(--lab-line);
+  border-radius: 24px;
+  box-shadow: inset 0 0 0 4px rgba(252, 248, 241, 0.42), inset 0 0 0 5px var(--lab-line-subtle);
+  content: "";
+  pointer-events: none;
+}
+
+/* ============================================================================
+   Experiment workspaces — CirCure field-notebook bench
+   ----------------------------------------------------------------------------
+   One skin for all nine workstations. It only restyles surfaces, type and
+   colour; every size, position, timer and interaction stays in the page TSX.
+   The pages carry semantic hooks (lab-topbar, lab-steps-rail, lab-bench,
+   lab-info-rail, lab-note-card …) instead of per-page colour utilities, so the
+   look is changed here once. Scene artwork inside the canvas is untouched.
+   ========================================================================== */
+
+.experiment-shell {
+  --background: 38 65% 97%;
+  --foreground: 330 8% 10%;
+  --card: 38 65% 97%;
+  --card-foreground: 330 8% 10%;
+  --popover: 38 65% 97%;
+  --popover-foreground: 330 8% 10%;
+  --primary: 215 68% 28%;
+  --primary-foreground: 38 65% 97%;
+  --border: 330 12% 80%;
+  --input: 330 12% 80%;
+  --ring: 326 51% 68%;
+  background: var(--lab-paper-warm);
+  font-family: var(--font-body);
+}
+
+/* Shared paper grain: the same fractal-noise tooth as the Bio Memory notebook. */
+.experiment-shell .lab-steps-rail,
+.experiment-shell .lab-bench,
+.experiment-shell .lab-info-rail,
+.lab-completion,
+.lab-rotate-overlay {
+  background-image: var(--lab-grain);
+  background-size: 160px 160px;
+}
+
+/* --- Top bar: deep-sea navy ribbon, like the wiki footer ----------------- */
+
+.experiment-shell .lab-topbar {
+  position: relative;
+  border-bottom: 0;
+  background: var(--lab-navy-deep);
+  color: var(--lab-paper-card);
+  box-shadow: 0 6px 18px -12px rgba(16, 47, 89, 0.7);
+}
+
+.experiment-shell .lab-topbar::after {
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  left: 0;
+  height: 3px;
+  background: repeating-linear-gradient(90deg, var(--lab-care) 0 18px, transparent 18px 26px);
+  opacity: 0.55;
+  content: "";
+  pointer-events: none;
+}
+
+.experiment-shell .lab-topbar h1 {
+  color: var(--lab-paper-card);
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  text-transform: none;
+}
+
+.experiment-shell .lab-topbar p {
+  color: rgba(252, 248, 241, 0.66);
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+.experiment-shell .lab-topbar svg {
+  color: rgba(252, 248, 241, 0.8);
+  transition: color var(--lab-fast) ease;
+}
+
+.experiment-shell .lab-topbar svg:hover {
+  color: var(--lab-care);
+}
+
+.lab-icon-button {
+  border: 1px solid rgba(252, 248, 241, 0.18);
+  border-radius: 999px;
+  color: rgba(252, 248, 241, 0.82);
+  transition: background-color var(--lab-fast) ease, border-color var(--lab-fast) ease, transform var(--lab-fast) var(--lab-ease);
+}
+
+.lab-icon-button:hover {
+  border-color: var(--lab-care);
+  background: rgba(215, 132, 179, 0.16);
+  transform: rotate(-24deg);
+}
+
+/* --- Left rail: step checklist on warm kraft ----------------------------- */
+
+.experiment-shell .lab-steps-rail {
+  border-right: 1px solid var(--lab-line);
+  background-color: var(--lab-surface-map);
+  color: var(--lab-ink);
+}
+
+.experiment-shell .lab-hint-card {
+  position: relative;
+  border: 1px solid var(--lab-line);
+  border-radius: 20px;
+  background: var(--lab-paper-card);
+  box-shadow: var(--lab-shadow-paper);
+}
+
+.experiment-shell .lab-hint-card > div:first-child {
+  color: var(--lab-care-strong);
+  font-family: var(--font-round);
+  letter-spacing: 0.08em;
+}
+
+.experiment-shell .lab-hint-card h3 {
+  color: var(--lab-navy-deep);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.experiment-shell .lab-hint-card p {
+  color: var(--lab-ink-muted);
+}
+
+.lab-steps-card {
+  border: 1px solid var(--lab-line);
+  border-radius: 20px;
+  background: var(--lab-paper-card);
+  box-shadow: var(--lab-shadow-paper);
+  color: var(--lab-ink);
+}
+
+.lab-steps-card__title {
+  color: var(--lab-navy-deep);
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.lab-steps-card__count {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--lab-care);
+  color: var(--lab-navy-deep);
+  font-family: var(--font-round);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.lab-step {
+  border: 1px solid transparent;
+  border-radius: 12px;
+  transition: background-color var(--lab-fast) ease, border-color var(--lab-fast) ease, opacity var(--lab-fast) ease;
+}
+
+.lab-step__marker {
+  display: grid;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid var(--lab-line-strong);
+  border-radius: 999px;
+  background: var(--lab-paper-card);
+  color: var(--lab-ink-muted);
+  font-family: var(--font-round);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.lab-step__title {
+  color: var(--lab-ink);
+  font-weight: 500;
+}
+
+.lab-step__desc {
+  color: var(--lab-ink-muted);
+}
+
+.lab-step[data-state="active"] {
+  border-color: rgba(215, 132, 179, 0.55);
+  background: rgba(215, 132, 179, 0.16);
+}
+
+.lab-step[data-state="active"] .lab-step__marker {
+  border-color: var(--lab-navy);
+  background: var(--lab-navy);
+  color: var(--lab-paper-card);
+  box-shadow: 0 0 0 3px rgba(215, 132, 179, 0.35);
+}
+
+.lab-step[data-state="active"] .lab-step__title {
+  color: var(--lab-navy-deep);
+  font-weight: 600;
+}
+
+.lab-step[data-state="done"] .lab-step__marker {
+  border-color: var(--lab-care-strong);
+  background: var(--lab-care-strong);
+  color: var(--lab-paper-card);
+}
+
+.lab-step[data-state="done"] .lab-step__title {
+  color: var(--lab-ink-muted);
+}
+
+.lab-step[data-state="pending"] {
+  opacity: 0.55;
+}
+
+.lab-step[data-state="open"]:hover,
+.lab-step[data-state="done"]:hover {
+  background: rgba(229, 217, 210, 0.7);
+}
+
+.lab-step:focus-visible {
+  outline: 2px solid var(--lab-care);
+  outline-offset: 2px;
+}
+
+.lab-steps-card__footer {
+  border-top: 1px dashed var(--lab-line-strong);
+  color: var(--lab-ink-muted);
+}
+
+.lab-mono {
+  font-family: var(--font-mono);
+}
+
+.lab-progress {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--lab-surface-map);
+  box-shadow: inset 0 0 0 1px var(--lab-line);
+}
+
+.lab-progress__fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--lab-navy), var(--lab-care));
+  transition: width 500ms var(--lab-ease);
+}
+
+/* --- Bench: the canvas pinned to the notebook page ----------------------- */
+
+.experiment-shell .lab-bench {
+  background-color: var(--lab-paper-warm);
+}
+
+.experiment-shell .lab-canvas-frame {
+  border-radius: 18px;
+  box-shadow:
+    0 0 0 6px var(--lab-paper-card),
+    0 0 0 7px var(--lab-line),
+    0 22px 40px -22px rgba(66, 45, 54, 0.55);
+}
+
+.experiment-shell .lab-step-caption {
+  color: var(--lab-navy-deep);
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.experiment-shell .lab-step-caption > span {
+  color: inherit;
+}
+
+.experiment-shell .lab-step-caption > span:first-child {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--lab-navy);
+  color: var(--lab-paper-card);
+  font-family: var(--font-round);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.experiment-shell .lab-step-caption > span:nth-child(2):not(:last-child) {
+  color: var(--lab-care);
+}
+
+.experiment-shell .lab-step-caption > span:last-child:not(:first-child) {
+  color: var(--lab-navy-deep);
+}
+
+/* Page 9 keeps its slide counter on the right of the caption. */
+.experiment-shell .lab-step-caption.justify-between > span:last-child {
+  padding: 0;
+  background: none;
+  color: var(--lab-ink-muted);
+  font-family: var(--font-mono);
+}
+
+.experiment-shell .lab-note-card {
+  position: relative;
+  border: 1px solid var(--lab-line);
+  border-radius: 22px;
+  background:
+    linear-gradient(90deg, transparent 38px, rgba(223, 112, 91, 0.28) 38px 39px, transparent 39px),
+    repeating-linear-gradient(180deg, transparent 0 27px, rgba(102, 126, 140, 0.16) 27px 28px),
+    var(--lab-paper-card);
+  box-shadow: var(--lab-shadow-paper);
+  color: var(--lab-ink);
+}
+
+.experiment-shell .lab-note-card::before {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  width: 84px;
+  height: 18px;
+  border-radius: 3px;
+  background: rgba(195, 154, 85, 0.42);
+  box-shadow: 0 1px 2px rgba(66, 45, 54, 0.12);
+  content: "";
+  pointer-events: none;
+  transform: translateX(-50%) rotate(-2deg);
+}
+
+/* --- Right rail: experiment information card ----------------------------- */
+
+.experiment-shell .lab-info-rail {
+  border-left: 1px solid var(--lab-line);
+  background-color: var(--lab-surface-map);
+}
+
+.lab-info-card {
+  border: 1px solid var(--lab-line);
+  border-radius: var(--lab-radius-panel);
+  background: var(--lab-paper-card);
+  box-shadow: var(--lab-shadow-paper);
+  color: var(--lab-ink);
+}
+
+.lab-info-card__title {
+  color: var(--lab-navy-deep);
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.lab-tape-label {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 3px;
+  background: rgba(215, 132, 179, 0.34);
+  color: var(--lab-care-strong);
+  font-family: var(--font-round);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transform: rotate(-1.5deg);
+}
+
+.lab-tabs {
+  padding: 3px;
+  border: 1px solid var(--lab-line);
+  border-radius: 999px;
+  background: var(--lab-paper-warm);
+}
+
+.lab-tabs .lab-tab {
+  min-width: 0;
+  gap: 2px;
+  padding-inline: 2px;
+  overflow: hidden;
+  border-radius: 999px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: var(--lab-ink-muted);
+  font-family: var(--font-round);
+  font-weight: 500;
+}
+
+.lab-tabs .lab-tab svg {
+  width: 11px;
+  height: 11px;
+  margin-right: 0;
+  flex-shrink: 0;
+}
+
+.lab-tabs .lab-tab[data-state="active"] {
+  background: var(--lab-navy);
+  color: var(--lab-paper-card);
+  box-shadow: 0 4px 10px -6px rgba(16, 47, 89, 0.8);
+}
+
+.lab-section-title {
+  color: var(--lab-navy-deep);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.lab-ink {
+  color: var(--lab-ink);
+}
+
+.lab-muted {
+  color: var(--lab-ink-muted);
+}
+
+.lab-serif {
+  font-family: var(--font-heading);
+}
+
+.lab-accent-coral {
+  color: var(--lab-coral);
+}
+
+.lab-accent-gold {
+  color: var(--lab-gold);
+}
+
+.lab-info-card p,
+.lab-info-card li {
+  color: var(--lab-ink-muted);
+}
+
+.lab-info-card .lab-ink {
+  color: var(--lab-ink);
+}
+
+.lab-entry {
+  border: 1px solid var(--lab-line);
+  border-radius: 16px;
+  background: rgba(238, 231, 220, 0.55);
+}
+
+.lab-entry__num {
+  background: rgba(223, 112, 91, 0.16);
+  color: #9c4637;
+  font-family: var(--font-round);
+  font-weight: 600;
+}
+
+.lab-divider {
+  border-top: 1px dashed var(--lab-line-strong);
+}
+
+.lab-option {
+  border: 1px solid var(--lab-line);
+  border-radius: 12px;
+  background: var(--lab-paper-card);
+  color: var(--lab-ink);
+}
+
+.lab-option:hover {
+  border-color: rgba(215, 132, 179, 0.6);
+  background: rgba(215, 132, 179, 0.1);
+}
+
+.lab-option--correct,
+.lab-option--correct:hover {
+  border-color: var(--lab-success);
+  background: rgba(47, 111, 104, 0.12);
+  color: #1f4d48;
+}
+
+.lab-option--wrong,
+.lab-option--wrong:hover {
+  border-color: var(--lab-coral);
+  background: rgba(223, 112, 91, 0.12);
+  color: #8d3f31;
+}
+
+.lab-feedback--ok {
+  color: var(--lab-success);
+}
+
+.lab-feedback--warn {
+  color: #8d6a2f;
+}
+
+.lab-mini-button {
+  border: 1px solid var(--lab-line);
+  border-radius: 999px;
+  background: var(--lab-paper-card);
+  color: var(--lab-navy);
+  transition: background-color var(--lab-fast) ease;
+}
+
+.lab-mini-button:hover {
+  background: rgba(215, 132, 179, 0.16);
+}
+
+.lab-drop-slot {
+  border: 1.5px dashed var(--lab-line-strong);
+  border-radius: 14px;
+  background: var(--lab-paper-card);
+}
+
+.lab-drop-slot:hover {
+  border-color: var(--lab-care);
+  background: rgba(215, 132, 179, 0.08);
+}
+
+.lab-drop-slot--armed {
+  border-color: var(--lab-gold);
+  background: rgba(195, 154, 85, 0.1);
+}
+
+.lab-drop-slot--matched,
+.lab-drop-slot--matched:hover {
+  border-style: solid;
+  border-color: var(--lab-success);
+  background: rgba(47, 111, 104, 0.1);
+}
+
+.lab-drop-slot__num,
+.lab-drop-slot__num--done {
+  font-family: var(--font-round);
+}
+
+.lab-drop-slot__num {
+  background: var(--lab-surface-map);
+  color: var(--lab-ink-muted);
+}
+
+.lab-drop-slot__num--done {
+  background: var(--lab-success);
+  color: var(--lab-paper-card);
+}
+
+.lab-tray-item {
+  border: 1px solid var(--lab-line);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.lab-tray-item:hover {
+  border-color: var(--lab-care);
+}
+
+.lab-tray-item--selected {
+  border-color: var(--lab-gold);
+  box-shadow: 0 0 0 3px rgba(195, 154, 85, 0.35);
+}
+
+.lab-tray-item--matched {
+  border-color: var(--lab-success);
+}
+
+.lab-feedback-chip {
+  border-radius: 12px;
+  font-family: var(--font-round);
+}
+
+.lab-feedback-chip--ok {
+  border: 1px solid rgba(47, 111, 104, 0.4);
+  background: rgba(47, 111, 104, 0.12);
+  color: #1f4d48;
+}
+
+.lab-feedback-chip--bad {
+  background: rgba(223, 112, 91, 0.14);
+  color: #8d3f31;
+}
+
+.lab-thumb {
+  border: 1px solid var(--lab-line);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.lab-thumb:hover {
+  border-color: var(--lab-care);
+  box-shadow: 0 0 0 2px rgba(215, 132, 179, 0.4);
+}
+
+.lab-thumb__zoom {
+  background: var(--lab-navy);
+  color: var(--lab-paper-card);
+}
+
+/* --- Pills, dialogs and overlays ----------------------------------------- */
+
+.lab-pill-button {
+  border-radius: 999px;
+  font-family: var(--font-round);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: transform var(--lab-fast) var(--lab-ease), background-color var(--lab-fast) ease, box-shadow var(--lab-fast) ease;
+}
+
+.lab-pill-button:hover {
+  transform: translateY(-2px);
+}
+
+.lab-pill-button--primary,
+.lab-pill-button--primary:hover {
+  border: 0;
+  background: var(--lab-navy-deep);
+  color: var(--lab-paper-card);
+  box-shadow: 0 10px 22px -12px rgba(16, 47, 89, 0.8);
+}
+
+.lab-pill-button--ghost,
+.lab-pill-button--ghost:hover {
+  border: 1.5px solid var(--lab-navy-deep);
+  background: transparent;
+  color: var(--lab-navy-deep);
+}
+
+.lab-pill-button--care {
+  border: 1px solid rgba(117, 67, 86, 0.25);
+  background: var(--lab-care);
+  color: var(--lab-navy-deep);
+}
+
+.lab-pill-button--care:hover {
+  background: #cf74a8;
+}
+
+.lab-dialog {
+  border: 1px solid var(--lab-line);
+  border-radius: var(--lab-radius-panel);
+  background: var(--lab-paper-card);
+  color: var(--lab-ink);
+  box-shadow: 0 34px 90px -30px rgba(16, 47, 89, 0.55);
+}
+
+.lab-dialog [data-slot="dialog-title"] {
+  color: var(--lab-navy-deep);
+}
+
+.lab-specimen-plate {
+  border: 1px solid var(--lab-line);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: inset 0 0 0 6px var(--lab-paper-card), inset 0 0 0 7px var(--lab-line);
+}
+
+.experiment-shell .lab-scrim {
+  background: rgba(16, 47, 89, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+/* Result sheets over the canvas: a chalkboard card in brand navy with chalk
+   accents, so the page's own white/pastel copy keeps its contrast. */
+.experiment-shell .lab-chalk-sheet {
+  border: 1px solid rgba(252, 248, 241, 0.16);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(215, 132, 179, 0.18), transparent 45%),
+    var(--lab-navy-deep);
+  box-shadow: inset 0 0 0 5px rgba(252, 248, 241, 0.05), 0 34px 80px -24px rgba(10, 4, 9, 0.6);
+  color: var(--lab-paper-card);
+}
+
+.experiment-shell .lab-chalk-sheet h3,
+.experiment-shell .lab-chalk-sheet h4 {
+  color: var(--lab-care);
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.experiment-shell .lab-chalk-sheet [class~="text-slate-300"],
+.experiment-shell .lab-chalk-sheet [class~="text-slate-200"] {
+  color: rgba(252, 248, 241, 0.86);
+}
+
+.experiment-shell .lab-chalk-sheet [class~="text-slate-500"] {
+  color: rgba(252, 248, 241, 0.6);
+  font-family: var(--font-round);
+}
+
+.experiment-shell .lab-chalk-sheet [class*="text-blue-400/60"],
+.experiment-shell .lab-chalk-sheet [class*="text-blue-300/70"] {
+  color: rgba(217, 189, 139, 0.9);
+  font-family: var(--font-round);
+}
+
+.experiment-shell .lab-chalk-sheet [class~="border-l-4"] {
+  border-left-color: var(--lab-gold);
+  border-left-style: dashed;
+}
+
+.experiment-shell .lab-toast {
+  border: 1px solid rgba(252, 248, 241, 0.2);
+  border-radius: 999px;
+  background: rgba(16, 47, 89, 0.94);
+  box-shadow: 0 12px 26px -12px rgba(10, 4, 9, 0.7);
+  color: var(--lab-paper-card);
+  font-family: var(--font-round);
+}
+
+.lab-completion {
+  background-color: rgba(238, 231, 220, 0.96);
+}
+
+.lab-completion__card {
+  width: min(100%, 340px);
+  padding: 28px 26px 24px;
+  border: 1px solid var(--lab-line);
+  border-radius: var(--lab-radius-panel);
+  background: var(--lab-paper-card);
+  box-shadow: var(--lab-shadow-paper), 0 30px 70px -36px rgba(16, 47, 89, 0.55);
+}
+
+.lab-completion__seal {
+  border: 1.5px dashed var(--lab-care);
+  background: rgba(215, 132, 179, 0.14);
+}
+
+.lab-completion__seal > div {
+  background: var(--lab-navy);
+  color: var(--lab-paper-card);
+}
+
+.lab-completion__title {
+  color: var(--lab-navy-deep);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.experiment-shell .lab-rotate-overlay {
+  background-color: var(--lab-paper-warm);
+  color: var(--lab-navy-deep);
+}
+
+.experiment-shell .lab-rotate-overlay h2 {
+  font-family: var(--font-heading);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-icon-button:hover,
+  .lab-pill-button:hover {
+    transform: none;
+  }
+}
+
+/* 难度标签 */
+.difficulty-easy {
+  @apply bg-green-500/20 text-green-400 border border-green-500/50;
+}
+
+.difficulty-medium {
+  @apply bg-yellow-500/20 text-yellow-400 border border-yellow-500/50;
+}
+
+.difficulty-hard {
+  @apply bg-red-500/20 text-red-400 border border-red-500/50;
+}

@@ -1,0 +1,38 @@
+/* ============================================================================
+   Hardware page · scoped figure sizing
+   ----------------------------------------------------------------------------
+   Scope: `/hardware` carries `wiki-page--hardware` alongside the module class
+   `wiki-page--dry-lab`, so capping figures by file-name fragment cannot reach
+   another Dry Lab page's artwork.
+
+   One job only. Figure 1 is a portrait patent drawing (1194 × 1348) and
+   Figure 3 is near-square, so at full column width they push the prose off the
+   screen. Both are capped to a single comfortable viewport height; the
+   landscape diagrams (Figures 2, 4, 5, 6) are left alone, because the shared
+   skin already gets them right.
+
+   The caption is centred under the capped image, matching the shared figure
+   register. The blocks keep the shared 24px `.wiki-figure` margin, so nothing
+   here declares an outer margin.
+
+   Precedent: the same device is used for the Project page's circular plasmid
+   map in `styles/description-page.css` (`:has(img[src*="figure3"])`).
+   ========================================================================== */
+
+.wiki-page--hardware .wiki-figure:has(img[src*="fig1"]),
+.wiki-page--hardware .wiki-figure:has(img[src*="fig3"]) {
+  /* Capped artwork height for the portrait / near-square patent drawings. */
+  --hardware-figure-max-height: min(680px, 74vh);
+}
+
+.wiki-page--hardware .wiki-figure:has(img[src*="fig1"]) img,
+.wiki-page--hardware .wiki-figure:has(img[src*="fig3"]) img {
+  max-height: var(--hardware-figure-max-height);
+  width: auto;
+  object-fit: contain;
+}
+
+.wiki-page--hardware .wiki-figure:has(img[src*="fig1"]) figcaption,
+.wiki-page--hardware .wiki-figure:has(img[src*="fig3"]) figcaption {
+  text-align: center;
+}

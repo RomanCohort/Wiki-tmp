@@ -1,0 +1,324 @@
+@font-face {
+  font-family: Lexend;
+  src: url("https://static.igem.wiki/teams/6056/wiki/files/fonts/site/lexend-variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 0;
+  height: auto;
+  background: transparent;
+  color: #14354c;
+  font-family: Lexend, "Segoe UI", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+[hidden] {
+  display: none !important;
+}
+[data-wiki-embed-root] {
+  display: flow-root;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button,
+a,
+input,
+select {
+  touch-action: manipulation;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #88541e;
+  outline-offset: 3px;
+}
+
+#circure-backbone {
+  --panel-height: clamp(620px, 68vw, 780px);
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+#circure-backbone .workspace {
+  grid-template-columns: minmax(0, 2.6fr) minmax(250px, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+#circure-backbone .panel {
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+#circure-backbone .map-panel,
+#circure-backbone .info-panel {
+  height: var(--panel-height);
+  min-height: 0;
+}
+#circure-backbone .panel-head {
+  display: none;
+}
+#circure-backbone .tools {
+  justify-content: flex-start;
+  gap: 12px 16px;
+  padding: 0;
+}
+#circure-backbone .segmented {
+  margin-right: auto;
+  background: transparent;
+}
+#circure-backbone .map-controls {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 12px;
+  margin: 12px 0 8px;
+}
+#circure-backbone .lookup {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+}
+#circure-backbone .lookup label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+#circure-backbone select {
+  background: transparent;
+}
+#circure-backbone .map-zoom {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+#circure-backbone .map-zoom button {
+  min-width: 32px;
+  min-height: 32px;
+  padding: 4px 9px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  line-height: 1.2;
+}
+#circure-backbone .map-zoom button:hover {
+  border-color: var(--accent);
+  background: var(--mint);
+}
+#circure-backbone .map-zoom button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+#circure-backbone .map-zoom output {
+  min-width: 40px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+#circure-backbone .map-viewport {
+  flex: 1;
+  min-height: 0;
+  padding: 0;
+  overflow: auto;
+  overscroll-behavior: auto;
+  scrollbar-width: thin;
+}
+#circure-backbone #plasmid-map {
+  width: calc(100% * var(--map-zoom, 1));
+  height: calc(100% * var(--map-zoom, 1));
+  max-width: none;
+}
+#circure-backbone svg text {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+#circure-backbone .info-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: auto;
+  scrollbar-width: thin;
+  padding: 0 6px 16px 20px;
+}
+#circure-backbone .info-panel {
+  border-left: 1px solid var(--border);
+}
+#circure-backbone .registered-title {
+  display: none;
+}
+#circure-backbone #part-title {
+  margin-bottom: 18px;
+  font-size: 22px;
+}
+#circure-backbone .metadata {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  padding: 14px 0;
+}
+#circure-backbone .function {
+  font-size: 14px;
+  line-height: 1.75;
+}
+#circure-backbone .map-foot {
+  padding: 4px 0 0;
+}
+#circure-backbone .legend {
+  gap: 6px 14px;
+  font-size: 11px;
+}
+#circure-backbone .content-heading {
+  color: var(--ink);
+}
+
+/* The iframe viewport is the available reader width, not the browser width. */
+@media (max-width: 859px) {
+  #circure-backbone .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #circure-backbone .map-panel {
+    height: clamp(540px, 110vw, 700px);
+  }
+  #circure-backbone .info-panel {
+    height: auto;
+    padding-top: 20px;
+    border-left: 0;
+    border-top: 1px solid var(--border);
+  }
+  #circure-backbone .info-body {
+    overflow: visible;
+    padding: 0;
+  }
+  #circure-backbone .metadata {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+body:has(.wrap) {
+  --ink: #14354c;
+  --muted: #536573;
+  --accent: #245570;
+  --mint: #edf5f8;
+  --paper: #fffef9;
+  --border: #d3e0e7;
+}
+.wrap,
+body.compact .wrap {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+.wrap h2 {
+  font-size: 21px;
+  color: #14354c;
+}
+.wrap h3,
+.wrap h4 {
+  color: #88541e;
+}
+.wrap svg text {
+  font-family: Lexend, sans-serif;
+}
+.wrap .grid {
+  gap: 16px;
+  align-items: start;
+}
+.wrap .card,
+body.compact .wrap .card {
+  height: auto;
+  min-height: 0;
+  border-radius: 5px;
+}
+.wrap .card--parts .parts,
+.wrap .card--seq .seqbody {
+  flex: none;
+  overflow: visible;
+}
+.wrap .bar {
+  flex-wrap: wrap;
+}
+.wrap .note {
+  line-height: 1.7;
+}
+
+@media (min-width: 720px) {
+  .wrap .grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .wrap .card--map {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .wrap .card--seq {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .wrap .card--parts {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .wrap .card--build {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 520px) {
+  #circure-backbone .panel-head {
+    display: none;
+  }
+  #circure-backbone .tools {
+    gap: 8px 16px;
+    padding: 0;
+  }
+  #circure-backbone .segmented {
+    flex: 1 0 100%;
+  }
+  #circure-backbone .mode {
+    flex: 1;
+  }
+  #circure-backbone .map-controls {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  #circure-backbone .lookup {
+    flex: 1 0 100%;
+    margin: 0;
+  }
+  #circure-backbone .map-zoom {
+    margin-left: auto;
+  }
+  #circure-backbone .info-body {
+    padding: 0;
+  }
+  #circure-backbone .small {
+    font-size: 11px;
+  }
+  .wrap .bar {
+    gap: 8px;
+  }
+  .wrap .wbtn {
+    min-width: 0;
+    flex: 1 1 100%;
+  }
+}

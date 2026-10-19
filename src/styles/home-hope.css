@@ -1,0 +1,202 @@
+.home-story {
+  --hope-room-surface: #edf0fa;
+  --hope-room-feather: clamp(96px, 16svh, 160px);
+}
+
+.home-story .story-chapter--beyond {
+  --next-bg: var(--hope-room-surface);
+}
+
+/* Blend inside the painted viewports so a separate colour strip cannot
+   interrupt the handoff to the hospital room. */
+.home-story .story-chapter--beyond::after,
+.home-story .story-chapter--hope-return::after {
+  display: none;
+}
+
+.story-chapter--beyond .story-chapter-inner::after,
+.story-chapter--hope-return .story-chapter-inner::before,
+.story-chapter--hope-return .story-chapter-inner::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  height: var(--hope-room-feather);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.story-chapter--beyond .story-chapter-inner::after {
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent, var(--hope-room-surface));
+  opacity: var(--hope-exit-feather, 1);
+}
+
+.story-chapter--hope-return .story-chapter-inner::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--hope-room-surface), transparent);
+  opacity: var(--hope-entry-feather, 1);
+}
+
+.story-chapter--hope-return .story-chapter-inner::after {
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent, var(--next-bg));
+  opacity: var(--hope-exit-feather, 1);
+}
+
+.has-story-motion .story-chapter--beyond,
+.has-story-motion .story-chapter--hope-return {
+  --hope-exit-feather: 0;
+}
+
+.home-story .story-chapter--hope-return {
+  --chapter-bg: var(--hope-room-surface);
+  --next-bg: #f7e7e6;
+  --scene-hold: 145svh;
+}
+
+.story-hope-backdrop {
+  opacity: 0.78;
+}
+
+.story-art--hope-return {
+  width: min(100%, calc(var(--scene-height) * var(--art-aspect)));
+  container-type: inline-size;
+}
+
+.story-hope-people {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+}
+
+.story-hope-doctor {
+  left: 25.8203125%;
+  top: 17.2222222%;
+  width: 33.59375%;
+  height: 82.7777778%;
+  z-index: 2;
+}
+
+.story-hope-patient {
+  left: 13.59375%;
+  top: 37.0833333%;
+  width: 24.453125%;
+  height: 62.9166667%;
+  z-index: 3;
+}
+
+.story-hope-copy {
+  position: absolute;
+  z-index: 4;
+  left: 63%;
+  top: 19%;
+  width: 32%;
+  color: #3f465f;
+  isolation: isolate;
+  opacity: var(--hope-copy-exit, 1);
+}
+
+/* A feathered wash keeps the original room visible around the reading area. */
+.story-hope-copy::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -40px -30px;
+  background: radial-gradient(ellipse, #f5f5fbe8 45%, #f5f5fb00 73%);
+  filter: blur(10px);
+  opacity: var(--hope-wash-opacity, 1);
+  pointer-events: none;
+}
+
+.story-hope-copy h3 {
+  margin: 0 0 0.65em;
+  font: 400 clamp(28px, 3.1cqw, 48px)/1.16 var(--font-editorial);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.story-hope-copy h3 em {
+  color: #8e516e;
+  font: inherit;
+}
+
+.story-hope-copy p {
+  font: 400 clamp(17px, 1.35cqw, 21px)/1.65 var(--font-body);
+  text-wrap: pretty;
+}
+
+@media (max-width: 800px) and (orientation: portrait) {
+  .home-story .story-chapter--hope-return {
+    --scene-hold: 120svh;
+  }
+
+  .story-art--hope-return {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    translate: none;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: clamp(18px, 3svh, 28px);
+    padding: calc(var(--scene-height) * 0.05) 8% 0;
+    box-sizing: border-box;
+  }
+
+  .story-hope-people {
+    position: relative;
+    inset: auto;
+    grid-row: 2;
+    place-self: end center;
+    width: auto;
+    height: 100%;
+    max-height: min(101.25vw, 410.625px);
+    aspect-ratio: 16 / 9;
+    translate: 10% 0;
+  }
+
+  .story-hope-copy {
+    position: relative;
+    grid-row: 1;
+    top: auto;
+    left: auto;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .story-hope-copy h3 {
+    width: calc(100% - 42px);
+    font-size: clamp(27px, 7.5cqw, 36px);
+  }
+
+  .story-hope-copy p {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+}
+
+@media (max-height: 650px) and (orientation: landscape) {
+  .story-hope-copy {
+    top: 12%;
+    left: 62%;
+    width: 35%;
+  }
+
+  .story-hope-copy h3 {
+    font-size: clamp(20px, 3.2cqw, 30px);
+    margin-bottom: 0.5em;
+  }
+
+  .story-hope-copy p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Keep the static entrance wash above the reading area. */
+  .story-chapter--hope-return .story-chapter-inner::before {
+    height: var(--header-height);
+  }
+}

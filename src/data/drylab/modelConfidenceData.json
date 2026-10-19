@@ -1,0 +1,248 @@
+{
+  "rows": [
+    {
+      "peptide": "AVFADQVIV",
+      "iptm": 0.96,
+      "models": [
+        0.96,
+        0.96,
+        0.96,
+        0.96,
+        0.96
+      ],
+      "buriedArea": 115.12,
+      "fill": 82.228571,
+      "passed": true
+    },
+    {
+      "peptide": "AVTSEFHLV",
+      "iptm": 0.96,
+      "models": [
+        0.96,
+        0.96,
+        0.96,
+        0.96,
+        0.96
+      ],
+      "buriedArea": 114.26,
+      "fill": 81.614286,
+      "passed": true
+    },
+    {
+      "peptide": "FIGHYAENV",
+      "iptm": 0.962,
+      "models": [
+        0.97,
+        0.96,
+        0.96,
+        0.96,
+        0.96
+      ],
+      "buriedArea": 113.92,
+      "fill": 81.371429,
+      "passed": true
+    },
+    {
+      "peptide": "FLAEASVRG",
+      "iptm": 0.968,
+      "models": [
+        0.97,
+        0.97,
+        0.97,
+        0.97,
+        0.96
+      ],
+      "buriedArea": 0.0,
+      "fill": 0.0,
+      "passed": false
+    },
+    {
+      "peptide": "FQARLRLRV",
+      "iptm": 0.97,
+      "models": [
+        0.97,
+        0.97,
+        0.97,
+        0.97,
+        0.97
+      ],
+      "buriedArea": 113.72,
+      "fill": 81.228571,
+      "passed": true
+    },
+    {
+      "peptide": "GLHNFSDGL",
+      "iptm": 0.966,
+      "models": [
+        0.97,
+        0.97,
+        0.97,
+        0.97,
+        0.95
+      ],
+      "buriedArea": 139.84,
+      "fill": 99.885714,
+      "passed": true
+    },
+    {
+      "peptide": "GVATLAWMV",
+      "iptm": 0.958,
+      "models": [
+        0.97,
+        0.96,
+        0.96,
+        0.95,
+        0.95
+      ],
+      "buriedArea": 113.28,
+      "fill": 80.914286,
+      "passed": true
+    },
+    {
+      "peptide": "HILHVSFLA",
+      "iptm": 0.96,
+      "models": [
+        0.96,
+        0.96,
+        0.96,
+        0.96,
+        0.96
+      ],
+      "buriedArea": 60.1,
+      "fill": 42.928571,
+      "passed": false
+    },
+    {
+      "peptide": "RLFRERYRL",
+      "iptm": 0.964,
+      "models": [
+        0.97,
+        0.97,
+        0.96,
+        0.96,
+        0.96
+      ],
+      "buriedArea": 143.78,
+      "fill": 102.7,
+      "passed": true
+    },
+    {
+      "peptide": "RLRVLVPPL",
+      "iptm": 0.96,
+      "models": [
+        0.96,
+        0.96,
+        0.96,
+        0.96,
+        0.96
+      ],
+      "buriedArea": 139.58,
+      "fill": 99.7,
+      "passed": true
+    },
+    {
+      "peptide": "SVAVFCHEL",
+      "iptm": 0.968,
+      "models": [
+        0.97,
+        0.97,
+        0.97,
+        0.97,
+        0.96
+      ],
+      "buriedArea": 139.82,
+      "fill": 99.871429,
+      "passed": true
+    },
+    {
+      "peptide": "SVCWCVNSV",
+      "iptm": 0.962,
+      "models": [
+        0.97,
+        0.96,
+        0.96,
+        0.96,
+        0.96
+      ],
+      "buriedArea": 114.42,
+      "fill": 81.728571,
+      "passed": true
+    },
+    {
+      "peptide": "TLIYYLDEI",
+      "iptm": 0.968,
+      "models": [
+        0.97,
+        0.97,
+        0.97,
+        0.97,
+        0.96
+      ],
+      "buriedArea": 140.0,
+      "fill": 100.0,
+      "passed": true
+    },
+    {
+      "peptide": "TVSEGTHFL",
+      "iptm": 0.97,
+      "models": [
+        0.97,
+        0.97,
+        0.97,
+        0.97,
+        0.97
+      ],
+      "buriedArea": 139.54,
+      "fill": 99.671429,
+      "passed": true
+    },
+    {
+      "peptide": "WLKEGVLGL",
+      "iptm": 0.968,
+      "models": [
+        0.97,
+        0.97,
+        0.97,
+        0.97,
+        0.96
+      ],
+      "buriedArea": 140.22,
+      "fill": 100.157143,
+      "passed": true
+    },
+    {
+      "peptide": "YINGRGHLV",
+      "iptm": 0.97,
+      "models": [
+        0.97,
+        0.97,
+        0.97,
+        0.97,
+        0.97
+      ],
+      "buriedArea": 113.48,
+      "fill": 81.057143,
+      "passed": true
+    },
+    {
+      "peptide": "YLDEIPPKF",
+      "iptm": 0.968,
+      "models": [
+        0.97,
+        0.97,
+        0.97,
+        0.97,
+        0.96
+      ],
+      "buriedArea": 173.26,
+      "fill": 123.757143,
+      "passed": true
+    }
+  ],
+  "rho": 0.18915000232959536,
+  "modelMin": 0.95,
+  "modelMax": 0.97,
+  "modelMedian": 0.97,
+  "meanMin": 0.958,
+  "meanMax": 0.97
+}

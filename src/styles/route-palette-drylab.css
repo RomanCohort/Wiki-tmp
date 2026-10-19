@@ -1,0 +1,35 @@
+/* ============================================================================
+   Dry Lab module palette  (换色唯一入口)
+   ----------------------------------------------------------------------------
+   The whole Dry Lab reader (Model / Software / Hardware) shares this one
+   palette. To re-skin the module — or to copy this file for the next module —
+   only the three hex values below need to change; every other colour used by
+   `wiki-route-skin.css` is derived from them with color-mix().
+
+   Role mapping (identical to Wet Lab and Project):
+     主色 --route-main : fixed global header bar + optional chapter rail
+     辅色 --route-soft : left TOC/sidebar card, panels, header nav pills
+     底色 --route-base : page surface behind the mat (the reader background)
+   Plus the module's own gear-pattern artwork for the article frame — the pale
+   gear shapes drawn in the page sketch, supplied by `background/dry.png`.
+   ========================================================================== */
+
+/* The footer is a sibling of <Routes>, so it needs the palette named directly.
+   See route-palette-team.css for the rationale. */
+.wiki-page--dry-lab,
+.site-header.is-dry-lab-page,
+.circure-footer.is-dry-lab-page {
+  /* ① 三色板 —— 只有这三行需要改 */
+  --route-main: #9bd6c0; /* 主色 rgb(155, 214, 192) */
+  --route-soft: #c4f0de; /* 辅色 rgb(196, 240, 222) */
+  --route-base: #fef6e6; /* 底色 rgb(254, 246, 230) */
+
+  /* ② 模块专属装饰素材（正文面板边缘的淡色齿轮状模型图案） */
+  --route-frame-image: url("https://static.igem.wiki/teams/6056/wiki/files/pages/shared/dry.avif");
+
+  /* ③ 标题与马克笔专属主题配色（深浅分明的双色层级设计） */
+  --route-heading-ink: #153e34;      /* 大标题 H2：深松针墨黑青，科技厚重 */
+  --route-marker-bg: #c2ebe0;        /* 大标题马克笔：薄荷冰绿底涂 */
+  --route-subheading-ink: #633256;   /* 小标题 H3：深紫晶墨色，松针青与深紫晶相映，数理理性与拓扑纵深感分明 */
+  --route-watermark: rgba(21, 62, 52, 0.12);
+}

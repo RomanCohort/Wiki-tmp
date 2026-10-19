@@ -1,0 +1,69 @@
+.glass-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  /* The narrow facet reveals displaced source pixels; the rest stays clear. */
+  -webkit-mask-image: linear-gradient(
+    112deg,
+    transparent 43%,
+    #000 48% 52%,
+    transparent 57%
+  );
+  mask-image: linear-gradient(
+    112deg,
+    transparent 43%,
+    #000 48% 52%,
+    transparent 57%
+  );
+  -webkit-mask-size: 300% 100%;
+  mask-size: 300% 100%;
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+}
+
+.glass-sheen svg,
+.glass-sheen__light {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glass-sheen__light {
+  -webkit-mask: center / contain no-repeat;
+  mask: center / contain no-repeat;
+  background: linear-gradient(
+    112deg,
+    rgb(135 220 238 / 8%) 20%,
+    rgb(255 255 255 / 65%) 46%,
+    rgb(255 255 255 / 10%) 50%,
+    rgb(227 192 240 / 18%) 56%,
+    transparent 72%
+  );
+}
+
+@keyframes glass-facet-pass {
+  0%,
+  73% {
+    mask-position: 100% 0;
+    opacity: 0;
+  }
+  77% {
+    opacity: 0.88;
+  }
+  91% {
+    opacity: 0.88;
+  }
+  97%,
+  100% {
+    mask-position: 0% 0;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  .glass-sheen {
+    display: none;
+  }
+}

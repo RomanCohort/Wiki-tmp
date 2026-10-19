@@ -1,0 +1,85 @@
+/* Shared inline math rendered by components/wiki/mathText.tsx (LaTeX subset). */
+
+.wiki-math {
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-style: normal;
+  white-space: normal;
+}
+
+.wiki-math var {
+  font-family: inherit;
+  font-style: italic;
+  margin: 0 0.4px;
+}
+
+.wiki-math sup,
+.wiki-math sub {
+  font-size: 0.72em;
+  line-height: 0;
+}
+
+.wiki-math__up {
+  font-style: normal;
+}
+
+/* Standalone equation line ($...$ occupying a whole paragraph). */
+.wiki-math--block {
+  display: block;
+  text-align: center;
+  font-size: 1.06em;
+  margin: 0.9em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.wiki-math__frac {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  margin: 0 0.18em;
+  font-size: 0.96em;
+  line-height: 1.3;
+}
+
+.wiki-math__frac-top {
+  padding: 0 0.32em 0.1em;
+  border-bottom: 1px solid currentColor;
+}
+
+.wiki-math__frac-bottom {
+  padding: 0.1em 0.32em 0;
+}
+
+.wiki-math__accent {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: baseline;
+  line-height: 1;
+}
+
+.wiki-math__accent-base {
+  line-height: inherit;
+}
+
+.wiki-math__accent-symbol {
+  font-size: 0.75em;
+  line-height: 0.2;
+  margin-bottom: -0.05em;
+}
+
+.wiki-math__sqrt {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.wiki-math__sqrt-sign {
+  font-size: 1.15em;
+  margin-right: 0.05em;
+}
+
+.wiki-math__sqrt-stem {
+  border-top: 1px solid currentColor;
+  padding-top: 0.05em;
+}

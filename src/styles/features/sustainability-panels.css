@@ -1,0 +1,3343 @@
+/* ==========================================================================
+   Sustainability · feature panels
+   Colours come from the route palette (--route-*) so the panels re-skin with
+   the module; only the official UN SDG colours are fixed (via `data-sdg`).
+   ========================================================================== */
+
+/* Match the reader's Lexend typography inside panels, including numeric labels.
+   Keep this below the hero, and repeat it on portalled interview dialogs. */
+.wiki-page--sustainability .wiki-record,
+.sust-stake-modal {
+  --font-heading: var(--font-sans);
+  --font-display: var(--font-sans);
+  --font-editorial: var(--font-sans);
+  --font-mono: var(--font-sans);
+}
+
+.sust-stake-modal {
+  font-family: var(--font-sans);
+}
+
+/* SDG colour lookup — `--sdg` is read by cards, pills and tags. */
+[data-sdg="1"] { --sdg: #e5243b; }
+[data-sdg="2"] { --sdg: #dda63a; }
+[data-sdg="3"] { --sdg: #4c9f38; }
+[data-sdg="4"] { --sdg: #c5192d; }
+[data-sdg="5"] { --sdg: #ff3a21; }
+[data-sdg="6"] { --sdg: #26bde2; }
+[data-sdg="7"] { --sdg: #fcc30b; }
+[data-sdg="8"] { --sdg: #a21942; }
+[data-sdg="9"] { --sdg: #fd6925; }
+[data-sdg="10"] { --sdg: #dd1367; }
+[data-sdg="11"] { --sdg: #fd9d24; }
+[data-sdg="12"] { --sdg: #bf8b2e; }
+[data-sdg="13"] { --sdg: #3f7e44; }
+[data-sdg="14"] { --sdg: #0a97d9; }
+[data-sdg="15"] { --sdg: #56c02b; }
+[data-sdg="16"] { --sdg: #00689d; }
+[data-sdg="17"] { --sdg: #19486a; }
+
+/* Wide charts and hover-lifted cards must not open a scroll box. Keep the
+   feature slot open on the x-axis too: the folder's paper and cover are
+   intentionally transformed beyond their layout box during the 3D open
+   state, and clipping the slot cuts off those edges. */
+.wiki-page.wiki-page--sustainability .wiki-feature {
+  overflow-x: visible;
+  overflow-y: visible;
+}
+
+/* The rail slot only holds a portal anchor; drop its empty block margin. */
+.wiki-page--sustainability .wiki-feature:has(> .sust-scale-rail__anchor:only-child) {
+  display: none;
+}
+
+/* Shared small parts ------------------------------------------------------ */
+
+/* Sits above 16–17px body copy, so it must not be smaller than it. */
+.sust-minor-heading {
+  margin: 28px 0 10px;
+  color: var(--route-heading-ink, var(--route-ink));
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+}
+
+.sust-minor-heading:first-child {
+  margin-top: 0;
+}
+
+/* Keep SDG 12 anchor headings below the compact SCALE navigation. */
+@media (max-width: 980px) {
+  .wiki-page--sustainability h3[id^="sdg12-"] {
+    scroll-margin-top: calc(var(--header-height, 78px) + 48px);
+  }
+}
+
+/* Charts in a feature slot: the slot already spaces them from the prose, so the
+   figure adds no margin of its own. */
+.wiki-page--sustainability .wiki-feature .wiki-figure.sust-chart,
+.wiki-page--sustainability .wiki-feature .wiki-figure.sust-chord {
+  margin: 0 auto !important;
+}
+
+/* The ECharts matrices: capped so each reads with its intro paragraph instead
+   of filling the screen, and pulled up over the canvas' empty top band (the
+   design canvas leaves ~3% of its width above the axis note). */
+.sust-chart > div:first-child {
+  max-width: 820px;
+  margin: -2.4% auto 0;
+}
+
+.sust-matrix-tooltip {
+  line-height: 1.55 !important;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+
+/* SDG Impact Framework (SET / DEVELOP / GROW) figure, shown a size smaller. */
+.wiki-page--sustainability #sdg-impact-framework .wiki-figure img {
+  max-width: min(100%, 720px);
+}
+
+/* "SET:" heading marker takes the green of the SET ring in that figure. */
+.wiki-page--sustainability #set-core-challenges {
+  --route-marker-bg: #cadbca;
+}
+
+.sust-chart-caption {
+  margin-top: 10px;
+  color: var(--route-muted);
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.sust-reserved-note {
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px dashed var(--route-line-strong, var(--line));
+  border-radius: var(--radius-control);
+  color: var(--route-muted);
+  font-size: 13px;
+}
+
+/* Overview · core SDG cards ---------------------------------------------- */
+
+.sust-sdg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  max-width: 720px;
+  width: 100%;
+  margin: 32px auto;
+}
+
+.sust-sdg-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 18px 20px;
+  border: 1px solid var(--route-line);
+  border-top: 4px solid var(--sdg, var(--route-main));
+  border-radius: 10px;
+  background: #fff;
+  color: var(--route-ink);
+  text-decoration: none;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+a.sust-sdg-card:hover {
+  border-color: color-mix(in srgb, var(--sdg) 45%, transparent);
+  border-top-color: var(--sdg);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--sdg) 14%, transparent);
+  transform: translateY(-2px);
+}
+
+a.sust-sdg-card:focus-visible {
+  outline: 2px solid var(--sdg);
+  outline-offset: 3px;
+}
+
+.sust-sdg-card__number {
+  color: var(--sdg);
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.sust-sdg-card__title {
+  margin: 0;
+  font-family: var(--font-editorial);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.sust-sdg-card__summary {
+  margin: 0;
+  color: var(--route-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Logo-based Core SDG Card with slide-up summary drawer */
+.sust-sdg-card--logo {
+  padding: 0;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  background: transparent;
+  display: block;
+  position: relative;
+  aspect-ratio: 1 / 1;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition:
+    transform var(--duration-fast, 0.25s) var(--ease-out, ease),
+    box-shadow var(--duration-fast, 0.25s) var(--ease-out, ease);
+}
+
+.sust-sdg-card--logo:hover,
+.sust-sdg-card--logo:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+  outline: none;
+}
+
+.sust-sdg-card__media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.sust-sdg-card__logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.sust-sdg-card--logo:hover .sust-sdg-card__logo,
+.sust-sdg-card--logo:focus-visible .sust-sdg-card__logo {
+  transform: scale(1.02);
+}
+
+.sust-sdg-card__drawer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 10px;
+  background: color-mix(in srgb, var(--sdg) 94%, #000 6%);
+  box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(100%);
+  opacity: 0;
+  transition:
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.22s ease;
+  pointer-events: none;
+}
+
+.sust-sdg-card--logo:hover .sust-sdg-card__drawer,
+.sust-sdg-card--logo:focus-visible .sust-sdg-card__drawer,
+.sust-sdg-card--logo:focus-within .sust-sdg-card__drawer {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.sust-sdg-card--logo .sust-sdg-card__summary {
+  margin: 0;
+  color: #ffffff;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 640px) {
+  .sust-sdg-grid {
+    gap: 10px;
+    margin: 14px auto;
+  }
+  .sust-sdg-card--logo {
+    border-radius: 10px;
+  }
+  .sust-sdg-card__drawer {
+    padding: 6px 8px;
+  }
+  .sust-sdg-card--logo .sust-sdg-card__summary {
+    font-size: 10px;
+    line-height: 1.25;
+  }
+}
+
+/* Overview · SET / DEVELOP / GROW tiers ---------------------------------- */
+
+.sust-tier-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.sust-tier-card {
+  --tier: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border: none;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--route-main) calc(100% - var(--tier)), #fff);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sust-tier-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+}
+
+.sust-tier-card[data-layer="SET"] {
+  background: #f6fef2;
+}
+
+.sust-tier-card[data-layer="SET"] .sust-tier-card__layer {
+  color: #3d7a48;
+}
+
+.sust-tier-card[data-layer="SET"] .sust-tier-card__title {
+  color: #244b2a;
+}
+
+.sust-tier-card[data-layer="DEVELOP"] {
+  background: #fdf4ff;
+}
+
+.sust-tier-card[data-layer="DEVELOP"] .sust-tier-card__layer {
+  color: #8d3e6f;
+}
+
+.sust-tier-card[data-layer="DEVELOP"] .sust-tier-card__title {
+  color: #4a1f39;
+}
+
+.sust-tier-card[data-layer="GROW"] {
+  background: #fff7ed;
+}
+
+.sust-tier-card[data-layer="GROW"] .sust-tier-card__layer {
+  color: #c9651a;
+}
+
+.sust-tier-card[data-layer="GROW"] .sust-tier-card__title {
+  color: #5a2c09;
+}
+
+.sust-tier-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sust-tier-card__header-link {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 6px;
+  transition: opacity 0.15s ease;
+}
+
+.sust-tier-card__header-link:hover {
+  opacity: 0.85;
+}
+
+.sust-tier-card__header-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.sust-tier-card__layer {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.sust-tier-card__title {
+  display: block;
+  margin: 0;
+  font-family: var(--font-editorial);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.sust-tier-card__desc {
+  margin: 0;
+  color: var(--route-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.sust-tier-card__sdgs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: auto 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sust-sdg-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--sdg, var(--route-main));
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+}
+
+a.sust-sdg-pill {
+  cursor: pointer;
+}
+
+a.sust-sdg-pill:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+}
+
+a.sust-sdg-pill:focus-visible {
+  outline: 2px solid var(--sdg);
+  outline-offset: 2px;
+}
+
+/* Headline numbers --------------------------------------------------------- */
+
+.sust-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.sust-count-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 14px;
+  border-top: 2px solid var(--route-main);
+  background: var(--route-panel);
+  border-radius: 0 0 8px 8px;
+}
+
+.sust-count-stat__value {
+  color: var(--route-heading-ink, var(--route-ink));
+  font-family: var(--font-editorial);
+  font-size: clamp(30px, 3.4vw, 42px);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.sust-count-stat__label {
+  color: var(--route-muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* SST-QN · interaction status key (Figure 5) ----------------------------- */
+
+.sust-matrix-key {
+  margin: 0;
+}
+
+.sust-matrix-key__rows {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sust-matrix-key__row {
+  --key: #f2f2f0;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--route-line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* Same fills as the boundary matrix (Figure 6): C, E, ±, 0. */
+.sust-matrix-key__row--level-1 { --key: #b9d9c0; }
+.sust-matrix-key__row--level-2 { --key: #b9d8e8; }
+.sust-matrix-key__row--level-3 { --key: #f0c987; }
+.sust-matrix-key__row--level-4 { --key: #f2f2f0; }
+
+.sust-matrix-key__code {
+  display: grid;
+  grid-row: span 2;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(27, 23, 25, 0.12);
+  border-radius: 6px;
+  background: var(--key);
+  color: #263238;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.sust-matrix-key__label {
+  color: var(--route-ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.sust-matrix-key__summary {
+  color: var(--route-muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* SST-QN · score pipeline ------------------------------------------------- */
+
+.sust-score-stepper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  margin: 0;
+}
+
+.sust-score-stepper__inputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.sust-score-stepper__input,
+.sust-score-stepper__cal,
+.sust-score-stepper__out {
+  padding: 9px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.sust-score-stepper__input {
+  border: 1px solid var(--route-line);
+  background: #fff;
+  color: var(--route-ink);
+}
+
+.sust-score-stepper__cal {
+  border: 1px solid var(--route-line-strong, var(--route-line));
+  background: var(--route-panel);
+  color: var(--route-ink);
+  font-weight: 700;
+}
+
+.sust-score-stepper__arrow {
+  color: var(--route-accent);
+  font-size: 16px;
+  line-height: 1;
+  text-align: center;
+}
+
+.sust-score-stepper__out {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--route-accent);
+  color: #fff;
+}
+
+.sust-score-stepper__out-label {
+  font-weight: 700;
+}
+
+.sust-score-stepper__out-range {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+/* SST-QN · dimension chord ------------------------------------------------ */
+
+.sust-chord {
+  position: relative;
+  margin: 0;
+}
+
+.sust-chord__host {
+  width: 100%;
+  height: clamp(400px, 50vw, 580px);
+}
+
+.sust-chord__host svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.sust-chord__missing {
+  margin: 0;
+  padding: 14px;
+  border: 1px dashed var(--route-line-strong, var(--line));
+  border-radius: var(--radius-control);
+  color: var(--route-muted);
+  font-size: 13px;
+}
+
+.sust-chord__tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  max-width: 320px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: rgba(17, 24, 39, 0.95);
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.45;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-100%, -100%);
+  transition: opacity 120ms ease-out;
+}
+
+/* SST-QN · native PDF preview -------------------------------------------- */
+
+.sust-pdf-native {
+  display: grid;
+  gap: 18px;
+  margin: 0;
+}
+
+.sust-pdf-native__frame {
+  display: block;
+  width: 100%;
+  height: clamp(420px, 82vh, 920px);
+  border: 1px solid var(--route-line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.sust-pdf-native__caption {
+  display: grid;
+  gap: 6px;
+}
+
+.sust-pdf-native__title {
+  margin: 0;
+  color: var(--route-heading-ink, var(--route-ink));
+  font-family: var(--font-editorial);
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.sust-pdf-native__meta {
+  margin: 0;
+  color: var(--route-muted);
+  font-size: 13px;
+}
+
+.sust-pdf-native__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.sust-pdf-native__link {
+  color: var(--route-accent);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* S · stakeholder cards ---------------------------------------------------- */
+
+.sust-stake-grid {
+  display: grid;
+  gap: 22px;
+}
+
+.sust-stake-grid__item {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+/* Card = index tab on the left + main column (header, copy | photos, status
+   row), after the Marburg HP cards. 水墨淡彩：宣纸底 + 淡彩晕染 + 笔触顶线。 */
+.sust-stake-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr); /* 保持左侧编号竖条 + 右侧内容布局 */
+  border-radius: 12px;
+
+  /* 柔和外框：弱化机械实线，改用温润的半透明墨线 + 宣纸内高光 + 极浅暖调浮起阴影 */
+  border: 1px solid color-mix(in srgb, var(--route-line) 65%, transparent);
+  box-shadow:
+    0 6px 22px -6px color-mix(in srgb, var(--route-main) 10%, rgba(120, 90, 50, 0.06)),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.75);
+
+  /* 水墨淡彩多层背景：右上淡粉紫晕染（呼应照片区）、右下暖杏黄晕染、
+     左上衔接编号条的极淡主色晕染；底层温润宣纸暖白底，保证正文区纯净可读 */
+  background:
+    radial-gradient(circle at 88% 22%, rgba(235, 205, 220, 0.32) 0%, rgba(235, 205, 220, 0.08) 32%, transparent 60%),
+    radial-gradient(circle at 82% 88%, color-mix(in srgb, var(--route-main) 14%, transparent) 0%, transparent 55%),
+    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--route-main) 10%, transparent) 0%, transparent 40%),
+    color-mix(in srgb, var(--route-main) 2.5%, #fffdf8);
+
+  overflow: hidden;
+  scroll-margin-top: calc(var(--header-height) + 24px);
+}
+
+/* 顶部水墨笔触线：替代生硬的 3px 纯色 border-top，左浓右淡的水彩扫笔效果 */
+.sust-stake-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--route-main) 0%,
+    color-mix(in srgb, var(--route-main) 65%, #e5b8c8) 45%,
+    color-mix(in srgb, var(--route-main) 15%, transparent) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.sust-stake-card__tab {
+  /* 左侧编号竖条：自上而下自然消散的水墨淡彩竖笺 */
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--route-main) 16%, #fffdf8) 0%,
+    color-mix(in srgb, var(--route-main) 7%, #fffdf8) 65%,
+    color-mix(in srgb, var(--route-main) 3%, #fffdf8) 100%
+  );
+  border-right: 1px solid color-mix(in srgb, var(--route-main) 14%, transparent);
+  color: var(--route-accent);
+  font-family: var(--font-heading), var(--font-sans), sans-serif;
+  font-feature-settings: "zero" 0;
+  font-variant-numeric: normal;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.sust-stake-card__main {
+  /* 内容区：保持原有排版与尺寸，字号与行高不受影响 */
+  container-type: inline-size;
+  min-width: 0;
+  padding: 20px clamp(16px, 2.4vw, 26px) 18px;
+}
+
+.sust-stake-card__body {
+  display: grid;
+  gap: 20px;
+  align-items: start;
+}
+
+/* Copy on the left, photographs on the right. */
+@container (min-width: 640px) {
+  .sust-stake-card--with-photos .sust-stake-card__body {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.sust-stake-card__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin-bottom: 14px;
+}
+
+.sust-stake-card__name {
+  margin: 0;
+  color: var(--route-heading-ink, var(--route-ink));
+  font-family: var(--font-editorial);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.sust-stake-card__role {
+  flex-basis: 100%;
+  color: var(--route-muted);
+  font-size: 13px;
+}
+
+.sust-stake-card__fields {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.sust-stake-card__field {
+  display: grid;
+  gap: 2px;
+}
+
+.sust-stake-card__field dt {
+  color: var(--route-accent);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sust-stake-card__field dd {
+  margin: 0;
+  color: var(--route-ink);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* Label beside value on full-width cards; next to photos the copy column is
+   too narrow for that, so labels stay stacked. */
+@container (min-width: 620px) {
+  .sust-stake-card:not(.sust-stake-card--with-photos) .sust-stake-card__field {
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .sust-stake-card:not(.sust-stake-card--with-photos) .sust-stake-card__field dt {
+    padding-top: 3px;
+  }
+}
+
+/* Photographs fill their column beside the copy. */
+.sust-stake-card__media {
+  position: relative;
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+}
+
+/* Status row along the bottom of every card, "Click more" at its right. */
+.sust-stake-card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--route-line);
+}
+
+.sust-stake-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 28px;
+  margin: 0;
+}
+
+.sust-stake-meta__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
+
+.sust-stake-meta dt {
+  color: var(--route-heading-ink, var(--route-ink));
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sust-stake-meta dd {
+  margin: 0;
+}
+
+.sust-stake-card__status {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--route-panel);
+  color: var(--route-ink);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.sust-stake-card__sdgs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sust-stake-card__sdgs li {
+  padding: 2px 8px;
+  border: 1px solid var(--sdg, var(--route-line));
+  border-radius: 999px;
+  color: var(--sdg, var(--route-ink));
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.sust-stake-card__toggle {
+  margin-left: auto;
+  padding: 6px 14px;
+  border: 1px solid var(--route-line-strong, var(--route-line));
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--route-accent);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.sust-stake-card__toggle:hover {
+  background: var(--route-panel);
+}
+
+.sust-stake-card__toggle:focus-visible {
+  outline: 2px solid var(--route-accent);
+  outline-offset: 2px;
+}
+
+.sust-stake-card__more:not([hidden]) {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--route-line);
+}
+
+.sust-stake-article__title {
+  margin: 0 0 10px;
+  color: var(--route-heading-ink, var(--route-ink));
+  font-family: var(--font-editorial);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.sust-stake-article__section + .sust-stake-article__section {
+  margin-top: 14px;
+}
+
+.sust-stake-article__heading {
+  margin: 0 0 6px;
+  color: var(--route-accent);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.sust-stake-article p,
+.sust-stake-article__bullets {
+  margin: 0 0 10px;
+  color: var(--route-ink);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.sust-stake-article__bullets {
+  padding-left: 1.2em;
+}
+
+.sust-stake-article__bullets li + li {
+  margin-top: 4px;
+}
+
+/* Patient / caregiver quotes inside a stakeholder article. */
+.chat-container {
+  display: grid;
+  gap: 16px;
+  margin: 12px 0 16px;
+  padding: clamp(14px, 2vw, 22px);
+  border: 1px solid var(--route-line);
+  border-radius: 12px;
+  background: var(--route-paper);
+}
+
+.chat-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+}
+
+.chat-group--right {
+  flex-direction: row-reverse;
+}
+
+.chat-avatar {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--route-accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.chat-group__col {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 0;
+}
+
+.chat-group--right .chat-group__col {
+  align-items: flex-end;
+}
+
+.chat-speaker {
+  color: var(--route-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.chat-bubble {
+  max-width: 82%;
+  margin: 0;
+  padding: 10px 16px;
+  border: 1px solid var(--route-line);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--route-ink);
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.chat-group--left .chat-bubble {
+  border-top-left-radius: 4px;
+  transform-origin: top left;
+}
+
+.chat-group--right .chat-bubble {
+  border-top-right-radius: 4px;
+  background: var(--route-panel);
+  transform-origin: top right;
+}
+
+/* "Message sent" pop: each group arrives after the previous one (the delay
+   comes from `--chat-delay`); the avatar lands first, its bubble follows.
+   Nothing plays until the run scrolls into view (`.is-playing`). */
+.chat-avatar,
+.chat-speaker,
+.chat-bubble {
+  opacity: 0;
+}
+
+.chat-container.is-playing .chat-avatar,
+.chat-container.is-playing .chat-speaker {
+  animation: sust-chat-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) var(--chat-delay, 0s) forwards;
+}
+
+.chat-container.is-playing .chat-bubble {
+  animation: sust-chat-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)
+    calc(var(--chat-delay, 0s) + 0.25s) forwards;
+}
+
+@keyframes sust-chat-pop {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* C · consequences -------------------------------------------------------- */
+
+.sust-consequence-grid {
+  display: grid;
+  gap: 14px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sust-consequence-card {
+  padding: 18px clamp(16px, 2.4vw, 24px);
+  border: 1px solid var(--route-line);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.sust-consequence-card__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.sust-consequence-card__icon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--route-panel);
+  color: var(--route-accent);
+}
+
+.sust-consequence-card__icon svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sust-consequence-card__title {
+  margin: 0;
+  color: var(--route-heading-ink, var(--route-ink));
+  font-family: var(--font-editorial);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.sust-consequence-card__intro {
+  margin: 0 0 12px;
+  color: var(--route-ink);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.sust-consequence-card__rows {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.sust-consequence-card__row {
+  --row: var(--route-muted);
+  padding: 8px 0 8px 12px;
+  border-left: 3px solid var(--row);
+}
+
+.sust-consequence-card__row--benefit { --row: #3f7e44; }
+.sust-consequence-card__row--risk { --row: #b4472f; }
+.sust-consequence-card__row--boundary { --row: var(--route-line-strong, var(--route-muted)); }
+
+.sust-consequence-card__row dt {
+  color: var(--row);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 4px;
+}
+
+.sust-consequence-card__row--boundary dt {
+  color: var(--route-muted);
+}
+
+.sust-consequence-card__row dd {
+  margin: 2px 0 0;
+  color: var(--route-ink);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* L · reusable tools ------------------------------------------------------- */
+
+/* The archive: a cabinet of folders on the left, the open folder's card on the
+   right. Folders are laid out 2×2 so the set reads as four physical folders. */
+/* E · evidence ------------------------------------------------------------- */
+
+/* Tool table under Measurable item 6. */
+.wiki-page--sustainability .sust-evidence .sust-tool-table {
+  margin: 14px 0 0 !important;
+}
+
+.sust-tool-table tbody th {
+  font-weight: 700;
+  text-align: start;
+  white-space: nowrap;
+}
+
+.sust-tool-table__links {
+  white-space: nowrap;
+}
+
+.sust-tool-table__links a {
+  color: var(--route-accent);
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.sust-evidence__list {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding-left: 1.4em;
+}
+
+.sust-evidence__item::marker {
+  color: var(--route-accent);
+  font-weight: 700;
+}
+
+.sust-evidence__item p {
+  margin: 0;
+  color: var(--route-ink);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.sust-evidence__item .wiki-figure {
+  margin: 20px auto 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100% !important;
+  max-width: 960px !important;
+}
+
+.sust-evidence__item .wiki-figure img {
+  width: 100% !important;
+  max-width: 960px !important;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  border-radius: 10px;
+}
+
+/* Fig 4: Reusable Sustainability Toolkit enlargement */
+.wiki-page--sustainability #overview .wiki-figure:has(img[src*="reusable-toolkit"]),
+.wiki-page--sustainability #overview .wiki-figure:has(img[src*="sustainability-overview-reusable-toolkit"]) {
+  width: 100% !important;
+  max-width: 960px !important;
+}
+
+.wiki-page--sustainability #overview .wiki-figure:has(img[src*="reusable-toolkit"]) img,
+.wiki-page--sustainability #overview .wiki-figure:has(img[src*="sustainability-overview-reusable-toolkit"]) img {
+  width: 100% !important;
+  max-width: 960px !important;
+}
+
+/* Chapter subsection rail ---------------------------------------------------
+   Desktop: a slim vertical track of letters (S C A L E T) centred in the 22px
+   gap right of the TOC card; the gradient slider glides to `--scale-index`,
+   full names show on hover / keyboard focus. ≤980px: a bar under the header. */
+
+.sust-scale-rail__anchor {
+  display: none;
+}
+
+.sust-scale-rail {
+  --scale-step: 40px;
+  position: fixed;
+  top: 50%;
+  left: calc(var(--scale-rail-left, 0px) + 11px);
+  z-index: 40;
+  width: 18px;
+  padding: 4px 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--route-soft) 55%, #fff);
+  box-shadow: 0 0 0 1px var(--route-line);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -50%);
+  transition:
+    opacity var(--duration-fast) var(--ease-out),
+    visibility 0s linear var(--duration-fast);
+}
+
+.sust-scale-rail.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity var(--duration-fast) var(--ease-out),
+    visibility 0s;
+}
+
+.sust-scale-rail__slider {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 100%;
+  height: var(--scale-step);
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1.5px solid var(--route-line, rgba(27, 23, 25, 0.15));
+  box-shadow: 0 2px 8px rgba(27, 23, 25, 0.14);
+  opacity: 0;
+  transform: translateY(calc(var(--scale-index, 0) * var(--scale-step)));
+  transition:
+    transform 320ms var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out);
+}
+
+/* On the chapter heading itself no step is current yet. */
+.sust-scale-rail.has-current .sust-scale-rail__slider {
+  opacity: 1;
+}
+
+.sust-scale-rail__track {
+  position: relative;
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sust-scale-rail .sust-scale__item {
+  position: relative;
+}
+
+.sust-scale-rail .sust-scale__button {
+  display: grid;
+  place-items: center;
+  height: var(--scale-step);
+  border-radius: 999px;
+  color: var(--route-muted);
+  text-decoration: none;
+}
+
+.sust-scale-rail .sust-scale__letter {
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  transition: transform var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+}
+
+/* FIG02 exact colors for SCALE rail letters */
+.sust-scale-rail [data-scale-step="S"] .sust-scale__letter,
+.sust-scale-rail .sust-scale__letter[data-scale-step="S"] {
+  color: #96c85b !important;
+}
+.sust-scale-rail [data-scale-step="C"] .sust-scale__letter,
+.sust-scale-rail .sust-scale__letter[data-scale-step="C"] {
+  color: #8cdafe !important;
+}
+.sust-scale-rail [data-scale-step="A"] .sust-scale__letter,
+.sust-scale-rail .sust-scale__letter[data-scale-step="A"] {
+  color: #fead58 !important;
+}
+.sust-scale-rail [data-scale-step="L"] .sust-scale__letter,
+.sust-scale-rail .sust-scale__letter[data-scale-step="L"] {
+  color: #fed240 !important;
+}
+.sust-scale-rail [data-scale-step="E"] .sust-scale__letter,
+.sust-scale-rail .sust-scale__letter[data-scale-step="E"] {
+  color: #7030a0 !important;
+}
+
+.sust-scale-rail.has-current .is-current .sust-scale__letter {
+  transform: scale(1.18);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+}
+
+.sust-scale-rail .sust-scale__button:focus-visible {
+  outline: 2px solid var(--route-accent);
+  outline-offset: 2px;
+}
+
+/* Full name: out of flow, read by assistive tech, shown on hover/focus. */
+.sust-scale-rail .sust-scale__name {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 10px);
+  padding: 4px 10px;
+  border: 1px solid var(--route-line);
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(27, 23, 25, 0.1);
+  color: var(--route-ink);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-4px, -50%);
+  transition:
+    opacity var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.sust-scale-rail .sust-scale__button:hover .sust-scale__name,
+.sust-scale-rail .sust-scale__button:focus-visible .sust-scale__name {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+/* Responsive ---------------------------------------------------------------- */
+
+@media (max-width: 980px) {
+  .sust-sdg-grid,
+  .sust-tier-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sust-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sust-scale-rail {
+    --scale-step: 34px;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    padding: 0;
+    border-radius: 0;
+    background: color-mix(in srgb, var(--route-soft) 70%, #fff);
+    box-shadow: 0 1px 0 var(--route-line);
+    transform: none;
+  }
+
+  .sust-scale-rail__slider {
+    top: 0;
+    width: calc(100% / var(--scale-count, 6));
+    height: 100%;
+    border-radius: 0;
+    background: linear-gradient(90deg, var(--route-soft), var(--route-main));
+    transform: translateX(calc(var(--scale-index, 0) * 100%));
+  }
+
+  .sust-scale-rail__track {
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+  }
+
+  .sust-scale-rail .sust-scale__button {
+    border-radius: 0;
+  }
+
+  .sust-scale-rail .sust-scale__letter {
+    font-size: 13px;
+  }
+
+  /* No hover labels on touch: keep the name for screen readers only. */
+  .sust-scale-rail .sust-scale__name {
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    border: 0;
+    opacity: 1;
+  }
+}
+
+
+@media (max-width: 640px) {
+  .chat-bubble {
+    max-width: 100%;
+  }
+}
+
+/* S · Full-width photographs, hover navigation and a caption in the body font. */
+
+.sust-stake-reel {
+  margin: 0;
+  width: 100%;
+}
+
+.sust-stake-reel__media {
+  position: relative;
+}
+
+.sust-stake-reel__frame {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 4 / 3;
+}
+
+.sust-stake-reel__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  opacity: 0;
+  transition: opacity var(--reel-fade, 0.4s) ease-in-out;
+}
+
+.sust-stake-reel__img[data-active] {
+  opacity: 1;
+}
+
+.sust-stake-reel__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(24 24 22 / 0.4);
+  color: #fff;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: opacity 160ms ease, background-color 160ms ease;
+}
+
+.sust-stake-reel__arrow--previous {
+  left: 12px;
+}
+
+.sust-stake-reel__arrow--next {
+  right: 12px;
+}
+
+.sust-stake-reel__arrow svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sust-stake-reel__arrow:hover {
+  background: rgb(24 24 22 / 0.65);
+}
+
+.sust-stake-reel__arrow:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sust-stake-reel__arrow {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .sust-stake-reel__media:is(:hover, :focus-within) .sust-stake-reel__arrow {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.sust-stake-reel__caption {
+  display: grid;
+  min-height: 3em;
+  margin: 12px 0 0;
+  color: var(--route-muted, #766c61);
+  font-family: var(--font-sans);
+  font-size: clamp(13px, 0.9vw, 15px);
+  font-style: normal;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* Reserve the tallest caption so autoplay never changes the reading geometry. */
+.sust-stake-reel__caption-text {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+
+.sust-stake-reel__caption-text[data-current] {
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sust-stake-reel__img {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sust-sdg-card,
+  .sust-scale-rail,
+  .sust-scale-rail__slider,
+  .sust-scale-rail .sust-scale__name {
+    transition: none;
+  }
+
+  a.sust-sdg-card:hover {
+    transform: none;
+  }
+
+  .chat-avatar,
+  .chat-speaker,
+  .chat-bubble {
+    opacity: 1;
+    animation: none !important;
+  }
+}
+
+/* ============================================================================
+   Sustainability Page Exception: Section Headings with Colon Stay on One Line
+   ----------------------------------------------------------------------------
+   In general wiki routes, a colon in a section title causes a break with a
+   smaller sub-title. On the Sustainability page (e.g. "SET: Addressing Core
+   Challenges"), keep lead and sub on the exact same line as requested.
+   Scoped to the page root so it cannot reach other routes. The shared h2 is a
+   column flexbox, which forces its lines to block; plain flow lets them sit
+   inline.
+   ========================================================================== */
+
+.wiki-page--sustainability .wiki-section__heading h2 {
+  display: block !important;
+  max-width: 960px !important;
+  width: 100% !important;
+  font-family: var(--font-heading) !important;
+  font-size: clamp(24px, 2.4vw, 32px) !important;
+  line-height: 1.3 !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+}
+
+.wiki-page--sustainability .wiki-section__heading h2 .wiki-heading-line {
+  display: inline !important;
+}
+
+.wiki-page--sustainability .wiki-section__heading h2 .wiki-heading-line--lead {
+  margin-right: 0.35em !important;
+}
+
+.wiki-page--sustainability .wiki-section__heading h2 .wiki-heading-marker--sub {
+  font-family: var(--font-heading) !important;
+  font-size: clamp(21px, 2.2vw, 25px) !important;
+  font-weight: 750 !important;
+  line-height: inherit !important;
+}
+
+.wiki-page--sustainability .wiki-subheading__title {
+  font-family: var(--font-heading) !important;
+}
+
+/* ============================================================================
+   SDG Chapter & SCALE Subsection Headings: Official SDG & FIG02 Colors
+   ============================================================================ */
+
+/* SDG 1: No Poverty (#e5243b) */
+.wiki-page--sustainability #grow-sdg1 .wiki-subheading__title,
+.wiki-page--sustainability [id$="-grow-sdg1"] .wiki-subheading__title {
+  color: #e5243b !important;
+}
+
+/* SDG 3: Good Health and Well-being (#4c9f38) */
+.wiki-page--sustainability #sdg3-health .wiki-subheading__title,
+.wiki-page--sustainability [id$="-health"] .wiki-subheading__title {
+  color: #4c9f38 !important;
+}
+
+/* SDG 4: Quality Education (#c5192d) */
+.wiki-page--sustainability #sdg4-quality-education .wiki-subheading__title,
+.wiki-page--sustainability [id$="-quality-education"] .wiki-subheading__title {
+  color: #c5192d !important;
+}
+
+/* SDG 5: Gender Equality (#ff3a21) */
+.wiki-page--sustainability #grow-sdg5 .wiki-subheading__title,
+.wiki-page--sustainability [id$="-grow-sdg5"] .wiki-subheading__title {
+  color: #ff3a21 !important;
+}
+
+/* SDG 8: Decent Work and Economic Growth (#a21942) */
+.wiki-page--sustainability #grow-sdg8 .wiki-subheading__title,
+.wiki-page--sustainability [id$="-grow-sdg8"] .wiki-subheading__title {
+  color: #a21942 !important;
+}
+
+/* SDG 9: Industry, Innovation and Infrastructure (#fd6925) */
+.wiki-page--sustainability #sdg9-industry .wiki-subheading__title,
+.wiki-page--sustainability [id$="-industry"] .wiki-subheading__title {
+  color: #fd6925 !important;
+}
+
+/* SDG 10: Reduced Inequalities (#dd1367) */
+.wiki-page--sustainability #grow-sdg10 .wiki-subheading__title,
+.wiki-page--sustainability [id$="-grow-sdg10"] .wiki-subheading__title {
+  color: #dd1367 !important;
+}
+
+/* SDG 12: Responsible Consumption and Production (#bf8b2e) */
+.wiki-page--sustainability #sdg12-responsible-consumption .wiki-subheading__title,
+.wiki-page--sustainability [id$="-responsible-consumption"] .wiki-subheading__title {
+  color: #bf8b2e !important;
+}
+
+/* SDG 13: Climate Action (#3f7e44) */
+.wiki-page--sustainability #grow-sdg13 .wiki-subheading__title,
+.wiki-page--sustainability [id$="-grow-sdg13"] .wiki-subheading__title {
+  color: #3f7e44 !important;
+}
+
+/* SDG 17: Partnerships for the Goals (#19486a) */
+.wiki-page--sustainability #sdg17-partnerships .wiki-subheading__title,
+.wiki-page--sustainability [id$="-partnerships"] .wiki-subheading__title {
+  color: #19486a !important;
+}
+
+/* S — Stakeholder Insights (FIG02 Leaf Green #96c85b) */
+.wiki-page--sustainability [id*="-stakeholder"] .wiki-subheading__title,
+.wiki-page--sustainability [id*="-stakeholders"] .wiki-subheading__title {
+  color: #96c85b !important;
+}
+
+/* C — Consequences & Interactions (FIG02 Sky Blue #8cdafe) */
+.wiki-page--sustainability [id*="-consequences"] .wiki-subheading__title {
+  color: #8cdafe !important;
+}
+
+/* A — Alignment with CirCure (FIG02 Peach Orange #fead58) */
+.wiki-page--sustainability [id*="-alignment"] .wiki-subheading__title {
+  color: #fead58 !important;
+}
+
+/* L — Legacy Tools (FIG02 Yellow/Gold #fed240) */
+.wiki-page--sustainability [id*="-legacy"] .wiki-subheading__title {
+  color: #fed240 !important;
+}
+
+/* E — Evidence & Continual Review (FIG02 Purple #7030a0) */
+.wiki-page--sustainability [id*="-evidence"] .wiki-subheading__title {
+  color: #7030a0 !important;
+}
+
+/* ============================================================================
+   Key Findings Note Box
+   ============================================================================ */
+
+.wiki-page--sustainability .wiki-boundary {
+  margin: 28px 0 !important;
+  padding: 20px 24px !important;
+  border: 1px solid color-mix(in srgb, var(--route-line, rgba(29, 29, 31, 0.12)) 80%, transparent) !important;
+  border-left: 4px solid var(--route-accent, #c5192d) !important;
+  border-radius: 0 12px 12px 0 !important;
+  background: color-mix(in srgb, var(--route-soft, #fdf6ec) 45%, rgba(255, 255, 255, 0.95)) !important;
+}
+
+.wiki-page--sustainability .wiki-boundary > span,
+.wiki-page--sustainability .wiki-boundary__label {
+  display: block !important;
+  margin-bottom: 14px !important;
+  color: var(--route-accent, #c5192d) !important;
+  font-family: var(--font-heading) !important;
+  font-size: clamp(20px, 1.8vw, 22px) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.015em !important;
+  text-transform: none !important;
+  line-height: 1.25 !important;
+}
+
+.wiki-page--sustainability .wiki-boundary p,
+.wiki-page--sustainability .wiki-boundary__body p {
+  margin: 0 0 12px 0 !important;
+  color: var(--route-ink, #2d2426) !important;
+  font-family: var(--font-body), var(--font-sans), sans-serif !important;
+  font-size: 17px !important;
+  font-weight: 400 !important;
+  line-height: 1.72 !important;
+  letter-spacing: -0.005em;
+  text-wrap: pretty;
+}
+
+.wiki-page--sustainability .wiki-boundary p:last-child,
+.wiki-page--sustainability .wiki-boundary__body p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.wiki-page--sustainability .wiki-boundary strong {
+  color: var(--route-heading-ink, var(--route-ink, #2d2426)) !important;
+  font-weight: 700 !important;
+}
+
+/* ============================================================================
+   Stakeholder Profile Popup Modal (Click More)
+   ============================================================================ */
+
+.sust-stake-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: color-mix(in srgb, var(--route-heading-ink, #4a2c1d) 34%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: sustFadeIn 200ms ease-out;
+}
+
+.sust-stake-modal {
+  /* The portal sits outside the route; keep its paper and ink fallbacks local. */
+  --stake-paper: #fffdf7;
+  --stake-ink: var(--route-heading-ink, #4a2c1d);
+  --stake-accent: var(--route-subheading-ink, #174a47);
+  --stake-pigment: var(--route-marker-bg, #fde5a5);
+  position: relative;
+  width: 100%;
+  max-width: 1120px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--stake-paper);
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--stake-ink) 16%, transparent);
+  box-shadow:
+    0 2px 6px color-mix(in srgb, var(--stake-ink) 4%, transparent),
+    0 14px 40px color-mix(in srgb, var(--stake-ink) 10%, transparent);
+  overflow: hidden;
+  animation: sustModalScaleIn 180ms ease-out;
+}
+
+.sust-stake-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--stake-ink) 14%, transparent);
+  background: var(--stake-paper);
+  color: var(--stake-ink);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.sust-stake-modal__close:hover {
+  background: color-mix(in srgb, var(--stake-pigment) 32%, var(--stake-paper));
+  border-color: color-mix(in srgb, var(--stake-ink) 32%, transparent);
+}
+
+.sust-stake-modal__close:active {
+  transform: scale(0.96);
+}
+
+.sust-stake-modal__close:focus-visible {
+  outline: 2px solid var(--stake-accent);
+  outline-offset: 3px;
+}
+
+/* Large centered gallery followed by the interview text; close stays visible. */
+.sust-stake-modal__scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--stake-ink) 24%, var(--stake-paper)) transparent;
+}
+
+.sust-stake-modal__header {
+  padding: 24px 76px 16px 28px;
+  background:
+    radial-gradient(ellipse at 0 0, color-mix(in srgb, var(--stake-pigment) 35%, transparent), transparent 70%),
+    radial-gradient(ellipse at 100% 0, color-mix(in srgb, var(--stake-accent) 6%, transparent), transparent 60%);
+}
+
+/* Room for the close button beside the name. */
+.sust-stake-modal__header h3 {
+  margin: 0;
+  color: var(--route-heading-ink, #4a2c1d);
+  font-family: var(--font-editorial);
+  font-size: clamp(24px, 3vw, 34px);
+}
+
+.sust-stake-modal__gallery {
+  margin: 0 28px 24px;
+
+}
+
+.sust-stake-modal__gallery .sust-stake-reel__frame {
+  aspect-ratio: auto;
+  height: clamp(260px, 58vh, 650px);
+}
+
+.sust-stake-modal__body {
+  margin: 0 28px;
+  padding: 22px 0 32px;
+  border-top: 1px solid color-mix(in srgb, var(--stake-ink) 15%, transparent);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--route-ink, #2c2523);
+}
+
+.sust-stake-modal__body .sust-stake-article {
+  margin: 0;
+}
+
+.sust-stake-modal__body .sust-stake-article__title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--route-heading-ink, #2c2523);
+}
+
+.sust-stake-modal__body .sust-stake-article__heading {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 20px 0 8px;
+  color: var(--route-subheading-ink, #84382b);
+}
+
+@keyframes sustFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes sustModalScaleIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sust-stake-modal-backdrop,
+  .sust-stake-modal {
+    animation: none;
+  }
+
+  .sust-stake-modal__close {
+    transition: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .sust-stake-modal__header {
+    padding-left: 18px;
+  }
+
+  .sust-stake-modal__gallery {
+    margin-inline: 18px;
+  }
+
+  .sust-stake-modal__gallery .sust-stake-reel__frame {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+
+  .sust-stake-modal__body {
+    margin: 0 18px;
+    padding: 18px 0 24px;
+  }
+}
+
+/* ============================================================================
+   S · Stakeholder deck (profiles without "Click more")
+   ----------------------------------------------------------------------------
+   A voice rail seeks the scrolling sequence of cards in the reading window.
+   ========================================================================== */
+
+.sust-deck__viewport {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 22px;
+  align-items: center;
+}
+
+.sust-deck__rail {
+  position: sticky;
+  top: 24px;
+  align-self: center;
+}
+
+.sust-deck__stage {
+  min-width: 0;
+}
+
+.sust-deck__cards {
+  position: relative;
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+}
+
+.sust-deck[data-scroll-deck] {
+  height: calc(var(--deck-height) + var(--deck-travel));
+  overflow-anchor: none;
+}
+
+.sust-deck[data-scroll-deck] .sust-deck__viewport {
+  position: sticky;
+  top: var(--deck-top);
+  align-items: center;
+}
+
+.sust-deck[data-scroll-deck] .sust-deck__rail {
+  position: relative;
+  top: auto;
+  align-self: center;
+  max-height: var(--deck-height);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.sust-deck[data-scroll-deck] .sust-deck__rail::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.sust-deck[data-scroll-deck] .sust-deck__tab:is(:hover, [aria-selected="true"]) {
+  transform: none;
+}
+
+.sust-deck[data-scroll-deck] .sust-deck__stage {
+  position: relative;
+  display: block;
+  height: var(--deck-height);
+  overflow: hidden;
+}
+
+.sust-deck[data-scroll-deck] .sust-deck__card {
+  position: absolute;
+  inset: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: var(--deck-height);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sust-deck[data-scroll-deck] .sust-deck__card[data-active] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.sust-deck[data-scroll-deck] .sust-deck__cards {
+  display: block;
+  height: 100%;
+}
+
+.sust-deck[data-scroll-deck] .sust-deck__body {
+  flex: 1;
+}
+
+.sust-deck__label {
+  display: none !important;
+  margin: 0 0 10px 4px;
+  color: var(--route-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.sust-deck__tab {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  inline-size: 100%;
+  padding: 14px 8px 13px 6px;
+  border: 0;
+  border-bottom: 1px solid var(--route-line);
+  background: transparent;
+  color: var(--route-ink);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    transform 250ms var(--ease-out);
+}
+
+/* Accent underline grows across the active tab. */
+.sust-deck__tab::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  inline-size: 0;
+  block-size: 2px;
+  background: var(--route-main);
+  transition: inline-size 300ms var(--ease-out);
+}
+
+.sust-deck__tab:hover {
+  background: color-mix(in srgb, #fff 70%, transparent);
+  transform: translateX(4px);
+}
+
+.sust-deck__tab[aria-selected="true"] {
+  background: #fff;
+  transform: translateX(8px);
+  box-shadow: 0 8px 18px rgb(80 53 36 / 0.07);
+}
+
+.sust-deck__tab[aria-selected="true"]::before {
+  inline-size: 100%;
+}
+
+.sust-deck__tab:focus-visible {
+  outline: 2px solid var(--route-accent);
+  outline-offset: 2px;
+}
+
+.sust-deck__num {
+  color: color-mix(in srgb, var(--route-accent) 45%, var(--route-muted));
+  font-family: var(--font-heading), var(--font-sans), sans-serif;
+  font-feature-settings: "zero" 0;
+  font-variant-numeric: normal;
+  font-size: 24px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1;
+}
+
+.sust-deck__tab[aria-selected="true"] .sust-deck__num {
+  color: var(--route-accent);
+}
+
+.sust-deck__name {
+  display: block;
+  color: var(--route-heading-ink, var(--route-ink));
+  font-family: var(--font-editorial);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.sust-deck__role {
+  display: block;
+  margin-top: 3px;
+  color: var(--route-muted);
+  font-size: 11px;
+  line-height: 1.35;
+}
+.sust-deck__card {
+  position: relative;
+  min-width: 0;
+  padding: 22px clamp(18px, 2.6vw, 30px) 18px;
+  border: 1px solid var(--route-line);
+  border-top: 3px solid var(--route-main);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 18px 44px rgb(49 34 24 / 0.1);
+}
+
+.sust-deck__anchor {
+  position: absolute;
+  top: 0;
+  scroll-margin-top: calc(var(--header-height) + 24px);
+}
+
+.sust-deck__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--route-line);
+}
+
+.sust-deck__kicker {
+  margin: 0;
+  color: var(--route-accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sust-deck__title {
+  margin: 6px 0 0;
+  color: var(--route-heading-ink, var(--route-ink));
+  font-family: var(--font-editorial);
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+/* Copy | larger photo plate. */
+.sust-deck__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  gap: clamp(20px, 3vw, 36px);
+  align-items: center;
+  padding: 16px 0 4px;
+}
+
+.sust-deck__fields {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.sust-deck__field + .sust-deck__field {
+  padding-top: 10px;
+  border-top: 1px solid var(--route-line);
+}
+
+.sust-deck__field dt {
+  margin-bottom: 4px;
+  color: var(--route-accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.sust-deck__field dd {
+  margin: 0;
+  color: var(--route-ink);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.sust-deck__field--quote dd {
+  padding-left: 14px;
+  border-left: 2px solid var(--route-main);
+  color: var(--route-heading-ink, var(--route-ink));
+  font-family: var(--font-editorial);
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.45;
+}
+/* Centered photo plate with a restrained paper border. */
+.sust-deck__visual {
+  position: relative;
+  padding: 14px;
+  animation: sustFadeIn 400ms ease-out;
+}
+
+.sust-deck__frame {
+  position: relative;
+  border-radius: 16px;
+  filter: drop-shadow(0 16px 20px rgb(49 34 24 / 0.18));
+}
+
+.sust-deck__frame::before,
+.sust-deck__frame::after {
+  content: "";
+  position: absolute;
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+.sust-deck__frame::before {
+  inset: -7px;
+  z-index: -1;
+  background: color-mix(in srgb, var(--route-main) 22%, #fff);
+}
+
+.sust-deck__frame::after {
+  inset: -12px;
+  z-index: -2;
+  background: color-mix(in srgb, var(--route-accent) 14%, #fff);
+}
+
+.sust-deck__frame:has(.sust-stake-reel) {
+  border-radius: 0;
+  filter: none;
+}
+
+.sust-deck__frame:has(.sust-stake-reel)::before,
+.sust-deck__frame:has(.sust-stake-reel)::after {
+  content: none;
+}
+
+/* No documented photographs: a typographic plate instead of a picture. */
+.sust-deck__plate {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 85% 12%, color-mix(in srgb, #fff 55%, transparent) 0 28%, transparent 29%),
+    linear-gradient(150deg, color-mix(in srgb, var(--route-main) 70%, #fff), var(--route-accent));
+}
+
+.sust-deck__glyph {
+  position: absolute;
+  left: 22px;
+  top: 10px;
+  color: #fff;
+  font-family: var(--font-editorial);
+  font-size: clamp(64px, 8vw, 96px);
+  font-style: italic;
+  line-height: 1;
+  opacity: 0.35;
+}
+
+.sust-deck__plate-label {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+  color: #fff;
+  font-family: var(--font-editorial);
+  font-size: 18px;
+  line-height: 1.25;
+  text-shadow: 0 1px 10px rgb(0 0 0 / 0.2);
+}
+
+@media (max-width: 980px) {
+  .sust-deck__viewport {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .sust-deck__label {
+    display: none;
+  }
+
+  .sust-deck__rail [role="tablist"] {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 2px 2px 12px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .sust-deck__rail [role="tablist"]::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  .sust-deck__tab {
+    flex: 0 0 auto;
+    inline-size: auto;
+    min-inline-size: 168px;
+    grid-template-columns: 34px minmax(0, 1fr);
+  }
+
+  .sust-deck__tab:hover,
+  .sust-deck__tab[aria-selected="true"] {
+    transform: translateY(-3px);
+  }
+
+  .sust-deck__num {
+    font-size: 22px;
+  }
+
+  .sust-deck__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sust-deck__visual {
+    order: -1;
+    max-inline-size: 440px;
+    justify-self: center;
+    width: 100%;
+  }
+
+  .sust-deck__rail {
+    top: calc(var(--header-height, 78px) + 34px);
+    z-index: 3;
+    background: var(--route-paper, #fffdf0);
+  }
+
+  .sust-deck__card {
+    scroll-margin-top: calc(var(--header-height, 78px) + 140px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sust-deck__tab,
+  .sust-deck__tab::before,
+  .sust-deck__visual {
+    transition: none;
+    animation: none;
+  }
+}
+@media (min-width: 981px) {
+  .sust-deck__field--lead {
+    width: 100%;
+    min-block-size: auto;
+  }
+
+  .sust-deck__field--lead dd {
+    max-width: none;
+  }
+}
+
+/* ==========================================================================
+   SDG 4 — activity cards: event meta, audience and teaching resources
+   ========================================================================== */
+
+.sust-stake-card__event {
+  flex-basis: 100%;
+  margin: 5px 0 0;
+  color: var(--route-muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.sust-stake-card__resources-hint {
+  margin-top: 4px;
+  color: var(--route-muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.sust-stake-card__resource-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px !important;
+}
+
+.sust-stake-card__resource-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border: 1px solid color-mix(in srgb, var(--route-accent) 45%, var(--route-line));
+  border-radius: var(--radius-control, 8px);
+  background: #fff;
+  color: var(--route-accent);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: none;
+  transition:
+    background-color var(--duration-fast, 160ms) var(--ease-out, ease),
+    border-color var(--duration-fast, 160ms) var(--ease-out, ease);
+}
+
+.sust-stake-card__resource-btn:hover {
+  background: var(--route-panel);
+  border-color: var(--route-accent);
+}
+
+.sust-stake-card__resource-btn:focus-visible {
+  outline: 2px solid var(--route-accent);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   SDG 4 — education panel: resource showcases, audience groups, evidence
+   ========================================================================== */
+
+.sust-edu {
+  display: grid;
+  gap: 24px;
+}
+
+.sust-edu-resource-grid {
+  display: grid;
+  gap: 22px;
+}
+
+.sust-edu-resource {
+  min-width: 0;
+}
+
+.sust-edu-resource__title {
+  margin: 0 0 12px;
+  color: var(--route-heading-ink, var(--route-ink));
+  font-family: var(--font-sans);
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.sust-edu-resource .wiki-prose {
+  margin: 0;
+}
+
+.wiki-page--sustainability .games-showcase-preview {
+  margin-top: 16px;
+}
+
+.wiki-page--sustainability .games-showcase-preview .games-showcase__launch {
+  min-height: 360px;
+  height: clamp(360px, 36vw, 480px);
+  text-decoration: none;
+}
+
+.wiki-page--sustainability .games-showcase-preview .games-showcase__dock {
+  flex-wrap: wrap;
+  padding: 14px 18px;
+}
+
+.wiki-page--sustainability .games-showcase-preview .games-showcase__dock-action {
+  margin-left: auto;
+}
+
+.wiki-page--sustainability .games-showcase-preview .games-showcase__cta-btn {
+  padding: 10px 16px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.sust-edu-resource__figure {
+  margin: 14px 0 0;
+}
+
+.sust-edu-resource__figure img {
+  border-radius: 10px;
+}
+
+/* Picture book CN/EN PDFs side by side (manuscript instruction). */
+.sust-edu-resource__pdfs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.sust-edu-resource__pdfs > * {
+  min-width: 0;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .sust-edu-resource__pdfs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wiki-page--sustainability .games-showcase-preview .games-showcase__launch {
+    min-height: 340px;
+    height: 380px;
+    padding: 14px;
+  }
+
+  .wiki-page--sustainability .games-showcase-preview .games-showcase__hud {
+    align-items: start;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+.sust-partnerships__prose .sust-stake-article p {
+  margin-bottom: 16px;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.wiki-page--sustainability #grow-sustainable-futures h4,
+.wiki-page--sustainability #grow-sustainable-futures .wiki-prose p,
+.wiki-page--sustainability #grow-sustainable-futures .wiki-prose li {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.wiki-page--sustainability #grow-sustainable-futures h4 {
+  font-weight: 600;
+}
+
+.sust-edu-group {
+  display: grid;
+  gap: 14px;
+}
+
+.sust-edu-group__title {
+  margin: 12px 0 0;
+  color: var(--route-subheading-ink, var(--route-accent));
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.sust-edu-group .wiki-prose,
+.sust-edu-closing .wiki-prose {
+  margin: 0;
+}
+
+.sust-edu-inline-link {
+  color: #c5192d;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sust-edu-closing {
+  display: grid;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.sust-evidence__item-title {
+  margin: 0 0 6px;
+  color: var(--route-heading-ink, var(--route-ink));
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   SDG 4 — five-bookmark feedback microplate cards
+   Paper bookmarks frame the original SDG 4 microplate and its red data ramp.
+   All selectors stay scoped under .edu-feedback.
+   ========================================================================== */
+
+.sust-consequences .edu-feedback {
+  margin: 20px 0 8px;
+}
+
+.edu-feedback {
+  --ef-accent: color-mix(in srgb, #c5192d 60%, var(--route-heading-ink, #4a2c1d));
+  --ef-paper: #fffdf7;
+  --ef-rail: color-mix(in srgb, var(--route-marker-bg, #fde5a5) 16%, var(--ef-paper));
+  --ef-ink: var(--route-ink, #4a3d30);
+  --ef-muted: color-mix(in srgb, var(--ef-ink) 72%, var(--ef-paper));
+  --ef-rule: color-mix(in srgb, var(--ef-ink) 13%, transparent);
+  color: var(--ef-ink);
+  font-size: 16px;
+  line-height: 1.6;
+  width: 100%;
+  min-width: 0;
+}
+
+.edu-feedback[data-scroll-deck] {
+  height: calc(var(--ef-height, 620px) + var(--ef-travel, 0px));
+  overflow-anchor: none;
+}
+
+.edu-feedback[data-scroll-deck] .ef-card {
+  position: sticky;
+  top: var(--ef-top, 24px);
+}
+
+.edu-feedback *,
+.edu-feedback *::before,
+.edu-feedback *::after {
+  box-sizing: border-box;
+}
+
+.edu-feedback .ef-tabs {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.edu-feedback .ef-card {
+  display: grid;
+  grid-template-columns: 216px minmax(0, 1fr);
+  position: relative;
+  min-width: 0;
+  min-height: 620px;
+  border: 1px solid var(--ef-rule);
+  border-radius: 12px;
+  background: var(--ef-paper);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--ef-ink) 5%, transparent);
+  isolation: isolate;
+}
+
+.edu-feedback .ef-rail {
+  min-width: 0;
+  background:
+    radial-gradient(ellipse at 0 0, rgb(248 196 187 / 20%), transparent 65%),
+    var(--ef-rail);
+  border-right: 1px solid var(--ef-rule);
+  border-radius: 11px 0 0 11px;
+  padding: 24px 17px;
+}
+
+.edu-feedback .ef-tab {
+  position: relative;
+  isolation: isolate;
+  min-height: 103px;
+  width: 100%;
+  margin: 0;
+  padding: 13px 17px 23px;
+  border: 0;
+  background: transparent;
+  color: var(--ef-ink);
+  font-family: inherit;
+  font-size: 17px;
+  line-height: 1.28;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.edu-feedback .ef-tab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 15% 0, rgb(248 196 187 / 22%), transparent 75%),
+    var(--ef-paper);
+  border: 1px solid var(--ef-rule);
+  border-radius: 7px 7px 0 0;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 13px), 0 100%);
+}
+
+.edu-feedback .ef-tab[aria-selected="true"]::before {
+  background:
+    radial-gradient(ellipse at 10% 10%, rgb(248 196 187 / 65%), transparent 80%),
+    var(--ef-paper);
+  border-color: color-mix(in srgb, var(--ef-accent) 32%, transparent);
+  border-left: 2px solid color-mix(in srgb, var(--ef-accent) 70%, transparent);
+}
+
+.edu-feedback .ef-tab[aria-selected="true"] {
+  color: var(--ef-accent);
+  font-weight: 700;
+}
+
+.edu-feedback .ef-tab::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 12px;
+  height: 12px;
+  background: color-mix(in srgb, var(--ef-accent) 14%, var(--ef-paper));
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+  border-radius: 0 5px 0 2px;
+  pointer-events: none;
+}
+
+.edu-feedback .ef-tab[aria-selected="true"]::after {
+  background: color-mix(in srgb, var(--ef-accent) 34%, var(--ef-paper));
+}
+
+.edu-feedback .ef-tab:hover {
+  transform: translateX(2px);
+}
+
+.edu-feedback .ef-tab:not([aria-selected="true"]):hover::before {
+  background: color-mix(in srgb, #f8c4bb 32%, var(--ef-paper));
+}
+
+.edu-feedback .ef-tab:focus-visible {
+  outline: 2px solid var(--ef-accent);
+  outline-offset: 3px;
+  border-radius: 5px;
+}
+
+.edu-feedback .ef-tab-number {
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--font-sans);
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.edu-feedback .ef-content,
+.edu-feedback .ef-panel {
+  min-width: 0;
+}
+
+.edu-feedback .ef-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.edu-feedback .ef-panel {
+  width: 100%;
+  scroll-margin-top: 20px;
+}
+
+.edu-feedback .ef-panel[hidden] {
+  display: none !important;
+}
+
+.edu-feedback .ef-panel[data-active] {
+  animation: efPanelIn 220ms cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+
+@keyframes efPanelIn {
+  from {
+    transform: translateY(18px);
+    opacity: 0.35;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.edu-feedback .ef-panel:focus-visible {
+  outline: 2px solid var(--ef-accent);
+  outline-offset: -6px;
+}
+
+.edu-feedback .ef-body {
+  min-width: 0;
+  padding: 27px 30px 24px;
+}
+
+.edu-feedback .ef-title {
+  margin: 0 0 12px;
+  color: var(--ef-ink);
+  font: 700 clamp(28px, 2.7vw, 36px) / 1.25 var(--font-sans);
+  overflow-wrap: anywhere;
+}
+
+.edu-feedback .ef-title-number {
+  color: var(--ef-accent);
+  margin-right: 8px;
+}
+
+.edu-feedback .ef-question {
+  margin: 0 0 24px;
+  color: var(--ef-ink);
+  font-family: inherit;
+  font-size: clamp(18px, 1.7vw, 22px);
+  font-weight: 400;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.edu-feedback .ef-data {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(210px, 1fr);
+  gap: 27px;
+  align-items: center;
+}
+
+.edu-feedback .ef-table {
+  align-self: center;
+  border-collapse: collapse;
+  width: 100%;
+  color: var(--ef-ink);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.45;
+  table-layout: fixed;
+}
+
+.edu-feedback .ef-figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.edu-feedback .ef-plate {
+  display: grid;
+  grid-template-columns: 16px repeat(12, minmax(0, 1fr));
+  gap: clamp(4px, 0.65vw, 9px);
+  width: 100%;
+  min-width: 0;
+  align-items: center;
+}
+
+.edu-feedback .ef-axis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ef-muted);
+  font: 12px/1 var(--font-sans, "Segoe UI", sans-serif);
+  min-width: 0;
+  height: 18px;
+}
+
+.edu-feedback .ef-well {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  width: 100%;
+  min-width: 0;
+  border-radius: 50%;
+  background: var(--well-fill);
+  color: var(--well-ink);
+  font: 700 clamp(11px, 1.2vw, 17px)/1 var(--font-sans, "Segoe UI", sans-serif);
+}
+
+.edu-feedback .ef-well svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* SDG 4 red ramp — option letters cycle A … G. */
+.edu-feedback .ef-well[data-color="0"],
+.edu-feedback .ef-key[data-color="0"] {
+  --well-fill: #de5a44;
+  --well-ink: #fff;
+}
+
+.edu-feedback .ef-well[data-color="1"],
+.edu-feedback .ef-key[data-color="1"] {
+  --well-fill: #f0917a;
+  --well-ink: #5c2a2a;
+}
+
+.edu-feedback .ef-well[data-color="2"],
+.edu-feedback .ef-key[data-color="2"] {
+  --well-fill: #c5192d;
+  --well-ink: #fff;
+}
+
+.edu-feedback .ef-well[data-color="3"],
+.edu-feedback .ef-key[data-color="3"] {
+  --well-fill: #f8c4bb;
+  --well-ink: #5c2a2a;
+}
+
+.edu-feedback .ef-well[data-color="4"],
+.edu-feedback .ef-key[data-color="4"] {
+  --well-fill: #8e1b29;
+  --well-ink: #fff;
+}
+
+.edu-feedback .ef-well[data-color="5"],
+.edu-feedback .ef-key[data-color="5"] {
+  --well-fill: #fce3de;
+  --well-ink: #5c2a2a;
+}
+
+.edu-feedback .ef-well[data-color="6"],
+.edu-feedback .ef-key[data-color="6"] {
+  --well-fill: #b04a38;
+  --well-ink: #fff;
+}
+
+.edu-feedback .ef-table th,
+.edu-feedback .ef-table td {
+  border: 0;
+  border-bottom: 1px solid #f4e8e6;
+  padding: 10px 0;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+  background: transparent;
+}
+
+.edu-feedback .ef-table th {
+  color: var(--ef-muted);
+  font-size: 12px;
+  text-align: left;
+  font-weight: 400;
+}
+
+.edu-feedback .ef-table .ef-count,
+.edu-feedback .ef-table .ef-share {
+  text-align: right;
+  width: 48px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.edu-feedback .ef-table .ef-share {
+  width: 57px;
+}
+
+.edu-feedback .ef-table td.ef-count {
+  font-weight: 700;
+}
+
+.edu-feedback .ef-option {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: start;
+  gap: 8px;
+  padding-right: 7px;
+}
+
+.edu-feedback .ef-key {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font: 700 12px/1 var(--font-sans, "Segoe UI", sans-serif);
+}
+
+.edu-feedback .ef-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 1050px) {
+  .edu-feedback .ef-card {
+    grid-template-columns: 176px minmax(0, 1fr);
+  }
+
+  .edu-feedback .ef-rail {
+    padding: 24px 12px;
+  }
+
+  .edu-feedback .ef-tab {
+    padding: 13px 12px 24px;
+    font-size: 16px;
+  }
+
+  .edu-feedback .ef-body {
+    padding: 25px 22px 21px;
+  }
+
+  .edu-feedback .ef-data {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 19px;
+  }
+
+  .edu-feedback .ef-table {
+    font-size: 15px;
+  }
+
+  .edu-feedback .ef-table .ef-count {
+    width: 70px;
+  }
+
+  .edu-feedback .ef-table .ef-share {
+    width: 76px;
+  }
+}
+
+@media (max-width: 650px) {
+  .edu-feedback .ef-card {
+    grid-template-columns: 88px minmax(0, 1fr);
+    min-height: 540px;
+  }
+
+  .edu-feedback .ef-rail {
+    padding: 15px 7px;
+  }
+
+  .edu-feedback .ef-tabs {
+    gap: 9px;
+  }
+
+  .edu-feedback .ef-tab {
+    min-height: 93px;
+    padding: 11px 7px 23px;
+    font-size: 12px;
+  }
+
+  .edu-feedback .ef-tab-number {
+    font-size: 21px;
+  }
+
+  .edu-feedback .ef-body {
+    padding: 18px 11px;
+  }
+
+  .edu-feedback .ef-title {
+    font-size: 24px;
+  }
+
+  .edu-feedback .ef-question {
+    margin-bottom: 18px;
+    font-size: 17px;
+  }
+
+  .edu-feedback .ef-plate {
+    gap: 2px;
+    grid-template-columns: 10px repeat(12, minmax(0, 1fr));
+  }
+
+  .edu-feedback .ef-axis {
+    font-size: 11px;
+  }
+
+  .edu-feedback .ef-table {
+    font-size: 12px;
+  }
+
+  .edu-feedback .ef-table .ef-count {
+    width: 31px;
+  }
+
+  .edu-feedback .ef-table .ef-share {
+    width: 40px;
+  }
+
+  .edu-feedback .ef-option {
+    grid-template-columns: 18px minmax(0, 1fr);
+    gap: 4px;
+    padding-right: 2px;
+  }
+
+  .edu-feedback .ef-key {
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edu-feedback .ef-tab {
+    transition: none;
+  }
+
+  .edu-feedback .ef-panel[data-active] {
+    animation: none;
+  }
+}
+.sust-partnerships__group + .sust-partnerships__group {
+  margin-top: var(--wiki-space-subhead-top, 28px);
+}
+
+.sust-partnerships .sust-stake-card {
+  grid-template-columns: max-content minmax(0, 1fr);
+}
+
+.sust-partnerships .sust-stake-card__tab {
+  padding-inline: 12px;
+  white-space: nowrap;
+}
+
+.sust-contribution-bubbles {
+  min-width: 0;
+  --sdg-font: var(--font-sans);
+  --sdg-ink: var(--route-heading-ink);
+  --sdg-rule: color-mix(in srgb, var(--route-heading-ink) 14%, transparent);
+}
+
+/* ----------------------------------------------------------------------------
+ * Interactive City Map Component (Section 08 / 8.5)
+ * -------------------------------------------------------------------------- */
+.sust-city-figure {
+  margin: var(--wiki-space-block, 24px) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sust-city-container {
+  --city-accent: var(--route-subheading-ink, #174a47);
+  position: relative;
+  container-type: inline-size;
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--route-line, rgba(0, 0, 0, 0.1));
+  background: #fbf7ee;
+  user-select: none;
+}
+
+.sust-city-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sust-city-hotspots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sust-city-hotspot {
+  position: absolute;
+  pointer-events: auto;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+  outline: none;
+}
+
+.sust-city-hotspot:hover,
+.sust-city-hotspot:focus-visible,
+.sust-city-hotspot.is-active {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: color-mix(in srgb, var(--city-accent) 60%, #fff);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.sust-city-hotspot:focus-visible {
+  outline: 2px solid var(--city-accent);
+  outline-offset: 3px;
+}
+
+.sust-city-hotspot__dot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--city-accent);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.sust-city-hotspot:hover .sust-city-hotspot__dot,
+.sust-city-hotspot:focus-visible .sust-city-hotspot__dot,
+.sust-city-hotspot.is-active .sust-city-hotspot__dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.sust-city-tooltip {
+  position: absolute;
+  left: clamp(min(172px, 50%), var(--city-tooltip-x), max(calc(100% - 172px), 50%));
+  top: clamp(88px, var(--city-tooltip-y), calc(100% - 88px));
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  pointer-events: none;
+  display: grid;
+  gap: 8px;
+  width: min(320px, calc(100% - 24px));
+  box-sizing: border-box;
+  padding: 16px 18px 12px;
+  border: 1px solid rgba(74, 44, 29, 0.1);
+  border-radius: 16px;
+  background: #fff;
+  color: var(--route-heading-ink, #4a2c1d);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  text-align: left;
+  line-height: 1.5;
+  box-shadow:
+    0 2px 4px rgba(57, 43, 35, 0.06),
+    0 12px 32px rgba(57, 43, 35, 0.13);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.sust-city-tooltip__badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--city-accent);
+  letter-spacing: 0;
+}
+
+.sust-city-tooltip__badge::before {
+  content: "";
+  flex: 0 0 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.sust-city-tooltip__title {
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  text-wrap: pretty;
+}
+
+.sust-city-tooltip__hint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 3px;
+  font-size: 11.5px;
+  color: #6c7168;
+}
+
+.sust-city-tooltip__arrow {
+  display: grid;
+  place-items: center;
+  flex: 0 0 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #eef4f1;
+  color: var(--city-accent);
+}
+
+.sust-city-tooltip__arrow svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sust-city-caption {
+  font-size: 13.5px;
+  color: var(--route-caption-ink, var(--route-ink));
+  text-align: center;
+}
+
+.sust-city-caption__bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--route-line, #e2e8f0) 40%, transparent);
+}
+
+.sust-city-caption__prompt strong {
+  color: var(--route-accent, #2b72ba);
+}
+
+@container (max-width: 400px) {
+  .sust-city-tooltip {
+    top: 50%;
+    gap: 6px;
+    padding: 12px 14px 10px;
+  }
+
+  .sust-city-tooltip__title {
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sust-city-hotspot,
+  .sust-city-hotspot__dot {
+    transition: none;
+  }
+}

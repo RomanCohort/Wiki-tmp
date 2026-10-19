@@ -1,0 +1,104 @@
+.story-hope-entry {
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+}
+.story-hope-entry.is-previewing {
+  z-index: 3;
+}
+/* Base layout lives in home-story.css; keep the finale's existing geometry. */
+.story-hope-entry .story-hope-card {
+  font-family: var(--font-editorial) !important;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    color 220ms var(--ease-out),
+    transform 220ms var(--ease-out),
+    scale 180ms var(--ease-out);
+}
+.story-hope-entry.is-previewing .story-hope-card,
+.story-hope-entry .story-hope-card:focus-visible {
+  transform: translateY(-2px);
+}
+.story-hope-entry .story-hope-card:focus-visible {
+  outline: 2px solid #9c5871;
+  outline-offset: 4px;
+}
+.story-hope-entry .story-hope-card:active {
+  scale: 0.98;
+}
+.home-explore-preview {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 20px);
+  width: clamp(240px, 21vw, 300px);
+  padding: 18px 20px;
+  border: 1px solid #e7d2d8;
+  border-radius: 12px;
+  background: #fff9f5;
+  color: #694753;
+  box-shadow: 0 8px 24px #69475312;
+  isolation: isolate;
+  translate: 0 -50%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 220ms var(--ease-out),
+    visibility 200ms;
+}
+.story-hope-group--right .home-explore-preview {
+  left: auto;
+  right: calc(100% + 20px);
+}
+/* The transparent bridge keeps a hovered description open across the gap. */
+.home-explore-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0 -22px;
+  z-index: -1;
+}
+.story-hope-entry.is-previewing .home-explore-preview {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+}
+.story-hope-entry .home-explore-preview p {
+  margin: 0;
+  font: 400 15px/1.65 var(--font-sans);
+}
+@media (max-width: 800px) {
+  .story-hope-group .home-explore-preview {
+    top: auto;
+    bottom: calc(100% + 12px);
+    left: 0;
+    right: auto;
+    width: min(280px, 80vw);
+    padding: 16px;
+    translate: none;
+  }
+  .story-hope-group--right .home-explore-preview {
+    left: auto;
+    right: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-explore-preview,
+  .story-hope-entry .story-hope-card,
+  .story-hope-entry .story-hope-card span {
+    transform: none;
+    transition: none;
+  }
+  .story-hope-entry .story-hope-card:active {
+    scale: none;
+  }
+  .story-hope-entry.is-previewing .story-hope-card,
+  .story-hope-entry .story-hope-card:focus-visible {
+    transform: none;
+  }
+}

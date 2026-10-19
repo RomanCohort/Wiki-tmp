@@ -1,0 +1,97 @@
+.manuscript-figure-gallery {
+  min-width: 0;
+  margin: 0;
+}
+
+.manuscript-figure-gallery__controls,
+.manuscript-figure-gallery__tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.manuscript-figure-gallery__controls {
+  margin-bottom: 16px;
+}
+
+.manuscript-figure-gallery__tabs {
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.manuscript-figure-gallery__controls button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid
+    color-mix(in srgb, var(--route-heading-ink) 18%, transparent);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--route-heading-ink);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.manuscript-figure-gallery__controls button[aria-selected="true"] {
+  border-color: var(--route-heading-ink);
+  background: var(--route-heading-ink);
+  color: #fff;
+}
+
+.manuscript-figure-gallery :is(button, a, [role="tabpanel"]):focus-visible {
+  outline: 2px solid var(--route-subheading-ink);
+  outline-offset: 3px;
+}
+
+.manuscript-figure-gallery__count {
+  flex: none;
+  color: var(--route-heading-ink);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.manuscript-figure-gallery__slides {
+  touch-action: pan-y;
+}
+
+.manuscript-figure-gallery .wiki-figure {
+  margin: 0 !important;
+}
+
+.manuscript-figure-gallery .wiki-figure img {
+  max-height: 620px;
+  object-fit: contain;
+}
+
+@media (max-width: 600px) {
+  .manuscript-figure-gallery__controls {
+    gap: 5px;
+  }
+  .manuscript-figure-gallery__tabs {
+    gap: 5px;
+  }
+  .manuscript-figure-gallery__tabs button {
+    flex: 1 1 100%;
+    font-size: 12px;
+  }
+  .manuscript-figure-gallery__count {
+    display: none;
+  }
+}
+
+@media print {
+  .manuscript-figure-gallery__controls {
+    display: none;
+  }
+  .manuscript-figure-gallery__slide[hidden] {
+    display: block;
+  }
+  .manuscript-figure-gallery__slide + .manuscript-figure-gallery__slide {
+    margin-top: 24px;
+  }
+}

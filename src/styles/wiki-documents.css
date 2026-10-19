@@ -1,0 +1,253 @@
+/* ============================================================================
+   Documents — the one skin for a document shown in the body.
+   ----------------------------------------------------------------------------
+   Shared by every page that embeds a PDF (see WIKI_ARCHITECTURE_SPEC.md §4.6).
+
+   A bounded paper surface and a real control distinguish a document from an
+   illustration caption. The light wash follows each route's existing palette;
+   the manuscript's caption remains the only label, without added ornaments.
+
+   Specificity note (do not "simplify" these selectors)
+     Every rule is scoped `.wiki-page .wiki-document .x` — three classes deep on
+     purpose. Inside the prose column, `.wiki-page--route .wiki-prose p` (0,2,1)
+     and `.wiki-page--route .wiki-prose strong` (0,2,1) recolour every paragraph
+     and every <strong>, and `.wiki-prose figure` (0,1,1) forces
+     `display:flex / align-items:center / text-align:center`. A two-class
+     selector would leave the card's ink a coin flip on bundle order. The card is
+     a reading surface, so both caption and control need explicit ink colours.
+   ========================================================================== */
+
+/* 1. Card tokens + the figure shell ---------------------------------------- */
+
+.wiki-page .wiki-document {
+  --doc-deep: var(--route-heading-ink, #14354c);
+  --doc-paper: #fffdf7;
+  --doc-wash: color-mix(in srgb, var(--route-soft, #b4dff0) 30%, var(--doc-paper));
+  --doc-rule: color-mix(in srgb, var(--doc-deep) 18%, transparent);
+  --doc-on: var(--doc-deep);
+  --doc-radius: 12px;
+
+  /* Undo `.wiki-prose figure` (flex column, centred, centered text) and keep
+     the bar narrower than the prose column it sits in. */
+  display: grid;
+  align-items: stretch;
+  justify-content: normal;
+  gap: 0;
+  width: 100%;
+  max-width: 760px;
+  margin: var(--wiki-space-block, 24px) auto;
+  color: var(--doc-on);
+  text-align: left;
+}
+
+/* 2. The bar --------------------------------------------------------------- */
+
+.wiki-page .wiki-document .wiki-document__card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 20px 18px;
+  border-radius: var(--doc-radius);
+  border: 1px solid var(--doc-rule);
+  background:
+    radial-gradient(ellipse at 0 0, var(--doc-wash), transparent 78%),
+    var(--doc-paper);
+  box-shadow:
+    0 1px 3px color-mix(in srgb, var(--doc-deep) 3%, transparent),
+    0 7px 20px color-mix(in srgb, var(--doc-deep) 5%, transparent);
+  color: var(--doc-on);
+  text-align: left;
+}
+
+/* 3. The one line of text -------------------------------------------------- */
+
+.wiki-page .wiki-document .wiki-document__caption {
+  margin: 0;
+  color: var(--doc-on);
+  font-family: var(--font-body, inherit);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  line-height: 1.45;
+  text-align: left;
+  text-wrap: pretty;
+}
+
+/* 4. The one control ------------------------------------------------------- */
+
+.wiki-page .wiki-document .wiki-document__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 1px solid color-mix(in srgb, var(--doc-deep) 24%, transparent);
+  border-radius: 7px;
+  background: var(--doc-wash);
+  color: var(--doc-on);
+  cursor: pointer;
+  font-family: var(--font-body, inherit);
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.1;
+  transition:
+    background-color 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wiki-page .wiki-document .wiki-document__toggle:hover {
+  background: color-mix(in srgb, var(--route-soft, #b4dff0) 52%, var(--doc-paper));
+  border-color: color-mix(in srgb, var(--doc-deep) 40%, transparent);
+}
+
+.wiki-page .wiki-document .wiki-document__toggle:active {
+  transform: scale(0.98);
+}
+
+.wiki-page .wiki-document .wiki-document__toggle:focus-visible {
+  outline: 2px solid var(--doc-deep);
+  outline-offset: 2px;
+}
+
+/* Chevron: drawn, so no icon dependency; it turns with `aria-expanded`. */
+.wiki-page .wiki-document .wiki-document__chevron {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 7px solid currentColor;
+  transition: transform 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wiki-page
+  .wiki-document
+  .wiki-document__toggle[aria-expanded="true"]
+  .wiki-document__chevron {
+  transform: rotate(90deg);
+}
+
+/* 5. The frame, in its own tray under the bar ------------------------------ */
+
+.wiki-page .wiki-document.is-open .wiki-document__card {
+  border-radius: var(--doc-radius) var(--doc-radius) 0 0;
+}
+
+.wiki-page .wiki-document .wiki-document__panel {
+  padding: 12px;
+  border-radius: 0 0 var(--doc-radius) var(--doc-radius);
+  border: 1px solid var(--doc-rule);
+  border-top: 0;
+  background: color-mix(in srgb, var(--route-soft, #b4dff0) 10%, var(--doc-paper));
+  box-shadow: 0 7px 20px color-mix(in srgb, var(--doc-deep) 5%, transparent);
+}
+
+.wiki-page .wiki-document .wiki-document__description,
+.wiki-page .wiki-document .wiki-document__actions,
+.wiki-page .wiki-document .wiki-document__fallback {
+  margin: 0 4px 12px;
+  color: color-mix(in srgb, var(--doc-on) 84%, var(--doc-paper));
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.wiki-page .wiki-document .wiki-document__actions {
+  margin-bottom: 14px;
+}
+
+.wiki-page .wiki-document .wiki-document__actions a {
+  color: var(--route-subheading-ink, var(--doc-on));
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.wiki-page .wiki-document .wiki-document__fallback {
+  margin: 12px 4px 0;
+}
+
+.wiki-page .wiki-document .wiki-document__panel[hidden] {
+  display: none;
+}
+
+.wiki-page .wiki-document .wiki-document__frame {
+  display: block;
+  width: 100%;
+  height: clamp(420px, 82vh, 920px);
+  border: 1px solid var(--doc-rule);
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* 6. Narrow panels --------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .wiki-page .wiki-document .wiki-document__card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    padding: 18px 16px 16px;
+  }
+
+  .wiki-page .wiki-document .wiki-document__toggle {
+    justify-self: start;
+  }
+
+  .wiki-page .wiki-document .wiki-document__panel {
+    padding: 8px;
+  }
+
+  .wiki-page .wiki-document .wiki-document__frame {
+    height: clamp(320px, 72vh, 640px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wiki-page .wiki-document .wiki-document__chevron,
+  .wiki-page .wiki-document .wiki-document__toggle {
+    transition: none;
+  }
+}
+
+/* Top-layer reading surface shared by attachment and folder triggers. */
+.wiki-page .wiki-document.wiki-document--modal {
+  width: min(1080px, calc(100vw - 40px));
+  max-width: none;
+  max-height: calc(100dvh - 40px);
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--doc-rule);
+  border-radius: var(--doc-radius);
+  background: var(--doc-paper);
+  box-shadow:
+    0 2px 6px color-mix(in srgb, var(--doc-deep) 4%, transparent),
+    0 14px 40px color-mix(in srgb, var(--doc-deep) 10%, transparent);
+}
+
+.wiki-page .wiki-document--modal:not([open]) {
+  display: none;
+}
+.wiki-document--modal::backdrop {
+  background: rgb(42 39 32 / 0.38);
+}
+.wiki-page .wiki-document--modal .wiki-document__card {
+  border-radius: var(--doc-radius) var(--doc-radius) 0 0;
+  box-shadow: none;
+}
+.wiki-page .wiki-document--modal .wiki-document__frame {
+  height: calc(100dvh - 160px);
+  min-height: 240px;
+}
+
+@media (max-width: 760px) {
+  .wiki-page .wiki-document.wiki-document--modal {
+    width: calc(100vw - 16px);
+    max-height: calc(100dvh - 16px);
+  }
+  .wiki-page .wiki-document--modal .wiki-document__card {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+  }
+  .wiki-page .wiki-document--modal .wiki-document__frame {
+    height: calc(100dvh - 150px);
+  }
+}

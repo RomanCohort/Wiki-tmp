@@ -1,0 +1,359 @@
+/* ============================================================================
+   Trop2-CTL1 3D Complex Viewer Component Styles
+   Streamlined, modern floating molecular viewport directly in editorial flow.
+   ========================================================================== */
+
+.trop2-viewer-container {
+  position: relative;
+  width: 100%;
+  margin: 1.5rem 0 2rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* 3D Canvas Stage */
+.trop2-viewer-stage {
+  position: relative;
+  width: 100%;
+  height: 560px;
+  background: #0b0f19;
+  border-radius: 14px;
+  overflow: hidden;
+  user-select: none;
+  box-shadow: 0 8px 30px -4px rgba(2, 6, 23, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.trop2-viewer-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.trop2-viewer-canvas .msp-plugin {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0 !important;
+}
+
+/* Suppress Mol* internal viewport controls and panels */
+.trop2-viewer-canvas .msp-viewport-controls,
+.trop2-viewer-canvas .msp-viewport-controls-buttons,
+.trop2-viewer-canvas .msp-viewport-controls-panel,
+.trop2-viewer-canvas .msp-viewport-top-left-controls,
+.trop2-viewer-canvas .msp-selection-viewport-controls,
+.trop2-viewer-canvas .msp-highlight-toast-wrapper,
+.trop2-viewer-canvas .msp-logo,
+.trop2-viewer-canvas .msp-plugin-layout_controls,
+.msp-viewport-controls,
+.msp-viewport-controls-buttons,
+.msp-viewport-controls-panel,
+.msp-viewport-top-left-controls {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+}
+
+/* 2D Vector Projection Overlay for Polar Contacts */
+.trop2-viewer-svg-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Loading Overlay */
+.trop2-viewer-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: rgba(11, 15, 25, 0.88);
+  color: #e2e8f0;
+  font-size: 0.85rem;
+  font-family: var(--font-mono, monospace);
+  z-index: 20;
+  backdrop-filter: blur(4px);
+}
+
+.trop2-viewer-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(56, 189, 248, 0.2);
+  border-top-color: #38bdf8;
+  border-radius: 50%;
+  animation: trop2-spin 0.8s linear infinite;
+}
+
+@keyframes trop2-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Floating Top Bar (Controls) */
+.trop2-viewer-floating-top {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.trop2-floating-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  pointer-events: auto;
+}
+
+.trop2-floating-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-mono, monospace);
+  color: #94a3b8;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.trop2-floating-pill:hover {
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.trop2-floating-pill.is-active {
+  background: #334155;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.trop2-floating-pill--cyan.is-active {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+}
+
+.trop2-floating-pill--blue.is-active {
+  background: #1d4ed8 !important;
+  color: #ffffff !important;
+}
+
+/* Action Toggles & Icon Buttons */
+.trop2-floating-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-mono, monospace);
+  color: #94a3b8;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.trop2-floating-btn:hover {
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.trop2-floating-btn.is-active-yellow {
+  color: #facc15;
+  background: rgba(250, 204, 21, 0.15);
+}
+
+.trop2-floating-btn.is-active-cyan {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+}
+
+.trop2-btn-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.trop2-btn-dot--yellow {
+  background: #facc15;
+  box-shadow: 0 0 5px rgba(250, 204, 21, 0.7);
+}
+
+.trop2-btn-dot--cyan {
+  background: #38bdf8;
+  box-shadow: 0 0 5px rgba(56, 189, 248, 0.7);
+}
+
+.trop2-floating-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: #94a3b8;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.trop2-floating-icon-btn:hover {
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Floating Bottom Bar (Legend & Hint) */
+.trop2-viewer-floating-bottom {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.trop2-floating-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 5px 12px;
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-size: 0.725rem;
+  color: #cbd5e1;
+  pointer-events: auto;
+}
+
+.trop2-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.trop2-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.trop2-legend-dot--cyan {
+  background: #00e5ff;
+  box-shadow: 0 0 5px rgba(0, 229, 255, 0.6);
+}
+
+.trop2-legend-dot--blue {
+  background: #1d4ed8;
+}
+
+.trop2-legend-dot--lavender {
+  background: #c7d2fe;
+}
+
+.trop2-legend-dot--yellow {
+  background: #facc15;
+  box-shadow: 0 0 5px rgba(250, 204, 21, 0.5);
+}
+
+.trop2-floating-hint {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.7rem;
+  font-family: var(--font-mono, monospace);
+  color: rgba(203, 213, 225, 0.75);
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(8px);
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Caption Under Stage */
+.trop2-viewer-caption {
+  margin: 0.85rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #475569;
+}
+
+.trop2-viewer-caption strong {
+  color: #0f172a;
+}
+
+/* Fullscreen Mode */
+.trop2-viewer-container:fullscreen {
+  margin: 0 !important;
+  border-radius: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  z-index: 999999 !important;
+  background: #0b0f19 !important;
+}
+
+.trop2-viewer-container:fullscreen .trop2-viewer-stage {
+  flex: 1 1 auto !important;
+  height: 100% !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.trop2-viewer-container:fullscreen .trop2-viewer-caption {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .trop2-viewer-stage {
+    height: 440px;
+  }
+  .trop2-viewer-floating-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .trop2-floating-hint {
+    display: none;
+  }
+}

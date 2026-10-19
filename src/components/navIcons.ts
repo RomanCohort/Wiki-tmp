@@ -1,0 +1,26 @@
+const CDN_BASE = "https://static.igem.wiki/teams/6056/wiki/files/pages/shared";
+
+export const NAV_ICONS: Record<string, string> = {
+  Roster: `${CDN_BASE}/nav-roster.webp`,
+  Attributions: `${CDN_BASE}/nav-attributions.webp`,
+  Activities: `${CDN_BASE}/nav-activities.webp`,
+  Description: `${CDN_BASE}/nav-description.webp`,
+  Engineering: `${CDN_BASE}/nav-engineering.webp`,
+  Results: `${CDN_BASE}/nav-results.webp`,
+  Contribution: `${CDN_BASE}/nav-contribution.webp`,
+  "Visual Design": `${CDN_BASE}/nav-visual-design.webp`,
+  Design: `${CDN_BASE}/nav-design.webp`,
+  Notebook: `${CDN_BASE}/nav-notebook.webp`,
+  "Safety and Security": `${CDN_BASE}/nav-safety.webp`,
+  Experiments: `${CDN_BASE}/nav-experiments.webp`,
+  Measurement: `${CDN_BASE}/nav-measurement.webp`,
+  "Alternative Platform": `${CDN_BASE}/nav-alternative-platform.webp`,
+  Model: `${CDN_BASE}/nav-model.webp`,
+  Software: `${CDN_BASE}/nav-software.webp`,
+  Hardware: `${CDN_BASE}/nav-hardware.webp`,
+  Games: `${CDN_BASE}/nav-games.webp`,
+  Entrepreneurship: `${CDN_BASE}/nav-entrepreneurship.webp`,
+  "Human Practices": `${CDN_BASE}/nav-human-practices.webp`,
+  Education: `${CDN_BASE}/nav-education.webp`,
+  Sustainability: `${CDN_BASE}/nav-sustainability.webp`,
+};

@@ -1,0 +1,453 @@
+[
+  {
+    "key": "education-media-group-1",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/wp01-recursive-care-preserving-the-learner-cover.pdf",
+        "title": "WP01 Recursive Care Preserving the Learner"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-2",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/wp02-from-community-to-portfolio-cover.pdf",
+        "title": "WP02 From Community to Portfolio"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-3",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/little-scientist-bacteria-id.pptx",
+        "title": "Little Scientist: Giving Bacteria an ID (English Final)"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-4",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/virtual-laboratory-white-paper-english-cover.pdf",
+        "title": "Virtual Laboratory White Paper "
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/g01-virtual-laboratory-implementation-manual-cover.pdf",
+        "title": "G01 Virtual Laboratory Implementation Manual"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-5",
+    "items": [
+      {
+        "kind": "image",
+        "src": "__BASE__assets/education/evidence-when-dialogue-changed-the-route-photo-26.png",
+        "alt": "Illustration for When Dialogue Changed the Route",
+        "caption": ""
+      },
+      {
+        "kind": "image",
+        "src": "__BASE__assets/education/evidence-when-dialogue-changed-the-route-photo-27.png",
+        "alt": "Illustration for When Dialogue Changed the Route",
+        "caption": ""
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-6",
+    "items": [
+      {
+        "kind": "image",
+        "src": "__BASE__assets/education/battle-heroes.png",
+        "alt": "Illustration for Turning Biological Relationships into Game Rules",
+        "caption": ""
+      },
+      {
+        "kind": "image",
+        "src": "__BASE__assets/education/battle-heroes-2.png",
+        "alt": "Illustration for Turning Biological Relationships into Game Rules",
+        "caption": ""
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-7",
+    "items": [
+      {
+        "kind": "image",
+        "src": "__BASE__assets/education/continuation-knowledge-moved-again-photo-33.png",
+        "alt": "Illustration for Knowledge Moved Again",
+        "caption": ""
+      },
+      {
+        "kind": "image",
+        "src": "__BASE__assets/education/continuation-knowledge-moved-again-photo-34.png",
+        "alt": "Illustration for Knowledge Moved Again",
+        "caption": ""
+      },
+      {
+        "kind": "image",
+        "src": "__BASE__assets/education/continuation-knowledge-moved-again-photo-35.png",
+        "alt": "Illustration for Knowledge Moved Again",
+        "caption": ""
+      },
+      {
+        "kind": "image",
+        "src": "__BASE__assets/education/continuation-knowledge-moved-again-photo-36.png",
+        "alt": "Illustration for Knowledge Moved Again",
+        "caption": ""
+      },
+      {
+        "kind": "image",
+        "src": "__BASE__assets/education/continuation-knowledge-moved-again-photo-37.png",
+        "alt": "Illustration for Knowledge Moved Again",
+        "caption": ""
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-8",
+    "items": [
+      {
+        "kind": "image",
+        "src": "__BASE__assets/education/continuation-migration-means-redesign-photo-41.png",
+        "alt": "Illustration for Migration Means Redesign",
+        "caption": ""
+      },
+      {
+        "kind": "image",
+        "src": "__BASE__assets/education/continuation-migration-means-redesign-photo-42.png",
+        "alt": "Illustration for Migration Means Redesign",
+        "caption": ""
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-9",
+    "items": [
+      {
+        "kind": "image",
+        "src": "__BASE__assets/education/continuation-a-mechanism-that-travelled-photo-47.png",
+        "alt": "Illustration for A Mechanism That Travelled",
+        "caption": ""
+      },
+      {
+        "kind": "image",
+        "src": "__BASE__assets/education/continuation-a-mechanism-that-travelled-photo-46.png",
+        "alt": "Illustration for A Mechanism That Travelled",
+        "caption": ""
+      },
+      {
+        "kind": "image",
+        "src": "__BASE__assets/education/continuation-a-mechanism-that-travelled-photo-48.png",
+        "alt": "Illustration for A Mechanism That Travelled",
+        "caption": ""
+      },
+      {
+        "kind": "image",
+        "src": "__BASE__assets/education/continuation-a-mechanism-that-travelled-photo-49.png",
+        "alt": "Illustration for A Mechanism That Travelled",
+        "caption": ""
+      },
+      {
+        "kind": "image",
+        "src": "__BASE__assets/education/continuation-a-mechanism-that-travelled-photo-50.png",
+        "alt": "Illustration for A Mechanism That Travelled",
+        "caption": ""
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-10",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/wp05-evidence-and-evaluation-in-education-cover.pdf",
+        "title": "WP05 Evidence and Evaluation in Education"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/g02-life-stage-narrative-serious-game-design-playbook-cover.pdf",
+        "title": "G02 Life Stage Narrative Serious Game Design Playbook"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-11",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/letters-to-my-body-final.pdf",
+        "title": "Letters to My Body"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-12",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/field-guide-to-learning-final.pdf",
+        "title": "A Field Guide to Learning - Inaugural Issue"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-13",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/a-seed-planted-in-the-heart-final.pdf",
+        "title": "A-Seed-Planted-in-the-Heart"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/jlu-fbh-105-days-visual-journey.pdf",
+        "title": "JLU-FBH 105 Days Visual Journey"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-14",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/wp03-from-dialogue-to-shape-cover.pdf",
+        "title": "WP03 From Dialogue to Shape."
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-15",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/education-lineage-map-education-as-a-living-system.pdf",
+        "title": "Education Lineage Map-Education as a living system"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/wp04-recursive-development-and-education-lineage-cover.pdf",
+        "title": "WP04 Recursive Development and Education Lineage."
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-16",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/g01-virtual-laboratory-implementation-manual-cover.pdf",
+        "title": "G01 Virtual Laboratory Implementation Manual"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/g02-life-stage-narrative-serious-game-design-playbook-cover.pdf",
+        "title": "G02 Life Stage Narrative Serious Game Design Playbook"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/wp01-recursive-care-preserving-the-learner-cover.pdf",
+        "title": "WP01 Recursive Care Preserving the Learner"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/wp02-from-community-to-portfolio-cover.pdf",
+        "title": "WP02 From Community to Portfolio"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/wp03-from-dialogue-to-shape-cover.pdf",
+        "title": "WP03 From Dialogue to Shape."
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/wp04-recursive-development-and-education-lineage-cover.pdf",
+        "title": "WP04 Recursive Development and Education Lineage."
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/wp05-evidence-and-evaluation-in-education-cover.pdf",
+        "title": "WP05 Evidence and Evaluation in Education"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/virtual-laboratory-white-paper-english-cover.pdf",
+        "title": "Virtual Laboratory White Paper "
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-17",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/p01-winter-outreach-implementation-package.pdf",
+        "title": "P01 Winter Outreach Implementation Package"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/p02-vaccine-classroom-implementation-package.pdf",
+        "title": "P02 Vaccine Classroom Implementation Package"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/p03-synbio-classroom-implementation-package.pdf",
+        "title": "P03 Synbio Classroom Implementation Package"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/p04-xinghua-festival-implementation-package.pdf",
+        "title": "P04 Xinghua Festival Implementation Package"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/p05-health-run-implementation-package.pdf",
+        "title": "P05 Health Run Implementation Package"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/p06-music-festival-implementation-package.pdf",
+        "title": "P06 Music Festival Implementation Package"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-18",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/little-scientist-bacteria-id.pptx",
+        "title": "Little Scientist: Giving Bacteria an ID (English Final)"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-19",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/life-science-adventure.pptx",
+        "title": "Life Science Adventure (English Final)"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-20",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/air-into-bread-with-gemy-english.pptx",
+        "title": "Air into Bread with Gemy English"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-21",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/synbio-classroom-lesson-1-english.pptx",
+        "title": "01 SynBio Classroom Lesson 1 Opening and Lab Safety EN"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-22",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/synbio-classroom-lesson-2-english.pptx",
+        "title": "02 SynBio Classroom Lesson 2 PCR and Gel Electrophoresis EN"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-23",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/synbio-classroom-lesson-3-english.pptx",
+        "title": "03 SynBio Classroom Lesson 3 Crude DNA Extraction EN"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-24",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/synbio-classroom-lesson-4-english.pptx",
+        "title": "04 SynBio Classroom Lesson 4 Life Science Monopoly EN"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-25",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/synbio-classroom-lesson-5-english.pptx",
+        "title": "05 SynBio Classroom Lesson 5 Plasmid Game EN"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-26",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/igem-fbh-jlu-hp.pptx",
+        "title": "Winter Outreach-Hailun, Heilongjiang"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/winter-outreach-chongqing-english.pptx",
+        "title": "Winter Outreach-Chongqing"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/igem-pptx.pptx",
+        "title": "Winter Outreach-Yanji, Jilin"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/shi-zhiyuan-igem-back-to-school-propaganda-english.pptx",
+        "title": "Winter Outreach-Jining-Shandong"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/winter-outreach-igem-introduction.pptx",
+        "title": "Winter Outreach-Turin, Italy"
+      }
+    ]
+  },
+  {
+    "key": "education-media-group-27",
+    "items": [
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/a-seed-planted-in-the-heart-final.pdf",
+        "title": "A-Seed-Planted-in-the-Heart"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/letters-to-my-body-final.pdf",
+        "title": "Letters to My Body"
+      },
+      {
+        "kind": "pdf",
+        "src": "__BASE__assets/education/field-guide-to-learning-final.pdf",
+        "title": "A Field Guide to Learning - Inaugural Issue"
+      }
+    ]
+  }
+]

@@ -1,0 +1,194 @@
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body,
+  body * {
+    cursor:
+      url("https://static.igem.wiki/teams/6056/wiki/files/pages/shared/cursor-default.avif") 13 12,
+      auto !important;
+  }
+
+  body
+    :is(
+      a[href],
+      button:not(:disabled),
+      [role="button"]:not([aria-disabled="true"]),
+      [role="link"],
+      [role="tab"],
+      [role="menuitem"],
+      [role="slider"],
+      input:not(:disabled),
+      select:not(:disabled),
+      textarea:not(:disabled),
+      summary,
+      label[for]
+    ),
+  body
+    :is(
+      a[href],
+      button:not(:disabled),
+      [role="button"]:not([aria-disabled="true"]),
+      [role="link"],
+      [role="tab"],
+      [role="menuitem"],
+      [role="slider"],
+      summary,
+      label[for]
+    )
+    * {
+    cursor:
+      url("https://static.igem.wiki/teams/6056/wiki/files/pages/shared/cursor-active.avif") 13 12,
+      pointer !important;
+  }
+
+  body.is-pressing,
+  body.is-pressing * {
+    cursor:
+      url("https://static.igem.wiki/teams/6056/wiki/files/pages/shared/cursor-active.avif") 13 12,
+      pointer !important;
+  }
+}
+
+/* The platform sheep above remains the fallback until both poses decode. */
+.sheep-cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
+  visibility: hidden;
+}
+
+.sheep-cursor[data-visible="true"] {
+  visibility: visible;
+}
+.sheep-cursor * {
+  pointer-events: none;
+}
+
+.sheep-cursor__follower {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  will-change: transform;
+}
+
+.sheep-cursor__tilt,
+.sheep-cursor__sprite {
+  width: 100%;
+  height: 100%;
+  transform-origin: 13px 12px;
+}
+
+.sheep-cursor__sprite img {
+  position: absolute;
+  inset: 0;
+  width: 80px;
+  height: 80px;
+  max-width: none;
+  user-select: none;
+  transition: opacity 100ms ease;
+}
+
+.sheep-cursor__happy {
+  opacity: 0;
+}
+.sheep-cursor[data-active="true"] .sheep-cursor__rest {
+  opacity: 0;
+}
+.sheep-cursor[data-active="true"] .sheep-cursor__happy {
+  opacity: 1;
+}
+
+.sheep-cursor__halo {
+  position: absolute;
+  top: 14px;
+  left: 15px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: conic-gradient(from 25deg, transparent 8%, #d5f7ff30 17%, #ffffffa6 19%, transparent 23% 57%, #eedaff38 66%, #ffffff85 68%, transparent 72%);
+  mask: radial-gradient(ellipse, transparent 56%, #000 61% 63%, transparent 69%);
+  opacity: 0;
+}
+
+.sheep-cursor__spark {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  background: var(--spark-fill, #b8527a);
+  filter: drop-shadow(0 0 3px var(--spark-glow, rgba(184, 82, 122, 0.5)));
+  -webkit-mask: url("https://static.igem.wiki/teams/6056/wiki/shared/cursor-sparkle-mask.avif")
+    center / contain no-repeat;
+  mask: url("https://static.igem.wiki/teams/6056/wiki/shared/cursor-sparkle-mask.avif")
+    center / contain no-repeat;
+  will-change: transform, opacity;
+}
+
+.sheep-cursor__ripple {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  margin-top: -14px;
+  margin-left: -14px;
+  border-radius: 50%;
+  border: 1.5px solid var(--spark-fill, #b8527a);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.2);
+  will-change: transform, opacity;
+}
+
+.sheep-cursor__sheen--happy,
+.sheep-cursor[data-active="true"] .sheep-cursor__sheen--rest {
+  visibility: hidden;
+}
+.sheep-cursor[data-active="true"] .sheep-cursor__sheen--happy {
+  visibility: visible;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html:root.has-sheep-cursor,
+  html:root.has-sheep-cursor body,
+  html:root.has-sheep-cursor body * {
+    cursor: none !important;
+  }
+
+  /* Restore the I-beam and native manipulation affordances in both modes. */
+  html
+    body
+    :is(
+      input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+      textarea,
+      [contenteditable]:not([contenteditable="false"])
+    ),
+  html body [contenteditable]:not([contenteditable="false"]) * {
+    cursor: text !important;
+  }
+  html body :is([draggable="true"], [data-native-cursor]),
+  html body :is([draggable="true"], [data-native-cursor]) * {
+    cursor: auto !important;
+  }
+  /* Native scrollbar drags suspend pointer events. Let the browser move the
+     sheep image on those surfaces while the animated follower yields. */
+  html:root body [data-native-cursor="sheep"],
+  html:root body [data-native-cursor="sheep"] * {
+    cursor:
+      url("https://static.igem.wiki/teams/6056/wiki/files/pages/shared/cursor-default.avif") 13 12,
+      auto !important;
+  }
+  html body.is-thread-dragging,
+  html body.is-thread-dragging * {
+    cursor: grabbing !important;
+  }
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .sheep-cursor {
+    display: none;
+  }
+}

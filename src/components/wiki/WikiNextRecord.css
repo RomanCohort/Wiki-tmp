@@ -1,0 +1,291 @@
+.wiki-page .wiki-next.wiki-next--record {
+  --next-record-ink: #1b1719;
+  --next-record-muted: rgba(27, 23, 25, 0.62);
+  --next-record-line: rgba(27, 23, 25, 0.22);
+  --next-record-paper: #f8f4ed;
+  --next-record-accent: var(--care, #d784b3);
+  display: grid;
+  width: min(1120px, calc(100% - 48px));
+  min-height: auto;
+  grid-template-columns: minmax(0, 1fr) clamp(190px, 18vw, 220px);
+  gap: clamp(48px, 7vw, 104px);
+  align-items: center;
+  margin: 0 auto;
+  padding: 64px 0 82px;
+  overflow: visible;
+  border: 0;
+  border-top: 1px solid var(--next-record-line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--next-record-ink);
+}
+
+.wiki-page .wiki-next.wiki-next--record > .wiki-next__inner {
+  display: contents;
+}
+
+.wiki-page--dry-lab .wiki-next.wiki-next--record {
+  --next-record-ink: #293650;
+  --next-record-muted: #68728c;
+  --next-record-line: rgba(85, 101, 157, 0.28);
+  --next-record-paper: #f6f6f3;
+  --next-record-accent: #7183c5;
+}
+
+.wiki-page.wiki-page--project-preview .wiki-next.wiki-next--record {
+  --next-record-ink: #2d2327;
+  --next-record-muted: #71676a;
+  --next-record-line: rgba(74, 39, 54, 0.24);
+  --next-record-paper: #f8f4ed;
+  --next-record-accent: #a83f69;
+}
+
+.wiki-page .wiki-next.wiki-next--record::before,
+.wiki-page .wiki-next.wiki-next--record::after {
+  display: none;
+}
+
+.wiki-page .wiki-next.wiki-next--record h2 {
+  max-width: 760px;
+  margin: 0;
+  color: var(--next-record-ink);
+  font-family: var(--font-editorial);
+  font-size: clamp(26px, 2.8vw, 38px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+}
+
+.wiki-page .wiki-next.wiki-next--record p:not(.wiki-kicker) {
+  max-width: 620px;
+  margin: 16px 0 0;
+  color: var(--next-record-muted);
+  font-family: var(--font-editorial);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.wiki-page .wiki-next.wiki-next--record p strong {
+  color: var(--next-record-ink);
+  font-weight: 500;
+}
+
+.wiki-page .wiki-next.wiki-next--record .wiki-next__inner > .wiki-next__action {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  width: 100%;
+  height: auto;
+  min-height: 156px;
+  grid-template-columns: minmax(0, 1fr) 42px;
+  grid-template-rows: auto 1fr;
+  gap: 20px 16px;
+  align-items: start;
+  padding: 22px;
+  overflow: hidden;
+  border: 1px solid var(--next-record-line);
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--next-record-accent) 5%, transparent);
+  color: var(--next-record-ink);
+  text-decoration: none;
+  box-shadow: 0 14px 36px rgba(27, 23, 25, 0.035);
+  transform: none;
+  transition:
+    color 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wiki-page
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action::before {
+  position: absolute;
+  z-index: -1;
+  inset: auto -26% -72% 16%;
+  height: 150px;
+  border-radius: 50%;
+  background: var(--next-record-accent);
+  content: "";
+  filter: blur(46px);
+  opacity: 0.12;
+  transform: scale(0.86);
+  transition:
+    opacity 360ms ease,
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wiki-page
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action
+  span {
+  align-self: auto;
+  color: var(--next-record-muted);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0;
+}
+
+.wiki-page
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action
+  strong {
+  min-width: 0;
+  max-width: 100%;
+  grid-column: 1 / -1;
+  align-self: end;
+  color: inherit;
+  font-family: var(--font-editorial);
+  font-size: clamp(20px, 2vw, 28px);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.wiki-page
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action
+  strong.wiki-next__label--long {
+  font-size: clamp(18px, 1.55vw, 22px);
+  letter-spacing: -0.025em;
+}
+
+.wiki-page
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action
+  b {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  grid-column: 2;
+  grid-row: 1;
+  place-items: center;
+  align-self: start;
+  border-radius: 50%;
+  background: var(--next-record-accent);
+  color: var(--next-record-paper);
+  font-size: 22px;
+  font-weight: 400;
+  transform: none;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wiki-page
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action:is(:hover, :focus-visible) {
+  border-color: var(--next-record-ink);
+  background: var(--next-record-ink);
+  color: var(--next-record-paper);
+  box-shadow: 0 22px 48px rgba(27, 23, 25, 0.14);
+  outline: none;
+  transform: translateY(-6px);
+}
+
+.wiki-page
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action:is(:hover, :focus-visible)
+  span {
+  color: color-mix(in srgb, var(--next-record-paper) 72%, transparent);
+}
+
+.wiki-page
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action:is(:hover, :focus-visible)::before {
+  opacity: 0.3;
+  transform: scale(1.08);
+}
+
+.wiki-page
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action:is(:hover, :focus-visible)
+  b {
+  transform: rotate(45deg);
+}
+
+.wiki-page
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action:active {
+  transform: translateY(-2px) scale(0.985);
+}
+
+.wiki-page.wiki-page .wiki-next.wiki-next--record {
+  min-height: auto;
+  padding: 64px 0 82px;
+}
+
+.wiki-page.wiki-page .wiki-next.wiki-next--record h2 {
+  max-width: 760px;
+  font-size: clamp(26px, 2.8vw, 38px);
+  line-height: 1.18;
+}
+
+.wiki-page.wiki-page .wiki-next.wiki-next--record p:not(.wiki-kicker) {
+  margin-top: 16px;
+  font-family: var(--font-editorial);
+  font-size: 16px;
+}
+
+@media (max-width: 760px) {
+  .wiki-page.wiki-page .wiki-next.wiki-next--record {
+    grid-template-columns: 1fr;
+    gap: 38px;
+    padding: 52px 0 64px;
+  }
+
+  .wiki-page.wiki-page .wiki-next.wiki-next--record h2 {
+    max-width: 620px;
+    font-size: clamp(22px, 5.5vw, 28px);
+    line-height: 1.25;
+  }
+
+  .wiki-page
+    .wiki-next.wiki-next--record
+    .wiki-next__inner
+    > .wiki-next__action {
+    min-height: 112px;
+    grid-template-columns: minmax(0, 1fr) 42px;
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .wiki-page
+    .wiki-next.wiki-next--record
+    .wiki-next__inner
+    > .wiki-next__action
+    strong.wiki-next__label--long {
+    font-size: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wiki-page
+    .wiki-next.wiki-next--record
+    .wiki-next__inner
+    > .wiki-next__action,
+  .wiki-page
+    .wiki-next.wiki-next--record
+    .wiki-next__inner
+    > .wiki-next__action::before,
+  .wiki-page
+    .wiki-next.wiki-next--record
+    .wiki-next__inner
+    > .wiki-next__action
+    b {
+    transition-duration: 0.01ms;
+  }
+}

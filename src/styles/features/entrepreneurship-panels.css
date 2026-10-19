@@ -1,0 +1,946 @@
+/* SVG paint and the matching translucent reading surfaces share one palette. */
+[data-orbit-tone="peach"] {
+  --orbit-color: #f0c891;
+  --orbit-ink: #765731;
+}
+[data-orbit-tone="sage"] {
+  --orbit-color: #c8dca0;
+  --orbit-ink: #4e6037;
+}
+[data-orbit-tone="sky"] {
+  --orbit-color: #a9cfdf;
+  --orbit-ink: #405e6e;
+}
+[data-orbit-tone="lavender"] {
+  --orbit-color: #c6b4d8;
+  --orbit-ink: #665173;
+}
+[data-orbit-tone="rose"] {
+  --orbit-color: #e8b5cd;
+  --orbit-ink: #7b4c64;
+}
+[data-orbit-tone="yellow"] {
+  --orbit-color: #ffdf7b;
+  --orbit-ink: #715c29;
+}
+[data-orbit-tone="lime"] {
+  --orbit-color: #c5df8b;
+  --orbit-ink: #4e6234;
+}
+[data-orbit-tone="slate"] {
+  --orbit-color: #89a9b9;
+  --orbit-ink: #3e5968;
+}
+[data-orbit-tone="mauve"] {
+  --orbit-color: #a392b6;
+  --orbit-ink: #604e70;
+}
+
+/* The visible diagram titles replace the repeated section heading. Keep the
+   semantic headings and outline anchors available to assistive technology. */
+.wiki-page[data-wiki-route="/entrepreneurship"]
+  :is(#potential-problems-and-solutions, #positive-long-term-impacts)
+  > .wiki-section__heading {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Static RNA drawings do not need the reader's continuous parallax repaint. */
+.wiki-page[data-wiki-route="/entrepreneurship"]
+  .wiki-feature:has(
+    .circure-orbit,
+    .circure-golden-circle,
+    .stakeholder-matrix-3d
+  ) {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+
+.circure-orbit {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 640 / 570;
+  margin: 0 auto;
+  color: #504c65;
+  font-family: var(--font-sans, sans-serif);
+}
+
+.circure-orbit__drawing {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.circure-orbit__title {
+  fill: #b87994;
+  font-size: 24px;
+  font-weight: 650;
+  letter-spacing: 0.1px;
+}
+
+.circure-orbit__title--arched {
+  fill: #c67d96;
+  font-size: 36px;
+  font-weight: 650;
+}
+
+.circure-orbit__backbone {
+  fill: none;
+  stroke: #c2b6ce;
+  stroke-width: 6;
+  opacity: 0.72;
+}
+
+.circure-orbit__base {
+  stroke: var(--orbit-color);
+  stroke-width: 3;
+  opacity: 0.9;
+}
+
+.circure-orbit__bead {
+  fill: var(--orbit-color);
+  stroke: #fffcfa;
+  stroke-width: 0.9;
+}
+
+.circure-orbit__brand,
+.circure-orbit__subtitle {
+  text-anchor: middle;
+}
+
+.circure-orbit__brand {
+  fill: #504c65;
+  font-size: 23px;
+  font-weight: 650;
+}
+
+.circure-orbit__subtitle {
+  fill: #9481a6;
+  font-size: 19px;
+  font-weight: 400;
+}
+
+.circure-orbit--impacts .circure-orbit__brand {
+  font-size: 27px;
+}
+.circure-orbit--impacts .circure-orbit__subtitle {
+  font-size: 23px;
+}
+
+.circure-orbit__node {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  height: 22.456%;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #504c65;
+  font: inherit;
+  font-size: clamp(12px, 1.15vw, 16px);
+  font-weight: 650;
+  line-height: 1.28;
+  text-align: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 180ms ease;
+}
+
+.circure-orbit__node:hover {
+  transform: translateY(-2px);
+}
+.circure-orbit__node:focus-visible {
+  outline: 2px solid var(--orbit-ink);
+  outline-offset: 4px;
+}
+
+.circure-orbit__node--safety {
+  left: 40%;
+  top: 14.561%;
+}
+.circure-orbit__node--patient-access {
+  left: 64.6875%;
+  top: 35.0877%;
+}
+.circure-orbit__node--data-privacy {
+  left: 55.3125%;
+  top: 67.5439%;
+}
+.circure-orbit__node--manufacturing-qc {
+  left: 24.6875%;
+  top: 67.5439%;
+  font-size: clamp(10px, 1vw, 14px);
+}
+.circure-orbit__node--clinical-trust {
+  left: 15.3125%;
+  top: 35.0877%;
+}
+
+/* Impact dots retain the four-point composition of the supplied reference.
+   The full title is the accessible name and appears in its reading strip. */
+.circure-orbit--impacts .circure-orbit__node {
+  width: 11.25%;
+  height: 12.6316%;
+}
+.circure-orbit__node--treatment-options {
+  left: 26.875%;
+  top: 28.4211%;
+}
+.circure-orbit__node--patient-matching {
+  left: 61.875%;
+  top: 28.4211%;
+}
+.circure-orbit__node--vaccine-development {
+  left: 26.875%;
+  top: 67.7193%;
+}
+.circure-orbit__node--collaboration {
+  left: 61.875%;
+  top: 67.7193%;
+}
+
+.circure-orbit__legend {
+  position: absolute;
+  right: 0;
+  bottom: 3%;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px 34px;
+  color: #80728f;
+  font-size: clamp(11px, 1vw, 14px);
+}
+
+.circure-orbit__legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.circure-orbit__legend i {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--orbit-color);
+  opacity: 0.78;
+}
+
+.circure-orbit__legend i + i {
+  margin-right: 5px;
+}
+
+/* Light pigment sits directly on the article; there is no component surface. */
+.entrepreneurship-watercolor {
+  opacity: 0.92;
+  transition: opacity 180ms ease;
+}
+.entrepreneurship-watercolor.is-active {
+  opacity: 1;
+}
+.entrepreneurship-watercolor__edge {
+  stroke: var(--orbit-ink);
+  stroke-width: 1.35;
+  opacity: 0.17;
+}
+
+/* The same bounded reading strip serves every diagram. */
+.wiki-page .entrepreneurship-detail {
+  position: absolute;
+  z-index: 4;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  max-height: min(340px, 62vh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 24px 28px;
+  border: 1px solid color-mix(in srgb, var(--orbit-ink) 12%, transparent);
+  border-radius: 9px;
+  background:
+    radial-gradient(
+      ellipse at 0 0,
+      color-mix(in srgb, var(--orbit-color) 18%, transparent),
+      transparent 75%
+    ),
+    rgb(255 253 247 / 94%);
+  box-shadow: 0 8px 26px rgb(62 47 55 / 7%);
+  backdrop-filter: blur(10px);
+  color: #48444f;
+  font-family: var(--font-sans, sans-serif);
+  animation: entrepreneurship-detail-enter 160ms ease-out both;
+  scrollbar-width: thin;
+  scrollbar-color: var(--orbit-color) transparent;
+}
+.wiki-page .entrepreneurship-detail--above {
+  top: 0;
+  bottom: auto;
+}
+.wiki-page .entrepreneurship-detail h3 {
+  margin: 0 26px 14px 0;
+  padding: 0;
+  border: 0;
+  color: var(--orbit-ink);
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.wiki-page .entrepreneurship-detail h3::before {
+  display: none;
+}
+.wiki-page .entrepreneurship-detail__body {
+  display: grid;
+  gap: 12px;
+}
+.wiki-page .entrepreneurship-detail p {
+  margin: 0;
+  color: #48444f;
+  font-size: 15px;
+  line-height: 1.75;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.wiki-page .entrepreneurship-detail .entrepreneurship-detail__lead {
+  font-weight: 600;
+}
+.wiki-page .entrepreneurship-detail .entrepreneurship-detail__group {
+  margin: 0 0 6px;
+  color: var(--orbit-ink);
+  font-size: 13px;
+}
+.entrepreneurship-detail__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--orbit-ink);
+  cursor: pointer;
+}
+.entrepreneurship-detail__close svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+}
+.entrepreneurship-detail__close:hover {
+  background: color-mix(in srgb, var(--orbit-color) 18%, transparent);
+}
+.entrepreneurship-detail:focus-visible,
+.entrepreneurship-detail__close:focus-visible {
+  outline: 1.5px solid var(--orbit-ink);
+  outline-offset: 3px;
+}
+
+.circure-golden-circle,
+.stakeholder-matrix-3d {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  color: #514858;
+  font-family: var(--font-sans, sans-serif);
+}
+.circure-golden-circle {
+  max-width: 600px;
+}
+.circure-golden-circle__stage {
+  position: relative;
+  aspect-ratio: 640 / 520;
+}
+.circure-golden-circle__drawing,
+.stakeholder-matrix-3d__drawing {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.circure-golden-circle__node {
+  position: absolute;
+  display: grid;
+  width: 23.4375%;
+  height: 23.0769%;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--orbit-ink);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(26px, 2.8vw, 36px);
+  font-weight: 500;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.circure-golden-circle__node--why {
+  top: 21.1538%;
+  left: 38.2813%;
+}
+.circure-golden-circle__node--what {
+  top: 57.3077%;
+  left: 19.8438%;
+}
+.circure-golden-circle__node--how {
+  top: 57.3077%;
+  left: 56.7188%;
+}
+.circure-golden-circle__node:focus-visible {
+  outline: 1.5px solid var(--orbit-ink);
+  outline-offset: 5px;
+}
+
+.stakeholder-matrix-3d {
+  max-width: 720px;
+}
+.stakeholder-matrix-3d [data-orbit-tone="rose"] {
+  --stakeholder-color: #b96078;
+}
+.stakeholder-matrix-3d [data-orbit-tone="sky"] {
+  --stakeholder-color: #477ea8;
+}
+.stakeholder-matrix-3d [data-orbit-tone="slate"] {
+  --stakeholder-color: #518e8a;
+}
+.stakeholder-matrix-3d [data-orbit-tone="peach"] {
+  --stakeholder-color: #c3834b;
+}
+.stakeholder-matrix-3d [data-orbit-tone="sage"] {
+  --stakeholder-color: #6c8b49;
+}
+.stakeholder-matrix-3d [data-orbit-tone="yellow"] {
+  --stakeholder-color: #b8a24e;
+}
+.stakeholder-matrix-3d [data-orbit-tone="mauve"] {
+  --stakeholder-color: #86669b;
+}
+.stakeholder-matrix-3d__stage {
+  position: relative;
+  aspect-ratio: 720 / 510;
+  margin: 0;
+}
+.stakeholder-matrix-3d__grid {
+  fill: none;
+  stroke: #9d979c;
+  stroke-width: 0.75;
+  opacity: 0.24;
+}
+.stakeholder-matrix-3d__axes {
+  fill: none;
+  stroke: #756675;
+  stroke-width: 1.2;
+  color: #756675;
+}
+.stakeholder-matrix-3d__axis-labels {
+  fill: #63596b;
+  font-size: 17px;
+  font-weight: 500;
+}
+.stakeholder-matrix-3d__ticks {
+  fill: #938690;
+  font-size: 12px;
+}
+.stakeholder-matrix-3d__dot {
+  fill: var(--stakeholder-color);
+}
+.stakeholder-matrix-3d__selection {
+  fill: none;
+  stroke: var(--stakeholder-color);
+  stroke-width: 0.8;
+  opacity: 0.5;
+}
+.stakeholder-matrix-3d__projection {
+  fill: none;
+  stroke: var(--stakeholder-color);
+  stroke-width: 0.75;
+  stroke-dasharray: 3 6;
+  opacity: 0;
+}
+.stakeholder-matrix-3d__point.is-active .stakeholder-matrix-3d__projection {
+  opacity: 0.5;
+}
+.stakeholder-matrix-3d__point-trigger {
+  position: absolute;
+  top: var(--point-y);
+  left: var(--point-x);
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.stakeholder-matrix-3d__point-trigger:focus-visible {
+  outline: 1.5px solid var(--orbit-ink);
+  outline-offset: 1px;
+}
+.stakeholder-matrix-3d__legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 24px;
+  padding: 4px 0 0;
+}
+.stakeholder-matrix-3d__legend-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #635967;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+}
+.stakeholder-matrix-3d__swatch {
+  position: relative;
+  top: -1px;
+  flex: 0 0 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--stakeholder-color);
+}
+.stakeholder-matrix-3d__legend-item:hover,
+.stakeholder-matrix-3d__legend-item[aria-expanded="true"] {
+  color: var(--orbit-ink);
+}
+.stakeholder-matrix-3d__legend-item:focus-visible {
+  outline: 1.5px solid var(--orbit-ink);
+  outline-offset: 4px;
+}
+.stakeholder-matrix-3d .entrepreneurship-detail {
+  top: 48%;
+  bottom: auto;
+}
+.wiki-page .stakeholder-matrix-3d__dimensions {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+.wiki-page .stakeholder-matrix-3d__dimensions > div {
+  display: grid;
+  grid-template-columns: 102px 1fr;
+  gap: 14px;
+}
+.wiki-page .stakeholder-matrix-3d__dimensions dt {
+  color: var(--orbit-ink);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.65;
+}
+.wiki-page .stakeholder-matrix-3d__dimensions dt span {
+  margin-left: 8px;
+  color: #8a7e89;
+  font-size: 12px;
+  font-weight: 400;
+}
+.wiki-page .stakeholder-matrix-3d__dimensions dd {
+  margin: 0;
+  color: #48444f;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+@keyframes entrepreneurship-detail-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 600px) {
+  .wiki-page .entrepreneurship-detail {
+    max-height: min(300px, 58vh);
+    padding: 20px;
+  }
+  .wiki-page .entrepreneurship-detail h3 {
+    font-size: 16px;
+  }
+  .wiki-page .entrepreneurship-detail p {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .circure-orbit__legend {
+    gap: 10px 18px;
+  }
+  .circure-orbit__legend i {
+    width: 10px;
+    height: 10px;
+  }
+  .stakeholder-matrix-3d__legend {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .stakeholder-matrix-3d__legend-item {
+    padding: 5px 0;
+  }
+  .stakeholder-matrix-3d .entrepreneurship-detail {
+    top: 40%;
+  }
+  .wiki-page .stakeholder-matrix-3d__dimensions > div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .entrepreneurship-watercolor,
+  .circure-orbit__node {
+    transition: none;
+  }
+  .wiki-page .entrepreneurship-detail {
+    animation: none;
+  }
+}
+
+/* Show the complete square stakeholder icon in the detail header. */
+.wiki-page .entrepreneurship-detail__image {
+  display: block;
+  width: 104px;
+  height: 104px;
+  max-width: 100%;
+  margin: 0 auto 14px;
+  border-radius: 7px;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Our Highlights, judging format: one question per row, the answer folded
+   until the reader asks for it. */
+.wiki-page .highlights-record {
+  margin: 0;
+}
+.wiki-page .highlights-record__item {
+  border: 1px solid rgb(74 44 29 / 14%);
+  border-radius: 12px;
+  background: rgb(255 253 247 / 72%);
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+.wiki-page .highlights-record__item.is-open {
+  border-color: color-mix(in srgb, var(--route-subheading-ink) 32%, transparent);
+  background: rgb(255 253 247 / 95%);
+}
+.wiki-page .highlights-record__item + .highlights-record__item {
+  margin-top: 12px;
+}
+.wiki-page .highlights-record__toggle {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  min-height: 56px;
+  padding: 18px 20px;
+  border: 0;
+  border-radius: 11px;
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+.wiki-page .highlights-record__toggle:hover {
+  background: color-mix(in srgb, var(--route-subheading-ink) 5%, transparent);
+}
+.wiki-page .highlights-record__toggle:focus-visible {
+  outline: 2px solid var(--route-subheading-ink);
+  outline-offset: 3px;
+}
+.wiki-page .highlights-record__toggle:active {
+  background: color-mix(in srgb, var(--route-subheading-ink) 9%, transparent);
+}
+.wiki-page .highlights-record__question {
+  flex: 1;
+  min-width: 0;
+  color: var(--route-heading-ink);
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+.wiki-page .highlights-record__toggle svg {
+  flex: none;
+  align-self: center;
+  box-sizing: content-box;
+  width: 16px;
+  height: 16px;
+  padding: 7px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--route-subheading-ink) 7%, transparent);
+  fill: none;
+  stroke: var(--route-subheading-ink);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 180ms ease;
+}
+.wiki-page .highlights-record__item.is-open .highlights-record__toggle svg {
+  transform: rotate(180deg);
+}
+.wiki-page .highlights-record__answer {
+  padding: 0 20px 20px;
+}
+.wiki-page .highlights-record__answer p {
+  margin: 0 0 12px;
+  font-size: 15.5px;
+  line-height: 1.75;
+}
+.wiki-page .highlights-record__answer p:last-child {
+  margin-bottom: 0;
+}
+
+/* Page links keep the shared semantics, with the Engagement palette. */
+.wiki-page--entrepreneurship a.wiki-cite {
+  white-space: nowrap;
+  font-size: 0.78em;
+  line-height: 0;
+  vertical-align: super;
+}
+.wiki-page--entrepreneurship :is(.wiki-prose-link, .wiki-chapter-link--inline) {
+  color: var(--route-subheading-ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--route-subheading-ink) 40%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  overflow-wrap: anywhere;
+  border-radius: 3px;
+  transition: color 160ms ease, text-decoration-color 160ms ease, background-color 160ms ease;
+}
+.wiki-page--entrepreneurship :is(.wiki-prose-link, .wiki-chapter-link--inline):is(:hover, :focus-visible) {
+  color: var(--route-heading-ink);
+  text-decoration-color: currentColor;
+  background-color: color-mix(in srgb, var(--route-subheading-ink) 6%, transparent);
+}
+.wiki-page--entrepreneurship :is(.wiki-prose-link, .wiki-chapter-link--inline, .wiki-reference-item__link):focus-visible {
+  outline: 2px solid var(--route-subheading-ink);
+  outline-offset: 4px;
+}
+.wiki-page--entrepreneurship .wiki-prose-link[target="_blank"]::after {
+  content: "\00a0↗";
+  display: inline-block;
+  font-size: 0.85em;
+  text-decoration: none;
+}
+.wiki-page--entrepreneurship .wiki-chapter-link--inline::after {
+  content: "\00a0→";
+  display: inline-block;
+  font-size: 0.9em;
+  text-decoration: none;
+}
+.wiki-page--entrepreneurship p > .wiki-prose-link:only-child {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 8px 14px;
+  border: 1px solid color-mix(in srgb, var(--route-subheading-ink) 22%, transparent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--route-subheading-ink) 4%, transparent);
+  font-size: 0.92em;
+  text-decoration: none;
+}
+.wiki-page--entrepreneurship .wiki-reference-item__link {
+  overflow-wrap: anywhere;
+  color: var(--route-subheading-ink);
+}
+@media (max-width: 640px) {
+  .wiki-page .highlights-record__toggle {
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+  }
+  .wiki-page .highlights-record__toggle svg {
+    align-self: flex-start;
+  }
+  .wiki-page .highlights-record__answer {
+    padding: 0 16px 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wiki-page .highlights-record__item,
+  .wiki-page .highlights-record__toggle,
+  .wiki-page .highlights-record__toggle svg,
+  .wiki-page--entrepreneurship :is(.wiki-prose-link, .wiki-chapter-link--inline) {
+    transition: none;
+  }
+}
+
+/* Business Model Canvas: figure stays visible; the nine written elaborations
+   collapse into one disclosure the reader expands with a single click. */
+.wiki-page .business-model-canvas {
+  margin: 0;
+}
+.wiki-page .business-model-canvas__figure {
+  margin: 0;
+}
+.wiki-page .business-model-canvas__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgb(74 44 29 / 10%);
+  border-radius: 9px;
+  background: #fffdf7;
+}
+.wiki-page .business-model-canvas__toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px 16px;
+  border: 1px solid rgb(74 44 29 / 16%);
+  border-radius: 8px;
+  background: rgb(255 253 247 / 88%);
+  color: var(--route-heading-ink, #4a2c1d);
+  font-family: var(--font-sans, sans-serif);
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 140ms ease,
+    border-color 140ms ease;
+}
+.wiki-page .business-model-canvas__toggle:hover {
+  background: rgb(74 44 29 / 5%);
+  border-color: rgb(74 44 29 / 28%);
+}
+.wiki-page .business-model-canvas__toggle svg {
+  flex: none;
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 180ms ease;
+}
+.wiki-page .business-model-canvas__toggle[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+.wiki-page .business-model-canvas__body {
+  padding: 4px 2px 0;
+}
+.wiki-page .business-model-canvas__section {
+  margin-top: 22px;
+}
+.wiki-page .business-model-canvas__section:first-child {
+  margin-top: 14px;
+}
+.wiki-page .business-model-canvas__section h4 {
+  margin: 0 0 8px;
+  color: var(--route-heading-ink, #4a2c1d);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.wiki-page .business-model-canvas__section p {
+  margin: 0 0 12px;
+  font-size: 15.5px;
+  line-height: 1.75;
+}
+
+/* Thank-you letter laid over the signed massage paper. */
+.wiki-page .thank-you-note {
+  margin: 0;
+  padding: clamp(28px, 4vw, 52px) clamp(20px, 5vw, 72px);
+  border-radius: 10px;
+  background-image: var(--thanks-bg);
+  background-size: cover;
+  background-position: center;
+}
+.wiki-page .thank-you-note__paper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(24px, 3.4vw, 44px) clamp(22px, 4vw, 52px);
+  border-radius: 8px;
+  background: rgb(255 253 247 / 86%);
+  backdrop-filter: blur(3px);
+}
+.wiki-page .thank-you-note__paper h3 {
+  margin: 0 0 18px;
+  color: var(--route-heading-ink, #4a2c1d);
+  font-size: clamp(19px, 2vw, 22px);
+  line-height: 1.4;
+  text-align: center;
+}
+.wiki-page .thank-you-note__paper p {
+  margin: 0 0 14px;
+  font-size: 15.5px;
+  line-height: 1.8;
+}
+.wiki-page .thank-you-note__paper .thank-you-note__sign-off {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  margin-top: 22px;
+  margin-bottom: 0;
+  text-align: right;
+}
+.wiki-page .thank-you-note__paper .thank-you-note__sign-off span {
+  display: block;
+}
+
+/* Fig 18: Risk Interview (3:4 portrait photo) — scaled down to fit standard viewport height */
+.wiki-page--entrepreneurship .entrepreneurship-figure--portrait,
+.wiki-page--entrepreneurship .wiki-figure:has(img[src*="risk-interview"]) {
+  width: 100%;
+  max-width: 440px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.wiki-page--entrepreneurship .entrepreneurship-figure--portrait img,
+.wiki-page--entrepreneurship .wiki-figure:has(img[src*="risk-interview"]) img,
+.wiki-page--entrepreneurship img[src*="risk-interview"] {
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 10px 28px -6px rgba(0, 0, 0, 0.12) !important;
+}

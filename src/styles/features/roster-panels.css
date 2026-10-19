@@ -1,0 +1,846 @@
+/* Roster components consume the shared Team palette and reader dimensions. */
+.wiki-page--roster .wiki-section__heading {
+  display: none !important;
+}
+
+.wiki-page--roster .wiki-lead-section-slot {
+  margin: 0;
+  padding: 0;
+}
+
+.wiki-page--roster .roster-opening {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.roster-opening__photo > img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4000 / 2400;
+  object-fit: cover;
+  object-position: 50% 100%;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 72%,
+    rgba(0, 0, 0, 0.55) 86%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 72%,
+    rgba(0, 0, 0, 0.55) 86%,
+    transparent 100%
+  );
+}
+
+.wiki-page--roster .roster-opening > figcaption {
+  position: relative;
+  margin: clamp(-80px, -5vw, -28px) 0 0;
+  padding: 0 24px clamp(40px, 5vw, 72px);
+  color: var(--route-heading-ink);
+  font-family: var(--font-display) !important;
+  font-size: clamp(26px, 3vw, 44px);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  text-align: center;
+  text-wrap: balance;
+  animation: wiki-masthead-copy 1100ms var(--ease-out) 300ms both;
+}
+.wiki-page--roster .roster-opening figcaption strong {
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+}
+
+.wiki-page.wiki-page--roster.route--document-flow .route-frame {
+  isolation: isolate;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.wiki-page.wiki-page--roster .route-frame::before {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 0;
+  display: block;
+  height: var(--reader-h);
+  background: var(--route-paper) var(--route-frame-image) center / cover
+    no-repeat;
+  content: "";
+  pointer-events: none;
+}
+.wiki-page.wiki-page--roster .route-frame > .route-frame__scroll {
+  margin-top: calc(-1 * var(--reader-h));
+}
+
+.wiki-page--roster .wiki-feature,
+.wiki-page--roster .wiki-feature[data-wiki-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+
+.roster-panels {
+  --roster-portrait-width: clamp(138px, 17vw, 208px);
+  --roster-gap: clamp(18px, 3vw, 36px);
+  display: grid;
+  gap: var(--wiki-space-section);
+}
+
+.wiki-page--roster .roster-collection {
+  margin: 0;
+  min-width: 0;
+}
+
+.wiki-page--roster .roster-collection h3 {
+  margin: 0 0 24px;
+  color: var(--route-subheading-ink);
+  font-family: "Fraunces", "Newsreader", Georgia, serif;
+  font-size: clamp(21px, 2.2vw, 25px);
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.roster-people {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 28px var(--roster-gap);
+  margin: 0 auto;
+}
+
+.roster-people--teachers {
+  max-width: calc(var(--roster-portrait-width) * 3 + var(--roster-gap) * 2);
+}
+
+.roster-people--four {
+  max-width: calc(var(--roster-portrait-width) * 4 + var(--roster-gap) * 3);
+}
+
+.wiki-page--roster .roster-person {
+  display: flex;
+  flex: 0 0 var(--roster-portrait-width);
+  flex-direction: column;
+  align-items: center;
+  width: var(--roster-portrait-width);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--route-heading-ink);
+  font: inherit;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: none;
+}
+
+button.roster-person {
+  cursor: pointer;
+}
+
+.roster-person__photo {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--route-paper);
+}
+
+.roster-person__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wiki-page--roster .roster-person__name {
+  display: block;
+  margin-top: 14px;
+  font-family: "Fraunces", "Newsreader", Georgia, serif;
+  font-size: clamp(18px, 1.65vw, 21px);
+  font-weight: 600;
+}
+
+.wiki-page--roster .roster-person__role {
+  display: block;
+  margin-top: 4px;
+  color: var(--route-muted);
+  font-size: 13px;
+}
+
+.roster-person__open {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--route-paper);
+  color: var(--route-subheading-ink);
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.roster-person:focus-visible,
+.roster-gallery__item:focus-visible,
+.roster-group-members:focus-visible {
+  outline: 3px solid var(--route-subheading-ink);
+  outline-offset: 5px;
+}
+
+@media (hover: hover) {
+  .roster-person__open {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  button.roster-person:hover .roster-person__photo img {
+    transform: scale(1.04);
+  }
+  button.roster-person:hover .roster-person__open,
+  button.roster-person:focus-visible .roster-person__open {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.roster-gallery {
+  position: relative;
+  width: 100%;
+  height: 460px;
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  contain: layout paint;
+  overflow-anchor: none;
+}
+
+.wiki-page.wiki-page--roster .roster-gallery__item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 16px;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  text-align: left;
+  box-shadow: 0 10px 30px -18px rgba(35, 28, 18, 0.6);
+  transform-origin: center;
+  will-change: transform;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.roster-gallery__frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.roster-gallery__media {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  will-change: transform;
+}
+
+.roster-gallery__item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+.roster-gallery__item::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(35, 28, 18, 0.6), transparent 42%);
+  content: "";
+  pointer-events: none;
+}
+
+.roster-gallery__label,
+.roster-gallery__strip {
+  position: absolute;
+  z-index: 1;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+}
+
+.roster-gallery__label {
+  left: clamp(18px, 2.2vw, 28px);
+  bottom: clamp(18px, 2.2vw, 26px);
+  font-size: clamp(20px, 2.1vw, 28px);
+  opacity: 0;
+}
+.roster-gallery__bar {
+  display: block;
+  width: 28px;
+  height: 2px;
+  margin-bottom: 12px;
+  border-radius: 1px;
+  background: currentColor;
+}
+.roster-gallery__strip {
+  bottom: 22px;
+  left: 50%;
+  font-size: clamp(15px, 1.3vw, 18px);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  writing-mode: vertical-rl;
+  transform: translateX(-50%) rotate(180deg);
+}
+.roster-gallery[data-orientation="vertical"] {
+  perspective: none;
+}
+.roster-gallery[data-orientation="vertical"] .roster-gallery__strip {
+  left: 16px;
+  bottom: 50%;
+  writing-mode: horizontal-tb;
+  transform: translateY(50%);
+}
+
+.roster-group-members {
+  margin-top: 28px;
+}
+.roster-group-members__content {
+  animation: roster-group-enter 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.wiki-page--roster .roster-group-members h3 {
+  color: var(--route-heading-ink);
+}
+.roster-role-groups {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px var(--roster-gap);
+}
+.roster-role-group {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+.roster-role-group--paired-lead {
+  flex-basis: var(--roster-portrait-width);
+}
+.wiki-page--roster .roster-role-group h4 {
+  margin: 0 0 14px;
+  font-family: "Fraunces", "Newsreader", Georgia, serif;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--route-subheading-ink);
+}
+
+@keyframes roster-group-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   CirCure Team Native Editorial Theater — Sunflower Gold, Buttercream & Apricot
+   Consumes --paper-bright, --ink, --gold, --coral, and .circure-nav-aura--team
+   ========================================================================== */
+
+html {
+  scrollbar-gutter: stable;
+}
+
+.roster-dialog-overlay {
+  position: fixed;
+  z-index: 1100;
+  inset: 0;
+  touch-action: none;
+  overscroll-behavior: contain;
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(254, 233, 181, 0.26) 0%,
+      rgba(38, 28, 22, 0.44) 100%
+    );
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+  backdrop-filter: blur(18px) saturate(130%);
+}
+
+.roster-dialog {
+  position: fixed;
+  z-index: 1101;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  grid-template-columns: minmax(320px, 0.86fr) minmax(0, 1.14fr);
+  width: min(1140px, calc(100% - 48px));
+  max-width: calc(100% - 48px);
+  height: min(720px, calc(100dvh - 48px));
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 252, 245, 0.88);
+  border-radius: var(--radius-panel, 24px);
+  /* 100% 同步 circure-nav.css 中的 .circure-nav-aura--team 色彩极光 */
+  background:
+    radial-gradient(
+      ellipse 52% 78% at 92% 8%,
+      rgba(245, 207, 111, 0.34),
+      transparent 66%
+    ),
+    radial-gradient(
+      ellipse 48% 70% at 50% -6%,
+      rgba(254, 233, 181, 0.32),
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 44% 74% at 14% 96%,
+      rgba(230, 162, 114, 0.22),
+      transparent 68%
+    ),
+    linear-gradient(
+      145deg,
+      var(--paper-bright, #fcf8f1) 0%,
+      #faf3e6 54%,
+      #f4ead8 100%
+    );
+  color: var(--route-heading-ink, var(--ink, #1b1719));
+  box-shadow:
+    0 32px 88px -16px rgba(42, 30, 18, 0.26),
+    0 0 0 1px rgba(195, 154, 85, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  font-family: var(--font-body);
+  transform: translate(-50%, -50%);
+}
+
+/* 左侧栏：透明基底 + 右侧边缘 Alpha 遮罩真透明羽化（彻底根除分界细线） */
+.roster-dialog__visual {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 72%,
+    rgba(0, 0, 0, 0.6) 85%,
+    rgba(0, 0, 0, 0.18) 94%,
+    transparent 99.5%
+  );
+  mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 72%,
+    rgba(0, 0, 0, 0.6) 85%,
+    rgba(0, 0, 0, 0.18) 94%,
+    transparent 99.5%
+  );
+  will-change: clip-path;
+}
+
+/* 移除所有竖向边框与内阴影，仅保留极柔和的上下边缘光感 */
+.roster-dialog__visual::after {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(252, 248, 241, 0.12) 0%,
+    transparent 15%,
+    transparent 88%,
+    rgba(42, 30, 18, 0.05) 100%
+  );
+  border: 0;
+  box-shadow: none;
+  content: "";
+  pointer-events: none;
+}
+
+.roster-dialog__photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 78%;
+  transform: scale(1.04);
+  will-change: transform, filter;
+}
+
+/* GSAP 破幕快门帘：采用 Team 专属向日葵暖金与暖杏流光 */
+.roster-dialog__shutter {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--paper-bright, #fcf8f1) 0%,
+    #f5cf6f 52%,
+    #e6a272 100%
+  );
+  transform: scaleX(0);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* 右侧栏：Friendly Scientific Editorial 阳光杂志内页 */
+.roster-dialog__editorial {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  padding: clamp(28px, 3.4vw, 42px) clamp(30px, 4vw, 52px)
+    clamp(26px, 3vw, 38px);
+  overflow: hidden;
+}
+
+/* 背景巨型斜体姓氏水印（暖金丝印质感） */
+.roster-dialog__watermark {
+  position: absolute;
+  z-index: 0;
+  top: 36px;
+  right: -12px;
+  font-family: var(--font-display) !important;
+  font-size: clamp(110px, 13vw, 176px);
+  font-style: italic;
+  font-weight: 700;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(195, 154, 85, 0.18);
+  background: linear-gradient(
+    180deg,
+    rgba(230, 162, 114, 0.14) 0%,
+    rgba(245, 207, 111, 0.02) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform, opacity;
+}
+
+/* 顶部档案栏与奶油金关闭键（呼应 .nav-link #f7edc9） */
+.roster-dialog__topbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.roster-dialog__kicker {
+  display: inline-flex;
+  align-items: center;
+}
+
+.roster-dialog__kicker-role {
+  font-family: "Newsreader", "Fraunces", Georgia, serif !important;
+  font-size: 15.5px;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  color: var(--route-subheading-ink, #9a6826);
+}
+
+.roster-dialog__close {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid rgba(195, 154, 85, 0.32);
+  border-radius: 50%;
+  background: #f7edc9;
+  color: var(--route-heading-ink, var(--ink, #1b1719));
+  cursor: pointer;
+  box-shadow: 0 4px 12px -3px rgba(16, 47, 89, 0.08);
+  transition:
+    background-color 220ms var(--ease-out),
+    border-color 220ms var(--ease-out),
+    color 220ms var(--ease-out),
+    transform 220ms var(--ease-out);
+}
+
+.roster-dialog__close:hover {
+  background: #f0dfa5;
+  border-color: var(--gold, #c39a55);
+  transform: rotate(90deg) scale(1.06);
+}
+
+.roster-dialog__close:active {
+  transform: rotate(90deg) scale(0.95);
+}
+
+/* 姓名大标题遮罩破土区 */
+.roster-dialog__header {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+}
+
+.roster-dialog__title-mask {
+  margin: 0;
+  padding-bottom: 6px;
+  overflow: hidden;
+  font-family: var(--font-heading) !important;
+  font-size: clamp(38px, 4.2vw, 58px);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  color: var(--route-heading-ink, var(--ink, #1b1719));
+}
+
+.roster-dialog__title-inner {
+  display: block;
+  transform-origin: left bottom;
+  will-change: transform;
+}
+
+.roster-dialog__tagline {
+  margin: 10px 0 0;
+  font-family: "Newsreader", "Fraunces", Georgia, serif !important;
+  font-size: clamp(16.5px, 1.55vw, 19.5px);
+  font-style: italic;
+  line-height: 1.45;
+  color: #b85d43;
+}
+
+/* Team 暖金与暖杏渐变刻度线 */
+.roster-dialog__rule {
+  width: 100%;
+  height: 1px;
+  margin: 20px 0 6px;
+  background: linear-gradient(
+    90deg,
+    var(--gold, #c39a55) 0%,
+    rgba(230, 162, 114, 0.42) 62%,
+    transparent 100%
+  );
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.roster-dialog__rule--subtle {
+  margin: 0 0 16px;
+  background: linear-gradient(
+    90deg,
+    rgba(195, 154, 85, 0.55) 0%,
+    rgba(230, 162, 114, 0.2) 75%,
+    transparent 100%
+  );
+}
+
+/* 传记正文无痕渐隐滚动区 */
+.roster-dialog__body {
+  position: relative;
+  z-index: 2;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 16px 8px 22px 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 18px,
+    #000 calc(100% - 28px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 18px,
+    #000 calc(100% - 28px),
+    transparent 100%
+  );
+}
+
+.roster-dialog__body::-webkit-scrollbar {
+  display: none;
+}
+
+.roster-dialog__bio p {
+  margin: 0 0 16px;
+  max-width: 62ch;
+  font-family: var(--font-body) !important;
+  font-size: 14.5px;
+  font-weight: 360;
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+  color: rgba(27, 23, 25, 0.82);
+}
+
+.roster-dialog__bio p:first-child::first-letter {
+  float: left;
+  margin: 2px 10px -4px 0;
+  font-family: var(--font-display) !important;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 0.9;
+  color: var(--gold, #c39a55);
+}
+
+.roster-dialog__bio p:last-child {
+  margin-bottom: 4px;
+}
+
+/* 底部无框高定个人宣言（使用 !important 突破 circure-tokens.css 的 blockquote 限制） */
+.roster-dialog__manifesto {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  margin-top: 6px;
+}
+
+.roster-dialog__manifesto-inner {
+  display: block;
+}
+
+.roster-dialog .roster-dialog__quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: "Newsreader", "Fraunces", Georgia, serif !important;
+  font-size: clamp(18.5px, 1.8vw, 22.5px);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.42;
+  color: var(--route-heading-ink, var(--ink, #1b1719));
+  text-align: left;
+  text-wrap: balance;
+}
+
+.roster-dialog .roster-dialog__quote-text {
+  display: block;
+  font-family: inherit !important;
+}
+
+.roster-dialog .roster-dialog__cite {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-body) !important;
+  font-size: 12.5px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold, #c39a55);
+}
+
+.roster-dialog button:focus-visible,
+.roster-dialog__body:focus-visible {
+  outline: 2px solid var(--gold, #c39a55);
+  outline-offset: 3px;
+}
+
+@media (max-width: 980px) {
+  .roster-people--four {
+    max-width: calc(var(--roster-portrait-width) * 2 + var(--roster-gap));
+  }
+  .roster-dialog {
+    grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1.18fr);
+    width: calc(100% - 32px);
+    max-width: calc(100% - 32px);
+    height: min(680px, calc(100dvh - 32px));
+  }
+}
+
+@media (max-width: 720px) {
+  .roster-panels {
+    --roster-portrait-width: min(36vw, 175px);
+    --roster-gap: 18px;
+  }
+  .roster-people--teachers {
+    --roster-portrait-width: min(23vw, 138px);
+  }
+  .roster-gallery__label {
+    left: 16px;
+    bottom: 16px;
+  }
+  .roster-dialog {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 20px);
+    max-width: calc(100% - 20px);
+    height: auto;
+    max-height: calc(100dvh - 24px);
+    border-radius: var(--radius-panel-mobile, 20px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .roster-dialog__visual {
+    height: 320px;
+    flex: 0 0 320px;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 68%,
+      rgba(0, 0, 0, 0.45) 86%,
+      transparent 99.5%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 68%,
+      rgba(0, 0, 0, 0.45) 86%,
+      transparent 99.5%
+    );
+  }
+  .roster-dialog__visual::after {
+    background: none;
+    border: 0;
+    box-shadow: none;
+  }
+  .roster-dialog__editorial {
+    padding: 20px 22px 26px;
+    overflow: visible;
+  }
+  .roster-dialog__body {
+    padding: 12px 0;
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roster-panels *,
+  .roster-dialog,
+  .roster-dialog-overlay {
+    animation: none !important;
+    transition: none !important;
+  }
+}

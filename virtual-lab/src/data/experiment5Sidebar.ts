@@ -1,0 +1,72 @@
+import type { ExperimentInfoSidebarData } from '../components/ExperimentInfoSidebar';
+
+
+export const experiment5SidebarData = {
+  experimentLabel: 'Experiment 05',
+  title: "Experiment Information",
+  safety: [
+    "Store Taq and similar reagents at -20°C and keep them on ice during use.",
+    "Avoid repeated freezing and thawing of PCR products and template DNA to prevent degradation.",
+    "Wear heat-resistant gloves when microwaving agarose to prevent burns from splashes.",
+    "UV light can damage eyes and skin. Close the imager door before viewing.",
+    "Wash your hands after handling GelRed, even though it has low toxicity.",
+  ],
+  principle:
+    "PCR (polymerase chain reaction) exponentially amplifies a target DNA fragment in vitro through repeated denaturation, annealing and extension. At 94°C, double-stranded DNA separates into single strands. Primers bind specifically to the template during annealing, and Taq polymerase synthesizes new strands during extension. After 30 cycles, the target can be amplified millions of times. Agarose gel electrophoresis separates the products: DNA migrates from the negative to the positive electrode, with smaller fragments migrating faster. GelRed bound to DNA fluoresces under UV light to reveal bands. The target GFP fragment is approximately 720 bp.",
+  questions: [
+    {
+      id: 1,
+      question: "What is the role of Taq in PCR?",
+      options: ["Synthesize new DNA strands", "Cut double-stranded DNA"],
+      correctIndex: 0,
+    },
+    {
+      id: 2,
+      question: "In which direction does DNA migrate in agarose gel electrophoresis?",
+      options: ["From the negative to the positive electrode", "From the positive to the negative electrode"],
+      correctIndex: 0,
+    },
+  ],
+  instruments: [
+    { id: 'pipette', name: "Micropipette", englishName: 'Micropipette', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment3/pipette.avif` },
+    { id: 'tip-box', name: "Tip Box", englishName: 'Pipette Tip Box', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment5/tip-box.avif` },
+    { id: 'mini-centrifuge', name: "Benchtop Centrifuge", englishName: 'Mini Centrifuge', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment5/mini-centrifuge.avif` },
+    { id: 'pcr-machine', name: "Thermal Cycler", englishName: 'PCR Thermal Cycler', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment5/pcr-machine.avif` },
+    { id: 'balance', name: "Electronic Balance", englishName: 'Electronic Balance', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment4/ppt/balance.avif` },
+    { id: 'microwave', name: "Microwave", englishName: 'Microwave Oven', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment3/microwaveovenclosed.avif` },
+    { id: 'gel-comb', name: "Gel Comb", englishName: 'Gel Comb', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment4/ppt/comb.avif` },
+    { id: 'gel-tray', name: "Gel Casting Tray", englishName: 'Gel Tray', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment4/ppt/gel-tray.avif` },
+    { id: 'chamber', name: "Electrophoresis Tank", englishName: 'Electrophoresis Chamber', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment3/electrophoresischamber.avif` },
+    { id: 'power-supply', name: "Electrophoresis Power Supply", englishName: 'Electrophoresis Power Supply', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment3/electrophoresispowersupply.avif` },
+    { id: 'gel-imager', name: "UV Gel Imager", englishName: 'UV Gel Imaging System', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment3/uvgelimagingsystem.avif` },
+    { id: 'tweezers', name: "Forceps", englishName: 'Tweezers', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment4/ppt/tweezers.avif` },
+  ],
+  instrumentTrayOrder: [
+    'tip-box',
+    'gel-imager',
+    'mini-centrifuge',
+    'power-supply',
+    'pipette',
+    'chamber',
+    'microwave',
+    'balance',
+    'gel-comb',
+    'gel-tray',
+    'pcr-machine',
+    'tweezers',
+  ],
+  reagents: [
+    { id: 'pcr-buffer', name: '10× PCR Buffer', englishName: '10× PCR Reaction Buffer', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment7/image15.avif` },
+    { id: 'dntp', name: "dNTP mix", englishName: 'dNTP Mixture', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment7/image14.avif` },
+    { id: 'primer-f', name: "Forward primer", englishName: 'Forward Primer', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment7/image14.avif` },
+    { id: 'primer-r', name: "Reverse primer", englishName: 'Reverse Primer', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment7/image14.avif` },
+    { id: 'template-dna', name: "Template DNA", englishName: 'Template DNA', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment7/image19.avif` },
+    { id: 'taq-polymerase', name: "Taq DNA polymerase", englishName: 'Taq DNA Polymerase', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment7/image14.avif` },
+    { id: 'ddh2o', name: "Sterile deionized water", englishName: 'Sterile Deionized Water (ddH₂O)', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment7/image13.avif` },
+    { id: 'agarose', name: "Agarose powder", englishName: 'Agarose Powder', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment3/erlenmeyerflaskpowder.avif` },
+    { id: 'tae-buffer', name: "1× TAE electrophoresis buffer", englishName: '1×TAE Electrophoresis Buffer', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment3/reagentcarboyblue.avif` },
+    { id: 'gelred', name: "Nucleic acid gel stain", englishName: 'GelRed', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment3/pcrtubered.avif` },
+    { id: 'loading-buffer', name: "6× DNA loading buffer", englishName: '6×DNA Loading Buffer', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment3/eptubegreen.avif` },
+    { id: 'dna-marker', name: "DNA ladder", englishName: 'DNA Molecular Weight Marker', image: `https://static.igem.wiki/teams/6056/wiki/virtual-lab/experiment3/eptubesmallblue2.avif` },
+  ],
+} satisfies ExperimentInfoSidebarData;

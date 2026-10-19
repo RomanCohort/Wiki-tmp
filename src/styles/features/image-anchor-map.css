@@ -1,0 +1,36 @@
+.image-anchor-map {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+}
+.image-anchor-map > img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.image-anchor-map__links {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.image-anchor-map__links a {
+  cursor: pointer;
+  outline: none;
+}
+.image-anchor-map__links rect {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 2;
+  pointer-events: all;
+}
+.image-anchor-map__links a:hover rect,
+.image-anchor-map__links a:focus-visible rect {
+  fill: rgb(32 112 98 / 9%);
+  stroke: #207062;
+}
+@media (forced-colors: active) {
+  .image-anchor-map__links a:focus-visible rect {
+    stroke: Highlight;
+  }
+}

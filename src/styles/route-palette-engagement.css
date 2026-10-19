@@ -1,0 +1,37 @@
+/* ============================================================================
+   Engagement module palette  (换色唯一入口)
+   ----------------------------------------------------------------------------
+   The Engagement reader (Entrepreneurship / Human Practices / Education /
+   Sustainability) shares this one
+   palette. To re-skin the module — or to copy this file for the next module —
+   only the three hex values below need to change; every other colour used by
+   `wiki-route-skin.css` is derived from them with color-mix().
+
+   Role mapping (identical to Wet Lab, Project and Dry Lab):
+     主色 --route-main : fixed global header bar + optional chapter rail
+     辅色 --route-soft : left TOC/sidebar card, panels, header nav pills
+     底色 --route-base : page surface behind the mat (the reader background)
+   Plus the module's own pale flower/petal artwork for the article frame —
+   the blossom shapes drawn in the page sketch, supplied by
+   `background/engagement.png`.
+   ========================================================================== */
+
+/* The footer is a sibling of <Routes>, so it needs the palette named directly.
+   See route-palette-team.css for the rationale. */
+.wiki-page--engagement,
+.site-header.is-engagement-page,
+.circure-footer.is-engagement-page {
+  /* ① 三色板 —— 提取自插画阳光奶油黄区间（柔和浅明黄，贴合 Hero 主题，色块轻亮不暗沉） */
+  --route-main: #f0b04a; /* 主色：阳光暖金黄（呼应插画金边与阳光射线） */
+  --route-soft: #fee29a; /* 辅色：柔和奶油布丁黄（卡片/面板色块呈现为清浅明朗的 #fee9b2） */
+  --route-base: #fff8d6; /* 底色：晨光淡鹅黄（保持鲜活黄色调，温润透光、绝不暗沉发灰） */
+
+  /* ② 模块专属装饰素材（正文面板边缘的淡色花朵/花瓣图案） */
+  --route-frame-image: url("https://static.igem.wiki/teams/6056/wiki/files/pages/engagement/engagement.avif");
+
+  /* ③ 标题与马克笔专属主题配色（深浅分明的双色层级设计） */
+  --route-heading-ink: #4a2c1d;      /* 大标题 H2：深沉暖焦糖咖褐，阅读对比度极高，沉稳清晰 */
+  --route-marker-bg: #fde5a5;        /* 大标题马克笔：阳光淡金黄底涂，温润高雅 */
+  --route-subheading-ink: #174a47;   /* 小标题 H3：深孔雀墨黛青，金黄暖调与冷翠黛青相映成趣 */
+  --route-watermark: rgba(74, 44, 29, 0.12);
+}

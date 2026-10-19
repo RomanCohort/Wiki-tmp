@@ -1,0 +1,109 @@
+/* Measurement page: reuse the experiments protocol drawer and Results-style figure plates. */
+@import "./experiments-panels.css";
+
+.wiki-page[data-wiki-route="/measurement"] .wiki-protocol-drawer__title {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+.wiki-page[data-wiki-route="/measurement"] .wiki-subheading--nested {
+  margin: 24px 0 8px !important;
+}
+
+.wiki-page[data-wiki-route="/measurement"]
+  .wiki-subheading--nested
+  .wiki-subheading__title {
+  color: var(--route-subheading-ink, #88541e) !important;
+  font-family: var(--font-sans), sans-serif !important;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.35;
+}
+
+.wiki-page[data-wiki-route="/measurement"] .measurement-model-volcanoes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.wiki-page[data-wiki-route="/measurement"] .measurement-model-volcanoes h4 {
+  margin: 0 0 12px;
+  color: var(--route-heading-ink);
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.wiki-page[data-wiki-route="/measurement"] .model-chart-panel {
+  min-width: 0;
+}
+
+.wiki-page[data-wiki-route="/measurement"] .model-chart {
+  width: 100%;
+  height: 420px;
+}
+
+.wiki-page[data-wiki-route="/measurement"] .model-chart-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.wiki-page[data-wiki-route="/measurement"] .model-chart-filters button {
+  padding: 7px 10px;
+  border: 1px solid var(--route-line-strong);
+  background: var(--route-paper);
+  color: var(--route-ink);
+  cursor: pointer;
+}
+
+.wiki-page[data-wiki-route="/measurement"]
+  .model-chart-filters
+  button[aria-pressed="false"] {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.wiki-page[data-wiki-route="/measurement"] .model-chart-rule {
+  margin: 10px 0;
+  color: var(--route-muted);
+  font-size: 13px;
+}
+
+@media (max-width: 800px) {
+  .wiki-page[data-wiki-route="/measurement"] .measurement-model-volcanoes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wiki-page[data-wiki-route="/measurement"] .model-chart {
+    height: 360px;
+  }
+}
+
+
+/* Compact figure sizing: shrink Fig 03, 06, 12, 16, 17, 26 */
+.wiki-page[data-wiki-route="/measurement"] .measurement-figure--compact,
+.wiki-page[data-wiki-route="/measurement"] .wiki-figure:has(img[src*="the-staged-epitope-screen"]),
+.wiki-page[data-wiki-route="/measurement"] .wiki-figure:has(img[src*="agarose-gel-verification"]),
+.wiki-page[data-wiki-route="/measurement"] .wiki-figure:has(img[src*="dose-viability-curve"]),
+.wiki-page[data-wiki-route="/measurement"] .wiki-figure:has(img[src*="round-1-killing-of-k562"]),
+.wiki-page[data-wiki-route="/measurement"] .wiki-figure:has(img[src*="killing-of-mda-mb-231"]),
+.wiki-page[data-wiki-route="/measurement"] .wiki-figure:has(img[src*="tumour-growth-curves"]) {
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+.wiki-page[data-wiki-route="/measurement"] .measurement-figure--compact img,
+.wiki-page[data-wiki-route="/measurement"] .wiki-figure:has(img[src*="the-staged-epitope-screen"]) img,
+.wiki-page[data-wiki-route="/measurement"] .wiki-figure:has(img[src*="agarose-gel-verification"]) img,
+.wiki-page[data-wiki-route="/measurement"] .wiki-figure:has(img[src*="dose-viability-curve"]) img,
+.wiki-page[data-wiki-route="/measurement"] .wiki-figure:has(img[src*="round-1-killing-of-k562"]) img,
+.wiki-page[data-wiki-route="/measurement"] .wiki-figure:has(img[src*="killing-of-mda-mb-231"]) img,
+.wiki-page[data-wiki-route="/measurement"] .wiki-figure:has(img[src*="tumour-growth-curves"]) img {
+  width: auto;
+  max-width: 100%;
+  max-height: min(72vh, 480px);
+  object-fit: contain;
+}

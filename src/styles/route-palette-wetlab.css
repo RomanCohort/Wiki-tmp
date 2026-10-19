@@ -1,0 +1,15 @@
+/* Wet Lab module palette: the three existing Wet Lab colours, injected into
+   the shared reader-route skin. The footer is a sibling of <Routes> and needs
+   the palette named directly — see route-palette-team.css. */
+.wiki-page--wet-lab,
+.site-header.is-wet-lab-page,
+.circure-footer.is-wet-lab-page {
+  --route-main: #b4dff0;
+  --route-soft: #e0f5ee;
+  --route-base: #fdf5d1;
+  --route-frame-image: url("https://static.igem.wiki/teams/6056/wiki/files/pages/shared/wet.avif");
+  --route-heading-ink: #14354c;      /* 大标题 H2：深邃实验海蓝，严谨厚重 */
+  --route-marker-bg: #c6e5f2;        /* 大标题马克笔：冰川淡海泡蓝底涂 */
+  --route-subheading-ink: #88541e;   /* 小标题 H3：暖琥珀金棕，冷海蓝与暖金棕互补，一眼即分且庄重大气 */
+  --route-watermark: rgba(20, 53, 76, 0.12);
+}

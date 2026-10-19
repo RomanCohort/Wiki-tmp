@@ -1,0 +1,97 @@
+/* Recompose the original layers without stretching their painted proportions. */
+body:has(.home-story[data-platform-in-view="true"]) .circure-back-to-top {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+@media (max-width: 600px) and (orientation: portrait) {
+  body:has(.home-story) .circure-back-to-top {
+    width: 44px;
+    height: 44px;
+    right: 8px;
+    bottom: calc(8px + env(safe-area-inset-bottom));
+  }
+  .home-scene01 .scene01-stage {
+    width: 100%;
+    height: min(78svh, 680px);
+    aspect-ratio: auto;
+  }
+  .home-scene01 .scene01-portrait,
+  .home-scene01 .scene01-frame-layer {
+    inset: auto;
+    top: 18%;
+    left: -30%;
+    width: 160%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+  .home-scene01 .scene01-orbit--anxiety .scene01-visual {
+    left: 25%;
+    top: 0;
+    width: 50%;
+  }
+  .home-scene01 .scene01-label--anxiety {
+    left: 39%;
+    top: 11%;
+    width: 22%;
+  }
+  .home-scene01 .scene01-orbit--surgery .scene01-visual {
+    left: -15%;
+    top: 22%;
+    width: 68%;
+  }
+  .home-scene01 .scene01-label--surgery {
+    left: 3%;
+    top: 39%;
+    width: 28%;
+  }
+  .home-scene01 .scene01-orbit--hair-loss .scene01-visual {
+    left: 50%;
+    top: 22%;
+    width: 65%;
+  }
+  .home-scene01 .scene01-label--hair-loss {
+    left: 70%;
+    top: 39%;
+    width: 27%;
+  }
+  .home-scene01 .scene01-orbit--chemotherapy .scene01-visual {
+    left: -4%;
+    top: 61%;
+    width: 63%;
+  }
+  .home-scene01 .scene01-label--chemotherapy {
+    left: 3%;
+    top: 85%;
+    bottom: auto;
+    width: 41%;
+  }
+  .home-scene01 .scene01-orbit--death-rate .scene01-visual {
+    left: 51%;
+    top: 61%;
+    width: 63%;
+  }
+  .home-scene01 .scene01-label--death-rate {
+    left: 69%;
+    top: 85%;
+    bottom: auto;
+    width: 28%;
+  }
+
+  /* The mechanism owns its normal-flow composition; keep disclosures legible. */
+  .home-antigen-switch__science {
+    font-size: 12px;
+  }
+  .home-antigen-switch__science-content {
+    width: min(88vw, 420px);
+  }
+}
+
+@media (orientation: landscape) and (max-height: 650px) {
+  body:has(.home-story) .circure-back-to-top {
+    width: 44px;
+    height: 44px;
+    right: 8px;
+    bottom: calc(8px + env(safe-area-inset-bottom));
+  }
+}

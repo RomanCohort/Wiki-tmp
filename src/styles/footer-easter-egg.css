@@ -1,0 +1,20 @@
+/* The afterword uses the same Lexend typography as the story's body copy. */
+.circure-photo-afterword {
+  --font-body: var(--font-sans);
+  --font-heading: var(--font-sans);
+  --photo-window-height: min(80svh, calc(100cqw * 1084 / 2600));
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2600 / 1084;
+  max-height: 80svh;
+  container-type: inline-size;
+  overflow: visible;
+  background: var(--footer-paper, #f8f4ee);
+  color: #f5f0e7;
+  font-family: var(--font-body);
+}
+.finale-photo-loading {
+  width: 100%;
+  height: 100%;
+  background: var(--footer-paper, #f8f4ee);
+}

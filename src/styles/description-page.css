@@ -1,0 +1,505 @@
+/* ============================================================================
+   Description Page Styles (Project Module)
+   ----------------------------------------------------------------------------
+   Scoped styling for visual blocks, candidate cards, mechanism chain, and
+   references list on the /description page.
+   ========================================================================== */
+
+.wiki-page--project .description-mechanism-chain {
+  container: mechanism-chain / inline-size;
+  margin: 0;
+  padding: 1.5rem 1.5rem 1.6rem;
+  background: color-mix(in srgb, var(--route-soft) 18%, var(--route-base));
+  border: 1px solid color-mix(in srgb, var(--route-main) 45%, transparent);
+  border-radius: 8px;
+}
+
+.wiki-page--project .description-mechanism-chain__header {
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--route-main) 30%, transparent);
+}
+
+.wiki-page--project .description-mechanism-chain__title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--route-heading-ink, #2e4334);
+  letter-spacing: -0.01em;
+}
+
+.wiki-page--project .description-mechanism-chain__list {
+  --chain-ink: var(--route-heading-ink, #2e4334);
+  --chain-rule: color-mix(in srgb, var(--chain-ink) 38%, transparent);
+  --chain-dot: 0.6rem;
+  --chain-node-top: 0.32rem;
+  --chain-gap: 0.35rem;
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---- Base layout: vertical timeline (narrow containers) ---- */
+.wiki-page--project .description-mechanism-chain__step {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  min-width: 0;
+  padding: 0 0 1.15rem calc(var(--chain-dot) + 0.9rem);
+}
+
+.wiki-page--project .description-mechanism-chain__step:last-child {
+  padding-bottom: 0;
+}
+
+/* Node ring */
+.wiki-page--project .description-mechanism-chain__step::before {
+  content: "";
+  position: absolute;
+  top: var(--chain-node-top);
+  left: 0;
+  width: var(--chain-dot);
+  height: var(--chain-dot);
+  box-sizing: border-box;
+  border: 1.5px solid var(--chain-ink);
+  border-radius: 50%;
+  background: var(--route-base);
+}
+
+/* Step 04 = QC checkpoint, diamond. Order-locked to mechanismChain data. */
+.wiki-page--project .description-mechanism-chain__step:nth-child(4)::before {
+  border-radius: 1px;
+  transform: rotate(45deg) scale(0.88);
+}
+
+/* Step 08 = endpoint, filled terracotta. Order-locked to mechanismChain data. */
+.wiki-page--project .description-mechanism-chain__step:last-child::before {
+  border-color: var(--route-subheading-ink, var(--chain-ink));
+  background: var(--route-subheading-ink, var(--chain-ink));
+}
+
+.wiki-page--project .description-mechanism-chain__index {
+  flex: none;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  color: color-mix(in srgb, var(--chain-ink) 58%, transparent);
+}
+
+.wiki-page--project .description-mechanism-chain__label {
+  min-width: 0;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--chain-ink);
+  hyphens: manual;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+
+/* Connector: 10px box; hairline via ::before, chevron via inline SVG */
+.wiki-page--project .description-mechanism-chain__connector {
+  position: absolute;
+  left: calc(var(--chain-dot) / 2 - 5px);
+  top: calc(var(--chain-node-top) + var(--chain-dot) + var(--chain-gap));
+  bottom: calc(var(--chain-gap) - var(--chain-node-top));
+  width: 10px;
+  color: var(--chain-rule);
+}
+
+.wiki-page--project .description-mechanism-chain__connector::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 3px;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: currentColor;
+}
+
+.wiki-page--project .description-mechanism-chain__connector svg {
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  transform: rotate(90deg);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---- Horizontal: 4 × 2 lanes (01–04 = §2.1–2.3, 05–08 = §2.4) ---- */
+@container mechanism-chain (min-width: 32rem) {
+  .wiki-page--project .description-mechanism-chain__list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    row-gap: 1.6rem;
+  }
+
+  .wiki-page--project .description-mechanism-chain__step,
+  .wiki-page--project .description-mechanism-chain__step:last-child {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    padding: calc(var(--chain-dot) + 0.8rem) 1.1rem 0 0;
+  }
+
+  .wiki-page--project .description-mechanism-chain__step::before {
+    top: 0;
+  }
+
+  .wiki-page--project .description-mechanism-chain__connector {
+    top: calc(var(--chain-dot) / 2 - 5px);
+    bottom: auto;
+    left: calc(var(--chain-dot) + var(--chain-gap));
+    right: calc(var(--chain-gap) - 3px);
+    width: auto;
+    height: 10px;
+  }
+
+  .wiki-page--project .description-mechanism-chain__connector::before {
+    top: 50%;
+    bottom: auto;
+    left: 0;
+    right: 3px;
+    width: auto;
+    height: 1px;
+    transform: translateY(-50%);
+  }
+
+  .wiki-page--project .description-mechanism-chain__connector svg {
+    left: auto;
+    right: 0;
+    top: 0;
+    bottom: auto;
+    transform: none;
+  }
+
+  /* 04 → 05 wraps onto the next lane: dashed hairline means "continues". */
+  .wiki-page--project
+    .description-mechanism-chain__step:nth-child(4)
+    .description-mechanism-chain__connector::before {
+    background: repeating-linear-gradient(
+      90deg,
+      currentColor 0 3px,
+      transparent 3px 6px
+    );
+  }
+}
+
+/* ---- Motion: connectors draw in sequence; static under reduced motion ---- */
+@media (prefers-reduced-motion: no-preference) {
+  .wiki-page--project .description-mechanism-chain__connector {
+    clip-path: inset(0);
+    transition: clip-path 480ms
+      var(--ease-out)
+      calc(160ms + var(--step, 0) * 80ms);
+  }
+
+  .wiki-page--project
+    .description-mechanism-chain:not(.is-visible)
+    .description-mechanism-chain__connector {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  @container mechanism-chain (min-width: 32rem) {
+    .wiki-page--project
+      .description-mechanism-chain:not(.is-visible)
+      .description-mechanism-chain__connector {
+      clip-path: inset(0 100% 0 0);
+    }
+  }
+}
+
+/* 4-Antigen Candidate Cards — Balanced 2x2 Quadrant */
+.wiki-page--project .description-antigen-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .wiki-page--project .description-antigen-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wiki-page--project .description-antigen-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.35rem 1.4rem;
+  background: #ffffff;
+  border: 1px solid color-mix(in srgb, var(--route-main) 35%, transparent);
+  border-top: 3px solid var(--route-main);
+  border-radius: 10px;
+  box-shadow: 0 3px 12px -2px rgba(22, 43, 76, 0.05);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.wiki-page--project .description-antigen-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px -4px rgba(22, 43, 76, 0.09);
+  border-color: var(--route-main);
+}
+
+.wiki-page--project .description-antigen-card__title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.wiki-page--project .description-antigen-card__symbol {
+  font-family: var(--font-sans);
+  font-size: 1.35rem;
+  font-weight: 750;
+  color: var(--route-heading-ink, #2e4334);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.wiki-page--project .description-antigen-card__role {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--route-heading-ink, #2e4334);
+  background: color-mix(in srgb, var(--route-marker-bg, #c4c7be) 40%, #ffffff);
+  border: 1px solid color-mix(in srgb, var(--route-main) 25%, transparent);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.wiki-page--project .description-antigen-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.wiki-page--project .description-antigen-card__fullname {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--route-muted, #556052);
+  line-height: 1.4;
+}
+
+.wiki-page--project .description-antigen-card__evidence {
+  margin-top: auto;
+  padding: 0.85rem 1rem;
+  background: color-mix(in srgb, var(--route-base) 50%, #ffffff);
+  border-left: 3px solid var(--route-main, #334d3b);
+  border-radius: 0 8px 8px 0;
+}
+
+.wiki-page--project .description-antigen-card__evidence p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--route-ink, #1f2a22);
+}
+
+/* FIG 03: circular plasmid map sizing constrained to comfortably fit in one screen */
+.wiki-page--project .wiki-figure:has(img[src*="figure3"]),
+.wiki-page--project .wiki-figure:has(img[alt*="circRNA backbone"]) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: var(--wiki-space-block, 24px) auto;
+}
+
+.wiki-page--project .wiki-figure:has(img[src*="figure3"]) img,
+.wiki-page--project .wiki-figure:has(img[alt*="circRNA backbone"]) img,
+.wiki-page--project .wiki-figure img[src*="figure3"],
+.wiki-page--project .wiki-figure img[alt*="circRNA backbone"] {
+  max-height: min(640px, 72vh);
+  /* The width `auto` used to resolve to, written out (1844 × 1339 is this
+     figure's size in descriptionAssets.ts) so the box keeps its height
+     before the file arrives. */
+  width: min(100%, calc(min(640px, 72vh) * 1844 / 1339));
+  object-fit: contain;
+}
+
+.wiki-page--project .wiki-figure:has(img[src*="figure3"]) figcaption,
+.wiki-page--project .wiki-figure:has(img[alt*="circRNA backbone"]) figcaption {
+  text-align: center;
+}
+
+/* ============================================================================
+   Description-scoped overrides (shared route classes, this page only)
+   The `.wiki-page--description` twin class keeps these off the Wet Lab tables
+   and every other route page. scoped mini-visuals + booktabs tables.
+   ========================================================================== */
+
+/* Mini-visuals: demote from feature cards to quiet margin notes */
+.wiki-page--route.wiki-page--description .wiki-mini-visual {
+  gap: 10px;
+  padding: 14px 0 0 18px;
+  background: none;
+  border-radius: 0;
+  border-left: 1px solid var(--route-line-strong);
+  box-shadow: none;
+}
+
+.wiki-page--route.wiki-page--description .wiki-mini-visual > strong {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: var(--route-ink);
+}
+
+.wiki-page--route.wiki-page--description .wiki-mini-visual ol {
+  margin: 0;
+  border-top: 0;
+}
+
+.wiki-page--route.wiki-page--description .wiki-mini-visual li {
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 6px;
+  padding: 6px 0;
+  border-bottom: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.wiki-page--route.wiki-page--description .wiki-mini-visual li b {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  color: var(--route-muted);
+}
+
+@media (max-width: 880px) {
+  .wiki-page--route.wiki-page--description .wiki-mini-visual {
+    padding: 12px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--route-line-strong);
+  }
+}
+
+/* Tables: booktabs three-line register */
+.wiki-page--route.wiki-page--description .wiki-table-wrap {
+  margin: var(--wiki-space-block, 24px) auto;
+  background:
+    linear-gradient(
+      to right,
+      var(--route-paper) 30%,
+      transparent
+    )
+      left / 24px 100% no-repeat local,
+    linear-gradient(
+      to left,
+      var(--route-paper) 30%,
+      transparent
+    )
+      right / 24px 100% no-repeat local,
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--route-ink) 12%, transparent),
+      transparent
+    )
+      left / 10px 100% no-repeat scroll,
+    linear-gradient(
+      to left,
+      color-mix(in srgb, var(--route-ink) 12%, transparent),
+      transparent
+    )
+      right / 10px 100% no-repeat scroll;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.wiki-page--route.wiki-page--description .wiki-table-wrap:focus-visible {
+  outline: 2px solid var(--route-accent);
+  outline-offset: 4px;
+}
+
+.wiki-page--route.wiki-page--description .wiki-table {
+  min-width: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 1.5px solid var(--route-ink);
+  border-bottom: 1.5px solid var(--route-ink);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.wiki-page--route.wiki-page--description .wiki-table caption {
+  caption-side: top;
+  position: sticky;
+  left: 0;
+  padding: 0 0 10px;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0;
+  text-transform: none;
+  text-align: center;
+  color: var(--route-ink);
+}
+
+.wiki-page--route.wiki-page--description .wiki-table th,
+.wiki-page--route.wiki-page--description .wiki-table td {
+  padding: 7px 16px 7px 0;
+  border-bottom: 0;
+  vertical-align: top;
+  text-align: left;
+}
+
+.wiki-page--route.wiki-page--description .wiki-table thead th {
+  padding-block: 8px 6px;
+  border-bottom: 0.75px solid var(--route-ink);
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--route-ink);
+  vertical-align: bottom;
+}
+
+.wiki-page--route.wiki-page--description .wiki-table tbody tr:first-child > * {
+  padding-top: 10px;
+}
+
+.wiki-page--route.wiki-page--description .wiki-table tbody tr:last-child > * {
+  padding-bottom: 10px;
+}
+
+.wiki-page--route.wiki-page--description .wiki-table tbody th {
+  min-width: 9em;
+  font-weight: 500;
+  color: var(--route-ink);
+}
+
+.wiki-page--route.wiki-page--description .wiki-table td {
+  color: var(--route-muted);
+}
+
+@media (max-width: 980px) {
+  .wiki-page--route.wiki-page--description .wiki-table {
+    min-width: 600px;
+    font-size: 12.5px;
+  }
+}

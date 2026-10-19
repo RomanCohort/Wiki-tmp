@@ -1,0 +1,247 @@
+{
+  "tear": {
+    "aspect": 1.3333333333333333,
+    "layers": [
+      {
+        "number": 1,
+        "file": "tear-1.webp",
+        "left": 0.0,
+        "top": 0.0,
+        "width": 100.0,
+        "height": 100.0,
+        "source": "tear/\u672a\u547d\u540d\u4f5c\u54c1-1.png",
+        "sha256": "aed6c9c5ebc5e19d5ad6c0e19744e49bf37c81d92846b72623d38005251f6c73"
+      },
+      {
+        "number": 2,
+        "file": "tear-2.webp",
+        "left": 0.0,
+        "top": 0.0,
+        "width": 100.0,
+        "height": 100.0,
+        "source": "tear/\u672a\u547d\u540d\u4f5c\u54c1-2.png",
+        "sha256": "166d55bca594ae7375a385f85bd039e4aa28a8b20e8efdd1414de113b7120bcf"
+      },
+      {
+        "number": 3,
+        "file": "tear-3.webp",
+        "left": 32.667151162790695,
+        "top": 14.050387596899224,
+        "width": 35.02906976744186,
+        "height": 74.32170542635659,
+        "source": "tear/\u672a\u547d\u540d\u4f5c\u54c1-3.png",
+        "sha256": "3669ec97d8ca217ceff1e2e931730cebbf80061b3c31022b5afb27aff568e161"
+      },
+      {
+        "number": 4,
+        "file": "tear-4.webp",
+        "left": 30.632267441860467,
+        "top": 7.6065891472868215,
+        "width": 38.7718023255814,
+        "height": 84.35077519379846,
+        "source": "tear/\u672a\u547d\u540d\u4f5c\u54c1-4.png",
+        "sha256": "6807d0d89c3aad1421aba43df6a2ec02a2978c7f4c84c67f0753eb8531440c9d"
+      },
+      {
+        "number": 5,
+        "file": "tear-5.webp",
+        "left": 35.9375,
+        "top": 21.36627906976744,
+        "width": 29.21511627906977,
+        "height": 62.5968992248062,
+        "source": "tear/\u672a\u547d\u540d\u4f5c\u54c1-5.png",
+        "sha256": "fe334258df28b81fdde526b8a2afe0c7e6fda38facd3608f6dedf8a4514b2c60"
+      }
+    ]
+  },
+  "thinking": {
+    "aspect": 1.7777777777777777,
+    "layers": [
+      {
+        "number": 1,
+        "file": "thinking-1.webp",
+        "left": 0.0,
+        "top": 0.0,
+        "width": 100.0,
+        "height": 100.0,
+        "source": "thinking&solution/\u672a\u547d\u540d\u4f5c\u54c1-1.png",
+        "sha256": "989e1f205136a02a2b206d3c89345f5d66153441b4b7d91fc09162a47901e2ac"
+      },
+      {
+        "number": 2,
+        "file": "thinking-2.webp",
+        "left": 6.2109375,
+        "top": 10.48611111111111,
+        "width": 87.578125,
+        "height": 78.47222222222221,
+        "source": "thinking&solution/\u672a\u547d\u540d\u4f5c\u54c1-2.png",
+        "sha256": "e0f2eb9fc1ab4c4da44735fe7e9a513b49cbf05cbe25775face570f23f6ebeb1"
+      },
+      {
+        "number": 3,
+        "file": "thinking-3.webp",
+        "left": 63.515625,
+        "top": 21.666666666666668,
+        "width": 27.890625000000004,
+        "height": 62.01388888888889,
+        "source": "thinking&solution/\u672a\u547d\u540d\u4f5c\u54c1-3.png",
+        "sha256": "9d05f0f91f8d02a678ed70e04346cda6ff3a9f41bdb2e81a47b9fe62b3c31416"
+      },
+      {
+        "number": 4,
+        "file": "thinking-4.webp",
+        "left": 11.328125,
+        "top": 29.791666666666668,
+        "width": 27.03125,
+        "height": 54.02777777777777,
+        "source": "thinking&solution/\u672a\u547d\u540d\u4f5c\u54c1-4.png",
+        "sha256": "8e34ca33532fe367bf4fcd240dbba71cd57c9e8837d7bf1ae903086c3d513637"
+      },
+      {
+        "number": 5,
+        "file": "thinking-5.webp",
+        "left": 12.5,
+        "top": 0.0,
+        "width": 75.0,
+        "height": 100.0,
+        "source": "thinking&solution/\u672a\u547d\u540d\u4f5c\u54c1-5.png",
+        "sha256": "02b248a18c655647091b56695ff9d9c252daa3284f4b467b31df0f27a1b65e1c"
+      },
+      {
+        "number": 6,
+        "file": "thinking-6.webp",
+        "left": 41.796875,
+        "top": 6.597222222222222,
+        "width": 17.3828125,
+        "height": 13.472222222222221,
+        "source": "thinking&solution/\u672a\u547d\u540d\u4f5c\u54c1-6.png",
+        "sha256": "bef73fe68ee583360d41d6e4e17cab6014f9f862e735a0ee28a657a7f223d9b8"
+      },
+      {
+        "number": 7,
+        "file": "thinking-7.webp",
+        "left": 54.2578125,
+        "top": 19.791666666666664,
+        "width": 8.7890625,
+        "height": 18.125,
+        "source": "thinking&solution/\u672a\u547d\u540d\u4f5c\u54c1-7.png",
+        "sha256": "136e30ba420f7ba3fb386b7d716d66f55a8d1fe9063f0a706aa9d8d9dea6b9fc"
+      },
+      {
+        "number": 8,
+        "file": "thinking-8.webp",
+        "left": 36.640625,
+        "top": 19.65277777777778,
+        "width": 8.125,
+        "height": 17.569444444444443,
+        "source": "thinking&solution/\u672a\u547d\u540d\u4f5c\u54c1-8.png",
+        "sha256": "e381b422be6e625427ce799e2b3692c7caba1ed15602f9e85b0db0c010829631"
+      },
+      {
+        "number": 9,
+        "file": "thinking-9.webp",
+        "left": 13.007812499999998,
+        "top": 14.305555555555555,
+        "width": 22.265625,
+        "height": 11.11111111111111,
+        "source": "thinking&solution/\u672a\u547d\u540d\u4f5c\u54c1-9.png",
+        "sha256": "b23a24f25b600239c2edc65c2bcb368ad0a4f30b67f75f469a67bea7caa18d8f"
+      },
+      {
+        "number": 10,
+        "file": "thinking-10.webp",
+        "left": 64.296875,
+        "top": 14.444444444444443,
+        "width": 24.4921875,
+        "height": 6.736111111111111,
+        "source": "thinking&solution/\u672a\u547d\u540d\u4f5c\u54c1-10.png",
+        "sha256": "2aa7b17c256220ee0e68c6785c74a66845ca52ac47acbff44d62c809a06c2e42"
+      }
+    ]
+  },
+  "fan": {
+    "aspect": 1.7777777777777777,
+    "layers": [
+      {
+        "number": 1,
+        "file": "fan-1.webp",
+        "left": 0.0,
+        "top": 0.0,
+        "width": 100.0,
+        "height": 100.0,
+        "source": "\u6247\u5f62/\u672a\u547d\u540d\u4f5c\u54c1-1.png",
+        "sha256": "a2f8b2f5f66437dd1718669f4b9aaeef87fced610f51665f052a531332d06e37"
+      },
+      {
+        "number": 2,
+        "file": "fan-2.webp",
+        "left": 0.703125,
+        "top": 2.7083333333333335,
+        "width": 98.59375,
+        "height": 79.93055555555556,
+        "source": "\u6247\u5f62/\u672a\u547d\u540d\u4f5c\u54c1-2.png",
+        "sha256": "454ee87781012716ad8ecbf0b2a8596360030570e8757d54fe35df62cd93a2e6"
+      },
+      {
+        "number": 3,
+        "file": "fan-3.webp",
+        "left": 37.96875,
+        "top": 42.15277777777778,
+        "width": 23.8671875,
+        "height": 57.84722222222223,
+        "source": "\u6247\u5f62/\u672a\u547d\u540d\u4f5c\u54c1-3.png",
+        "sha256": "ebf3ef69f5f284f5767ee49791408a8aca8676e62dca36d123463520d9191b42"
+      },
+      {
+        "number": 4,
+        "file": "fan-4.webp",
+        "left": 55.625,
+        "top": 17.01388888888889,
+        "width": 25.5078125,
+        "height": 47.56944444444444,
+        "source": "\u6247\u5f62/\u672a\u547d\u540d\u4f5c\u54c1-4.png",
+        "sha256": "52436d1845e9ee8a0e9655082943b70f8b2951f034d4437446fe6f0cb50efd1d"
+      },
+      {
+        "number": 5,
+        "file": "fan-5.webp",
+        "left": 4.453125,
+        "top": 59.791666666666664,
+        "width": 22.8125,
+        "height": 34.236111111111114,
+        "source": "\u6247\u5f62/\u672a\u547d\u540d\u4f5c\u54c1-5.png",
+        "sha256": "10968ec4101d8d615d3991b263451c56e4daa3922afb1bd15cc9d030b1741aaa"
+      },
+      {
+        "number": 6,
+        "file": "fan-6.webp",
+        "left": 13.671875,
+        "top": 20.97222222222222,
+        "width": 34.21875,
+        "height": 37.43055555555556,
+        "source": "\u6247\u5f62/\u672a\u547d\u540d\u4f5c\u54c1-6.png",
+        "sha256": "316e243c4f379442ae2dae2c3010cf22a435981774eb099b06bfe595a9f6d70b"
+      },
+      {
+        "number": 7,
+        "file": "fan-7.webp",
+        "left": 67.65625,
+        "top": 52.56944444444444,
+        "width": 28.125,
+        "height": 44.72222222222222,
+        "source": "\u6247\u5f62/\u672a\u547d\u540d\u4f5c\u54c1-7.png",
+        "sha256": "5a97c9d1b9665155732db392315a0b0865e59b27fcd01352fb75595dd3f9d2f0"
+      },
+      {
+        "number": 8,
+        "file": "project-advantages.png",
+        "left": 0.0,
+        "top": 0.0,
+        "width": 100.0,
+        "height": 100.0,
+        "source": "IMG_2174.png",
+        "sha256": "f7a69afafc985ddefdbc60d7b691683f4c744ff6ce6aecf2c0c7a084858bb18f"
+      }
+    ]
+  }
+}

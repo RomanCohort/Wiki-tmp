@@ -1,0 +1,460 @@
+.wiki-page[data-wiki-route="/alternative-platform"] .wiki-feature,
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .wiki-feature[data-wiki-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"] .platform-achievement-nav {
+  margin: 0;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .platform-backbone .wiki-html-embed__actions {
+  display: none;
+}
+
+@media (min-width: 641px) {
+  .wiki-page[data-wiki-route="/alternative-platform"]
+    .platform-figure--reduced img {
+    width: 68%;
+    max-width: 640px;
+    height: auto;
+    margin-inline: auto;
+  }
+
+  .wiki-page[data-wiki-route="/alternative-platform"]
+    .platform-figure--fig07 img {
+    width: 48%;
+    max-width: 460px;
+    height: auto;
+    margin-inline: auto;
+  }
+
+  .wiki-page[data-wiki-route="/alternative-platform"]
+    .platform-figure--fig07 figcaption {
+    max-width: 500px;
+    margin-inline: auto;
+  }
+
+  .wiki-page[data-wiki-route="/alternative-platform"]
+    .platform-figure--fig09 img {
+    width: 58%;
+    max-width: 560px;
+    height: auto;
+    margin-inline: auto;
+  }
+
+  .wiki-page[data-wiki-route="/alternative-platform"]
+    .platform-figure--fig09 figcaption {
+    max-width: 580px;
+    margin-inline: auto;
+  }
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .platform-achievement-nav__orbit {
+  position: relative;
+  width: min(100%, 520px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  container-type: inline-size;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .platform-achievement-nav__orbit::before {
+  position: absolute;
+  inset: 14%;
+  border: 1px solid var(--route-line-strong);
+  border-radius: 50%;
+  content: "";
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .platform-achievement-nav__rotor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: rotate(var(--achievement-rotation, 0deg));
+  transition: transform 650ms ease;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .platform-achievement-nav__node {
+  position: absolute;
+  display: grid;
+  width: 24cqw;
+  height: 24cqw;
+  padding: 10px;
+  place-items: center;
+  border: 1px solid var(--route-line-strong);
+  border-radius: 50%;
+  background: var(--route-paper);
+  color: var(--route-heading-ink);
+  font-size: clamp(11px, 2.9cqw, 14px);
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: center;
+  text-decoration: none;
+  transform: translate(-50%, -50%) rotate(var(--achievement-angle))
+    translateX(36cqw)
+    rotate(
+      calc(-1 * var(--achievement-angle) - var(--achievement-rotation, 0deg))
+    );
+  transition:
+    transform 650ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.platform-achievement-nav__node:nth-child(1) {
+  --achievement-angle: -90deg;
+}
+.platform-achievement-nav__node:nth-child(2) {
+  --achievement-angle: -38.5714deg;
+}
+.platform-achievement-nav__node:nth-child(3) {
+  --achievement-angle: 12.8571deg;
+}
+.platform-achievement-nav__node:nth-child(4) {
+  --achievement-angle: 64.2857deg;
+}
+.platform-achievement-nav__node:nth-child(5) {
+  --achievement-angle: 115.7143deg;
+}
+.platform-achievement-nav__node:nth-child(6) {
+  --achievement-angle: 167.1429deg;
+}
+.platform-achievement-nav__node:nth-child(7) {
+  --achievement-angle: 218.5714deg;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .platform-achievement-nav__node:hover,
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .platform-achievement-nav__node[aria-current] {
+  background: var(--route-heading-ink);
+  color: #fff;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .platform-achievement-nav
+  a:focus-visible {
+  outline: 2px solid var(--route-subheading-ink);
+  outline-offset: 4px;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .platform-achievement-nav__centre {
+  position: absolute;
+  inset: 37%;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--route-line-strong);
+  border-radius: 50%;
+  background: var(--route-heading-ink);
+  color: #fff;
+  font-size: clamp(18px, 5cqw, 26px);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .wiki-page[data-wiki-route="/alternative-platform"]
+    .platform-achievement-nav__orbit {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    aspect-ratio: auto;
+  }
+
+  .wiki-page[data-wiki-route="/alternative-platform"]
+    .platform-achievement-nav__orbit::before {
+    display: none;
+  }
+
+  .wiki-page[data-wiki-route="/alternative-platform"]
+    .platform-achievement-nav__rotor {
+    position: static;
+    display: grid;
+    width: 100%;
+    height: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    transform: none;
+  }
+
+  .wiki-page[data-wiki-route="/alternative-platform"]
+    .platform-achievement-nav__node {
+    position: static;
+    width: auto;
+    height: auto;
+    min-height: 76px;
+    padding: 12px;
+    border-radius: 14px;
+    font-size: 13px;
+    transform: none;
+  }
+
+  .wiki-page[data-wiki-route="/alternative-platform"]
+    .platform-achievement-nav__node:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .wiki-page[data-wiki-route="/alternative-platform"]
+    .platform-achievement-nav__centre {
+    position: static;
+    order: -1;
+    align-self: center;
+    width: 80px;
+    height: 80px;
+    font-size: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wiki-page[data-wiki-route="/alternative-platform"]
+    .platform-achievement-nav__rotor,
+  .wiki-page[data-wiki-route="/alternative-platform"]
+    .platform-achievement-nav__node {
+    transition: none;
+  }
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .wiki-protocol-drawer--page-fold {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--route-line-strong);
+  border-radius: 3px;
+  background: var(--route-paper);
+  box-shadow: none;
+  transition: border-color 180ms ease;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .wiki-protocol-drawer--page-fold.is-open {
+  border-color: var(--route-subheading-ink);
+  box-shadow: none;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .wiki-protocol-drawer--page-fold
+  .wiki-protocol-drawer__header {
+  display: grid;
+  min-height: 78px;
+  grid-template-columns: minmax(0, 1fr) 24px;
+  gap: 16px;
+  align-items: end;
+  padding: 15px 18px 12px;
+  background: transparent;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .wiki-protocol-drawer--page-fold.is-open
+  .wiki-protocol-drawer__header {
+  border-bottom: 1px solid var(--route-line);
+  background: color-mix(in srgb, var(--route-base) 22%, var(--route-paper));
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .wiki-protocol-drawer--page-fold
+  .wiki-protocol-drawer__header:hover {
+  background: color-mix(in srgb, var(--route-base) 34%, var(--route-paper));
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .wiki-protocol-drawer--page-fold
+  .wiki-protocol-drawer__header:focus-visible {
+  outline: 2px solid var(--route-subheading-ink);
+  outline-offset: -3px;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .wiki-protocol-drawer--page-fold
+  .wiki-protocol-drawer__title-row {
+  display: block;
+  width: 100%;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .wiki-protocol-drawer--page-fold
+  .wiki-protocol-drawer__title {
+  overflow: visible;
+  color: var(--route-subheading-ink) !important;
+  font-family: var(--font-sans), sans-serif !important;
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: 0;
+  line-height: 1.42;
+  text-overflow: clip;
+  white-space: normal;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .wiki-protocol-drawer--page-fold
+  .wiki-protocol-drawer__chevron {
+  align-self: end;
+  width: 22px;
+  height: 22px;
+  border-radius: 2px;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .wiki-protocol-drawer--page-fold
+  .wiki-protocol-drawer__body {
+  gap: 16px;
+  padding: 18px 20px 20px;
+  background: var(--route-paper);
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"] .wiki-subheading--nested {
+  margin: 4px 0 0 !important;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"]
+  .wiki-subheading--nested
+  .wiki-subheading__title {
+  color: var(--route-subheading-ink) !important;
+  font-size: 16px;
+  letter-spacing: 0;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"] .wiki-quote {
+  margin: 0;
+  padding: 12px 16px;
+  border-left: 2px solid var(--route-subheading-ink);
+  background: color-mix(in srgb, var(--route-base) 22%, var(--route-paper));
+  color: var(--route-muted);
+  line-height: 1.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wiki-page[data-wiki-route="/alternative-platform"]
+    .wiki-protocol-drawer--page-fold {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   BSJ Sequence Plate: Chinese Ink-wash Watercolor Aesthetic (水墨淡彩风)
+   Centered, wider spread, paired directly with FIG. 06 Sanger chromatogram
+   ========================================================================== */
+
+.wiki-page[data-wiki-route="/alternative-platform"] .bsj-plate {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 860px;
+  margin: 28px auto 18px;
+  padding: 16px 28px;
+  border-radius: 999px;
+  box-sizing: border-box;
+  background:
+    radial-gradient(ellipse 70% 60% at 20% 45%, rgba(83, 111, 135, 0.08) 0%, transparent 68%),
+    radial-gradient(ellipse 70% 60% at 80% 55%, rgba(184, 93, 67, 0.07) 0%, transparent 68%),
+    linear-gradient(180deg, rgba(254, 252, 246, 0.95) 0%, rgba(246, 241, 230, 0.90) 100%);
+  border: 1px solid rgba(83, 111, 135, 0.16);
+  box-shadow:
+    0 8px 30px -6px rgba(45, 36, 28, 0.06),
+    0 1px 4px rgba(83, 111, 135, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+  text-align: center;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"] .bsj-plate__halo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(255, 255, 255, 0.8) 0%, transparent 60%),
+    radial-gradient(circle at 50% 110%, rgba(197, 160, 88, 0.06) 0%, transparent 50%);
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"] .bsj-plate__segment {
+  flex: 1 1 0;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"] .bsj-plate__segment--3prime {
+  text-align: right;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"] .bsj-plate__segment--5prime {
+  text-align: left;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"] .bsj-plate__seq {
+  display: inline-block;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: clamp(13px, 1.35vw, 16.5px);
+  font-weight: 600;
+  letter-spacing: clamp(0.14em, 0.38vw, 0.32em);
+  white-space: nowrap;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"] .bsj-plate__segment--3prime .bsj-plate__seq {
+  color: #1F364B;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"] .bsj-plate__segment--5prime .bsj-plate__seq {
+  color: #3B2A1E;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"] .bsj-plate__divider {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  color: #A6442E;
+  position: relative;
+  z-index: 1;
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"] .bsj-plate__divider-stem {
+  width: 1px;
+  height: 6px;
+  background: rgba(166, 68, 46, 0.35);
+}
+
+.wiki-page[data-wiki-route="/alternative-platform"] .bsj-plate__divider-mark {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  color: #B84A32;
+  text-shadow: 0 0 6px rgba(184, 74, 50, 0.25);
+}
+
+@media (max-width: 680px) {
+  .wiki-page[data-wiki-route="/alternative-platform"] .bsj-plate {
+    padding: 12px 14px;
+    margin: 20px auto 14px;
+    border-radius: 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+  }
+  .wiki-page[data-wiki-route="/alternative-platform"] .bsj-plate__segment--3prime {
+    text-align: left;
+  }
+  .wiki-page[data-wiki-route="/alternative-platform"] .bsj-plate__segment {
+    flex: 0 0 auto;
+  }
+}

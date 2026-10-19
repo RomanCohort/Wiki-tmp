@@ -1,0 +1,462 @@
+/* The reference uses a clipped window over a sticky image, with no scroll gate. */
+.finale-photo-window {
+  position: relative;
+  height: 100%;
+  color: #f5f0e7;
+}
+.keepsake-scroll-stage {
+  position: relative;
+  height: var(--photo-window-height);
+  /* Unlike overflow:hidden, clip-path preserves the viewport as the sticky root. */
+  clip-path: inset(0 round 16px 16px 0 0);
+}
+.keepsake-reveal-track {
+  position: relative;
+  top: -100dvh;
+  height: calc(100dvh + var(--photo-window-height));
+}
+.keepsake-pin {
+  position: sticky;
+  top: calc(100dvh - var(--photo-window-height));
+  height: var(--photo-window-height);
+  overflow: hidden;
+}
+.keepsake-front {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-position: center 80%;
+  background-size: cover;
+}
+.keepsake-photograph {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  transform: scale(1.3);
+  transform-origin: center center;
+  will-change: transform;
+}
+.keepsake-photograph > img {
+  position: absolute;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: calc(100% * 1734 / 1084);
+  object-fit: cover;
+  object-position: center bottom;
+}
+.keepsake-photo-shade {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgb(20 17 23 / 6%) 0%,
+    rgb(20 17 23 / 9%) 46%,
+    rgb(20 17 23 / 23%) 82%,
+    rgb(20 17 23 / 12%) 100%
+  );
+  pointer-events: none;
+}
+.keepsake-brand {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: clamp(20px, 4cqw, 56px);
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2cqw, 28px);
+  width: max-content;
+  margin: 0;
+  color: #fffdf9;
+  font: 600 clamp(48px, 11.5cqw, 164px) / 1 var(--font-sans);
+  letter-spacing: -0.065em;
+  text-shadow:
+    0 2px 8px rgb(20 17 23 / 28%),
+    0 10px 28px rgb(20 17 23 / 16%);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.keepsake-brand__emblem {
+  display: block;
+  flex: none;
+  width: 1.04em;
+  height: 1.04em;
+  object-fit: contain;
+  filter: brightness(0) invert(1) drop-shadow(0 3px 8px rgb(20 17 23 / 25%));
+}
+.keepsake-note-open,
+.keepsake-note-close {
+  position: absolute;
+  z-index: 3;
+  border: 1px solid rgb(255 255 255 / 65%);
+  border-radius: 999px;
+  padding: 10px 16px;
+  min-height: 44px;
+  font: 400 12px/1.4 var(--font-body);
+  cursor: pointer;
+}
+.keepsake-note-open {
+  right: clamp(12px, 2vw, 28px);
+  bottom: clamp(12px, 2vw, 28px);
+  background: #fbf2e8;
+  color: #513946;
+}
+.keepsake-note {
+  position: fixed;
+  inset: 0;
+  width: min(960px, calc(100% - 48px));
+  height: 560px;
+  max-height: calc(100dvh - 48px);
+  max-width: none;
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #e3d8ce;
+  border-radius: 20px;
+  color: #4e3c45;
+  background: #fcf9f3;
+  box-shadow: 0 24px 90px rgb(31 22 28 / 22%);
+  font-family: var(--font-body);
+}
+.keepsake-note[open] {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+.keepsake-note::backdrop {
+  background: rgb(38 30 35 / 44%);
+}
+body:has(.keepsake-note[open]) {
+  overflow: hidden;
+}
+.keepsake-note__actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 28px;
+  border-top: 1px solid #e9e0d6;
+  background: #f8f3eb;
+}
+.keepsake-note-close {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-color: #d2bfb7;
+  background: #fcf9f3;
+  color: #513946;
+}
+.keepsake-note-close:hover {
+  border-color: #a56b7b;
+  background: #f5e9e7;
+}
+.keepsake-note-close:focus-visible {
+  outline: 2px solid #96596c;
+  outline-offset: 3px;
+}
+.keepsake-letter__sheet {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 48px 52px;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.keepsake-letter__body {
+  display: grid;
+  flex: none;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 40px;
+  min-height: 340px;
+  margin-block: auto;
+}
+.keepsake-letter__intro {
+  text-align: center;
+}
+.keepsake-letter__hope {
+  position: relative;
+  width: 174px;
+  height: 138px;
+  margin: 0 auto 24px;
+}
+.keepsake-letter__patient {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 50%;
+  width: auto;
+  height: 116px;
+  transform: translateX(-50%);
+}
+.keepsake-letter__hands {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
+.keepsake-letter__body h3 {
+  margin: 0;
+  color: #45313d;
+  font: 500 clamp(34px, 4.8vw, 46px)/1.14 var(--font-heading);
+  font-family: var(--font-heading) !important;
+  letter-spacing: -0.045em;
+}
+.keepsake-letter__body h3:focus {
+  outline: none;
+}
+.keepsake-letter__body h3 span,
+.keepsake-letter__body h3 em {
+  display: block;
+}
+.keepsake-letter__body h3 span {
+  font-size: 0.7em;
+  line-height: 1.25;
+  letter-spacing: -0.035em;
+}
+.keepsake-letter__body h3 em {
+  margin-top: 8px;
+  color: #935366;
+  font-style: normal;
+  font-weight: inherit;
+}
+.keepsake-letter__copy {
+  padding-left: 36px;
+  border-left: 1px solid #e5d6d2;
+  text-align: left;
+}
+.keepsake-letter__body p {
+  margin: 0;
+  text-wrap: pretty;
+}
+.keepsake-letter__wish {
+  color: #4e3c45;
+  font: 400 16px/1.75 var(--font-body);
+}
+.keepsake-letter__promise {
+  margin-top: 20px !important;
+  color: #67565c;
+  font: 400 14px/1.75 var(--font-body);
+}
+.keepsake-letter__farewell {
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid #e5d6d2;
+}
+.keepsake-letter__farewell > p {
+  color: #67565c;
+  font: 400 14px/1.75 var(--font-body);
+}
+.keepsake-letter__signature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 22px;
+  color: #513946;
+}
+.keepsake-letter__signature span,
+.keepsake-letter__signature strong {
+  display: block;
+  font: 400 13px/1.6 var(--font-body);
+}
+.keepsake-letter__signature strong {
+  font-weight: 500;
+}
+.keepsake-lamb {
+  flex: none;
+  width: 42px;
+  height: 44px;
+  overflow: hidden;
+}
+.keepsake-lamb img {
+  display: block;
+  /* Frame the character within the wide artwork, leaving its edges visible. */
+  width: 210%;
+  max-width: none;
+  height: auto;
+  transform: translateX(-12%);
+  mix-blend-mode: multiply;
+}
+/* Opacity alone keeps the letter text off moving, resampled transform layers. */
+.keepsake-note[open] .keepsake-letter__intro {
+  animation: keepsake-letter-arrive 320ms ease-out both;
+}
+.keepsake-note[open] .keepsake-letter__copy {
+  animation: keepsake-letter-arrive 380ms ease-out 40ms both;
+}
+.keepsake-photo-error {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  margin: 0;
+  padding: 24px;
+  background: #292226;
+  color: #f5f0e7;
+  font: 400 14px/1.65 var(--font-body);
+}
+@keyframes keepsake-letter-arrive {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* Very wide, short windows retain the whole group over photographic edge fill. */
+@media (min-aspect-ratio: 11/5) {
+  .keepsake-front::before {
+    content: "";
+    position: absolute;
+    inset: -40px;
+    background-image: inherit;
+    background-position: center 80%;
+    background-size: cover;
+    filter: blur(32px);
+  }
+  .keepsake-photograph {
+    width: calc(var(--photo-window-height) * 2600 / 1084);
+    left: 50%;
+    right: auto;
+    margin-left: calc(var(--photo-window-height) * 2600 / 1084 / -2);
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 24px,
+      #000 calc(100% - 24px),
+      transparent
+    );
+  }
+}
+@media (max-width: 720px) {
+  .keepsake-brand {
+    left: 14px;
+    bottom: 12px;
+    gap: 9px;
+    font-size: clamp(30px, 10.5cqw, 64px);
+    transform: none;
+  }
+  .keepsake-brand__emblem {
+    filter: brightness(0) invert(1) drop-shadow(0 0 0.35px #fff)
+      drop-shadow(0 2px 3px rgb(20 17 23 / 35%));
+  }
+  .keepsake-note-open {
+    right: 8px;
+    bottom: 8px;
+    padding: 8px 10px;
+    font-size: 10px;
+  }
+  .keepsake-note {
+    width: calc(100% - 24px);
+    height: 720px;
+    max-height: calc(100dvh - 24px);
+    border-radius: 16px;
+  }
+  .keepsake-letter__sheet {
+    padding: 28px 24px;
+  }
+  .keepsake-letter__body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    min-height: 0;
+  }
+  .keepsake-letter__hope {
+    width: 142px;
+    height: 114px;
+    margin-bottom: 18px;
+  }
+  .keepsake-letter__patient {
+    height: 96px;
+  }
+  .keepsake-letter__body h3 {
+    font-size: clamp(34px, 8.5vw, 46px);
+  }
+  .keepsake-letter__copy {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .keepsake-letter__wish {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .keepsake-letter__promise {
+    margin-top: 16px !important;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .keepsake-letter__farewell {
+    margin-top: 20px;
+    padding-top: 18px;
+  }
+  .keepsake-letter__farewell > p {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .keepsake-letter__signature {
+    margin-top: 18px;
+  }
+  .keepsake-note__actions {
+    padding: 12px 16px;
+  }
+}
+@media (max-height: 700px) {
+  .keepsake-letter__sheet {
+    padding-block: 28px;
+  }
+  .keepsake-letter__body {
+    min-height: 0;
+  }
+}
+/* Short landscape screens scroll the letter, without shrinking its text. */
+@media (min-width: 721px) and (max-height: 500px) {
+  .keepsake-note {
+    width: min(960px, calc(100% - 24px));
+    max-height: calc(100dvh - 24px);
+  }
+  .keepsake-letter__sheet {
+    padding: 24px 32px;
+  }
+  .keepsake-letter__body {
+    gap: 28px;
+    align-items: start;
+  }
+  .keepsake-letter__hope {
+    width: 118px;
+    height: 94px;
+    margin-bottom: 16px;
+  }
+  .keepsake-letter__patient {
+    height: 78px;
+  }
+  .keepsake-letter__copy {
+    padding-left: 28px;
+  }
+  .keepsake-letter__body h3 {
+    font-size: 36px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .keepsake-photograph {
+    transform: none !important;
+    will-change: auto;
+  }
+  .keepsake-letter__intro,
+  .keepsake-letter__copy {
+    animation: none !important;
+  }
+}
+@media (forced-colors: active) {
+  .keepsake-note,
+  .keepsake-note__actions {
+    background: Canvas;
+    color: CanvasText;
+    border-color: CanvasText;
+  }
+  .finale-photo-window :is(h3, p, span, strong, em) {
+    color: CanvasText;
+  }
+}

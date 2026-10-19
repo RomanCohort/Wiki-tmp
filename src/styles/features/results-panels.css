@@ -1,0 +1,325 @@
+/* Results-only figure sizing. The shared reader owns the page frame and rhythm. */
+.wiki-page[data-wiki-route="/results"] .wiki-feature .wiki-figure {
+  margin: 0 auto !important;
+}
+
+/* Keep the manuscript's proportions and native resolution, including strip figures. */
+.wiki-page[data-wiki-route="/results"] .wiki-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: min(76vh, 820px);
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+/* These native-width images are smaller than the desktop reading column. */
+.wiki-page[data-wiki-route="/results"] .wiki-figure img[width="828"] {
+  max-width: min(100%, 828px);
+}
+.wiki-page[data-wiki-route="/results"] .wiki-figure img[width="460"] {
+  max-width: min(100%, 460px);
+}
+.wiki-page[data-wiki-route="/results"] .wiki-figure img[width="954"] {
+  max-width: min(100%, 954px);
+}
+
+/* Figure 30 is the one data-driven dose plot. The source CSV is bundled with
+   the page so the chart keeps the Model page's 301-point scan without a
+   network request. */
+.wiki-page[data-wiki-route="/results"] .results-dose-scan-figure {
+  align-items: stretch;
+  max-width: 100%;
+}
+.wiki-page[data-wiki-route="/results"] .results-dose-scan-panel {
+  width: 100%;
+  min-width: 0;
+  padding: 16px 18px 12px;
+  border: 1px solid var(--route-line, #d7e1df);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+}
+.wiki-page[data-wiki-route="/results"] .results-dose-scan-controls {
+  display: grid;
+  grid-template-columns: auto minmax(160px, 1fr) 84px auto;
+  align-items: center;
+  gap: 10px;
+  color: var(--route-heading-ink, #243d2c);
+  font-size: 13px;
+}
+.wiki-page[data-wiki-route="/results"] .results-dose-scan-controls label {
+  font-weight: 700;
+}
+.wiki-page[data-wiki-route="/results"]
+  .results-dose-scan-controls
+  input[type="range"] {
+  width: 100%;
+  accent-color: #379d3f;
+}
+.wiki-page[data-wiki-route="/results"] .results-dose-scan-number {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px 7px;
+  border: 1px solid var(--route-line-strong, #b8c9c5);
+  border-radius: 4px;
+  background: #fff;
+  color: inherit;
+  font: inherit;
+}
+.wiki-page[data-wiki-route="/results"] .results-dose-scan-number:focus-visible,
+.wiki-page[data-wiki-route="/results"]
+  .results-dose-scan-controls
+  input[type="range"]:focus-visible {
+  outline: 2px solid var(--route-subheading-ink, #84382b);
+  outline-offset: 3px;
+}
+.wiki-page[data-wiki-route="/results"] .results-dose-scan-selected {
+  margin: 10px 0 0;
+  color: var(--route-muted, #536c7a);
+  font-size: 13px;
+}
+.wiki-page[data-wiki-route="/results"] .results-dose-scan-selected strong {
+  color: var(--route-heading-ink, #243d2c);
+}
+.wiki-page[data-wiki-route="/results"] .results-dose-scan-chart {
+  width: 100%;
+  height: min(58vw, 520px);
+  min-height: 360px;
+  margin-top: 4px;
+}
+.wiki-page[data-wiki-route="/results"] .results-dose-scan-source {
+  margin: 2px 0 0;
+  color: var(--route-muted, #536c7a);
+  font-size: 11px;
+  text-align: center;
+}
+
+/* Existing compact treatment follows assay identity, never a URL's old figure number. */
+.wiki-page[data-wiki-route="/results"] .results-figure--compact {
+  max-width: 540px;
+  margin-inline: auto;
+}
+.wiki-page[data-wiki-route="/results"] .results-figure--compact img {
+  max-height: min(76vh, 420px);
+}
+.wiki-page[data-wiki-route="/results"] .results-figure--fig21 {
+  max-width: 460px;
+  margin-inline: auto;
+}
+
+/* Native Model volcano renderer, themed only within this Results host. */
+.wiki-page[data-wiki-route="/results"] .model-chart-panel {
+  min-width: 0;
+  width: 100%;
+}
+.wiki-page[data-wiki-route="/results"] .model-chart {
+  width: 100%;
+  height: 480px;
+  min-width: 0;
+}
+.wiki-page[data-wiki-route="/results"] .model-chart-loading {
+  min-height: 540px;
+  display: grid;
+  align-content: center;
+}
+.wiki-page[data-wiki-route="/results"] .model-chart-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.wiki-page[data-wiki-route="/results"] .model-chart-filters button,
+.wiki-page[data-wiki-route="/results"] .model-action {
+  padding: 7px 11px;
+  border: 1px solid var(--route-line-strong);
+  border-radius: 5px;
+  background: var(--route-paper, #fff);
+  color: var(--route-heading-ink, #243d2c);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.wiki-page[data-wiki-route="/results"]
+  .model-chart-filters
+  button[data-category="0"] {
+  color: #a73743;
+}
+.wiki-page[data-wiki-route="/results"]
+  .model-chart-filters
+  button[data-category="1"] {
+  color: #326496;
+}
+.wiki-page[data-wiki-route="/results"]
+  .model-chart-filters
+  button[aria-pressed="false"] {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+.wiki-page[data-wiki-route="/results"]
+  .model-chart-filters
+  button[aria-pressed="true"] {
+  box-shadow: inset 0 -2px currentColor;
+}
+.wiki-page[data-wiki-route="/results"]
+  .model-chart-filters
+  button:focus-visible,
+.wiki-page[data-wiki-route="/results"] .model-action:focus-visible {
+  outline: 2px solid var(--route-subheading-ink, #84382b);
+  outline-offset: 3px;
+}
+.wiki-page[data-wiki-route="/results"] .model-chart-rule {
+  margin: 10px 0;
+  color: var(--route-muted);
+  font-size: 13px;
+}
+
+/* The shared structural chart hosts two manuscript figures (FIG. 10 / FIG. 11)
+   and consumes exactly one counter slot so later figures shift down by one. */
+.wiki-page[data-wiki-route="/results"] .epitope-validation-panel--manuscript {
+  counter-increment: wiki-figure 1;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+}
+.wiki-page[data-wiki-route="/results"] .epitope-validation-header {
+  justify-content: flex-start;
+  border: 0;
+  padding: 0;
+}
+.wiki-page[data-wiki-route="/results"] .epitope-validation-modes {
+  flex-wrap: wrap;
+}
+.wiki-page[data-wiki-route="/results"] .epitope-validation-caption {
+  padding: 0;
+  border: 0;
+}
+.wiki-page[data-wiki-route="/results"] .epitope-validation-caption::before {
+  content: none;
+  display: none;
+}
+/* Manuscript captions live inside each chart card with an explicit FIG badge. */
+.wiki-page[data-wiki-route="/results"] .epitope-card-caption {
+  display: flex;
+  align-items: flex-start;
+  margin: 12px 4px 0;
+}
+.wiki-page[data-wiki-route="/results"] .epitope-card-caption__badge {
+  flex: 0 0 auto;
+  margin-right: 10px;
+  padding: 2.5px 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.25;
+  color: #fff;
+  background: var(--brand-navy, #162b4c);
+  border: 1px solid rgba(22, 43, 76, 0.25);
+  border-radius: 4px;
+}
+.wiki-page[data-wiki-route="/results"] .epitope-card-caption p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: #435b54;
+}
+
+/* Canvas charts and the longer bibliography opt out of per-frame slot drift (rule 8). */
+.wiki-page[data-wiki-route="/results"] .wiki-feature,
+.wiki-page[data-wiki-route="/results"] .wiki-feature[data-wiki-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+
+@media (max-width: 680px) {
+  .wiki-page[data-wiki-route="/results"] .results-dose-scan-panel {
+    padding: 12px 10px 10px;
+  }
+  .wiki-page[data-wiki-route="/results"] .results-dose-scan-controls {
+    grid-template-columns: 1fr auto auto;
+    gap: 7px;
+  }
+  .wiki-page[data-wiki-route="/results"] .results-dose-scan-controls label {
+    grid-column: 1 / -1;
+  }
+  .wiki-page[data-wiki-route="/results"]
+    .results-dose-scan-controls
+    input[type="range"] {
+    min-width: 0;
+  }
+  .wiki-page[data-wiki-route="/results"] .results-dose-scan-chart {
+    height: 360px;
+    min-height: 300px;
+  }
+  .wiki-page[data-wiki-route="/results"] .model-chart {
+    height: 360px;
+  }
+  .wiki-page[data-wiki-route="/results"] .model-chart-loading {
+    min-height: 450px;
+  }
+}
+
+/* --------------------------------------------- run-in labels & numbered runs */
+
+.wiki-page[data-wiki-route="/results"]
+  .wiki-prose
+  .wiki-protocol-step-subheading {
+  display: block;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 700;
+  letter-spacing: normal;
+  color: var(--route-heading-ink, #243d2c);
+}
+
+.wiki-page[data-wiki-route="/results"]
+  .wiki-prose
+  .wiki-protocol-step-subheading::before {
+  content: none;
+}
+
+.wiki-page[data-wiki-route="/results"] .wiki-prose .wiki-protocol-step-list {
+  margin: 0;
+  gap: var(--wiki-space-p, 16px);
+}
+
+.wiki-page[data-wiki-route="/results"] .wiki-prose .wiki-protocol-step-item {
+  padding: 0;
+  gap: 10px;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  transform: none;
+}
+
+.wiki-page[data-wiki-route="/results"]
+  .wiki-prose
+  .wiki-protocol-step-item:hover {
+  background: none;
+  border-color: transparent;
+  transform: none;
+}
+
+.wiki-page[data-wiki-route="/results"] .wiki-prose .wiki-protocol-step-badge {
+  width: auto;
+  min-width: 1.35em;
+  height: auto;
+  margin-top: 0;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--route-subheading-ink, #84382b);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 700;
+}
+
+.wiki-page[data-wiki-route="/results"] .wiki-prose .wiki-protocol-step-text {
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}

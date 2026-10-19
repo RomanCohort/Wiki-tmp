@@ -1,0 +1,540 @@
+/* The shared hideOutline/documentFlow shell owns the full reader geometry. */
+.wiki-page.wiki-page--route.wiki-page--notebook.route--document-flow
+  .route-frame {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100% calc(100dvh - var(--header-height));
+}
+
+.notebook-shell,
+.notebook-workspace {
+  scroll-margin-top: calc(var(--header-height) + 24px);
+}
+
+.notebook-shell {
+  /* Keep the wider floating links clear of expanded timeline records. */
+  padding-inline-start: 72px;
+}
+
+.notebook-group-nav {
+  position: fixed;
+  z-index: 30;
+  top: 50%;
+  left: max(4px, env(safe-area-inset-left));
+  transform: translateY(-50%);
+  display: grid;
+  width: 132px;
+  gap: 12px;
+  color: #2f4731;
+  font: 550 14px / 1.5 var(--font-sans, sans-serif);
+}
+.notebook-group-nav a {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 54px;
+  padding: 13px 10px;
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 160ms;
+}
+.notebook-group-nav a::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 1px 0;
+  background: linear-gradient(100deg, #a8bd8670, #b8c99a38 85%), #fafcf3f5;
+  clip-path: polygon(
+    2% 14%,
+    28% 5%,
+    62% 9%,
+    98% 3%,
+    100% 82%,
+    78% 96%,
+    40% 91%,
+    0 97%
+  );
+  transition: background-color 160ms;
+}
+.notebook-group-nav a:hover::before {
+  background-color: #e6edd9;
+}
+.notebook-group-nav a[aria-current="true"]::before {
+  background:
+    linear-gradient(100deg, #819e5eb3, #a6c0788c 75%, #bdd09b66), #f8faef;
+}
+.notebook-group-nav a[aria-current="true"] {
+  color: #203923;
+  font-weight: 650;
+}
+.notebook-group-nav a:focus-visible {
+  outline: 2px solid #536c3e;
+  outline-offset: 2px;
+}
+.notebook-group-nav__dot {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.4;
+}
+.notebook-group-nav [aria-current="true"] .notebook-group-nav__dot {
+  opacity: 1;
+}
+
+.notebook-workspace {
+  --notebook-nav-h: 90px;
+  --font-heading: var(--font-body);
+  --font-display: var(--font-body);
+  --notebook-rule: color-mix(
+    in srgb,
+    var(--route-heading-ink) 18%,
+    transparent
+  );
+  container: notebook / inline-size;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--font-sans, sans-serif);
+  color: var(--route-heading-ink);
+}
+
+.notebook-workspace [data-phase-tone="0"] {
+  --phase-pigment: #ac874c;
+  --phase-ink: #735525;
+}
+.notebook-workspace [data-phase-tone="1"] {
+  --phase-pigment: #739daa;
+  --phase-ink: #365767;
+}
+.notebook-workspace [data-phase-tone="2"] {
+  --phase-pigment: #9d89aa;
+  --phase-ink: #604c6e;
+}
+.notebook-workspace [data-phase-tone="3"] {
+  --phase-pigment: #75965b;
+  --phase-ink: #3c542e;
+}
+.notebook-workspace [data-phase-tone="4"] {
+  --phase-pigment: #b57362;
+  --phase-ink: #804638;
+}
+.notebook-workspace [data-phase-tone="5"] {
+  --phase-pigment: #609c92;
+  --phase-ink: #2e625b;
+}
+.notebook-workspace [data-phase-tone="6"] {
+  --phase-pigment: #7b8fb9;
+  --phase-ink: #42547e;
+}
+.notebook-workspace [data-phase-tone="7"] {
+  --phase-pigment: #b48098;
+  --phase-ink: #7b4660;
+}
+.notebook-workspace [data-phase-tone="8"] {
+  --phase-pigment: #788b8e;
+  --phase-ink: #445d62;
+}
+.notebook-workspace [data-phase-tone="9"] {
+  --phase-pigment: #ae9d4c;
+  --phase-ink: #6c5c22;
+}
+.notebook-workspace [data-phase-tone="10"] {
+  --phase-pigment: #bb8d62;
+  --phase-ink: #7e512e;
+}
+.notebook-workspace [data-phase-tone="11"] {
+  --phase-pigment: #8e9a66;
+  --phase-ink: #4f5f30;
+}
+.notebook-workspace [data-phase-tone="12"] {
+  --phase-pigment: #7799bc;
+  --phase-ink: #395b7b;
+}
+.notebook-workspace [data-phase-tone="13"] {
+  --phase-pigment: #b58b71;
+  --phase-ink: #78543c;
+}
+.notebook-workspace [data-phase-tone="14"] {
+  --phase-pigment: #a781a7;
+  --phase-ink: #6e4972;
+}
+
+.notebook-workspace :is(h2, h3, h4, button, a) {
+  font-family: inherit;
+}
+
+.notebook-workspace__heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.notebook-workspace .notebook-workspace__heading h2 {
+  margin: 0 0 12px;
+  color: var(--route-heading-ink);
+  font-size: clamp(21px, 2.2vw, 25px);
+  line-height: 1.35;
+}
+
+.notebook-workspace .notebook-workspace__heading p {
+  margin: 0;
+  color: color-mix(in srgb, var(--route-heading-ink) 78%, white);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.notebook-workspace .notebook-workspace__heading .notebook-workspace__guide {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  max-width: 265px;
+  font-size: 12px;
+}
+.notebook-workspace__guide svg {
+  flex: none;
+  margin-top: 2px;
+}
+.notebook-workspace .notebook-workspace__intro {
+  margin: 20px 0 0;
+  color: #354337;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.notebook-months {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 5;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 4px;
+  margin: 28px 0 32px;
+  padding: 10px 0;
+  border-block: 1px solid var(--notebook-rule);
+  background: #fafcf3;
+}
+
+.notebook-months a {
+  appearance: none;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  min-width: 0;
+  min-height: 68px;
+  padding: 8px 4px;
+  border: 0;
+  background: transparent;
+  color: var(--route-heading-ink);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.notebook-months a::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 3px;
+  border-radius: 44% 35% 42% 39%;
+  background: radial-gradient(
+    ellipse at 44% 48%,
+    #a6be7b9c 8%,
+    #b5c98b69 55%,
+    #c2d69a14 74%,
+    transparent 83%
+  );
+  opacity: 0;
+  transform: rotate(-4deg);
+  transition: opacity 180ms;
+}
+.notebook-months a:hover::before {
+  opacity: 0.5;
+}
+.notebook-months a[aria-current="date"]::before {
+  opacity: 1;
+}
+.notebook-months a[aria-current="date"] {
+  color: #2d4828;
+}
+.notebook-months a:focus-visible {
+  outline: 2px solid var(--route-heading-ink);
+  outline-offset: -2px;
+}
+.notebook-months__year {
+  font-size: 11px;
+  font-weight: 450;
+  opacity: 0.76;
+}
+.notebook-months__activity {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--route-heading-ink);
+  opacity: 0.6;
+}
+.notebook-months__activity[data-has-entries="false"] {
+  background: transparent;
+  border: 1px solid var(--route-heading-ink);
+  opacity: 0.3;
+}
+
+.notebook-workspace__timeline {
+  min-width: 0;
+  scroll-margin-top: calc(var(--header-height) + 24px);
+}
+.notebook-record {
+  min-width: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.notebook-record__paper {
+  min-width: 0;
+  padding: 18px;
+}
+
+.notebook-record__body {
+  display: flow-root;
+}
+.notebook-record .notebook-record__body p {
+  margin: 0 0 16px;
+  color: #354337;
+  font-size: 14px;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+.notebook-record .notebook-record__body > :last-child {
+  margin-bottom: 0;
+}
+.notebook-record__discussion {
+  position: relative;
+  isolation: isolate;
+  margin: 0 0 24px;
+  padding: 18px 16px 2px;
+}
+.notebook-record__discussion::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: color-mix(in srgb, var(--phase-pigment) 9%, transparent);
+  clip-path: polygon(1% 2%, 40% 0, 99% 2%, 100% 96%, 65% 99%, 0 97%);
+}
+.notebook-record .notebook-record__discussion h4 {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  margin: 0 0 14px;
+  color: var(--route-heading-ink);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.65;
+}
+
+.notebook-record__phase {
+  position: relative;
+  isolation: isolate;
+  padding: 4px 12px;
+  color: var(--phase-ink);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.notebook-record__phase::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: color-mix(in srgb, var(--phase-pigment) 24%, transparent);
+  border-radius: 25% 17% 30% 13%;
+  transform: rotate(-1deg);
+}
+
+.notebook-record .notebook-record__table {
+  display: block;
+  margin: 24px 0;
+  padding: 0;
+  min-width: 0;
+  background: transparent;
+}
+.notebook-record__table table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 11px;
+  color: #354337;
+}
+.notebook-record__table caption {
+  caption-side: top;
+  padding: 0 0 14px;
+  text-align: left;
+  color: var(--route-heading-ink);
+  font-size: 13px;
+  line-height: 1.6;
+  font-weight: 650;
+}
+.notebook-record__table :is(th, td) {
+  padding: 9px 5px;
+  border-bottom: 1px solid var(--notebook-rule);
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+  line-height: 1.65;
+}
+.notebook-record__table thead th {
+  background: color-mix(in srgb, var(--route-soft) 18%, transparent);
+  font-weight: 600;
+}
+.notebook-record__table tbody th {
+  font-weight: 450;
+}
+.notebook-record__table tbody tr:nth-child(even) {
+  background: #e8edd727;
+}
+
+.notebook-record .notebook-record__figure {
+  display: block;
+  margin: 24px 0;
+  padding: 0;
+  background: transparent;
+}
+.notebook-record__figure[data-gallery-kind="photos"] {
+  --long-gallery-reader-height: 300px;
+}
+.notebook-record .notebook-record__figure > figcaption {
+  margin: 0 0 14px;
+  color: var(--route-heading-ink);
+  font-size: 13px;
+  font-weight: 550;
+  line-height: 1.6;
+}
+.notebook-record__figure-label {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--route-subheading-ink);
+  font-size: 10px;
+  font-weight: 450;
+}
+.notebook-record__images {
+  display: grid;
+  gap: 14px;
+}
+.notebook-record__images a {
+  display: block;
+}
+.notebook-record__images img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #283b2810;
+  background: white;
+}
+.notebook-record .notebook-record__table figcaption,
+.notebook-record .notebook-record__body .notebook-record__caption {
+  display: block;
+  margin: 12px 0 0;
+  padding: 0;
+  color: #5b6257;
+  text-align: left;
+  font-size: 11px;
+  line-height: 1.75;
+}
+.notebook-record
+  :is(.notebook-record__table, .notebook-record__figure)
+  figcaption::before {
+  display: none;
+}
+
+@container notebook (max-width: 720px) {
+  .vertical-gantt .vertical-gantt__heading {
+    scroll-margin-top: calc(var(--header-height) + 24px);
+  }
+  .notebook-workspace__heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .notebook-workspace .notebook-workspace__heading .notebook-workspace__guide {
+    max-width: none;
+  }
+  .notebook-months {
+    position: static;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .notebook-months a {
+    min-height: 60px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .notebook-group-nav {
+    top: auto;
+    left: 16px;
+    bottom: max(18px, env(safe-area-inset-bottom));
+    transform: none;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: min(552px, calc(100vw - 32px));
+    gap: 8px;
+  }
+  .notebook-shell {
+    padding-inline-start: 0;
+    padding-bottom: 96px;
+  }
+  body:has(.notebook-group-nav) .circure-back-to-top {
+    bottom: calc(84px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 599px) {
+  .notebook-group-nav {
+    left: max(8px, env(safe-area-inset-left));
+    width: calc(100vw - 16px);
+    gap: 4px;
+  }
+  .notebook-group-nav a {
+    min-height: 50px;
+    padding-inline: 2px;
+    font-size: clamp(11px, 3.1vw, 13px);
+  }
+  .notebook-group-nav__dot {
+    display: none;
+  }
+}
+
+@container notebook (max-width: 370px) {
+  .notebook-months {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@container notebook (max-width: 720px) {
+  .notebook-record__paper {
+    padding: 14px 10px;
+  }
+  .notebook-record__discussion {
+    padding-inline: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notebook-months a::before,
+  .notebook-group-nav a,
+  .notebook-group-nav a::before {
+    transition: none;
+  }
+}

@@ -1,0 +1,132 @@
+.wiki-page .judging-criteria {
+  margin: 0;
+}
+
+.wiki-page .judging-criteria .highlights-record__item {
+  border: 1px solid rgb(74 44 29 / 14%);
+  border-radius: 12px;
+  background: rgb(255 253 247 / 72%);
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.wiki-page .judging-criteria .highlights-record__item.is-open {
+  border-color: color-mix(
+    in srgb,
+    var(--route-subheading-ink) 32%,
+    transparent
+  );
+  background: rgb(255 253 247 / 95%);
+}
+
+.wiki-page
+  .judging-criteria
+  .highlights-record__item
+  + .highlights-record__item {
+  margin-top: 12px;
+}
+
+.wiki-page .judging-criteria .highlights-record__toggle {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  min-height: 56px;
+  padding: 18px 20px;
+  border: 0;
+  border-radius: 11px;
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.wiki-page .judging-criteria .highlights-record__toggle:hover {
+  background: color-mix(in srgb, var(--route-subheading-ink) 5%, transparent);
+}
+
+.wiki-page .judging-criteria .highlights-record__toggle:focus-visible {
+  outline: 2px solid var(--route-subheading-ink);
+  outline-offset: 3px;
+}
+
+.wiki-page .judging-criteria .highlights-record__toggle:active {
+  background: color-mix(in srgb, var(--route-subheading-ink) 9%, transparent);
+}
+
+.wiki-page .judging-criteria .highlights-record__question {
+  flex: 1;
+  min-width: 0;
+  color: var(--route-heading-ink);
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.wiki-page .judging-criteria .highlights-record__toggle svg {
+  flex: none;
+  align-self: center;
+  box-sizing: content-box;
+  width: 16px;
+  height: 16px;
+  padding: 7px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--route-subheading-ink) 7%, transparent);
+  fill: none;
+  stroke: var(--route-subheading-ink);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 180ms ease;
+}
+
+.wiki-page
+  .judging-criteria
+  .highlights-record__item.is-open
+  .highlights-record__toggle
+  svg {
+  transform: rotate(180deg);
+}
+
+.wiki-page .judging-criteria .highlights-record__answer {
+  padding: 0 20px 20px;
+}
+
+.wiki-page .judging-criteria .highlights-record__answer p {
+  margin: 0 0 12px;
+  font-size: 15.5px;
+  line-height: 1.75;
+}
+
+.wiki-page .judging-criteria .highlights-record__answer p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .wiki-page .judging-criteria .highlights-record__toggle {
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .wiki-page .judging-criteria .highlights-record__toggle svg {
+    align-self: flex-start;
+  }
+
+  .wiki-page .judging-criteria .highlights-record__answer {
+    padding: 0 16px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wiki-page .judging-criteria .highlights-record__item,
+  .wiki-page .judging-criteria .highlights-record__toggle,
+  .wiki-page .judging-criteria .highlights-record__toggle svg {
+    transition: none;
+  }
+}

@@ -1,0 +1,250 @@
+[
+  {
+    "key": "education-gallery-virtual-laboratory",
+    "title": "Hailun Pilu Virtual Laboratory (1)",
+    "images": [
+      {
+        "file": "virtual-laboratory/01-hailun-classroom-overview.jpg",
+        "caption": "Hailun classroom overview"
+      },
+      {
+        "file": "virtual-laboratory/02-hailun-experiment-entry.jpg",
+        "caption": "Hailun experiment entry"
+      },
+      {
+        "file": "virtual-laboratory/03-hailun-reagent-explanation.jpg",
+        "caption": "Hailun reagent explanation"
+      },
+      {
+        "file": "virtual-laboratory/04-pilu-student-screen-participation.jpg",
+        "caption": "Pilu student screen participation"
+      },
+      {
+        "file": "virtual-laboratory/05-pilu-classroom-dialogue.jpg",
+        "caption": "Pilu classroom dialogue"
+      }
+    ]
+  },
+  {
+    "key": "education-gallery-synbio-classroom",
+    "title": "Synbio Classroom",
+    "images": [
+      {
+        "file": "synbio-classroom/01-synbio-lab-overview.jpg",
+        "caption": "Synbio lab overview"
+      },
+      {
+        "file": "synbio-classroom/02-synbio-course-opening.jpg",
+        "caption": "Synbio course opening"
+      },
+      {
+        "file": "synbio-classroom/03-guided-pipette-practice.jpg",
+        "caption": "Guided pipette practice"
+      },
+      {
+        "file": "synbio-classroom/04-gel-loading-detail.jpg",
+        "caption": "Gel loading detail"
+      },
+      {
+        "file": "synbio-classroom/05-dna-extraction-filtering.jpg",
+        "caption": "Dna extraction filtering"
+      },
+      {
+        "file": "synbio-classroom/06-life-science-game-board.jpg",
+        "caption": "Life science game board"
+      },
+      {
+        "file": "synbio-classroom/07-tabletop-card-decisions.jpg",
+        "caption": "Tabletop card decisions"
+      },
+      {
+        "file": "synbio-classroom/08-virtual-lab-walkthrough.jpg",
+        "caption": "Virtual lab walkthrough"
+      },
+      {
+        "file": "synbio-classroom/09-synbio-class-closing.jpg",
+        "caption": "Synbio class closing"
+      }
+    ]
+  },
+  {
+    "key": "education-gallery-air-to-bread-classroom",
+    "title": "Air to Bread Classroom",
+    "images": [
+      {
+        "file": "new-figure/air-to-bread-classroom-01.avif",
+        "caption": "Air to Bread Classroom · 1"
+      },
+      {
+        "file": "new-figure/air-to-bread-classroom-02.avif",
+        "caption": "Air to Bread Classroom · 2"
+      },
+      {
+        "file": "new-figure/air-to-bread-classroom-03.avif",
+        "caption": "Air to Bread Classroom · 3"
+      },
+      {
+        "file": "new-figure/air-to-bread-classroom-04.avif",
+        "caption": "Air to Bread Classroom · 4"
+      },
+      {
+        "file": "new-figure/air-to-bread-classroom-05.avif",
+        "caption": "Air to Bread Classroom · 5"
+      },
+      {
+        "file": "new-figure/air-to-bread-classroom-06.avif",
+        "caption": "Air to Bread Classroom · 6"
+      }
+    ]
+  },
+  {
+    "key": "education-gallery-vaccine-classroom",
+    "title": "Vaccine Classroom",
+    "images": [
+      {
+        "file": "new-figure/jidafuxiao-1.avif",
+        "caption": "Vaccine Classroom · 1"
+      },
+      {
+        "file": "new-figure/jidafuxiao-2.avif",
+        "caption": "Vaccine Classroom · 2"
+      },
+      {
+        "file": "new-figure/jidafuxiao-3.avif",
+        "caption": "Vaccine Classroom · 3"
+      },
+      {
+        "file": "new-figure/jidafuxiao-4.avif",
+        "caption": "Vaccine Classroom · 4"
+      },
+      {
+        "file": "new-figure/jidafuxiao-5.avif",
+        "caption": "Vaccine Classroom · 5"
+      },
+      {
+        "file": "new-figure/jidafuxiao-6.avif",
+        "caption": "Vaccine Classroom · 6"
+      }
+    ]
+  },
+  {
+    "key": "education-gallery-xinghua-festival",
+    "title": "Xinghua Festival",
+    "images": [
+      {
+        "file": "new-figure/xinghua01.avif",
+        "caption": "Xinghua Festival · 1"
+      },
+      {
+        "file": "new-figure/xinghua02.avif",
+        "caption": "Xinghua Festival · 2"
+      },
+      {
+        "file": "new-figure/xinghua03.avif",
+        "caption": "Xinghua Festival · 3"
+      },
+      {
+        "file": "new-figure/xinghua04.avif",
+        "caption": "Xinghua Festival · 4"
+      },
+      {
+        "file": "new-figure/xinghua05.avif",
+        "caption": "Xinghua Festival · 5"
+      },
+      {
+        "file": "new-figure/xinghua06.avif",
+        "caption": "Xinghua Festival · 6"
+      },
+      {
+        "file": "new-figure/xinghua07.avif",
+        "caption": "Xinghua Festival · 7"
+      }
+    ]
+  },
+  {
+    "key": "education-gallery-health-run",
+    "title": "Health Run",
+    "images": [
+      {
+        "file": "health-run/01-health-run-outreach-overview.jpg",
+        "caption": "Health run outreach overview"
+      },
+      {
+        "file": "health-run/02-health-run-event-setting.jpg",
+        "caption": "Health run event setting"
+      },
+      {
+        "file": "health-run/03-route-leaflet-handover.jpg",
+        "caption": "Route leaflet handover"
+      },
+      {
+        "file": "health-run/04-route-health-discussion.jpg",
+        "caption": "Route health discussion"
+      },
+      {
+        "file": "health-run/05-participant-leaflet-reading.jpg",
+        "caption": "Participant leaflet reading"
+      },
+      {
+        "file": "health-run/06-health-run-team-closing.jpg",
+        "caption": "Health run team closing"
+      }
+    ]
+  },
+  {
+    "key": "education-gallery-music-festival",
+    "title": "Music Festival",
+    "images": [
+      {
+        "file": "music-festival/01-music-festival-booth-overview.jpg",
+        "caption": "Music festival booth overview"
+      },
+      {
+        "file": "music-festival/02-music-activity-table.jpg",
+        "caption": "Music activity table"
+      },
+      {
+        "file": "music-festival/03-gene-jukebox-writing.jpg",
+        "caption": "Gene jukebox writing"
+      },
+      {
+        "file": "music-festival/04-music-prompt-dialogue.jpg",
+        "caption": "Music prompt dialogue"
+      },
+      {
+        "file": "music-festival/05-gene-jukebox-responses.jpg",
+        "caption": "Gene jukebox responses"
+      }
+    ]
+  },
+  {
+    "key": "education-gallery-ethics-debate",
+    "title": "Ethics Debate",
+    "images": [
+      {
+        "file": "ethics-debate/01-ethics-debate-overview.jpg",
+        "caption": "Ethics debate overview"
+      },
+      {
+        "file": "ethics-debate/02-opposing-team-argument.jpg",
+        "caption": "Opposing team argument"
+      },
+      {
+        "file": "ethics-debate/03-cross-team-exchange.jpg",
+        "caption": "Cross team exchange"
+      },
+      {
+        "file": "ethics-debate/04-argument-notes-detail.jpg",
+        "caption": "Argument notes detail"
+      },
+      {
+        "file": "ethics-debate/05-room-listening-participants.jpg",
+        "caption": "Room listening participants"
+      },
+      {
+        "file": "ethics-debate/06-ethics-debate-closing.jpg",
+        "caption": "Ethics debate closing"
+      }
+    ]
+  }
+]

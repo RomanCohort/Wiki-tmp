@@ -1,0 +1,234 @@
+/* CirCure design tokens — Friendly Scientific Editorial.
+   Loaded AFTER bootstrap.min.css so it overrides Bootstrap body/typography defaults.
+   Web fonts are served from the team's iGEM Uploads directory. */
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("https://static.igem.wiki/teams/6056/wiki/files/fonts/site/fraunces-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("https://static.igem.wiki/teams/6056/wiki/files/fonts/site/newsreader-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fredoka";
+  src: url("https://static.igem.wiki/teams/6056/wiki/files/fonts/site/fredoka-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("https://static.igem.wiki/teams/6056/wiki/files/fonts/site/lexend-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("https://static.igem.wiki/teams/6056/wiki/files/fonts/site/ibm-plex-mono.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+ 
+:root {
+  --paper: #eee7dc;
+  --paper-bright: #fcf8f1;
+  --ink: #1b1719;
+  --deep: #102f59;
+  --brand-navy: #173f78;
+  --brand-navy-deep: #102f59;
+  --green: #d79cbe;
+  --green-strong: #754356;
+  --care: #d784b3;
+  --coral: #df705b;
+  --gold: #c39a55;
+  --blue: #667e8c;
+  --surface-map: #e5d9d2;
+  --surface-blush: #ddcbd3;
+  --home-footer-surface: #edbabc;
+  --muted: rgba(27, 23, 25, 0.68);
+  --line: rgba(27, 23, 25, 0.18);
+  --on-navy: rgba(252, 248, 241, 0.22);
+
+  /* 主字体族配置：标题使用 Fraunces 高端学术衬线体，正文使用 Lexend */
+  --font-heading: "Fraunces", "Newsreader", "Times New Roman", Georgia, serif;
+  --font-display: "Fraunces", "Newsreader", "Times New Roman", Georgia, serif;
+  --font-editorial: "Fraunces", "Newsreader", "Times New Roman", Georgia, serif;
+  --font-sans: "Lexend", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-body: "Lexend", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  --radius-control: 6px;
+  --radius-panel: 28px;
+  --radius-panel-mobile: 20px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 220ms;
+  --tracking-display: -0.01em;
+  --tracking-label: 0.05em;
+  --weight-display: 600;
+  --weight-label: 600;
+  --header-height: 78px;
+}
+ 
+* {
+  box-sizing: border-box;
+}
+ 
+html {
+  scroll-behavior: auto;
+  background: var(--paper);
+}
+ 
+html.is-thread-directing {
+  scroll-behavior: auto;
+}
+ 
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 全量大小标题默认全量应用 Fraunces 学术衬线体 */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6,
+.circure-page-title,
+.wiki-hero h1,
+.wiki-section__heading h2,
+.wiki-subheading__title,
+.wiki-item-grid h3,
+.wiki-ledger h3,
+.wiki-mini-timeline h3,
+.wiki-next h2,
+.card-title {
+  font-family: var(--font-heading) !important;
+  letter-spacing: -0.015em;
+}
+
+/* 全量正文文字与段落默认全量应用 Lexend */
+body,
+p,
+ul,
+ol,
+li,
+dd,
+dt,
+td,
+th,
+input,
+textarea,
+select,
+button,
+blockquote,
+figcaption,
+.circure-page-lead,
+.wiki-hero__lede,
+.wiki-section__summary,
+.wiki-prose,
+.wiki-prose p,
+.wiki-callout p {
+  font-family: var(--font-body) !important;
+}
+ 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ 
+a:focus-visible {
+  outline: 2px solid var(--green-strong);
+  outline-offset: 4px;
+}
+ 
+button:focus-visible {
+  outline: 2px solid var(--care);
+  outline-offset: 3px;
+}
+ 
+button {
+  border: 0;
+  color: inherit;
+  font: inherit;
+}
+ 
+svg {
+  display: block;
+}
+ 
+/* Inner-page editorial Header (replaces Bootstrap green hero) */
+ 
+.circure-page-header {
+  position: relative;
+  padding: clamp(80px, 10vw, 140px) 0 clamp(40px, 5vw, 64px);
+  background: var(--paper-bright);
+  border-bottom: 1px solid var(--line);
+}
+ 
+.circure-page-header::after {
+  position: absolute;
+  right: clamp(22px, 4.7vw, 72px);
+  bottom: 18px;
+  width: 64px;
+  height: 1px;
+  background: var(--care);
+  content: "";
+}
+ 
+.circure-page-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  color: var(--care);
+  font-size: 10px;
+  font-weight: var(--weight-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+ 
+.circure-page-eyebrow::before {
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  content: "";
+}
+ 
+.circure-page-title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  color: var(--ink);
+}
+ 
+.circure-page-lead {
+  max-width: 760px;
+  margin: 22px 0 0;
+  font-family: var(--font-body);
+  font-size: clamp(17px, 1.5vw, 21px);
+  line-height: 1.55;
+  color: var(--brand-navy);
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

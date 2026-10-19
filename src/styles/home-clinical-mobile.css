@@ -1,0 +1,152 @@
+/* Keep the original nurse and paired boards proportional on a portrait stage.
+   Particle paths sample these live positions before each clinical handoff. */
+@media (max-width: 600px) and (orientation: portrait) {
+  .home-story #clinical-challenge .story-art--8 {
+    --clinical-mobile-height: min(
+      calc(100svh - var(--header-height) - 32px),
+      640px
+    );
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 94%;
+    height: var(--clinical-mobile-height);
+    aspect-ratio: auto;
+    translate: -50% -50%;
+  }
+
+  .home-story #clinical-challenge .story-art--8 > [data-layer="2"] {
+    left: 3% !important;
+    top: auto !important;
+    bottom: 24px;
+    width: 94% !important;
+    height: auto !important;
+  }
+  .home-story #clinical-challenge .story-art--8 > [data-layer="3"] {
+    left: 50% !important;
+    top: calc(100% - 24px - 27.345cqw) !important;
+    width: 12% !important;
+    height: auto !important;
+    translate: -50% -50%;
+    z-index: 7;
+  }
+  .home-story #clinical-challenge .story-art--8 > [data-layer="4"] {
+    left: 50% !important;
+    top: auto !important;
+    bottom: calc(54.69cqw + 96px);
+    width: min(
+      44cqw,
+      calc(var(--clinical-mobile-height) * 0.24),
+      calc((var(--clinical-mobile-height) - 54.69cqw - 112px) * 0.52)
+    ) !important;
+    height: auto !important;
+    translate: -50% 0;
+  }
+
+  .home-story #clinical-challenge .story-challenge-heading {
+    top: calc(100% - 70px - 54.69cqw);
+    width: 42%;
+    gap: 4px;
+  }
+  .home-story #clinical-challenge .story-challenge-heading--care {
+    left: 3%;
+  }
+  .home-story #clinical-challenge .story-challenge-heading--need {
+    left: 55%;
+  }
+  .home-story #clinical-challenge .story-challenge-heading span {
+    font-size: 10px;
+    line-height: 1.3;
+    letter-spacing: 0.08em;
+  }
+  .home-story #clinical-challenge .story-challenge-heading strong {
+    font-size: clamp(18px, 5vw, 22px);
+    line-height: 1.12;
+  }
+
+  /* The complete source plate keeps its original 827:510 paint proportions. */
+  .home-story #clinical-challenge .story-morph-icon {
+    left: 6% !important;
+    top: calc(100% - 24px - 54.69cqw) !important;
+    width: 88% !important;
+    height: auto !important;
+    aspect-ratio: 827 / 510;
+  }
+  .home-story #clinical-challenge .story-morph-word {
+    font-size: clamp(14px, 3.9vw, 17px);
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+  .home-story #clinical-challenge .story-morph-thumbnail {
+    height: auto;
+  }
+  .home-story
+    #clinical-challenge
+    :is(.story-morph--surgery, .story-morph--chemotherapy)
+    .story-morph-word {
+    left: 26%;
+    width: 38%;
+  }
+  .home-story
+    #clinical-challenge
+    :is(.story-morph--surgery, .story-morph--chemotherapy)
+    .story-morph-thumbnail {
+    left: 26%;
+    width: 13%;
+  }
+  .home-story #clinical-challenge .story-morph--surgery .story-morph-thumbnail {
+    top: calc(100% - 24px - 42.66cqw);
+  }
+  .home-story #clinical-challenge .story-morph--surgery .story-morph-word {
+    top: calc(100% - 24px - 31.17cqw);
+  }
+  .home-story
+    #clinical-challenge
+    .story-morph--chemotherapy
+    .story-morph-thumbnail {
+    top: calc(100% - 24px - 18.595cqw);
+  }
+  .home-story #clinical-challenge .story-morph--chemotherapy .story-morph-word {
+    top: calc(100% - 24px - 7.657cqw);
+  }
+  .home-story
+    #clinical-challenge
+    :is(
+      .story-morph--resistance,
+      .story-morph--effects,
+      .story-morph--recurrence
+    )
+    .story-morph-thumbnail {
+    left: 60%;
+    width: 10%;
+  }
+  .home-story
+    #clinical-challenge
+    :is(
+      .story-morph--resistance,
+      .story-morph--effects,
+      .story-morph--recurrence
+    )
+    .story-morph-word {
+    left: 80%;
+    width: 30%;
+  }
+  .home-story
+    #clinical-challenge
+    .story-morph--resistance
+    :is(.story-morph-word, .story-morph-thumbnail) {
+    top: calc(100% - 24px - 43.752cqw);
+  }
+  .home-story
+    #clinical-challenge
+    .story-morph--effects
+    :is(.story-morph-word, .story-morph-thumbnail) {
+    top: calc(100% - 24px - 27.345cqw);
+  }
+  .home-story
+    #clinical-challenge
+    .story-morph--recurrence
+    :is(.story-morph-word, .story-morph-thumbnail) {
+    top: calc(100% - 24px - 10.938cqw);
+  }
+}

@@ -1,0 +1,148 @@
+/* Home opening intro: sparkler signature, strobe and hand-off to the header. */
+:root:has(.home-intro) {
+  overflow: hidden;
+  overscroll-behavior: none;
+  scrollbar-gutter: stable;
+}
+
+.home-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 102;
+  display: grid;
+  place-items: center;
+  pointer-events: auto;
+  touch-action: none;
+  outline: none;
+}
+.home-intro-flash,
+.home-intro-embers {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.home-intro-flash {
+  z-index: 0;
+  opacity: 0;
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 46%,
+    #fff 0%,
+    #f6d9ea 32%,
+    rgba(215, 132, 179, 0.55) 62%,
+    rgba(162, 81, 114, 0) 100%
+  );
+  mix-blend-mode: screen;
+}
+.home-intro-embers {
+  z-index: 2;
+}
+.home-intro-title {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: clamp(14px, 2.2vh, 26px);
+  width: min(78vw, 880px);
+  margin-top: calc(var(--header-height) * 0.5);
+  transform: translateY(-6vh);
+}
+.home-intro-flight {
+  width: 100%;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+.home-intro-word {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 0 10px rgba(232, 181, 214, 0.55))
+    drop-shadow(0 0 28px rgba(162, 81, 114, 0.45));
+}
+.home-intro-ink {
+  opacity: 0;
+}
+.home-intro-tip-core {
+  animation: home-intro-sizzle 90ms steps(2, jump-none) infinite alternate;
+  animation-play-state: paused;
+}
+@keyframes home-intro-sizzle {
+  from {
+    r: 14px;
+  }
+  to {
+    r: 24px;
+  }
+}
+.home-intro-subtitle {
+  max-width: 44ch;
+  margin: 0;
+  color: rgba(248, 233, 232, 0.86);
+  font-family: var(--font-display);
+  font-size: clamp(14px, 1.45vw, 20px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-shadow: 0 0 18px rgba(215, 132, 179, 0.45);
+  visibility: hidden;
+}
+.home-intro-subtitle-word {
+  display: inline-block;
+  white-space: nowrap;
+  opacity: 0;
+}
+.home-intro-skip {
+  position: absolute;
+  z-index: 3;
+  right: clamp(16px, 3vw, 40px);
+  bottom: clamp(16px, 4vh, 40px);
+  padding: 8px 14px;
+  border: 1px solid rgba(248, 233, 232, 0.28);
+  border-radius: 999px;
+  background: rgba(33, 20, 31, 0.5);
+  color: rgba(248, 233, 232, 0.82);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  pointer-events: auto;
+  visibility: hidden;
+  transition:
+    background-color 180ms var(--ease-out),
+    border-color 180ms var(--ease-out);
+}
+.home-intro-skip:hover {
+  border-color: rgba(215, 132, 179, 0.7);
+  background: rgba(215, 132, 179, 0.18);
+}
+.home-intro-skip:focus-visible {
+  outline: 2px solid #d784b3;
+  outline-offset: 3px;
+}
+
+/* The flying signature lands beneath the persistent header word. */
+.site-header.is-home-page .logo-word-full.is-intro-landed {
+  animation: home-intro-land 600ms var(--ease-out) both;
+}
+@keyframes home-intro-land {
+  from {
+    color: #fff;
+    text-shadow:
+      0 0 8px #f6d9ea,
+      0 0 22px #d784b3;
+  }
+  to {
+    text-shadow: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .home-intro-title {
+    width: 86vw;
+    transform: translateY(-4vh);
+  }
+}

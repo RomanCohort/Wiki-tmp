@@ -1,0 +1,54 @@
+/* Section 06 stays an illustration, using the original artwork positions. */
+#why-circrna {
+  --scene-hold: 100svh;
+}
+#why-circrna .circrna-caption {
+  position: absolute;
+  top: 92%;
+  left: 15%;
+  width: 70%;
+  margin: 0;
+  color: #765968;
+  text-align: center;
+  font: 400 clamp(11px, 1.05vw, 15px)/1.5 var(--font-sans);
+  opacity: 0.75;
+}
+@media (max-width: 800px) and (orientation: portrait) {
+  #why-circrna {
+    --scene-hold: 65svh;
+  }
+  #why-circrna .circrna-illustration {
+    width: min(100%, calc((var(--scene-height) - 24px) * 0.8));
+    aspect-ratio: 4 / 5;
+  }
+  /* Recompose the same layers for a tall screen. */
+  #why-circrna [data-layer="2"] {
+    left: 8% !important;
+    top: 5% !important;
+    width: 84% !important;
+    height: auto !important;
+  }
+  #why-circrna [data-layer="4"] {
+    left: 10% !important;
+    top: 29% !important;
+    width: 49% !important;
+    height: 38.1% !important;
+  }
+  #why-circrna [data-layer="3"] {
+    left: 13% !important;
+    top: 68% !important;
+    width: 23% !important;
+    height: auto !important;
+  }
+  #why-circrna .circrna-benefit-art {
+    left: 64% !important;
+    top: 32% !important;
+    width: 31% !important;
+    height: auto !important;
+  }
+  #why-circrna .circrna-caption {
+    top: 93%;
+    left: 8%;
+    width: 84%;
+  }
+}

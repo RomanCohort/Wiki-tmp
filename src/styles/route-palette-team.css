@@ -1,0 +1,23 @@
+/* Team module palette. */
+/* The footer is a sibling of <Routes>, not a descendant of .wiki-page--*, so it
+   cannot inherit these tokens. It carries the same module class and therefore
+   has to be named here too — adding a module means adding it in all three. */
+.wiki-page--team,
+.site-header.is-team-page,
+.circure-footer.is-team-page {
+  --route-main: #f5cf6f;
+  --route-soft: #fee9b5;
+  --route-base: #fffbd0;
+  --route-frame-image: url("https://static.igem.wiki/teams/6056/wiki/files/pages/team/team.avif");
+  --route-heading-ink: #3e2d14;      /* 大标题 H2：深古铜黑褐，庄重沉稳 */
+  --route-marker-bg: #f8ecbe;        /* 大标题马克笔：浅金麦香底涂 */
+  --route-subheading-ink: #762338;   /* 小标题 H3：深勃艮第酒红，古铜金与茜红相映，学术荣誉与典范感鲜明 */
+  --route-watermark: rgba(62, 45, 20, 0.12);
+}
+
+.wiki-page--team .team-inspirations { margin: 48px 0 0; padding: 24px; border: 1px solid color-mix(in srgb, var(--route-accent) 24%, transparent); border-radius: 18px; background: color-mix(in srgb, var(--route-soft) 62%, transparent); }
+.wiki-page--team .team-inspirations > span { color: var(--route-accent); font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; }
+.wiki-page--team .team-inspirations h3 { margin: 10px 0 16px; color: var(--route-ink); font-family: var(--font-editorial); font-size: 28px; font-weight: 400; }
+.wiki-page--team .team-inspirations ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.wiki-page--team .team-inspirations a { display: flex; justify-content: space-between; padding: 9px 0; border-top: 1px solid color-mix(in srgb, var(--route-accent) 18%, transparent); color: var(--route-ink); text-decoration: none; }
+.wiki-page--team .team-inspirations a:hover { color: var(--route-accent); }

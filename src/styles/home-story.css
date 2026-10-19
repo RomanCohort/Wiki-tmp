@@ -1,0 +1,1192 @@
+.home-story {
+  --story-ink: #483741;
+  --story-muted: #695a64;
+  --story-accent: #a25172;
+  color: var(--story-ink);
+  background: #fcf6ed;
+  font-family: var(--font-sans);
+  padding-bottom: clamp(40px, 7svh, 80px);
+}
+.home-story section {
+  scroll-margin-top: var(--header-height);
+}
+/* Illustration chapters already reserve space for foreground artwork inside
+   .story-visual. A second anchor offset leaves a blank strip behind the lens. */
+.home-story .story-chapter {
+  scroll-margin-top: 0;
+}
+.home-story p {
+  margin: 0 0 1em;
+}
+.home-story h2 em {
+  color: var(--story-accent);
+  font: inherit;
+}
+.home-story h2 .story-emphasis-why {
+  text-decoration: underline;
+  text-decoration-color: #c88da6;
+  text-decoration-thickness: 0.055em;
+  text-underline-offset: 0.13em;
+}
+.home-story a:focus-visible,
+.home-story button:focus-visible {
+  outline: 2px solid var(--story-accent);
+  outline-offset: 5px;
+}
+body:has(.home-story) .footer {
+  margin-top: 0 !important;
+}
+.story-prologue {
+  min-height: 76svh;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+  padding: 80px 24px 104px;
+  background: linear-gradient(#21141f 55%, #51424e 80%, #f0eef3);
+  color: #f8e9e8;
+}
+.story-prologue > p {
+  font: 400 56px/1.25 var(--font-editorial);
+  letter-spacing: 0;
+  margin: 0 0 36px;
+}
+.story-prologue-line { display: block; }
+.story-prologue em {
+  color: #d9abc1;
+  font: inherit;
+}
+.story-prologue button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 17px;
+  color: #ead7e2;
+  text-decoration: none;
+  cursor: pointer;
+}
+.story-prologue button:hover {
+  color: #fff;
+  text-decoration: none;
+}
+@media (max-width: 800px) {
+  .story-prologue { min-height: 70svh; padding: 64px 24px 88px; }
+  .story-prologue > p { font-size: 36px; }
+}
+@media (max-width: 380px) {
+  .story-prologue > p { font-size: 30px; }
+}
+.story-prologue button span {
+  display: block;
+  margin-top: 22px;
+}
+.story-chapter {
+  --scene-height: calc(100svh - var(--header-height));
+  --scene-hold: 92svh;
+  position: relative;
+  background: var(--chapter-bg);
+}
+.story-chapter--clinic::after {
+  height: 0;
+}
+.story-chapter--clinic {
+  --chapter-bg: #f0eef3;
+  --next-bg: #f0eef3;
+  --scene-hold: 150svh;
+}
+.story-chapter--map {
+  --chapter-bg: #f9e8e8;
+  --next-bg: #f2f4fe;
+}
+.story-chapter--challenge {
+  --chapter-bg: #f2f4fe;
+  --next-bg: #f0f3fd;
+  --scene-hold: 276svh;
+}
+.story-chapter--vaccine {
+  --chapter-bg: #f0f3fd;
+  --next-bg: #fceeed;
+  --scene-hold: 170svh;
+}
+.story-chapter--rna {
+  --chapter-bg: #fceeed;
+  --next-bg: #fff4e2;
+}
+.story-chapter--platform {
+  --chapter-bg: #fff4e2;
+  --next-bg: var(--chapter-bg);
+}
+.story-chapter--switch {
+  --chapter-bg: #fff4e2;
+  --next-bg: #f2eee5;
+  --scene-hold: 180svh;
+}
+.story-chapter--beyond {
+  --chapter-bg: #f2eee5;
+  --next-bg: #f7e7e6;
+}
+.story-chapter::after {
+  content: "";
+  display: block;
+  height: 64px;
+  background: linear-gradient(var(--chapter-bg), var(--next-bg));
+  pointer-events: none;
+}
+/* Extra track length holds the completed art without slowing its reveal. */
+.story-scene-track {
+  height: calc(var(--scene-height) + var(--header-height));
+}
+.has-story-motion .story-scene-track {
+  height: calc(
+    var(--scene-height) + var(--header-height) + var(--scene-hold) * var(--home-scroll-scale, 1)
+  );
+}
+.story-chapter-inner {
+  position: sticky;
+  top: 0;
+  height: calc(var(--scene-height) + var(--header-height));
+  background: var(--chapter-bg);
+  overflow: hidden;
+  isolation: isolate;
+  contain: layout paint style;
+}
+.story-visual {
+  position: absolute;
+  /* Extend the backdrop behind the bar while preserving the artwork's
+     original height and reading area below it. */
+  inset: var(--header-height) 0 0;
+}
+.story-backdrop {
+  position: absolute;
+  inset: calc(-1 * var(--header-height)) 0 0;
+  display: block;
+  width: 100%;
+  height: calc(100% + var(--header-height));
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  user-select: none;
+}
+.home-story.has-story-motion .story-visual {
+  opacity: 0.86;
+}
+.story-art {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(94%, calc((var(--scene-height) - 24px) * var(--art-aspect)));
+  aspect-ratio: var(--art-aspect);
+  translate: -50% -50%;
+  margin: 0;
+}
+.story-art--6,
+.story-art--ward {
+  width: min(
+    86%,
+    calc((var(--scene-height) - 32px) * var(--art-aspect) * 0.86)
+  );
+}
+.story-art--9 {
+  width: min(
+    78%,
+    calc((var(--scene-height) - 32px) * var(--art-aspect) * 0.78)
+  );
+}
+.story-chapter--beyond .story-artwork-title {
+  position: absolute;
+  z-index: 4;
+  top: 21%;
+  left: 15%;
+  width: min(40vw, 650px);
+  margin: 0;
+  isolation: isolate;
+  pointer-events: none;
+  color: #493943;
+  font: 400 clamp(34px, 3.25vw, 64px)/1.12 var(--font-editorial);
+  letter-spacing: -0.035em;
+  text-shadow:
+    0 -1px 0 rgba(255, 255, 247, 0.72),
+    0 2px 5px rgba(76, 57, 66, 0.12);
+}
+.story-chapter--beyond .story-beyond-line {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  white-space: nowrap;
+}
+.story-chapter--beyond .story-beyond-line + .story-beyond-line {
+  margin-top: 0.12em;
+  margin-left: clamp(20px, 3vw, 50px);
+}
+.story-chapter--beyond .story-beyond-ink {
+  display: block;
+}
+.story-chapter--beyond .story-beyond-glow {
+  position: absolute;
+  z-index: -1;
+  inset: -62% -8% -72% -12%;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 43% 43%,
+    rgba(255, 253, 233, 0.92),
+    rgba(255, 242, 195, 0.5) 42%,
+    rgba(255, 236, 181, 0) 72%
+  );
+  filter: blur(15px);
+  opacity: 0;
+}
+@media (max-width: 800px) {
+  .story-chapter--beyond .story-artwork-title {
+    top: 16%;
+    left: 8%;
+    width: 84%;
+    font-size: clamp(25px, 4.5vw, 40px);
+  }
+  .story-chapter--beyond .story-beyond-line + .story-beyond-line {
+    margin-left: 18px;
+  }
+}
+@media (max-width: 600px) and (orientation: portrait) {
+  .story-chapter--beyond .story-artwork-title {
+    top: 17%;
+    left: 5%;
+    width: 90%;
+    font-size: clamp(25px, 7vw, 33px);
+  }
+  .story-chapter--beyond .story-beyond-line + .story-beyond-line {
+    margin-top: 0.18em;
+    margin-left: 12px;
+  }
+}
+@media (max-height: 600px) and (orientation: landscape) {
+  .story-chapter--beyond .story-artwork-title {
+    top: 12%;
+    left: 18%;
+    font-size: clamp(24px, 3vw, 29px);
+  }
+  .story-chapter--beyond .story-beyond-line + .story-beyond-line {
+    margin-left: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .story-chapter--beyond .story-beyond-glow {
+    display: none;
+  }
+}
+.story-art--ward-patient,
+.story-art--family {
+  top: auto;
+  bottom: -1px;
+  translate: -50% 0;
+}
+.story-art--ward-patient {
+  left: 46%;
+}
+.story-layer {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  transform-origin: center;
+  backface-visibility: hidden;
+}
+.story-ward-change {
+  left: 10%;
+  top: 0;
+  width: 75%;
+  height: 100%;
+  object-fit: fill;
+  opacity: 0;
+}
+.story-ward-change--patient {
+  z-index: 3;
+  left: 12%;
+  top: 13%;
+  width: 62%;
+  height: 87%;
+}
+.story-ward-change--clinician {
+  z-index: 4;
+  left: 22%;
+  top: -5%;
+  width: 58%;
+  height: 70%;
+}
+.story-ward-change--question,
+.story-ward-change--ellipsis {
+  z-index: 5;
+}
+.story-ward-infusion {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.story-ward-infusion path {
+  fill: none;
+  stroke-linecap: butt;
+}
+.story-ward-infusion-edge {
+  stroke: #626d83;
+  stroke-width: var(--tube-width, 15);
+  opacity: 0.82;
+}
+.story-ward-infusion-core {
+  stroke: #e3e4e3;
+  stroke-width: calc(var(--tube-width, 15) * 0.6);
+}
+.story-ward-infusion-light {
+  stroke: #f3f2ed;
+  stroke-width: calc(var(--tube-width, 15) * 0.4);
+  opacity: 0.45;
+}
+.story-map-landscape {
+  z-index: 1;
+}
+.story-map-piece {
+  z-index: 2;
+  transform-origin: center;
+  overflow: hidden;
+}
+/* Shared timing only. Keyframe names and durations for every piece live in
+   home-tnbc-map.css (#why-tnbc); keep the two files in step. */
+.story-map-piece--cloud,
+.story-map-piece--boat,
+.story-map-piece--wave {
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-delay: calc(var(--piece-index) * -0.73s);
+  animation-play-state: paused;
+}
+.story-chapter.is-visible .story-map-piece {
+  animation-play-state: running;
+}
+.story-morph-icon {
+  z-index: 5;
+}
+.story-art--8 {
+  container-type: inline-size;
+}
+.story-challenge-heading {
+  position: absolute;
+  z-index: 7;
+  top: 8%;
+  display: grid;
+  gap: 3px;
+  width: 26%;
+  text-align: center;
+  pointer-events: none;
+}
+.story-challenge-heading--care {
+  left: 22%;
+  color: #526f9d;
+}
+.story-challenge-heading--need {
+  left: 56%;
+  color: #92546a;
+}
+.story-challenge-heading span {
+  font: 650 clamp(10px, 0.9vw, 13px)/1.2 var(--font-sans);
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+.story-challenge-heading strong {
+  font: 500 clamp(25px, 2.15vw, 34px)/1.08 var(--font-editorial);
+  letter-spacing: -0.025em;
+}
+.story-morph--surgery,
+.story-morph--chemotherapy {
+  --challenge-accent: #5475a5;
+}
+.story-morph--resistance,
+.story-morph--effects,
+.story-morph--recurrence {
+  --challenge-accent: #92546a;
+}
+.story-morph-word {
+  position: absolute;
+  z-index: 6;
+  display: block;
+  width: 18%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  color: var(--challenge-accent);
+  font: 500 clamp(12px, 1.67cqw, 25px)/1.16 var(--font-editorial);
+  letter-spacing: -0.01em;
+  text-align: center;
+  text-wrap: balance;
+  pointer-events: none;
+}
+.story-morph-thumbnail {
+  position: absolute;
+  z-index: 5;
+  display: block;
+  width: 9.5%;
+  translate: -50% -50%;
+  transform-origin: center;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.story-morph--surgery .story-morph-thumbnail,
+.story-morph--chemotherapy .story-morph-thumbnail {
+  left: 44%;
+  width: 8%;
+}
+.story-morph--resistance .story-morph-thumbnail,
+.story-morph--effects .story-morph-thumbnail,
+.story-morph--recurrence .story-morph-thumbnail {
+  left: 61%;
+}
+.story-morph--surgery .story-morph-word {
+  left: 34%;
+  top: 34%;
+}
+.story-morph--chemotherapy .story-morph-word {
+  left: 35.75%;
+  top: 70%;
+}
+.story-morph--resistance .story-morph-word {
+  left: 74.5%;
+  top: 38%;
+}
+.story-morph--effects .story-morph-word {
+  left: 74.5%;
+  top: 58%;
+}
+.story-morph--recurrence .story-morph-word {
+  left: 74.5%;
+  top: 75%;
+}
+.story-morph--surgery .story-morph-word,
+.story-morph--chemotherapy .story-morph-word {
+  width: 11.5%;
+}
+.story-morph--resistance .story-morph-word,
+.story-morph--effects .story-morph-word,
+.story-morph--recurrence .story-morph-word {
+  width: 16%;
+}
+.story-morph--surgery .story-morph-thumbnail { top: 34%; }
+.story-morph--chemotherapy .story-morph-thumbnail { left: 46.5%; top: 70%; }
+.story-morph--resistance .story-morph-thumbnail { top: 38%; }
+.story-morph--effects .story-morph-thumbnail { top: 58%; }
+.story-morph--recurrence .story-morph-thumbnail { top: 75%; }
+.story-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.story-art--4 {
+  container-type: inline-size;
+}
+.story-vaccine-copy {
+  position: absolute;
+  z-index: 4;
+  top: 32%;
+  width: 26%;
+  color: #51434b;
+  text-align: left;
+}
+.story-vaccine-copy--question {
+  left: 10.5%;
+  --vaccine-accent: #526f99;
+}
+.story-vaccine-copy--answer {
+  left: 65%;
+  --vaccine-accent: #a45b70;
+}
+.story-vaccine-copy h3 {
+  margin: 0;
+  font: 400 2.05cqw/1.2 var(--font-editorial);
+  letter-spacing: -0.025em;
+  text-wrap: pretty;
+}
+.story-vaccine-copy h3 span {
+  color: var(--vaccine-accent);
+}
+.story-vaccine-mobile-frame {
+  display: none;
+}
+.story-platform-layout {
+  position: absolute;
+  inset: 0;
+}
+.story-platform-layout .story-art--2 {
+  width: min(
+    82%,
+    calc((var(--scene-height) - 24px) * var(--art-aspect) * 0.82)
+  );
+}
+.story-platform-note {
+  position: absolute;
+  z-index: 7;
+  display: grid;
+  gap: 6px;
+  width: 19%;
+  opacity: 0;
+  color: #80525f;
+  text-align: left;
+  pointer-events: none;
+}
+.story-platform-note::before {
+  width: 28px;
+  height: 2px;
+  background: currentColor;
+  content: "";
+}
+.story-platform-note strong {
+  font: 400 clamp(20px, 2.05vw, 30px)/1.08 var(--font-editorial);
+  letter-spacing: -0.035em;
+}
+.story-platform-note small {
+  color: #76646a;
+  font: 400 clamp(12px, 1vw, 15px)/1.35 var(--font-sans);
+}
+.story-platform-note--structure {
+  top: 26%;
+  left: 3%;
+}
+.story-platform-note--mechanism {
+  top: 26%;
+  right: 3%;
+}
+.story-platform-note--design {
+  left: 3%;
+  bottom: 24%;
+}
+.story-platform-note--beyond {
+  right: 3%;
+  bottom: 24%;
+}
+.story-platform-note--mechanism,
+.story-platform-note--beyond {
+  justify-items: end;
+  text-align: right;
+}
+.story-platform-note--structure,
+.story-platform-note--design {
+  color: #77729a;
+}
+.story-copy {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 36px 8%;
+  align-items: start;
+  align-content: center;
+  min-height: var(--scene-height);
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(48px, 6svh, 80px) 6%;
+}
+.story-copy h2 {
+  margin: 0;
+  font: 400 clamp(36px, 3.6vw, 62px)/1.12 var(--font-editorial);
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+/* Pinned reading panels keep their chapter colour behind the floating bar. */
+.story-copy::before {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--header-height));
+  left: calc((100% - 100vw) / 2);
+  width: 100vw;
+  height: var(--header-height);
+  background: var(--chapter-bg);
+  pointer-events: none;
+}
+.story-body {
+  font-size: clamp(18px, 1.4vw, 21px);
+  line-height: 1.65;
+  color: var(--story-muted);
+}
+.story-body > :last-child {
+  margin-bottom: 0;
+}
+.story-body strong {
+  color: var(--story-ink);
+  font-weight: 600;
+}
+.story-body blockquote {
+  margin: 24px 0;
+  font: italic 28px/1.4 var(--font-editorial);
+  color: var(--story-accent);
+}
+/* Shared editorial rhythm for the reading panels after each illustration. */
+.story-chapter:not(.story-chapter--ward) .story-copy {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: 36px;
+  max-width: none;
+  padding: 64px 7%;
+  text-align: center;
+  background: var(--chapter-bg);
+}
+.story-chapter:not(.story-chapter--ward) .story-copy h2 {
+  max-width: 940px;
+  font-size: 52px;
+  line-height: 1.16;
+  letter-spacing: 0;
+}
+.story-chapter:not(.story-chapter--ward) .story-body {
+  width: min(100%, 650px);
+  font-size: 19px;
+  line-height: 1.75;
+}
+.story-chapter:not(.story-chapter--ward) .story-body > p {
+  margin-bottom: 24px;
+  text-wrap: pretty;
+}
+.story-chapter:not(.story-chapter--ward) .story-body > :last-child {
+  margin-bottom: 0;
+}
+.story-reading-word {
+  transform-origin: 50% 100%;
+}
+.story-chapter--map .story-receptors {
+  justify-content: center;
+  gap: 48px;
+  margin: 32px 0;
+}
+.story-chapter--map .story-receptors span {
+  gap: 10px;
+  align-items: baseline;
+  font: 400 34px/1.2 var(--font-editorial);
+  letter-spacing: 0;
+}
+.story-chapter--map .story-body .story-emphasis {
+  margin-top: 28px;
+  font-size: 22px;
+  line-height: 1.6;
+}
+.story-chapter--challenge .story-challenges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+  margin: 30px 0;
+  padding: 0;
+  list-style: none;
+  color: var(--story-accent);
+}
+.story-chapter--challenge .story-challenges li {
+  padding: 0 0 10px;
+  border-bottom: 1px solid rgba(162, 81, 114, 0.25);
+}
+.story-chapter:not(.story-chapter--ward) .story-source {
+  margin-top: 12px;
+  font-size: 15px;
+  font-weight: 400;
+  text-underline-offset: 6px;
+}
+@media (max-width: 800px) {
+  .story-chapter:not(.story-chapter--ward) .story-copy {
+    gap: 28px;
+    padding: 44px 24px;
+  }
+  .story-chapter:not(.story-chapter--ward) .story-copy h2 {
+    font-size: 34px;
+  }
+  .story-chapter:not(.story-chapter--ward) .story-body {
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .story-chapter--map .story-receptors {
+    gap: 28px;
+    margin: 28px 0;
+  }
+  .story-chapter--map .story-receptors span {
+    font-size: 28px;
+  }
+  .story-chapter--map .story-body .story-emphasis {
+    font-size: 20px;
+  }
+}
+@media (max-width: 380px), (max-height: 650px) {
+  .story-chapter:not(.story-chapter--ward) .story-copy {
+    gap: 24px;
+    padding: 36px 24px;
+  }
+  .story-chapter:not(.story-chapter--ward) .story-copy h2 {
+    font-size: 30px;
+  }
+  .story-chapter--map .story-receptors {
+    gap: 22px;
+  }
+  .story-chapter--map .story-receptors span {
+    font-size: 26px;
+  }
+}
+/* A quiet reading stage between the ward and the TNBC map. */
+.story-chapter--ward .story-copy {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: 32px;
+  max-width: none;
+  padding: 56px 24px;
+  text-align: center;
+  background: var(--chapter-bg);
+}
+.story-chapter--ward .story-copy h2 {
+  max-width: 900px;
+  font-size: 54px;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+.story-ward-title-ending {
+  display: inline-block;
+  padding: 0 0.08em 0.1em;
+}
+.story-chapter--ward .story-body {
+  width: min(100%, 820px);
+  font-size: 18px;
+  line-height: 1.7;
+}
+.story-chapter--ward .story-ward-context {
+  max-width: 610px;
+  margin: 0 auto;
+  text-wrap: pretty;
+}
+.story-ward-dialogue {
+  display: grid;
+  gap: 28px;
+  align-items: center;
+  margin: 44px 0 30px;
+  perspective: 900px;
+}
+.story-chapter--ward .story-ward-wish,
+.story-chapter--ward .story-ward-question {
+  width: 100%;
+  margin: 0;
+  padding: 8px 0;
+  font: italic 44px/1.25 var(--font-editorial);
+  letter-spacing: 0;
+  text-wrap: balance;
+  color: var(--story-accent);
+}
+.story-chapter--ward .story-ward-question {
+  color: var(--story-ink);
+}
+.story-copy.has-ward-reading .story-ward-dialogue {
+  gap: 0;
+}
+.story-copy.has-ward-reading .story-ward-dialogue > * {
+  grid-area: 1 / 1;
+}
+.story-ward-thread {
+  display: block;
+  width: 96px;
+  height: 1px;
+  margin: 0 auto 28px;
+  background: var(--story-accent);
+  transform-origin: center;
+}
+.story-ward-aftermath span {
+  display: block;
+}
+.story-ward-aftermath span:last-child {
+  margin-top: 12px;
+  color: var(--story-ink);
+}
+@media (max-width: 800px) {
+  .story-chapter--ward .story-copy {
+    gap: 20px;
+    padding: 36px 24px;
+  }
+  .story-chapter--ward .story-copy h2 {
+    max-width: 540px;
+    font-size: 36px;
+  }
+  .story-chapter--ward .story-body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .story-ward-dialogue {
+    margin: 32px 0 24px;
+  }
+  .story-chapter--ward .story-ward-wish,
+  .story-chapter--ward .story-ward-question {
+    font-size: 32px;
+  }
+  .story-ward-thread {
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 380px), (max-height: 650px) {
+  .story-chapter--ward .story-copy {
+    gap: 16px;
+    padding: 24px 20px;
+  }
+  .story-chapter--ward .story-copy h2 {
+    font-size: 28px;
+  }
+  .story-chapter--ward .story-body {
+    font-size: 15px;
+  }
+  .story-chapter--ward .story-ward-wish,
+  .story-chapter--ward .story-ward-question {
+    font-size: 28px;
+  }
+  .story-ward-dialogue {
+    margin: 20px 0 16px;
+  }
+  .story-ward-thread {
+    margin-bottom: 16px;
+  }
+}
+.story-body .story-small {
+  font-size: inherit;
+  line-height: inherit;
+}
+.story-source {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 16px;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  color: var(--story-muted);
+}
+.story-emphasis {
+  color: var(--story-accent);
+}
+.story-receptors {
+  display: flex;
+  gap: 24px;
+  margin: 24px 0;
+}
+.story-receptors > span {
+  display: flex;
+  gap: 12px;
+  font-size: 23px;
+  color: var(--story-ink);
+}
+.story-receptors b {
+  font-weight: 400;
+  color: var(--story-accent);
+}
+.story-challenges {
+  padding-left: 1.1em;
+  margin: 20px 0;
+}
+.story-challenges li {
+  padding: 4px 0;
+}
+.story-hope-links {
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6% 7%;
+  pointer-events: none;
+}
+/* DUPLICATE: .story-hope-card/.story-hope-group are also styled in
+   home-explore.css, which loads later and overrides font and transition
+   (font-family with !important). Check both files when changing them. */
+.story-hope-group {
+  position: relative;
+  display: grid;
+  align-content: center;
+  gap: clamp(18px, 4svh, 44px);
+  width: clamp(200px, 23vw, 310px);
+}
+.story-hope-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  min-height: 72px;
+  padding: 16px 4px;
+  color: #694753;
+  font: 400 clamp(22px, 2.05vw, 30px)/1.2 var(--font-editorial);
+  text-align: left;
+  text-decoration: none;
+  pointer-events: auto;
+  transition: color 0.24s;
+}
+.story-hope-card span {
+  flex: 0 0 auto;
+  color: #9e6b7a;
+  font: 400 23px/1 var(--font-sans);
+  transition:
+    transform 0.24s,
+    color 0.24s;
+}
+.story-hope-card:hover,
+.story-hope-card:focus-visible {
+  color: #923e5b;
+}
+.story-hope-card:hover span,
+.story-hope-card:focus-visible span {
+  color: currentColor;
+  transform: translate(3px, -3px);
+}
+@media (max-width: 800px) {
+  .home-story .story-chapter--vaccine .story-scene-track {
+    height: auto;
+  }
+  .story-chapter--vaccine .story-chapter-inner {
+    position: relative;
+    top: 0;
+    height: auto;
+    min-height: var(--scene-height);
+  }
+  .story-chapter--vaccine .story-visual {
+    position: relative;
+    inset: auto;
+    padding: 32px 0;
+  }
+  .story-art--4 {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: min(92%, 480px);
+    aspect-ratio: auto;
+    translate: none;
+    display: grid;
+    gap: 88px;
+    margin: 0 auto;
+  }
+  .story-art--4 > [data-layer="2"],
+  .story-art--4 > [data-layer="3"],
+  .story-art--4 > [data-layer="4"],
+  .story-art--4 > [data-layer="5"] {
+    display: none;
+  }
+  .story-art--4 > [data-layer="6"] {
+    left: calc(50% - 40px) !important;
+    top: calc(50% - 26px) !important;
+    width: 80px !important;
+    height: 52px !important;
+    rotate: 90deg;
+  }
+  .story-art--4 > [data-layer="7"],
+  .story-art--4 > [data-layer="8"] {
+    left: auto !important;
+    right: 7%;
+    width: 52px !important;
+    height: 60px !important;
+    z-index: 5;
+  }
+  .story-art--4 > [data-layer="8"] {
+    top: 22px !important;
+  }
+  .story-art--4 > [data-layer="7"] {
+    top: calc(50% + 66px) !important;
+  }
+  .story-vaccine-copy {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    display: grid;
+    align-items: center;
+    min-height: 380px;
+    padding: 76px 9% 42px;
+  }
+  .story-vaccine-mobile-frame {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  .story-vaccine-copy h3 {
+    font-size: clamp(27px, 7.8cqw, 35px);
+  }
+  .story-chapter {
+    --scene-height: calc(100svh - var(--header-height));
+    --scene-hold: 70svh;
+  }
+  .story-chapter--challenge {
+    --scene-hold: 210svh;
+  }
+  .story-art--8 {
+    width: 122vw;
+  }
+  .story-chapter--switch {
+    --scene-hold: 85svh;
+  }
+  .story-chapter--clinic {
+    --scene-hold: 125svh;
+  }
+  .story-copy {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 48px 7% 64px;
+  }
+  .story-copy h2 {
+    font-size: clamp(34px, 7vw, 48px);
+  }
+  .story-body {
+    font-size: 18px;
+    line-height: 1.65;
+  }
+  .story-body blockquote {
+    font-size: 25px;
+  }
+  .story-morph-word {
+    font-size: clamp(11px, 3.4vw, 18px);
+  }
+  .story-morph--surgery .story-morph-thumbnail,
+  .story-morph--chemotherapy .story-morph-thumbnail {
+    left: 38%;
+    width: 9%;
+  }
+  .story-morph--surgery .story-morph-thumbnail { top: 31%; }
+  .story-morph--chemotherapy .story-morph-thumbnail { top: 64%; }
+  .story-morph--surgery .story-morph-word,
+  .story-morph--chemotherapy .story-morph-word {
+    left: 38%;
+    width: 19%;
+    font-size: clamp(11px, 3.1vw, 16px);
+  }
+  .story-morph--surgery .story-morph-word { top: 43%; }
+  .story-morph--chemotherapy .story-morph-word { top: 76%; }
+  .story-challenge-heading {
+    top: -28%;
+    width: 29%;
+  }
+  .story-challenge-heading--care {
+    left: 19%;
+  }
+  .story-challenge-heading--need {
+    left: 54%;
+  }
+  .story-challenge-heading span {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+  }
+  .story-challenge-heading strong {
+    font-size: clamp(15px, 4.2vw, 25px);
+  }
+  .story-platform-layout .story-art--2 {
+    width: min(94%, calc((var(--scene-height) - 24px) * var(--art-aspect)));
+  }
+  .story-platform-note {
+    width: 43%;
+    gap: 3px;
+  }
+  .story-platform-note::before {
+    width: 20px;
+  }
+  .story-platform-note strong {
+    font-size: clamp(15px, 3.7vw, 19px);
+  }
+  .story-platform-note small {
+    font-size: clamp(11px, 2.8vw, 13px);
+  }
+  .story-platform-note--structure,
+  .story-platform-note--design {
+    left: 5%;
+  }
+  .story-platform-note--mechanism,
+  .story-platform-note--beyond {
+    right: 5%;
+  }
+  .story-platform-note--structure,
+  .story-platform-note--mechanism {
+    top: 8%;
+  }
+  .story-platform-note--design,
+  .story-platform-note--beyond {
+    bottom: 8%;
+  }
+  .story-prologue {
+    min-height: 0;
+    padding: 44px 7% 78px;
+  }
+  .story-hope-links {
+    align-items: end;
+    gap: 8px;
+    padding: 0 4% 4%;
+  }
+  .story-hope-group {
+    width: calc(50% - 4px);
+    height: auto;
+    grid-auto-rows: 60px;
+    gap: 2px;
+    padding: 0;
+  }
+  .story-hope-card {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 4px;
+    gap: 8px;
+    font-size: clamp(16px, 4vw, 20px);
+  }
+  .story-hope-card span {
+    font-size: 15px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .story-map-piece {
+    animation: none;
+  }
+  .home-story .story-visual {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .home-story .story-scene-track {
+    height: calc(var(--scene-height) + var(--header-height));
+  }
+  .story-chapter-inner {
+    position: relative;
+    top: 0;
+  }
+  .story-layer {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  .story-ward-original--2,
+  .story-ward-original--3,
+  .story-morph-icon {
+    opacity: 0 !important;
+  }
+  .story-ward-change--patient,
+  .story-ward-infusion--changed,
+  .story-ward-change--clinician,
+  .story-ward-change--question,
+  .story-ward-change--ellipsis,
+  .story-morph-word,
+  .story-morph-thumbnail,
+  .story-platform-note {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .story-morph-thumbnail { transform: none !important; }
+}
+
+.story-painted {
+  overflow: visible;
+}
+.story-chapter.is-current .story-layer {
+  will-change: transform, opacity;
+}
+@media (prefers-reduced-motion: reduce) {
+  .story-paint-complete {
+    opacity: 1 !important;
+  }
+  .story-painted image {
+    mask: none;
+  }
+  .story-chapter.is-current .story-layer {
+    will-change: auto;
+  }
+}

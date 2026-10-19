@@ -1,0 +1,1195 @@
+/* ============================================================================
+   Games — Dry Lab 04 (/games)
+
+   Migrated from the previous build's `games-page.css`. The station map, the
+   three showcase launch cards and the full-screen play surface keep their
+   structure, spacing and interaction; every rule is scoped to
+   `.wiki-page--games` so nothing here can reach Model / Software / Hardware.
+
+   Three adaptations:
+
+   1. Palette — the previous build read `--dry-calm-*` (its own Dry Lab skin).
+      Here the same roles are read from the Dry Lab reader palette
+      (`--route-ink` / `--route-muted` / `--route-line` / `--route-line-strong` /
+      `--route-paper`), so the page follows `route-palette-drylab.css` exactly
+      like its three sibling records. The station-map ribbon was pink (#c96e8b)
+      in the previous build, i.e. a hue outside the module palette; it is now
+      derived from `--route-accent` / `--route-main`.
+   2. Container — the page now lives inside the reader frame, so the old
+      `width: min(1180px, calc(100% - 48px)); margin: 0 auto` wrappers and the
+      in-page headings are gone. Section rhythm comes from the paradigm; the
+      old heading strings live in the section headers.
+   3. Layout variant — like the Protocol Library, this record renders without the
+      TOC card, so `.wiki-record--full` collapses the mat to a single column.
+   ========================================================================== */
+
+.wiki-page--games {
+  --dry-lab-art: url("https://static.igem.wiki/teams/6056/wiki/files/pages/dry-lab/dry-lab-games-hero-v2.avif");
+  --games-ribbon: var(--route-accent);
+  --games-ribbon-soft: color-mix(in srgb, var(--route-main) 62%, #ffffff);
+}
+
+/* --- 1. Library layout variant: no TOC card, body fills the freed width --- */
+
+.wiki-page.wiki-page--route.wiki-page--games .wiki-record--full {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Feature blocks sit on the section's own grid, not the 70px text indent. */
+.wiki-page--games .wiki-feature {
+  margin: 42px 0 0;
+}
+
+/* The station map is a route diagram, not a numbered chapter: its heading has
+   no number, so the text column takes the whole width and lines up with the
+   stations below. The numbered record starts with the first playable project. */
+.wiki-page--route.wiki-page--games .wiki-section__heading--unnumbered {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* --- 2. Station map ------------------------------------------------------- */
+
+.wiki-page--games .games-project-map {
+  width: 100%;
+  color: var(--route-ink);
+}
+
+.wiki-page--games .games-project-map__stage {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--route-line-strong);
+}
+
+.wiki-page--games .games-project-map__source-note {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0 0;
+  color: var(--route-ink);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.wiki-page--games .games-project-map__source-mascot {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.wiki-page--games .games-project-map__source-mascot img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 240px;
+  max-width: none;
+  height: auto;
+  transform: translate(-50%, -50%);
+}
+
+.wiki-page--games .games-project-map__source-copy {
+  display: grid;
+  gap: 2px;
+}
+
+.wiki-page--games .games-project-map__source-copy > span {
+  color: var(--route-main);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.wiki-page--games .games-project-map__ribbon {
+  position: absolute;
+  z-index: 0;
+  /* Thin ground line under the knot tails (node top 33px + tail y 41). */
+  top: 73px;
+  right: calc(100% / 8);
+  left: calc(100% / 8);
+  height: 2px;
+  border-radius: 2px;
+  background: var(--games-ribbon-soft);
+}
+
+.wiki-page--games .games-project-map__stations {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wiki-page--games .games-project-map__stations > li {
+  min-width: 0;
+  border-right: 1px solid var(--route-line);
+}
+
+.wiki-page--games .games-project-map__stations > li:last-child {
+  border-right: 0;
+}
+
+.wiki-page--games
+  .games-project-map__stations
+  > li
+  > :is(button, article) {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 180px;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 86px clamp(12px, 1.8vw, 24px) 24px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: center;
+}
+
+.wiki-page--games .games-project-map__stations > li > button {
+  cursor: pointer;
+  transition: background-color 180ms ease;
+}
+
+.wiki-page--games
+  .games-project-map__stations
+  > li
+  > button:is(:hover, :focus-visible) {
+  background: color-mix(in srgb, var(--route-paper) 62%, transparent);
+  outline: 0;
+}
+
+.wiki-page--games .games-project-map__stations > li > button:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--route-ink);
+}
+
+.wiki-page--games .games-project-map small,
+.wiki-page--games .games-project-map em {
+  color: var(--route-muted);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.wiki-page--games .games-project-map__node {
+  position: absolute;
+  top: 49px;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  border: 6px solid var(--route-paper);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--route-muted) 55%, #ffffff);
+  box-shadow: 0 0 0 1px var(--route-line-strong);
+  transform: translateX(-50%);
+}
+
+.wiki-page--games .is-available .games-project-map__node {
+  top: 33px;
+  width: 32px;
+  height: 46px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--games-ribbon);
+}
+
+.wiki-page--games
+  .is-available
+  .games-project-map__node
+  .ribbon-mark {
+  display: block;
+  width: 32px;
+  height: 46px;
+  stroke: currentColor;
+  stroke-width: 2.6;
+}
+
+.wiki-page--games .games-project-map strong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 260px;
+  min-height: 56px;
+  margin: 0 auto;
+  font-family: var(--font-editorial);
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 550;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-align: center;
+  color: var(--route-ink);
+  transition: transform 180ms ease, color 180ms ease;
+}
+
+.wiki-page--games
+  .games-project-map__stations
+  > li
+  > button:is(:hover, :focus-visible)
+  strong {
+  color: var(--navy-deep, #102f59);
+  transform: translateY(-2px);
+}
+
+
+/* --- 3. Showcase launch cards --------------------------------------------- */
+
+.wiki-page--games .games-showcase {
+  width: 100%;
+  scroll-margin-top: calc(var(--header-height) + 24px);
+  color: var(--route-ink);
+}
+
+.wiki-page--games .games-showcase__launch {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 480px;
+  height: clamp(480px, 46vw, 620px);
+  overflow: hidden;
+  margin: 0;
+  padding: clamp(20px, 2.5vw, 32px);
+  border: 1px solid var(--route-line-strong);
+  border-radius: 14px;
+  background: var(--route-paper);
+  color: var(--route-ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  isolation: isolate;
+  box-shadow: 0 4px 20px rgba(20, 34, 50, 0.05);
+  transition: transform 260ms var(--ease-out), box-shadow 260ms ease,
+    border-color 260ms ease;
+}
+
+.wiki-page--games .games-showcase__launch::after {
+  position: absolute;
+  z-index: 1;
+  inset: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  content: "";
+  pointer-events: none;
+  transition: border-color 260ms ease;
+}
+
+.wiki-page--games .games-showcase__launch:is(:hover, :focus-visible) {
+  outline: 0;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(20, 34, 50, 0.12);
+  border-color: var(--route-accent);
+}
+
+.wiki-page--games .games-showcase__launch:focus-visible {
+  box-shadow: 0 0 0 3px var(--route-paper), 0 0 0 6px var(--route-accent);
+}
+
+.wiki-page--games .games-showcase__launch:active {
+  transform: translateY(-1px) scale(0.995);
+}
+
+/* Canvas stage */
+.wiki-page--games .games-showcase__canvas-stage {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  overflow: hidden;
+}
+
+.wiki-page--games .games-showcase__art {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: scale(1);
+  transition: transform 600ms var(--ease-out), filter 500ms ease;
+}
+
+.wiki-page--games
+  .games-showcase__launch:is(:hover, :focus-visible)
+  .games-showcase__art {
+  transform: scale(1.025);
+}
+
+.wiki-page--games .games-showcase__vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Top HUD */
+.wiki-page--games .games-showcase__hud {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+.wiki-page--games .games-showcase__station-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.wiki-page--games .games-showcase__knot-mark {
+  width: 13px;
+  height: 19px;
+  fill: none;
+  stroke: #5a8c62;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.wiki-page--games .games-showcase__station-badge strong {
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--route-ink);
+}
+
+.wiki-page--games .games-showcase__mode-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.85);
+  color: var(--route-ink);
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Bottom Action Dock — Premium Frosted Glassmorphism */
+.wiki-page--games .games-showcase__dock {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  padding: 16px 24px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.44);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 12px 32px -4px rgba(0, 0, 0, 0.08),
+    0 4px 12px -2px rgba(0, 0, 0, 0.03),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.03);
+  transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+}
+
+.wiki-page--games
+  .games-showcase__launch:is(:hover, :focus-visible)
+  .games-showcase__dock {
+  background: rgba(255, 255, 255, 0.58);
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 16px 40px -4px rgba(0, 0, 0, 0.12),
+    0 6px 16px -2px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1px 0 #ffffff;
+  transform: translateY(-2px);
+}
+
+.wiki-page--games .games-showcase__dock-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.wiki-page--games .games-showcase__title {
+  font-family: var(--font-editorial, "Georgia", serif);
+  font-size: clamp(20px, 2.2vw, 27px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.22;
+}
+
+.wiki-page--games .games-showcase__subtitle {
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 500;
+  opacity: 0.85;
+  color: inherit;
+}
+
+.wiki-page--games .games-showcase__dock-action {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.wiki-page--games .games-showcase__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+  transition: transform 200ms ease, box-shadow 200ms ease,
+    background-color 200ms ease;
+}
+
+.wiki-page--games .games-showcase__cta-play {
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  transform: translateX(1px);
+}
+
+.wiki-page--games
+  .games-showcase__launch:is(:hover, :focus-visible)
+  .games-showcase__cta-btn {
+  transform: scale(1.05);
+}
+
+/* ============================================================================
+   Game Themes
+   ========================================================================== */
+
+/* ── 02. BOMB CAT ── */
+.wiki-page--games .games-showcase--bomb-cat .games-showcase__launch {
+  border-color: rgba(224, 185, 120, 0.45);
+  background: #fbf6ec;
+}
+
+.wiki-page--games .games-showcase--bomb-cat .games-showcase__launch::after {
+  border-color: rgba(205, 140, 80, 0.28);
+}
+
+.wiki-page--games .games-showcase--bomb-cat .games-showcase__art {
+  background-position: center 36%;
+  background-size: cover;
+  filter: none;
+}
+
+.wiki-page--games .games-showcase--bomb-cat .games-showcase__vignette {
+  background: linear-gradient(
+    180deg,
+    rgba(251, 246, 236, 0.5) 0%,
+    rgba(251, 246, 236, 0.12) 16%,
+    transparent 28%,
+    transparent 72%,
+    rgba(245, 230, 210, 0.22) 100%
+  );
+}
+
+.wiki-page--games .games-showcase--bomb-cat .games-showcase__station-badge {
+  background: rgba(255, 252, 246, 0.65);
+  border-color: rgba(255, 255, 255, 0.8);
+  color: #15335b;
+}
+
+.wiki-page--games .games-showcase--bomb-cat .games-showcase__station-badge strong {
+  color: #15335b;
+}
+
+.wiki-page--games .games-showcase--bomb-cat .games-showcase__mode-pill {
+  background: rgba(255, 252, 246, 0.65);
+  border-color: rgba(255, 255, 255, 0.8);
+  color: #15335b;
+}
+
+.wiki-page--games .games-showcase--bomb-cat .games-showcase__dock {
+  background: rgba(255, 251, 244, 0.45);
+  border-color: rgba(255, 255, 255, 0.78);
+  box-shadow:
+    0 12px 32px -4px rgba(215, 145, 90, 0.14),
+    0 4px 12px -2px rgba(215, 145, 90, 0.05),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 1px 0 rgba(215, 145, 90, 0.04);
+  color: #142232;
+}
+
+.wiki-page--games .games-showcase--bomb-cat .games-showcase__title {
+  color: #102a4e;
+}
+
+.wiki-page--games .games-showcase--bomb-cat .games-showcase__subtitle {
+  color: #453327;
+}
+
+.wiki-page--games .games-showcase--bomb-cat .games-showcase__cta-btn {
+  background: #e65c70;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 14px rgba(230, 92, 112, 0.35);
+}
+
+.wiki-page--games
+  .games-showcase--bomb-cat
+  .games-showcase__launch:is(:hover, :focus-visible)
+  .games-showcase__cta-btn {
+  background: #d4495e;
+  box-shadow: 0 6px 20px rgba(230, 92, 112, 0.5);
+}
+
+/* ── 01. BREAST GUARDIAN RPG ── */
+.wiki-page--games .games-showcase--breast-guardian .games-showcase__launch {
+  border-color: rgba(182, 83, 119, 0.3);
+  background: #fdfaf7;
+}
+
+.wiki-page--games .games-showcase--breast-guardian .games-showcase__launch::after {
+  border-color: rgba(182, 83, 119, 0.22);
+}
+
+.wiki-page--games .games-showcase--breast-guardian .games-showcase__art {
+  background-position: center 48%;
+  background-size: cover;
+  filter: none;
+}
+
+.wiki-page--games .games-showcase--breast-guardian .games-showcase__vignette {
+  background: linear-gradient(
+    180deg,
+    rgba(253, 248, 244, 0.5) 0%,
+    rgba(253, 248, 244, 0.12) 16%,
+    transparent 28%,
+    transparent 72%,
+    rgba(240, 220, 225, 0.22) 100%
+  );
+}
+
+.wiki-page--games .games-showcase--breast-guardian .games-showcase__station-badge {
+  background: rgba(255, 250, 248, 0.65);
+  border-color: rgba(255, 255, 255, 0.8);
+  color: #5b2133;
+}
+
+.wiki-page--games .games-showcase--breast-guardian .games-showcase__station-badge strong {
+  color: #5b2133;
+}
+
+.wiki-page--games .games-showcase--breast-guardian .games-showcase__mode-pill {
+  background: rgba(255, 250, 248, 0.65);
+  border-color: rgba(255, 255, 255, 0.8);
+  color: #5b2133;
+}
+
+.wiki-page--games .games-showcase--breast-guardian .games-showcase__dock {
+  background: rgba(255, 248, 250, 0.45);
+  border-color: rgba(255, 255, 255, 0.78);
+  box-shadow:
+    0 12px 32px -4px rgba(182, 83, 119, 0.14),
+    0 4px 12px -2px rgba(182, 83, 119, 0.05),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 1px 0 rgba(182, 83, 119, 0.04);
+  color: #2b1820;
+}
+
+.wiki-page--games .games-showcase--breast-guardian .games-showcase__title {
+  color: #54192b;
+}
+
+.wiki-page--games .games-showcase--breast-guardian .games-showcase__subtitle {
+  color: #723b4b;
+}
+
+.wiki-page--games .games-showcase--breast-guardian .games-showcase__cta-btn {
+  background: #b65377;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 14px rgba(182, 83, 119, 0.35);
+}
+
+.wiki-page--games
+  .games-showcase--breast-guardian
+  .games-showcase__launch:is(:hover, :focus-visible)
+  .games-showcase__cta-btn {
+  background: #9d3f61;
+  box-shadow: 0 6px 20px rgba(182, 83, 119, 0.5);
+}
+
+/* ── 03. BIO MEMORY MATCH ── */
+.wiki-page--games .games-showcase--bio-memory .games-showcase__launch {
+  border-color: rgba(64, 138, 92, 0.35);
+  background: #f4faf2;
+}
+
+.wiki-page--games .games-showcase--bio-memory .games-showcase__launch::after {
+  border-color: rgba(64, 138, 92, 0.22);
+}
+
+.wiki-page--games .games-showcase--bio-memory .games-showcase__art {
+  background-position: center 38%;
+  background-size: cover;
+  filter: none;
+}
+
+.wiki-page--games .games-showcase--bio-memory .games-showcase__vignette {
+  background: linear-gradient(
+    180deg,
+    rgba(240, 248, 238, 0.5) 0%,
+    rgba(240, 248, 238, 0.12) 16%,
+    transparent 28%,
+    transparent 72%,
+    rgba(220, 238, 215, 0.22) 100%
+  );
+}
+
+.wiki-page--games .games-showcase--bio-memory .games-showcase__station-badge {
+  background: rgba(250, 255, 248, 0.65);
+  border-color: rgba(255, 255, 255, 0.8);
+  color: #1d4d30;
+}
+
+.wiki-page--games .games-showcase--bio-memory .games-showcase__station-badge strong {
+  color: #1d4d30;
+}
+
+.wiki-page--games .games-showcase--bio-memory .games-showcase__mode-pill {
+  background: rgba(250, 255, 248, 0.65);
+  border-color: rgba(255, 255, 255, 0.8);
+  color: #1d4d30;
+}
+
+.wiki-page--games .games-showcase--bio-memory .games-showcase__dock {
+  background: rgba(248, 254, 247, 0.45);
+  border-color: rgba(255, 255, 255, 0.78);
+  box-shadow:
+    0 12px 32px -4px rgba(46, 125, 77, 0.14),
+    0 4px 12px -2px rgba(46, 125, 77, 0.05),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 1px 0 rgba(46, 125, 77, 0.04);
+  color: #172d1f;
+}
+
+.wiki-page--games .games-showcase--bio-memory .games-showcase__title {
+  color: #143d22;
+}
+
+.wiki-page--games .games-showcase--bio-memory .games-showcase__subtitle {
+  color: #2d5538;
+}
+
+.wiki-page--games .games-showcase--bio-memory .games-showcase__cta-btn {
+  background: #2e7d4d;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 14px rgba(46, 125, 77, 0.35);
+}
+
+.wiki-page--games
+  .games-showcase--bio-memory
+  .games-showcase__launch:is(:hover, :focus-visible)
+  .games-showcase__cta-btn {
+  background: #23653d;
+  box-shadow: 0 6px 20px rgba(46, 125, 77, 0.5);
+}
+
+/* ── 04. VIRTUAL LABORATORY ── */
+.wiki-page--games .games-showcase--virtual-lab .games-showcase__launch {
+  border-color: rgba(99, 115, 175, 0.38);
+  background: #eef2fb;
+  color: #17223b;
+}
+
+.wiki-page--games .games-showcase--virtual-lab .games-showcase__launch::after {
+  border-color: rgba(99, 115, 175, 0.22);
+}
+
+.wiki-page--games .games-showcase--virtual-lab .games-showcase__art {
+  background-position: center 46%;
+  background-size: cover;
+  filter: none;
+}
+
+.wiki-page--games .games-showcase--virtual-lab .games-showcase__vignette {
+  background: linear-gradient(
+    180deg,
+    rgba(215, 222, 244, 0.5) 0%,
+    rgba(215, 222, 244, 0.12) 16%,
+    transparent 28%,
+    transparent 72%,
+    rgba(15, 20, 36, 0.32) 100%
+  );
+}
+
+.wiki-page--games .games-showcase--virtual-lab .games-showcase__station-badge {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.85);
+  color: #23315a;
+}
+
+.wiki-page--games .games-showcase--virtual-lab .games-showcase__station-badge strong {
+  color: #23315a;
+}
+
+.wiki-page--games .games-showcase--virtual-lab .games-showcase__mode-pill {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.85);
+  color: #23315a;
+}
+
+.wiki-page--games .games-showcase--virtual-lab .games-showcase__dock {
+  background: rgba(20, 26, 46, 0.48);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 12px 32px -4px rgba(0, 0, 0, 0.32),
+    0 4px 12px -2px rgba(0, 0, 0, 0.18),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.2);
+  color: #f1f5f9;
+}
+
+.wiki-page--games .games-showcase--virtual-lab .games-showcase__title {
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.wiki-page--games .games-showcase--virtual-lab .games-showcase__subtitle {
+  color: #c7d2fe;
+}
+
+.wiki-page--games .games-showcase--virtual-lab .games-showcase__cta-btn {
+  background: #4f46e5;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
+}
+
+.wiki-page--games
+  .games-showcase--virtual-lab
+  .games-showcase__launch:is(:hover, :focus-visible)
+  .games-showcase__cta-btn {
+  background: #4338ca;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .wiki-page--games .games-showcase__launch {
+    min-height: 400px;
+    padding: 16px;
+  }
+
+  .wiki-page--games .games-showcase__hud {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .wiki-page--games .games-showcase__dock {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .wiki-page--games .games-showcase__dock-action {
+    align-items: stretch;
+  }
+
+  .wiki-page--games .games-showcase__cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .wiki-page--games .games-showcase__hint {
+    text-align: center;
+  }
+}
+
+/* --- 4. Full-screen play surface (portal to <body>, own colour world) ------ */
+
+.games-experience {
+  position: fixed;
+  z-index: 10000;
+  inset: 0;
+  display: grid;
+  width: auto;
+  height: auto;
+  place-items: stretch;
+  padding: clamp(8px, 1.5vw, 16px);
+  background: rgba(16, 47, 89, 0.72);
+  backdrop-filter: blur(10px);
+  color: #1b1719;
+  animation: games-experience-enter 180ms ease-out both;
+}
+
+.games-experience__surface {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  grid-template-rows: auto minmax(0, 1fr);
+  border: 1px solid rgba(27, 23, 25, 0.14);
+  border-radius: 20px;
+  background: #eee7dc;
+  box-shadow: 0 24px 72px -12px rgba(16, 47, 89, 0.38);
+  overflow: hidden;
+}
+
+.games-experience__bar {
+  display: flex;
+  min-height: 64px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 20px 10px 24px;
+  background: linear-gradient(180deg, #fcf8f1 0%, #eee7dc 100%);
+  border-bottom: 1px solid rgba(27, 23, 25, 0.12);
+  box-shadow: 0 2px 8px rgba(16, 47, 89, 0.04);
+}
+
+.games-experience__bar > div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.games-experience__bar span {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: rgba(215, 132, 179, 0.22);
+  border: 1px solid rgba(215, 132, 179, 0.45);
+  color: #754356;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.games-experience__bar h2 {
+  margin: 0;
+  color: #1b1719;
+  font-family: var(--font-editorial);
+  font-size: clamp(20px, 2.3vw, 27px);
+  font-weight: 550;
+  letter-spacing: -0.015em;
+}
+
+.games-experience__close {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  border: 1px solid rgba(27, 23, 25, 0.16);
+  border-radius: 999px;
+  background: #fcf8f1;
+  color: #1b1719;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(16, 47, 89, 0.06);
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.games-experience__close:is(:hover, :focus-visible) {
+  background: #d784b3;
+  border-color: #d784b3;
+  color: #fcf8f1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(215, 132, 179, 0.35);
+  outline: 0;
+}
+
+.games-experience__close span {
+  color: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.games-experience__close b {
+  display: inline-flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.games-experience__body {
+  min-height: 0;
+  overflow: hidden;
+  background: #fdf2f8;
+}
+
+.games-experience__loading {
+  display: flex;
+  height: 100%;
+  min-height: 420px;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  color: #313942;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.games-experience__loading span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--route-main, #9bd6c0);
+  animation: games-loading-pulse 900ms ease-in-out infinite alternate;
+}
+
+@keyframes games-loading-pulse {
+  to {
+    opacity: 0.25;
+    transform: scale(0.68);
+  }
+}
+
+@keyframes games-experience-enter {
+  from {
+    opacity: 0;
+  }
+}
+
+/* --- 5. Responsive -------------------------------------------------------- */
+
+@media (max-width: 991px) {
+  /* Below 980px the route mat stacks: a 36dvh TOC row above the frame. With the
+     TOC card gone the frame would land in that short row, so the variant keeps a
+     single full-height row. */
+  .wiki-page.wiki-page--route.wiki-page--games .wiki-record--full {
+    grid-template-rows: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .wiki-page--games .games-project-map__ribbon {
+    display: none;
+  }
+
+  .wiki-page--games .games-project-map__stations {
+    grid-template-columns: 1fr;
+  }
+
+  .wiki-page--games .games-project-map__stations > li,
+  .wiki-page--games .games-project-map__stations > li:last-child {
+    border-right: 0;
+    border-bottom: 1px solid var(--route-line);
+  }
+
+  .wiki-page--games .games-project-map__stations > li:last-child {
+    border-bottom: 0;
+  }
+
+  .wiki-page--games
+    .games-project-map__stations
+    > li
+    > :is(button, article) {
+    min-height: 80px;
+    height: 80px;
+    padding: 16px 24px 16px 84px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .wiki-page--games .games-project-map strong {
+    justify-content: flex-start;
+    text-align: left;
+    min-height: auto;
+    margin: 0;
+    font-size: 19px;
+  }
+
+  .wiki-page--games .games-project-map__node {
+    top: 50%;
+    left: 32px;
+    transform: translate(-50%, -50%);
+  }
+
+  .wiki-page--games .is-available .games-project-map__node {
+    top: 50%;
+  }
+
+  .wiki-page--games .games-showcase__chapters {
+    justify-content: flex-start;
+  }
+
+  .wiki-page--games .games-showcase__cards {
+    right: 72px;
+    opacity: 0.58;
+  }
+
+  .wiki-page--games .games-showcase__bio-mark {
+    right: 72px;
+    opacity: 0.58;
+  }
+}
+
+@media (max-width: 600px) {
+  .wiki-page--games .games-project-map__heading h2 {
+    font-size: 30px;
+  }
+
+  .wiki-page--games .games-showcase__launch {
+    height: clamp(400px, 112vw, 520px);
+  }
+
+  .wiki-page--games .games-showcase__chapters {
+    top: 28px;
+    right: 28px;
+    left: 28px;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+  }
+
+  .wiki-page--games .games-showcase__copy {
+    right: 28px;
+    bottom: 126px;
+    left: 28px;
+  }
+
+  .wiki-page--games .games-showcase__copy strong {
+    font-size: clamp(48px, 16vw, 72px);
+  }
+
+  .wiki-page--games .games-showcase__copy em {
+    max-width: 230px;
+    margin-top: 28px;
+  }
+
+  .wiki-page--games .games-showcase__play {
+    right: 26px;
+    bottom: 26px;
+    width: 86px;
+    height: 86px;
+  }
+
+  .wiki-page--games .games-showcase__cards {
+    top: 22%;
+    right: 16px;
+    width: 180px;
+    height: 180px;
+    opacity: 0.34;
+  }
+
+  .wiki-page--games .games-showcase__bio-mark {
+    top: 22%;
+    right: 16px;
+    width: 180px;
+    height: 180px;
+    opacity: 0.34;
+  }
+
+  .wiki-page--games .games-showcase__bio-mark i {
+    width: 86px;
+    height: 128px;
+    padding: 11px 8px;
+    border-radius: 10px;
+    font-size: 9px;
+  }
+
+  .wiki-page--games
+    .games-project-map__stations
+    > li
+    > :is(button, article) {
+    padding-right: 18px;
+  }
+
+  .games-experience {
+    padding: 0;
+  }
+
+  .games-experience__surface {
+    border: 0;
+  }
+
+  .games-experience__bar {
+    min-height: 68px;
+    padding: 10px 8px 10px 14px;
+  }
+
+  .games-experience__bar > div > span,
+  .games-experience__close > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+
+  .games-experience__close {
+    padding: 0 6px;
+  }
+}
+
+.games-experience__lab {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border: 0;
+  background: #fcf8f1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .games-experience,
+  .games-experience__loading span {
+    animation: none;
+  }
+
+  .wiki-page--games .games-showcase__art,
+  .wiki-page--games .games-showcase__play {
+    transition: none;
+  }
+}

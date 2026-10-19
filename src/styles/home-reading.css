@@ -1,0 +1,300 @@
+/* Reading-only overrides: artwork, particles and navigation keep their own layout. */
+.home-story .story-chapter .story-copy {
+  padding-inline: clamp(24px, 5vw, 100px);
+  gap: clamp(24px, 3.5svh, 40px);
+}
+.home-story .story-chapter .story-copy h2 {
+  width: 100%;
+  max-width: 1280px;
+  font-size: clamp(30px, 3.25vw, 54px);
+  line-height: 1.22;
+  text-wrap: wrap;
+}
+.home-story .story-chapter .story-body {
+  width: min(100%, 78ch);
+  font-family: var(--font-body);
+  font-size: clamp(17px, 1.35vw, 20px);
+  line-height: 1.75;
+}
+.home-story .story-chapter .story-body > p,
+.home-story .story-chapter--ward .story-ward-context {
+  max-width: none;
+  text-wrap: wrap;
+}
+.home-story .story-reading-word {
+  display: inline-block;
+  vertical-align: baseline;
+  transform-origin: center 70%;
+}
+.home-story .story-reading-ink {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+.home-story .story-reading-ink { visibility: hidden; z-index: 1; }
+.home-story .story-copy[data-reading-voice] .story-challenges li { border-color: transparent; }
+.home-story .story-copy.has-flow-reading { margin-bottom: 8svh; }
+.home-story .story-platform-note {
+  opacity: 1;
+}
+.home-story .story-ward-aftermath > span {
+  display: inline;
+  margin: 0;
+}
+.home-story .story-ward-title-ending {
+  display: inline;
+  padding: 0;
+}
+.home-story .story-chapter--ward .story-ward-wish,
+.home-story .story-chapter--ward .story-ward-question {
+  font-size: clamp(28px, 3vw, 46px);
+  text-wrap: wrap;
+}
+.home-story .story-prologue > p {
+  max-width: 1280px;
+  font-size: clamp(30px, 3.8vw, 56px);
+}
+.home-story .story-prologue-line { display: inline; }
+
+@media (max-width: 800px) {
+  .home-story .story-chapter .story-copy {
+    padding-block: 40px;
+  }
+  .home-story .story-chapter .story-copy h2 { font-size: clamp(28px, 5vw, 38px); }
+  .home-story .story-chapter .story-body { font-size: 17px; line-height: 1.65; }
+  .home-story .story-chapter--ward .story-ward-context { max-width: 640px; }
+  .home-story .story-ward-dialogue { margin-block: 28px; }
+  .home-story .story-platform-note--design,
+  .home-story .story-platform-note--beyond { bottom: max(96px, 12%); }
+}
+@media (max-height: 650px) {
+  .home-story .story-chapter .story-copy { padding-block: 32px; gap: 22px; }
+}
+
+/* Quiet explanations share a readable measure and leave room for the artwork. */
+.home-story .story-copy.has-quiet-reading h2 {
+  max-width: 30ch;
+  text-wrap: balance;
+}
+.home-story .story-copy.has-quiet-reading .story-body {
+  width: min(100%, 66ch);
+}
+.home-story .story-copy.has-quiet-reading .story-body > p {
+  text-align: left;
+  text-wrap: pretty;
+}
+.home-story .story-copy.has-quiet-reading.has-flow-reading {
+  margin-bottom: 8svh;
+}
+@media (max-width: 800px), (max-height: 650px) {
+  .home-story .story-copy.has-quiet-reading {
+    min-height: auto;
+    padding-block: 48px;
+  }
+}
+
+/* TNBC reading audit: keep this scope independent of the other chapters. */
+.home-story #why-tnbc .story-body {
+  width: min(100%, 60ch);
+}
+.home-story #why-tnbc .story-body > p {
+  text-align: left;
+  text-wrap: pretty;
+}
+.home-story #why-tnbc .story-copy h2 {
+  max-width: 26ch;
+  text-wrap: balance;
+}
+.home-story #why-tnbc .story-source {
+  color: #315f87;
+  font-family: var(--font-body);
+  font-weight: 500;
+  text-decoration-color: #6e94b2;
+  text-decoration-thickness: 1.5px;
+}
+.home-story #why-tnbc .story-source:hover {
+  color: #234767;
+  text-decoration-color: currentColor;
+}
+@media (max-width: 800px) {
+  .home-story #why-tnbc .story-copy {
+    min-height: auto;
+    padding-block: 48px;
+  }
+}
+/* End TNBC reading audit. */
+
+/* The map and reading share one pink canvas; the figure anchors the explanation. */
+.home-story #why-tnbc .story-copy {
+  --tnbc-columns: minmax(300px, 1fr) minmax(0, 1fr);
+  --tnbc-gap: clamp(36px, 4.4vw, 68px);
+  grid-template-columns: var(--tnbc-columns);
+  column-gap: var(--tnbc-gap);
+  row-gap: clamp(24px, 3svh, 34px);
+  justify-items: stretch;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: clamp(36px, 5vw, 72px);
+  text-align: left;
+}
+.home-story #why-tnbc .story-copy h2 {
+  grid-column: 1 / -1;
+  max-width: none;
+  font-size: clamp(40px, 3.7vw, 54px);
+  line-height: 1.15;
+}
+.home-story #why-tnbc .tnbc-reading-title-shared {
+  display: inline-block;
+  white-space: nowrap;
+}
+.home-story #why-tnbc .story-body {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: var(--tnbc-columns);
+  column-gap: var(--tnbc-gap);
+  width: 100%;
+  line-height: 1.6;
+  align-items: center;
+}
+.home-story #why-tnbc .tnbc-context,
+.home-story #why-tnbc .tnbc-explanation {
+  min-width: 0;
+}
+.home-story #why-tnbc .tnbc-context > p,
+.home-story #why-tnbc .tnbc-explanation > p {
+  text-align: left;
+  text-wrap: pretty;
+  margin-bottom: 18px;
+}
+.home-story #why-tnbc .tnbc-context > p {
+  margin: 20px 0 0;
+}
+.home-story #why-tnbc .story-receptors {
+  position: absolute;
+  inset: 0;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.home-story #why-tnbc .story-receptors > span {
+  position: absolute;
+  left: 78%;
+  top: 12%;
+  gap: 6px;
+  white-space: nowrap;
+  font-size: clamp(21px, 1.8vw, 28px);
+}
+.home-story #why-tnbc .story-receptors > span:nth-child(2) {
+  top: 47%;
+}
+.home-story #why-tnbc .story-receptors > span:nth-child(3) {
+  top: 78%;
+}
+.home-story #why-tnbc .tnbc-diagram {
+  position: relative;
+  width: min(100%, 500px);
+  aspect-ratio: 1.3158;
+  margin: 0;
+  isolation: isolate;
+}
+.tnbc-diagram__art {
+  position: absolute;
+  inset: 0 24% 0 0;
+}
+.home-story #why-tnbc .tnbc-patient-callback {
+  margin-top: 4px;
+  padding-left: 0;
+  border-left: 0;
+}
+.home-story #why-tnbc .story-source {
+  justify-self: start;
+  margin-top: 2px;
+}
+.home-story #why-tnbc .tnbc-reading-bridge-wash {
+  position: absolute;
+  inset: 0;
+  z-index: 61;
+  background: #f9e8e8;
+  visibility: hidden;
+  pointer-events: none;
+}
+.home-story #why-tnbc .tnbc-reading-word-transfer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 63;
+  display: block;
+  white-space: nowrap;
+  transform-origin: top left;
+  visibility: hidden;
+  pointer-events: none;
+}
+.tnbc-diagram::before {
+  content: "";
+  position: absolute;
+  inset: 4%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 250, 248, 0.56),
+    transparent 72%
+  );
+}
+.tnbc-diagram__layer {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 900px) {
+  .home-story #why-tnbc .story-copy {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    padding-block: 42px;
+    padding-inline: 24px;
+  }
+  .home-story #why-tnbc .story-copy h2,
+  .home-story #why-tnbc .story-body {
+    grid-column: 1;
+    width: min(100%, 58ch);
+  }
+  .home-story #why-tnbc .story-copy h2 {
+    font-size: clamp(30px, 8.2vw, 34px);
+  }
+  .home-story #why-tnbc .tnbc-reading-title-shared {
+    font-size: inherit;
+  }
+  .home-story #why-tnbc .story-body {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+  .home-story #why-tnbc .tnbc-diagram {
+    width: min(100%, 350px);
+    margin-inline: auto;
+  }
+  .home-story #why-tnbc .story-receptors > span {
+    font-size: clamp(18px, 5vw, 23px);
+  }
+}
+@media (max-width: 380px) {
+  .home-story #why-tnbc .tnbc-diagram {
+    aspect-ratio: 1.3889;
+  }
+  .home-story #why-tnbc .tnbc-diagram__art {
+    right: 28%;
+  }
+  .home-story #why-tnbc .story-receptors > span {
+    left: 74%;
+  }
+}

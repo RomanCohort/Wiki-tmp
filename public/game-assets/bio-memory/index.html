@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bio Memory Match</title>
+<script>
+(() => {
+  const parentWindow = window.parent;
+  const notifyParent = (type, detail = {}) => {
+    if (parentWindow === window) return;
+    parentWindow.postMessage(
+      { source: 'bio-memory-match', type, ...detail },
+      window.location.origin,
+    );
+  };
+
+  window.addEventListener('load', () => {
+    notifyParent('bio-memory:ready');
+
+    const resultOverlay = document.getElementById('resultOverlay');
+    if (!resultOverlay) return;
+
+    const observer = new MutationObserver(() => {
+      if (!resultOverlay.hidden) {
+        notifyParent('bio-memory:complete', {
+          stats: { game: 'bio-memory-match' },
+        });
+        observer.disconnect();
+      }
+    });
+    observer.observe(resultOverlay, { attributes: true, attributeFilter: ['hidden'] });
+  });
+
+  window.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    event.preventDefault();
+    notifyParent('bio-memory:close');
+  });
+})();
+</script>
+<style>
+@font-face{font-family:"Fraunces";src:url("https://static.igem.wiki/teams/6056/wiki/files/fonts/site/fraunces-variable.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Fredoka";src:url("https://static.igem.wiki/teams/6056/wiki/files/fonts/site/fredoka-variable.woff2") format("woff2");font-weight:300 700;font-display:swap}
+@font-face{font-family:"Lexend";src:url("https://static.igem.wiki/teams/6056/wiki/files/fonts/site/lexend-variable.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url("https://static.igem.wiki/teams/6056/wiki/files/fonts/site/ibm-plex-mono.woff2") format("woff2");font-weight:400;font-display:swap}
+/* ============ 基调：博物学家野外手札 ============ */
+:root{
+  --paper:#eee7dc;
+  --paper-bright:#fcf8f1;
+  --ink:#1b1719;
+  --navy-deep:#102f59;
+  --navy:#173f78;
+  --pink:#d784b3;
+  --pink-strong:#754356;
+  --coral:#df705b;
+  --gold:#c39a55;
+  --teal:#2f6f68;
+  --muted:rgba(27,23,25,.68);
+  --faint:rgba(27,23,25,.46);
+  --line:rgba(27,23,25,.18);
+  --hair:rgba(27,23,25,.08);
+  /* 字体：与 Wiki 主站一致（src/styles/circure-tokens.css）——标题 Fraunces、正文 Lexend、
+     徽章/按钮 Fredoka、数据 IBM Plex Mono；末尾追加现代黑体兜底，避免 Windows 回落到 SimSun */
+  --cjk:"PingFang SC","HarmonyOS Sans SC","Microsoft YaHei UI","Microsoft YaHei","Hiragino Sans GB";
+  --font-sans:"Lexend",-apple-system,BlinkMacSystemFont,var(--cjk),sans-serif;
+  --font-editorial:"Fraunces","Newsreader",Georgia,"Times New Roman",var(--cjk),serif;
+  --font-round:"Fredoka","Lexend",var(--cjk),sans-serif;
+  --font-mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+  --radius-control:999px;
+  --radius-panel:28px;
+  --ease-out:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{
+  margin:0;min-height:100vh;background:var(--paper);color:var(--ink);
+  font-family:var(--font-sans);font-size:16px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+button{font-family:inherit}
+[hidden]{display:none !important}
+
+/* 纸面颗粒 + 档案页框 */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+}
+body::after{
+  content:"";position:fixed;inset:14px;z-index:60;pointer-events:none;
+  border:1px solid var(--line);border-radius:22px;
+  box-shadow:inset 0 0 0 4px rgba(252,248,241,.42),inset 0 0 0 5px var(--hair);
+}
+@media (max-width:560px){body::after{inset:8px;border-radius:16px}}
+
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:0 clamp(18px,4.5vw,52px) 72px}
+.lang-switch{
+  position:fixed;top:26px;right:30px;z-index:80;display:flex;overflow:hidden;
+  border:1px solid var(--line);border-radius:999px;background:rgba(252,248,241,.94);
+  box-shadow:0 8px 20px -12px rgba(11,41,77,.45);backdrop-filter:blur(8px);
+}
+.lang-switch button{
+  min-height:32px;padding:0 12px;border:0;background:transparent;color:var(--muted);
+  font-family:var(--font-round);font-size:11px;font-weight:600;letter-spacing:.06em;cursor:pointer;
+  transition:background-color .2s ease,color .2s ease;
+}
+.lang-switch button.is-active{background:var(--navy-deep);color:var(--paper-bright)}
+@media (max-width:560px){.lang-switch{top:16px;right:18px}.lang-switch button{min-height:30px;padding:0 9px;font-size:9px}}
+/* 游戏局中放开容器宽度并收紧底部留白，多列棋盘才能按基准卡宽铺满一屏 */
+body.playing .wrap{max-width:none;padding-bottom:26px}
+
+/* ============ 顶部刊头 ============ */
+.hero{text-align:center;padding:clamp(40px,7vw,76px) 0 clamp(22px,3vw,34px)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:14px;margin-bottom:18px;
+  color:var(--pink);font-family:var(--font-mono);font-size:10px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+}
+.eyebrow::before,.eyebrow::after{width:36px;height:1px;background:currentColor;content:""}
+.eyebrow .logo{display:block;height:clamp(36px,6vw,58px);width:auto;max-width:min(78vw,640px)}
+.hero h1{
+  margin:0;font-family:var(--font-editorial);font-weight:500;
+  font-size:clamp(44px,7.4vw,78px);letter-spacing:-.015em;line-height:1.04;color:var(--ink);
+}
+.hero h1 .accent{font-style:italic;color:var(--navy)}
+.hero .sub{
+  margin:16px auto 0;max-width:560px;font-family:var(--font-editorial);
+  font-size:clamp(15px,1.6vw,19px);line-height:1.7;color:var(--muted);
+}
+.hero .rule{
+  display:flex;align-items:center;justify-content:center;gap:12px;margin-top:26px;
+  color:var(--faint);font-family:var(--font-mono);font-size:10px;letter-spacing:.3em;
+}
+.hero .rule::before,.hero .rule::after{content:"";width:64px;height:1px;background:var(--line)}
+/* 入场 */
+.rise{animation:rise .8s var(--ease-out) both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ============ 章节入口：规则 / 图鉴 ============ */
+.chapters{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+@media (max-width:560px){.chapters{grid-template-columns:1fr}}
+.chapter{
+  position:relative;display:flex;align-items:baseline;gap:16px;text-align:left;
+  padding:18px 22px;border:1px solid var(--line);border-radius:var(--radius-panel);
+  background:linear-gradient(180deg,var(--paper-bright),rgba(252,248,241,.75));
+  cursor:pointer;overflow:hidden;
+  transition:transform .35s var(--ease-out),box-shadow .35s var(--ease-out),border-color .35s var(--ease-out);
+}
+.chapter::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--pink);
+  transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease-out);
+}
+.chapter:hover{transform:translateY(-3px);border-color:rgba(27,23,25,.32);box-shadow:0 14px 34px -14px rgba(11,41,77,.28)}
+.chapter:hover::after{transform:scaleX(1)}
+.chapter .no{
+  font-family:var(--font-editorial);font-style:italic;font-size:34px;line-height:1;color:var(--pink);
+}
+.chapter .ct{font-family:var(--font-editorial);font-size:19px;color:var(--ink)}
+.chapter .cd{display:block;margin-top:2px;font-size:12px;color:var(--muted)}
+.chapter .go{margin-left:auto;padding:3px 10px;border-radius:999px;background:rgba(215,132,179,.18);font-family:var(--font-round);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--pink-strong);align-self:center}
+
+/* ============ 面板（考察手札页） ============ */
+.panel,.result{position:relative}
+.panel::before,.result::before{
+  content:"";position:absolute;top:-11px;left:50%;width:96px;height:22px;border-radius:3px;
+  background:rgba(215,132,179,.5);box-shadow:0 1px 3px rgba(16,47,89,.16);
+  transform:translateX(-50%) rotate(-2deg);pointer-events:none;
+}
+.panel{
+  background:var(--paper-bright);border:1px solid var(--line);border-radius:var(--radius-panel);
+  padding:clamp(22px,3.6vw,36px);
+  box-shadow:inset 0 0 0 5px rgba(252,248,241,.6),0 24px 60px -34px rgba(11,41,77,.3);
+}
+.field{margin-bottom:24px}
+.field:last-child{margin-bottom:0}
+.field > .label{
+  display:flex;align-items:center;gap:10px;margin-bottom:12px;
+  font-family:var(--font-round);font-size:11px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--pink-strong);
+}
+.field > .label::after{content:"";flex:1;height:0;border-top:1px dashed var(--line)}
+.segmented{display:flex;flex-wrap:wrap;gap:8px}
+.segmented button{
+  min-height:42px;padding:0 18px;border:1px solid var(--line);border-radius:var(--radius-control);
+  background:var(--paper-bright);color:var(--ink);font-family:var(--font-round);font-size:14px;font-weight:500;cursor:pointer;
+  transition:background-color .22s var(--ease-out),color .22s var(--ease-out),
+             border-color .22s var(--ease-out),transform .26s var(--ease-out),box-shadow .26s var(--ease-out);
+}
+.segmented button:hover{transform:translateY(-2px)}
+.segmented button.is-active{
+  background:var(--navy-deep);border-color:var(--navy-deep);color:var(--paper-bright);
+  box-shadow:0 8px 18px -8px rgba(11,41,77,.55);
+}
+.actions{display:flex;justify-content:center;gap:12px;margin-top:28px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:48px;padding:0 32px;border:0;border-radius:var(--radius-control);
+  font-family:var(--font-round);font-size:15px;font-weight:600;letter-spacing:.02em;
+  cursor:pointer;
+  transition:transform .26s var(--ease-out),background-color .2s ease,box-shadow .26s var(--ease-out);
+}
+.btn-primary{background:var(--navy-deep);color:var(--paper-bright);box-shadow:0 12px 26px -12px rgba(11,41,77,.6)}
+.btn-primary:hover{background:#0c2649;transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--navy-deep);box-shadow:inset 0 0 0 1.5px var(--navy-deep)}
+.btn-ghost:hover{background:rgba(16,47,89,.06);transform:translateY(-2px)}
+
+/* ============ 玩家信息栏：研究员 ============ */
+.players{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:16px}
+.player{
+  position:relative;display:flex;align-items:center;gap:10px;
+  padding:11px 14px;border:1px solid var(--line);border-radius:20px;background:var(--paper-bright);
+  box-shadow:inset 0 0 0 3px rgba(252,248,241,.7);
+  transition:box-shadow .3s var(--ease-out),border-color .3s var(--ease-out),transform .3s var(--ease-out);
+}
+.player .dot{width:12px;height:12px;border-radius:50%;background:var(--pc);flex:0 0 auto;box-shadow:inset 0 0 0 2px rgba(252,248,241,.4)}
+.player .pname{font-family:var(--font-round);font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap}
+.player .pscore{margin-left:auto;font-family:var(--font-editorial);font-size:24px;color:var(--pc);line-height:1}
+.player .ptag{
+  display:none;position:absolute;top:-9px;right:10px;padding:1px 8px;border-radius:999px;
+  background:var(--pc);color:var(--paper-bright);
+  font-family:var(--font-round);font-size:9px;font-weight:600;letter-spacing:.1em;
+}
+.player.is-current{
+  border-color:var(--pc);
+  box-shadow:0 0 0 2px var(--pc),0 10px 22px -10px var(--pc);
+  transform:translateY(-2px);
+}
+.player.is-current .ptag{display:block}
+
+/* ============ 提示文案 ============ */
+.message{
+  min-height:28px;margin:0 0 16px;text-align:center;
+  font-family:var(--font-editorial);font-style:italic;
+  font-size:clamp(16px,1.9vw,20px);color:var(--muted);
+  transition:color .25s var(--ease-out);
+}
+.message.ok{color:var(--teal)}
+.message.bad{color:var(--coral)}
+.message.pop{animation:msgpop .4s var(--ease-out)}
+@keyframes msgpop{0%{opacity:.2;transform:translateY(6px)}100%{opacity:1;transform:translateY(0)}}
+
+/* ============ 棋盘 ============ */
+.board{
+  --cols:4;
+  --rows:2;
+  --card-w-base:150px;
+  --gap:clamp(7px,1.4vw,12px);
+  /* 卡宽取「基准宽度」与「视口高度反推宽度」的较小者：屏幕矮时整体缩放，保证不出竖向滚动 */
+  --card-w:min(var(--card-w-base),calc((100vh - 240px) / var(--rows) / 1.5));
+  display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));
+  gap:var(--gap);
+  width:100%;max-width:calc(var(--cols) * var(--card-w) + (var(--cols) - 1) * var(--gap));
+  margin:0 auto;
+}
+.card{
+  position:relative;display:block;width:100%;aspect-ratio:2/3;
+  padding:0;border:0;background:transparent;cursor:pointer;
+  perspective:720px;-webkit-tap-highlight-color:transparent;
+}
+/* 发牌入场：只在开局跑一次，动画结束后由 JS 摘掉 .dealing，此后卡片完全静止 */
+.card.dealing{animation:deal .5s var(--ease-out) both}
+@keyframes deal{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.card:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
+.card-inner{
+  position:absolute;inset:0;
+  transform-style:preserve-3d;
+  transition:transform .5s var(--ease-out);
+}
+.card.state-front .card-inner,.card.state-matched .card-inner{transform:rotateY(180deg)}
+.face{
+  position:absolute;inset:0;overflow:hidden;border-radius:clamp(9px,1.5vw,15px);
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+}
+.face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.face .fallback{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;
+}
+/* 背面 */
+.face-back{
+  background:linear-gradient(150deg,var(--navy-deep) 0%,var(--navy) 58%,#1d4a8c 100%);
+  box-shadow:0 8px 20px -8px rgba(11,41,77,.45),inset 0 0 0 1px rgba(252,248,241,.14);
+  transition:transform .35s var(--ease-out),box-shadow .35s var(--ease-out);
+}
+.face-back::after{ /* 标本卡内框 */
+  content:"";position:absolute;inset:7px;border:1px solid rgba(252,248,241,.28);border-radius:calc(clamp(9px,1.5vw,15px) - 5px);
+  pointer-events:none;
+}
+.face-back .fallback{color:rgba(252,248,241,.9)}
+.face-back .glyph{font-family:var(--font-editorial);font-size:clamp(19px,4.4vw,30px);letter-spacing:.14em}
+.face-back .tiny{font-family:var(--font-mono);font-size:8px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:rgba(252,248,241,.5)}
+@media (hover:hover){
+  .card.state-back:hover .face-back{transform:translateY(-3px);box-shadow:0 16px 32px -10px rgba(11,41,77,.55),inset 0 0 0 1px rgba(252,248,241,.2)}
+}
+/* 正面：标本图版 */
+.face-front{
+  transform:rotateY(180deg);
+  background:var(--paper-bright);
+  box-shadow:inset 0 0 0 1px var(--line);
+}
+.face-front .fallback{background:var(--paper-bright);color:var(--navy)}
+.face-front .num{font-family:var(--font-editorial);font-size:clamp(20px,4.4vw,30px)}
+.face-front .tiny{font-family:var(--font-mono);font-size:8px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.plate-tag{
+  position:absolute;left:50%;bottom:6px;z-index:1;transform:translateX(-50%);
+  padding:2px 9px;border-radius:999px;white-space:nowrap;
+  background:rgba(252,248,241,.92);border:1px solid var(--hair);
+  font-family:var(--font-round);font-size:clamp(8px,1.5vw,10px);font-weight:600;letter-spacing:.08em;color:var(--navy);
+}
+/* 已匹配 */
+.card.state-matched{cursor:default;pointer-events:none}
+.card.state-matched .face-front{
+  box-shadow:inset 0 0 0 3px var(--owner),inset 0 0 0 6px rgba(252,248,241,.5);
+}
+.card.state-matched .card-inner{animation:matchpop .55s var(--ease-out)}
+@keyframes matchpop{
+  0%{transform:rotateY(180deg) scale(1)}
+  40%{transform:rotateY(180deg) scale(1.06) rotate(-1deg)}
+  100%{transform:rotateY(180deg) scale(1)}
+}
+.badge{
+  display:none;position:absolute;top:6px;left:6px;z-index:2;
+  padding:2px 9px;border-radius:999px;background:var(--owner);color:var(--paper-bright);
+  font-family:var(--font-round);font-size:clamp(9px,1.8vw,12px);font-weight:600;letter-spacing:.04em;
+  box-shadow:0 4px 10px -4px var(--owner);
+}
+.card.state-matched .badge{display:block}
+/* 配对成功展示 1s 后淡出退场 */
+.card.state-vanish{cursor:default;pointer-events:none;animation:vanish .55s var(--ease-out) forwards}
+.card.state-vanish .badge{display:block}
+@keyframes vanish{to{opacity:0;transform:scale(.78)}}
+
+/* ============ 遮罩 / 结算 / 图鉴 / 规则 ============ */
+.overlay{
+  position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;
+  padding:clamp(16px,3.4vh,44px) clamp(14px,3vw,32px);
+  background:rgba(16,47,89,.5);backdrop-filter:blur(5px);
+  animation:fadein .3s var(--ease-out);
+}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+/* 手札对开页：页眉固定，正文单独滚动 */
+.sheet{
+  display:flex;flex-direction:column;
+  width:min(94vw,720px);max-height:min(84vh,880px);overflow:hidden;
+  background:var(--paper-bright);
+  border:1px solid var(--line);border-radius:var(--radius-panel);
+  box-shadow:0 34px 96px rgba(10,4,9,.45);
+  animation:rise .45s var(--ease-out);
+}
+.sheet-head{
+  flex:0 0 auto;position:relative;
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:0 14px;
+  padding:clamp(24px,3.4vw,34px) clamp(22px,3.6vw,36px) clamp(14px,1.8vw,18px);
+  border-bottom:1px solid var(--hair);
+}
+.sheet-head .s-no{font-family:var(--font-editorial);font-style:italic;font-size:30px;line-height:1;color:var(--pink)}
+.sheet-head h2{
+  margin:0;font-family:var(--font-editorial);font-weight:500;
+  font-size:clamp(25px,3.4vw,34px);letter-spacing:-.01em;line-height:1.1;color:var(--ink);
+}
+.sheet-head .close{
+  margin-left:auto;align-self:center;
+  width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
+  background:transparent;color:var(--muted);font-size:15px;cursor:pointer;line-height:1;
+  transition:border-color .25s var(--ease-out),color .25s var(--ease-out),transform .3s var(--ease-out);
+}
+.sheet-head .close:hover{border-color:var(--coral);color:var(--coral);transform:rotate(90deg)}
+.sheet-sub{
+  flex:0 0 100%;margin:10px 0 0;
+  font-family:var(--font-editorial);font-style:italic;font-size:14.5px;color:var(--muted);
+}
+.sheet-body{
+  flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;
+  padding:clamp(18px,2.4vw,24px) clamp(22px,3.6vw,36px) clamp(24px,3.4vw,32px);
+  scrollbar-width:thin;scrollbar-color:rgba(27,23,25,.22) transparent;
+}
+.sheet-body::-webkit-scrollbar{width:12px}
+.sheet-body::-webkit-scrollbar-track{background:transparent}
+.sheet-body::-webkit-scrollbar-thumb{
+  background:rgba(27,23,25,.2);border-radius:999px;
+  border:4px solid var(--paper-bright);background-clip:padding-box;
+}
+.sheet-body::-webkit-scrollbar-thumb:hover{background:rgba(27,23,25,.34);background-clip:padding-box}
+/* 规则条目 */
+.rule-item{display:flex;gap:16px;padding:14px 0;border-top:1px solid var(--hair)}
+.rule-item:first-child{border-top:0;padding-top:0}
+.rule-item:last-child{padding-bottom:0}
+.rule-item .rn{
+  flex:0 0 auto;width:32px;height:32px;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--line);border-radius:50%;
+  font-family:var(--font-editorial);font-style:italic;font-size:14px;color:var(--pink-strong);
+}
+.rule-item .rb > b{display:block;font-family:var(--font-editorial);font-size:16.5px;font-weight:500;color:var(--navy);margin-bottom:3px}
+.rule-item .rb p{margin:0;font-size:13.5px;line-height:1.7;color:var(--muted)}
+.rule-item .rb p b{font-weight:700;color:var(--navy)}
+/* 图鉴网格：去掉外层描边，避免与图内卡框形成双重边 */
+.codex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(146px,1fr));gap:clamp(14px,2vw,22px)}
+@media (max-width:480px){.codex-grid{grid-template-columns:repeat(2,1fr);gap:14px}}
+.codex-card{
+  display:flex;flex-direction:column;background:transparent;
+  transition:transform .35s var(--ease-out);
+}
+.codex-card:hover{transform:translateY(-3px)}
+.codex-card .pic{
+  position:relative;aspect-ratio:2/3;overflow:hidden;
+  border-radius:14px;background:var(--paper);
+  box-shadow:0 10px 26px -18px rgba(11,41,77,.55);
+  transition:box-shadow .35s var(--ease-out);
+}
+.codex-card:hover .pic{box-shadow:0 18px 34px -18px rgba(11,41,77,.45)}
+.codex-card .pic::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  border-radius:inherit;box-shadow:inset 0 0 0 1px var(--hair);
+}
+.codex-card .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.codex-card .pic .ph{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-editorial);font-size:20px;color:var(--faint);
+}
+.codex-card .info{padding:12px 2px 0}
+.codex-card .no{font-family:var(--font-mono);font-size:8.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--pink-strong)}
+.codex-card .nm{
+  margin:4px 0 5px;font-family:var(--font-editorial);font-size:15px;font-weight:500;
+  line-height:1.34;color:var(--ink);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  min-height:calc(2 * 1.34em);
+}
+.codex-card .ds{margin:0;font-size:11.5px;line-height:1.65;color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.codex-card .ds.empty{font-style:italic;color:var(--faint)}
+/* 结算 */
+.result{
+  width:min(94vw,480px);background:var(--paper-bright);border:1px solid var(--line);
+  border-radius:var(--radius-panel);padding:clamp(26px,4vw,42px);text-align:center;
+  box-shadow:0 34px 96px rgba(10,4,9,.45);
+  animation:rise .45s var(--ease-out);
+}
+.result .r-eyebrow{
+  display:inline-block;margin-bottom:12px;padding:3px 12px;border-radius:3px;
+  background:rgba(215,132,179,.28);color:var(--pink-strong);transform:rotate(-1.5deg);
+  font-family:var(--font-round);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+}
+.result h2{
+  margin:0 0 6px;font-family:var(--font-editorial);font-weight:500;letter-spacing:-.015em;
+  font-size:clamp(28px,4.4vw,42px);color:var(--ink);
+}
+.result .r-sub{margin:0 0 24px;font-family:var(--font-editorial);font-style:italic;font-size:16px;color:var(--navy)}
+.r-rows{display:flex;flex-direction:column;gap:8px;margin-bottom:26px}
+.r-row{
+  display:flex;align-items:center;gap:10px;padding:11px 15px;
+  border:1px solid var(--hair);border-radius:18px;background:var(--paper);
+}
+.r-row.win{border-color:var(--rc);box-shadow:0 0 0 1.5px var(--rc)}
+.r-row .dot{width:11px;height:11px;border-radius:50%;background:var(--rc)}
+.r-row .rn{font-family:var(--font-round);font-size:14px;font-weight:600}
+.r-row .win-tag{
+  padding:1px 8px;border-radius:999px;background:var(--rc);color:var(--paper-bright);
+  font-family:var(--font-round);font-size:9px;font-weight:600;letter-spacing:.1em;
+}
+.r-row .rs{margin-left:auto;font-family:var(--font-editorial);font-size:24px;color:var(--rc)}
+.r-row .rt{font-family:var(--font-mono);font-size:9px;color:var(--faint);letter-spacing:.1em}
+</style>
+</head>
+<body>
+<div class="lang-switch" role="group" aria-label="Language">
+  <button type="button" data-lang="en" class="is-active">EN</button>
+  <button type="button" data-lang="zh">中文</button>
+</div>
+<div class="wrap">
+
+  <!-- 刊头 -->
+  <header class="hero">
+    <div class="eyebrow rise" style="animation-delay:.05s"><img class="logo" src="https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-e0dabcdc18218362.avif" alt="iGEM team logo"></div>
+    <h1 class="rise" id="heroTitle" style="animation-delay:.15s">Bio <span class="accent">Memory Match</span></h1>
+    <p class="sub rise" id="heroSub" style="animation-delay:.28s">A mini bio expedition: flip over specimen cards and rely on memory to find each organism's other half.</p>
+    <div class="rule rise" style="animation-delay:.4s">MEMORY · EXPEDITION · PAIRS</div>
+  </header>
+
+  <!-- 首页（设置 + 入口） -->
+  <main id="homeView">
+    <!-- 章节入口 -->
+    <nav class="chapters rise" style="animation-delay:.5s">
+      <button type="button" class="chapter" id="openRules">
+        <span class="no">01</span>
+          <span><span class="ct" id="rulesChapterTitle">How to Play</span><span class="cd" id="rulesChapterDesc">How flipping, scoring, and winning work</span></span>
+        <span class="go">READ →</span>
+      </button>
+      <button type="button" class="chapter" id="openCodex">
+        <span class="no">02</span>
+          <span><span class="ct" id="codexChapterTitle">Field Guide</span><span class="cd" id="codexChapterDesc">Profiles of all 18 specimens in this expedition</span></span>
+        <span class="go">OPEN →</span>
+      </button>
+    </nav>
+
+    <!-- 设置 -->
+    <section class="panel rise" style="animation-delay:.62s">
+      <div class="field">
+        <span class="label" id="playerLabel">Players</span>
+        <div class="segmented" id="playerSeg">
+          <button type="button" data-value="1">1 Player</button>
+          <button type="button" data-value="2" class="is-active">2 Players</button>
+          <button type="button" data-value="3">3 Players</button>
+          <button type="button" data-value="4">4 Players</button>
+        </div>
+      </div>
+      <div class="field">
+        <span class="label" id="kindLabel">Deck Size · concept types drawn at random</span>
+        <div class="segmented" id="kindSeg">
+          <button type="button" data-value="4">4 types · 8 cards</button>
+          <button type="button" data-value="6" class="is-active">6 types · 12 cards</button>
+          <button type="button" data-value="8">8 types · 16 cards</button>
+          <button type="button" data-value="10">10 types · 20 cards</button>
+          <button type="button" data-value="18">18 types · 36 cards</button>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn btn-primary" id="startBtn">Start Expedition →</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- 游戏区 -->
+  <section id="gamePanel" hidden>
+    <div class="players" id="playerBar"></div>
+    <p class="message" id="message">Player 1's turn — flip any two cards.</p>
+    <div class="board" id="board"></div>
+    <div class="actions">
+      <button type="button" class="btn btn-ghost" id="backBtn">← Home</button>
+      <button type="button" class="btn btn-primary" id="restartBtn">Reshuffle</button>
+    </div>
+  </section>
+
+  <!-- 规则讲解 弹层 -->
+  <div class="overlay" id="rulesOverlay" hidden>
+    <div class="sheet" role="dialog" aria-label="How to Play">
+      <div class="sheet-head">
+        <span class="s-no">01</span>
+        <h2 id="rulesTitle">How to Play</h2>
+        <button type="button" class="close" data-close aria-label="Close">✕</button>
+        <p class="sheet-sub" id="rulesSub">Everything you need before the expedition.</p>
+      </div>
+      <div class="sheet-body">
+        <div id="rulesList"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 图鉴说明 弹层 -->
+  <div class="overlay" id="codexOverlay" hidden>
+    <div class="sheet" role="dialog" aria-label="Field Guide">
+      <div class="sheet-head">
+        <span class="s-no">02</span>
+        <h2 id="codexTitle">Field Guide</h2>
+        <button type="button" class="close" data-close aria-label="Close">✕</button>
+        <p class="sheet-sub" id="codexSub">All 18 specimen profiles collected on this expedition.</p>
+      </div>
+      <div class="sheet-body">
+        <div class="codex-grid" id="codexGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 结算 弹层 -->
+  <div class="overlay" id="resultOverlay" hidden>
+    <div class="result" role="dialog" aria-label="考察报告">
+      <div class="r-eyebrow" id="resultEyebrow">Expedition Report</div>
+      <h2 id="resultTitle">考察结束</h2>
+      <p class="r-sub" id="resultSub"></p>
+      <div class="r-rows" id="resultRows"></div>
+      <div class="actions" style="margin-top:0">
+        <button type="button" class="btn btn-primary" id="againBtn">Play Again →</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* =========================================================
+ * 素材配置 —— 图片由 iGEM Uploads 提供，使用完整 CDN URL
+ * ========================================================= */
+const IMAGES = [
+  'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-72c0bf685b637ef6.avif',  'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-5c5225eb2d246eb3.avif',  'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-ecdd2c504db14e40.avif',
+  'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-3416eccfe87be3ed.avif',  'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-37b1e3dd7f60ef01.avif',  'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-997e7a662cd60738.avif',
+  'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-95d972e565d9b0f8.avif',  'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-11ff924a94b3dc97.avif',  'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-93d50d5c8055dfcc.avif',
+  'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-c45bfa2596a55c50.avif', 'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-71e543f33f5c0e67.avif', 'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-075ed2acd2e89a33.avif',
+  'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-f1eade93a1e21fba.avif', 'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-ceecfdb76cf006c7.avif', 'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-63fc3c1f02746e82.avif',
+  'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-43bac6b2a935c85f.avif', 'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-542b83eb1785335c.avif', 'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-e16ed2e5fe73c484.avif'
+];
+const CARD_BACK = 'https://static.igem.wiki/teams/6056/wiki/files/pages/games/bio-memory/asset-0ea586e19e07abf8.avif';
+
+/* =========================================================
+ * 图鉴档案 —— 与 IMAGES 按下标一一对应；改图后记得同步修改
+ * ========================================================= */
+const CREATURE_INFO = [
+  ['脱氧核糖核酸', '生命遗传信息的主要储存分子。DNA中的碱基排列组成了指导生命活动的“遗传密码”。', 'DNA — Deoxyribonucleic Acid', 'The main molecule that stores genetic information. The sequence of DNA bases carries instructions for life.'],
+  ['核糖核酸', '遗传信息传递和表达的重要参与者，可以把DNA中的信息传递出去，并参与蛋白质合成。', 'RNA — Ribonucleic Acid', 'An important molecule in gene expression. It helps carry genetic information and participates in protein production.'],
+  ['基因', 'DNA上具有特定功能的信息片段。不同基因携带不同的信息，共同影响生物的结构和功能。', 'Gene', 'A functional segment of DNA carrying specific information. Different genes contribute to different biological traits and functions.'],
+  ['质粒', '常见于细菌中的小型环状DNA。在合成生物学中，它常被用来携带并导入新的基因。', 'Plasmid', 'A small circular DNA molecule commonly found in bacteria. It is often used to carry new genes in synthetic biology.'],
+  ['启动子', '控制基因是否开始转录的重要DNA序列，就像基因表达过程中的一个“启动开关”。', 'Promoter', 'A DNA sequence that controls the start of gene transcription, acting like a “start switch” for gene expression.'],
+  ['核糖体', '细胞中的“蛋白质制造机”。它读取RNA携带的信息，并按照顺序将氨基酸组装成蛋白质。', 'Ribosome', 'The cell’s “protein-making machine.” It reads information from RNA and joins amino acids together to build proteins.'],
+  ['蛋白质', '执行生命活动的重要分子，可以参与细胞结构、物质运输、信号传递和免疫防御等过程。', 'Protein', 'An essential molecule that performs many cellular functions, including structure, transport, signaling, and immune defense.'],
+  ['酶', '能够加快生物化学反应的生物催化剂。许多细胞活动都需要酶的帮助才能高效进行。', 'Enzyme', 'A biological catalyst that speeds up chemical reactions, allowing many cellular processes to occur efficiently.'],
+  ['细胞', '构成生命的基本结构和功能单位。代谢、生长、信息传递等许多生命活动都发生在细胞中。', 'Cell', 'The basic structural and functional unit of life, where processes such as metabolism, growth, and communication take place.'],
+  ['基因回路', '由多个基因和调控元件组成的人工系统，可以让细胞根据输入信号产生特定的生物学反应。', 'Genetic Circuit', 'An engineered system of genes and regulatory parts that allows cells to respond to signals and produce specific outputs.'],
+  ['底盘细胞', '用来承载人工基因和基因回路的宿主细胞，相当于合成生物学系统运行的“工作平台”。', 'Chassis Cell', 'A host cell used to carry engineered genes and genetic circuits, providing a platform for synthetic biological systems.'],
+  ['基因编辑', '一种可以定位特定遗传序列并进行修改的技术，是现代生命科学中常用的基因编辑工具。', 'CRISPR Gene Editing', 'A technology that can recognize specific genetic sequences and modify them, making precise gene editing possible.'],
+  ['生物传感器', '利用生物分子或细胞识别目标物质，并把这种识别转化成可以观察或检测的信号。', 'Biosensor', 'A biological system that recognizes a target substance and converts that recognition into a detectable signal.'],
+  ['生物反应器', '为细胞或微生物提供适宜生长环境的设备，可控制温度、营养等条件来生产生物产品。', 'Bioreactor', 'A device that provides controlled conditions for growing cells or microorganisms and producing biological products.'],
+  ['荧光蛋白', '能在特定光照下发出荧光的蛋白质，可以作为“发光标签”帮助科学家观察细胞和基因表达。', 'Fluorescent Protein', 'A protein that glows under specific light and can be used as a “light-up tag” to observe cells and gene expression.'],
+  ['代谢通路', '细胞内一系列相互连接的化学反应，使物质一步步发生转化，并为生命活动提供物质和能量。', 'Metabolic Pathway', 'A connected series of chemical reactions that transforms substances and supports the material and energy needs of cells.'],
+  ['抗体', '免疫系统产生的一类蛋白质，可以特异性识别并结合某些抗原，帮助身体抵御疾病。', 'Antibody', 'An immune protein that specifically recognizes and binds to certain antigens, helping the body defend against disease.'],
+  ['疫苗', '通过让免疫系统提前认识特定目标，帮助身体建立免疫反应和免疫记忆，为之后的防御做好准备。', 'Vaccine', 'A way to train the immune system to recognize a specific target and build immune memory before future exposure.']
+];
+
+/* 玩家固定配色：P1 蓝 / P2 红 / P3 绿 / P4 橙（取自 Circure 色板） */
+const PLAYER_DEFS = [
+  { names: { zh: '玩家1', en: 'Player 1' }, short: 'P1', color: '#173f78' },
+  { names: { zh: '玩家2', en: 'Player 2' }, short: 'P2', color: '#df705b' },
+  { names: { zh: '玩家3', en: 'Player 3' }, short: 'P3', color: '#2f6f68' },
+  { names: { zh: '玩家4', en: 'Player 4' }, short: 'P4', color: '#c39a55' }
+];
+
+/* 难度 -> 棋盘布局（列×行）与卡片基准宽度（px），按 16:9 一屏铺满足优 */
+const LAYOUTS = {
+  4:  { cols: 4,  rows: 2, cardW: 156 }, /* 8张 · 4×2 */
+  6:  { cols: 6,  rows: 2, cardW: 156 }, /* 12张 · 6×2 */
+  8:  { cols: 8,  rows: 2, cardW: 152 }, /* 16张 · 8×2 */
+  10: { cols: 10, rows: 2, cardW: 142 }, /* 20张 · 10×2 */
+  18: { cols: 9,  rows: 4, cardW: 126 }  /* 36张 · 9×4 */
+};
+const MISMATCH_DELAY = 800;
+
+const COPY = {
+  en: {
+    title: 'Bio Memory Match',
+    heroTitle: 'Bio <span class="accent">Memory Match</span>',
+    heroSub: 'A mini bio expedition: flip over specimen cards and rely on memory to find each organism’s other half.',
+    rulesChapterTitle: 'How to Play', rulesChapterDesc: 'How flipping, scoring, and winning work',
+    codexChapterTitle: 'Field Guide', codexChapterDesc: 'Profiles of all 18 specimens in this expedition',
+    playerLabel: 'Players', kindLabel: 'Deck Size · concept types drawn at random',
+    playerOptions: ['1 Player', '2 Players', '3 Players', '4 Players'],
+    kindOptions: ['4 types · 8 cards', '6 types · 12 cards', '8 types · 16 cards', '10 types · 20 cards', '18 types · 36 cards'],
+    start: 'Start Expedition →', back: '← Home', restart: 'Reshuffle', again: 'Play Again →',
+    rulesTitle: 'How to Play', rulesSub: 'Everything you need before the expedition.',
+    codexTitle: 'Field Guide', codexSub: 'All 18 specimen profiles collected on this expedition.',
+    resultEyebrow: 'Expedition Report', turnTag: 'TURN', cardBack: 'BIO·MATCH',
+    rules: [
+      ['Objective', 'Learn common concepts in life science and synthetic biology—including DNA, RNA, genes, and plasmids—through observation, memory, and matching. Match identical cards to collect a pair. The player with the most pairs at the end wins.'],
+      ['Players', '1–4 players. Play solo as a memory challenge or compete with others by taking turns.'],
+      ['Setup', 'Choose several biological concepts from the deck and prepare <b>two identical cards for each concept</b>. Shuffle all cards thoroughly and place them face down randomly on the table. For the full game, use all <b>18 concepts, making 36 cards in total</b>.'],
+      ['How to Play', 'Players take turns. On each turn, a player flips over <b>two cards</b>. If the two cards are identical, the player has made a successful match. The player keeps the pair and <b>takes another turn</b>. If the two cards are different, everyone gets a moment to observe and remember their positions. Turn both cards face down again, and the next player takes a turn.'],
+      ['End of the Game', 'The game ends when all cards have been matched. Count the number of pairs collected by each player. <b>The player with the most pairs wins.</b> If two or more players have the same number of pairs, they share the victory. In solo mode, record the number of flips or the time required to complete all matches and try to beat your personal best.']
+    ]
+  },
+  zh: {
+    title: '生物翻翻乐 · 生物志配对考察',
+    heroTitle: '生物<span class="accent">翻翻乐</span>',
+    heroSub: '一次小型生物考察：翻开标本卡，凭借记忆为每一种生物找到它的另一半。',
+    rulesChapterTitle: '规则讲解', rulesChapterDesc: '怎么翻牌、怎么计分、怎么获胜',
+    codexChapterTitle: '图鉴说明', codexChapterDesc: '本次考察收录的 18 种生物档案',
+    playerLabel: '考察人数', kindLabel: '考察规模 · 随机抽取的素材种类数',
+    playerOptions: ['1人', '2人', '3人', '4人'],
+    kindOptions: ['4种 · 8张', '6种 · 12张', '8种 · 16张', '10种 · 20张', '18种 · 36张'],
+    start: '开始考察 →', back: '← 返回首页', restart: '重新洗牌', again: '再来一局 →',
+    rulesTitle: '规则讲解', rulesSub: '出发前需要知道的一切。',
+    codexTitle: '图鉴说明', codexSub: '本次考察收录的 18 份标本档案。',
+    resultEyebrow: '考察报告', turnTag: '行动中', cardBack: '生·物·志',
+    rules: [
+      ['游戏目标', '通过观察、记忆和配对，在游戏中认识 DNA、RNA、基因、质粒等常见生命科学与合成生物学概念。找到相同卡牌即可完成一次配对，最终获得配对卡牌最多的玩家获胜。'],
+      ['参与人数', '1–4 人。单人可进行记忆挑战，多人可轮流进行配对比赛。'],
+      ['游戏准备', '从卡牌中选择若干种生物学概念，<b>每种概念使用两张相同卡牌</b>。将所有卡牌充分洗匀后，背面朝上随机排列在桌面上。完整模式可使用全部 <b>18 种卡牌，共 36 张</b>。'],
+      ['游戏过程', '玩家依次行动，每回合翻开任意 <b>两张卡牌</b>。如果两张卡牌相同，表示配对成功。玩家收下这两张卡牌，并可以<b>继续进行下一次翻牌</b>。如果两张卡牌不同，所有玩家观察并记住卡牌的位置后，将两张卡牌重新背面朝上放回原位，本回合结束，由下一位玩家继续。'],
+      ['游戏结束与胜负', '当桌面上的所有卡牌均完成配对时，游戏结束。统计每位玩家获得的卡牌对数，<b>获得配对数量最多的玩家获胜</b>；如果数量相同，则并列获胜。']
+    ]
+  }
+};
+
+let lang = localStorage.getItem('bio-memory-match-language') === 'zh' ? 'zh' : 'en';
+const copy = () => COPY[lang];
+const playerName = (player) => player.names[lang];
+
+let dealTimer = null; // 发牌入场动画的统一清理定时器
+
+/* =========================================================
+ * 游戏状态
+ * ========================================================= */
+const state = {
+  playerCount: 2,
+  kindCount: 6,
+  deck: [],           // [{ id, src, pairId, state:'back'|'front'|'matched', owner:null|1~4 }]
+  players: [],
+  current: 0,
+  flipped: [],
+  lock: false,
+  matchedPairs: 0
+};
+
+/* DOM 引用 */
+const homeView = document.getElementById('homeView');
+const gamePanel = document.getElementById('gamePanel');
+const playerBar = document.getElementById('playerBar');
+const messageEl = document.getElementById('message');
+const boardEl = document.getElementById('board');
+const rulesOverlay = document.getElementById('rulesOverlay');
+const codexOverlay = document.getElementById('codexOverlay');
+const codexGrid = document.getElementById('codexGrid');
+const resultOverlay = document.getElementById('resultOverlay');
+const resultTitle = document.getElementById('resultTitle');
+const resultSub = document.getElementById('resultSub');
+const resultRows = document.getElementById('resultRows');
+const rulesList = document.getElementById('rulesList');
+
+function applyLanguage(nextLang) {
+  lang = nextLang;
+  localStorage.setItem('bio-memory-match-language', lang);
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+  document.title = copy().title;
+  document.getElementById('heroTitle').innerHTML = copy().heroTitle;
+  document.getElementById('heroSub').textContent = copy().heroSub;
+  document.getElementById('rulesChapterTitle').textContent = copy().rulesChapterTitle;
+  document.getElementById('rulesChapterDesc').textContent = copy().rulesChapterDesc;
+  document.getElementById('codexChapterTitle').textContent = copy().codexChapterTitle;
+  document.getElementById('codexChapterDesc').textContent = copy().codexChapterDesc;
+  document.getElementById('playerLabel').textContent = copy().playerLabel;
+  document.getElementById('kindLabel').textContent = copy().kindLabel;
+  document.querySelectorAll('#playerSeg button').forEach((button, i) => button.textContent = copy().playerOptions[i]);
+  document.querySelectorAll('#kindSeg button').forEach((button, i) => button.textContent = copy().kindOptions[i]);
+  document.getElementById('startBtn').textContent = copy().start;
+  document.getElementById('backBtn').textContent = copy().back;
+  document.getElementById('restartBtn').textContent = copy().restart;
+  document.getElementById('againBtn').textContent = copy().again;
+  document.getElementById('rulesTitle').textContent = copy().rulesTitle;
+  document.getElementById('rulesSub').textContent = copy().rulesSub;
+  document.getElementById('codexTitle').textContent = copy().codexTitle;
+  document.getElementById('codexSub').textContent = copy().codexSub;
+  document.getElementById('resultEyebrow').textContent = copy().resultEyebrow;
+  rulesList.innerHTML = copy().rules.map((rule, i) =>
+    `<div class="rule-item"><span class="rn">${['i', 'ii', 'iii', 'iv', 'v'][i]}</span><div class="rb"><b>${rule[0]}</b><p>${rule[1]}</p></div></div>`
+  ).join('');
+  document.querySelectorAll('.lang-switch button').forEach((button) => button.classList.toggle('is-active', button.dataset.lang === lang));
+  buildCodex();
+  if (!gamePanel.hidden) {
+    renderPlayers();
+    updateCardFallbacks();
+    setMessage(turnMessage());
+  }
+  if (!resultOverlay.hidden) renderResult();
+}
+
+function updateCardFallbacks() {
+  boardEl.querySelectorAll('.face-back .glyph').forEach((el) => el.textContent = copy().cardBack);
+}
+
+document.querySelector('.lang-switch').addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-lang]');
+  if (button && button.dataset.lang !== lang) applyLanguage(button.dataset.lang);
+});
+
+/* =========================================================
+ * 工具函数
+ * ========================================================= */
+/* Fisher-Yates 洗牌 */
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/* 图片加载失败 -> 隐藏 img，露出占位背景文字 */
+function guardImg(img) {
+  img.addEventListener('error', () => { img.style.display = 'none'; });
+  return img;
+}
+
+/* 从素材路径提取素材编号，用于占位展示 */
+function kindLabel(src) {
+  const m = src.match(/\((\d+)\)|(\d+)(?=\.\w+$)/);
+  return m ? (m[1] || m[2]) : '?';
+}
+
+/* =========================================================
+ * 遮罩层开关
+ * ========================================================= */
+function openOverlay(el) {
+  el.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+function closeOverlay(el) {
+  el.hidden = true;
+  document.body.style.overflow = '';
+}
+document.getElementById('openRules').addEventListener('click', () => openOverlay(rulesOverlay));
+document.getElementById('openCodex').addEventListener('click', () => openOverlay(codexOverlay));
+[rulesOverlay, codexOverlay].forEach((ov) => {
+  ov.addEventListener('click', (e) => {
+    if (e.target === ov || e.target.closest('[data-close]')) closeOverlay(ov);
+  });
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  if (!rulesOverlay.hidden) closeOverlay(rulesOverlay);
+  if (!codexOverlay.hidden) closeOverlay(codexOverlay);
+});
+
+/* =========================================================
+ * 图鉴渲染（首页一次性构建）
+ * ========================================================= */
+function buildCodex() {
+  codexGrid.innerHTML = '';
+  IMAGES.forEach((src, i) => {
+    const n = i + 1;
+    const info = CREATURE_INFO[i] || {};
+    const name = lang === 'zh' ? info[0] : info[2];
+    const desc = lang === 'zh' ? info[1] : info[3];
+
+    const card = document.createElement('article');
+    card.className = 'codex-card';
+
+    const pic = document.createElement('div');
+    pic.className = 'pic';
+    const ph = document.createElement('span');
+    ph.className = 'ph';
+    ph.textContent = `No.${n}`;
+    pic.appendChild(ph);
+    const img = document.createElement('img');
+    img.src = encodeURI(src);
+    img.alt = name;
+    img.loading = 'lazy';
+    guardImg(img);
+    pic.appendChild(img); // 图片在上层
+
+    const infoBox = document.createElement('div');
+    infoBox.className = 'info';
+    const noEl = document.createElement('div');
+    noEl.className = 'no';
+    noEl.textContent = `Specimen No.${String(n).padStart(2, '0')}`;
+    const nmEl = document.createElement('h3');
+    nmEl.className = 'nm';
+    nmEl.textContent = name;
+    const dsEl = document.createElement('p');
+    dsEl.className = 'ds' + (desc ? '' : ' empty');
+    dsEl.textContent = desc || (lang === 'zh' ? '档案待补录……' : 'Profile pending…');
+
+    infoBox.appendChild(noEl);
+    infoBox.appendChild(nmEl);
+    infoBox.appendChild(dsEl);
+    card.appendChild(pic);
+    card.appendChild(infoBox);
+    codexGrid.appendChild(card);
+  });
+}
+applyLanguage(lang);
+
+/* =========================================================
+ * 设置区：分段选择器
+ * ========================================================= */
+function bindSegmented(containerId, key) {
+  const seg = document.getElementById(containerId);
+  seg.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-value]');
+    if (!btn) return;
+    seg.querySelectorAll('button').forEach(b => b.classList.remove('is-active'));
+    btn.classList.add('is-active');
+    state[key] = parseInt(btn.dataset.value, 10);
+  });
+}
+bindSegmented('playerSeg', 'playerCount');
+bindSegmented('kindSeg', 'kindCount');
+
+/* =========================================================
+ * 开局：抽素材、生成卡牌、洗牌、渲染
+ * ========================================================= */
+function startGame() {
+  const { playerCount, kindCount } = state;
+
+  const picked = shuffle(IMAGES).slice(0, Math.min(kindCount, IMAGES.length));
+  let id = 0;
+  const deck = [];
+  picked.forEach((src) => {
+    const pairId = 'img_' + kindLabel(src);
+    deck.push({ id: id++, src, pairId, state: 'back', owner: null });
+    deck.push({ id: id++, src, pairId, state: 'back', owner: null });
+  });
+  state.deck = shuffle(deck);
+
+  state.players = PLAYER_DEFS.slice(0, playerCount).map((d, i) => ({
+    id: i + 1, names: d.names, short: d.short, color: d.color, count: 0
+  }));
+  state.current = 0;
+  state.flipped = [];
+  state.lock = false;
+  state.matchedPairs = 0;
+
+  homeView.hidden = true;
+  closeOverlay(resultOverlay);
+  gamePanel.hidden = false;
+  document.body.classList.add('playing');
+
+  renderPlayers();
+  renderBoard();
+  setMessage(turnMessage());
+}
+
+function cur() { return state.players[state.current]; }
+function turnMessage() { return lang === 'zh' ? `轮到${playerName(cur())}，翻开两张卡片吧。` : `${playerName(cur())}'s turn — flip any two cards.`; }
+
+/* =========================================================
+ * 渲染：玩家信息栏
+ * ========================================================= */
+function renderPlayers() {
+  playerBar.innerHTML = '';
+  state.players.forEach((p, i) => {
+    const div = document.createElement('div');
+    div.className = 'player' + (i === state.current ? ' is-current' : '');
+    div.style.setProperty('--pc', p.color);
+    div.innerHTML =
+      `<span class="ptag">${copy().turnTag}</span>` +
+      `<span class="dot"></span>` +
+      `<span class="pname">${playerName(p)} · ${p.short}</span>` +
+      `<span class="pscore">${p.count}</span>`;
+    playerBar.appendChild(div);
+  });
+}
+
+/* =========================================================
+ * 渲染：棋盘
+ * ========================================================= */
+function renderBoard() {
+  boardEl.innerHTML = '';
+  const lay = LAYOUTS[state.kindCount] || { cols: 4, rows: 2, cardW: 150 };
+  boardEl.style.setProperty('--cols', lay.cols);
+  boardEl.style.setProperty('--rows', lay.rows);
+  boardEl.style.setProperty('--card-w-base', lay.cardW + 'px');
+
+  state.deck.forEach((card, idx) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'card state-back dealing';
+    btn.dataset.id = card.id;
+    btn.setAttribute('aria-label', '卡片 ' + (idx + 1));
+    btn.style.animationDelay = Math.min(idx * 22, 700) + 'ms';
+
+    btn.innerHTML =
+      `<span class="card-inner">
+        <span class="face face-back">
+          <span class="fallback"><span class="glyph">${copy().cardBack}</span><span class="tiny">Field Specimen</span></span>
+        </span>
+        <span class="face face-front">
+          <span class="fallback"><span class="num">No.${kindLabel(card.src)}</span><span class="tiny">Specimen</span></span>
+          <span class="plate-tag">No.${kindLabel(card.src)}</span>
+        </span>
+      </span>
+      <span class="badge"></span>`;
+
+    // 背面图（后挂载，盖在占位层之上）
+    const backImg = document.createElement('img');
+    backImg.src = encodeURI(CARD_BACK);
+    backImg.alt = '';
+    backImg.draggable = false;
+    guardImg(backImg);
+    btn.querySelector('.face-back').appendChild(backImg);
+
+    // 正面图（后挂载，盖在占位层之上）
+    const frontImg = document.createElement('img');
+    frontImg.src = encodeURI(card.src);
+     frontImg.alt = `${lang === 'zh' ? '生物' : 'Specimen'} ${kindLabel(card.src)}`;
+    frontImg.draggable = false;
+    guardImg(frontImg);
+    btn.querySelector('.face-front').appendChild(frontImg);
+
+    btn.addEventListener('click', () => onCardClick(card.id));
+    boardEl.appendChild(btn);
+  });
+
+  // 发牌动画跑完后统一摘除，之后卡片再无 animation 挂载，
+  // 鼠标进出不会重新触发入场动画（否则移开时会闪一下）
+  clearTimeout(dealTimer);
+  const dealDuration = Math.min((state.deck.length - 1) * 22, 700) + 500 + 60;
+  dealTimer = setTimeout(() => {
+    boardEl.querySelectorAll('.card.dealing').forEach((el) => {
+      el.classList.remove('dealing');
+      el.style.animationDelay = '';
+    });
+  }, dealDuration);
+}
+
+/* =========================================================
+ * 提示文案
+ * ========================================================= */
+function setMessage(text, tone) {
+  messageEl.textContent = text;
+  messageEl.className = 'message' + (tone ? ' ' + tone : '');
+  void messageEl.offsetWidth;
+  messageEl.classList.add('pop');
+}
+
+/* =========================================================
+ * 翻牌逻辑
+ * ========================================================= */
+function cardEl(id) {
+  return boardEl.querySelector(`.card[data-id="${id}"]`);
+}
+
+function flipTo(card, nextState) {
+  card.state = nextState;
+  cardEl(card.id).className = 'card state-' + nextState;
+}
+
+function onCardClick(id) {
+  if (state.lock) return;
+  const card = state.deck.find(c => c.id === id);
+  if (!card || card.state !== 'back') return;
+
+  flipTo(card, 'front');
+  state.flipped.push(card);
+
+  if (state.flipped.length < 2) return;
+
+  state.lock = true;
+  const [a, b] = state.flipped;
+  const me = cur();
+
+  if (a.pairId === b.pairId) {
+    /* ---- 匹配成功 ---- */
+    [a, b].forEach((c) => {
+      c.state = 'matched';
+      c.owner = me.id;
+      const el = cardEl(c.id);
+      el.className = 'card state-matched';
+      el.style.setProperty('--owner', me.color);
+      el.disabled = true;
+      el.querySelector('.badge').textContent = me.short;
+    });
+    me.count += 2;
+    state.matchedPairs++;
+    state.flipped = [];
+    state.lock = false;
+    renderPlayers();
+
+    // 展示 1s 后淡出消失；中途重开新局时旧卡已不在牌堆，自动跳过
+    setTimeout(() => {
+      [a, b].forEach((c) => {
+        if (state.deck.includes(c)) cardEl(c.id).classList.replace('state-matched', 'state-vanish');
+      });
+    }, 1000);
+
+    if (state.matchedPairs * 2 === state.deck.length) {
+      setTimeout(showResult, 1600); // 等最后一对消失后再结算
+    } else {
+       setMessage(lang === 'zh' ? '配对成功，继续！' : 'Matched! Go again.', 'ok');
+    }
+  } else {
+    /* ---- 匹配失败 ---- */
+    const isSolo = state.players.length === 1;
+     setMessage(isSolo ? (lang === 'zh' ? '配对失败，再试一次。' : 'No match — try again.') : (lang === 'zh' ? '配对失败，轮到下一位玩家。' : "No match — next player's turn."), 'bad');
+    setTimeout(() => {
+      [a, b].forEach(c => flipTo(c, 'back'));
+      state.flipped = [];
+      if (!isSolo) state.current = (state.current + 1) % state.players.length;
+      state.lock = false;
+      renderPlayers();
+       setMessage(isSolo ? (lang === 'zh' ? `${playerName(cur())}，继续翻牌。` : `${playerName(cur())}, keep going.`) : (lang === 'zh' ? `轮到${playerName(cur())}。` : `${playerName(cur())}'s turn.`));
+    }, MISMATCH_DELAY);
+  }
+}
+
+/* =========================================================
+ * 结算
+ * ========================================================= */
+function renderResult() {
+  const players = state.players.slice().sort((x, y) => y.count - x.count);
+  const top = players[0].count;
+  const winners = players.filter(p => p.count === top);
+  const isDraw = winners.length > 1;
+
+  if (isDraw) {
+    resultTitle.textContent = lang === 'zh' ? '并列收官' : 'It’s a Tie!';
+    resultSub.textContent = lang === 'zh' ? `每人收录 ${top} 张卡片，势均力敌。` : `Each collected ${top} cards — evenly matched.`;
+  } else {
+    resultTitle.textContent = lang === 'zh' ? `${playerName(winners[0])}获胜` : `${playerName(winners[0])} Wins!`;
+    resultSub.textContent = lang === 'zh' ? `共收录 ${top} 张标本卡，记忆力惊人。` : `Collected ${top} specimen cards — what a memory.`;
+  }
+
+  resultRows.innerHTML = '';
+  players.forEach((p) => {
+    const isWin = p.count === top;
+    const row = document.createElement('div');
+    row.className = 'r-row' + (isWin ? ' win' : '');
+    row.style.setProperty('--rc', p.color);
+    row.innerHTML =
+      `<span class="dot"></span>` +
+       `<span class="rn">${playerName(p)} · ${p.short}</span>` +
+      (isWin ? `<span class="win-tag">${isDraw ? 'DRAW' : 'WINNER'}</span>` : ``) +
+      `<span class="rs">${p.count}</span>` +
+       `<span class="rt">${lang === 'zh' ? '张' : 'cards'}</span>`;
+    resultRows.appendChild(row);
+  });
+
+}
+
+function showResult() {
+  renderResult();
+  openOverlay(resultOverlay);
+}
+
+/* =========================================================
+ * 按钮事件
+ * ========================================================= */
+document.getElementById('startBtn').addEventListener('click', startGame);
+document.getElementById('restartBtn').addEventListener('click', startGame);
+document.getElementById('againBtn').addEventListener('click', startGame);
+document.getElementById('backBtn').addEventListener('click', () => {
+  closeOverlay(resultOverlay);
+  gamePanel.hidden = true;
+  homeView.hidden = false;
+  document.body.classList.remove('playing');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+/* Reader refinements required by the Model and Software manuscripts. */
+.wiki-page--route:is(.wiki-page--model,.wiki-page--software) {
+  --wiki-h2-size: clamp(21px, 2.2vw, 25px);
+  --wiki-h3-size: clamp(17px, 1.8vw, 20px);
+  --wiki-h4-size: clamp(15.5px, 1.6vw, 17px);
+  --wiki-h5-size: clamp(15px, 1.45vw, 16px);
+  --wiki-h6-size: 15px
+}
+.wiki-page--route:is(.wiki-page--model,.wiki-page--software) .wiki-content-heading {
+  font-size: var(--wiki-h3-size)
+}
+.wiki-page--route:is(.wiki-page--model,.wiki-page--software):not(.wiki-page--sustainability) .wiki-content-heading {
+  margin: 22px 0 10px;
+  font-family: var(--font-sans);
+  font-size: var(--wiki-h4-size);
+  font-weight: 650;
+  line-height: 1.4;
+  color: var(--route-tertiary-ink, var(--route-subheading-ink));
+  border: 0
+}
+.wiki-page.wiki-page--route:is(.wiki-page--model,.wiki-page--software):not(.wiki-page--sustainability) :is(h4, h5, h6).wiki-content-heading {
+  font-size: var(--wiki-h4-size) !important;
+  font-weight: 650 !important;
+  line-height: 1.4 !important;
+  color: var(--route-tertiary-ink, var(--route-subheading-ink)) !important;
+  margin-top: 22px !important;
+  margin-bottom: 10px !important
+}
+.wiki-page--route:is(.wiki-page--model,.wiki-page--software) .wiki-section__heading h2,
+.wiki-page--route:is(.wiki-page--model,.wiki-page--software).wiki-page--manuscript .wiki-section__heading h2,
+.wiki-page.wiki-page--manuscript:is(.wiki-page--model,.wiki-page--software) .wiki-section__heading h2 {
+  font-size: var(--wiki-h2-size);
+  font-weight: 750
+}
+.wiki-page--route:is(.wiki-page--model,.wiki-page--software) .wiki-subheading__title,
+.wiki-page--route:is(.wiki-page--model,.wiki-page--software).wiki-page--manuscript .wiki-subheading__title,
+.wiki-page.wiki-page--manuscript:is(.wiki-page--model,.wiki-page--software) .wiki-subheading__title {
+  font-size: var(--wiki-h3-size)
+}
+.wiki-page--route:is(.wiki-page--model,.wiki-page--software):not(.wiki-page--sustainability) .wiki-subheading--nested,
+.wiki-page--route:is(.wiki-page--model,.wiki-page--software).wiki-page--manuscript:not(.wiki-page--sustainability) .wiki-subheading--nested,
+.wiki-page.wiki-page--manuscript:is(.wiki-page--model,.wiki-page--software):not(.wiki-page--sustainability) .wiki-subheading--nested {
+  margin-top: 22px !important;
+  margin-bottom: 10px !important
+}
+.wiki-page--route:is(.wiki-page--model,.wiki-page--software):not(.wiki-page--sustainability) .wiki-subheading--nested .wiki-subheading__title,
+.wiki-page--route:is(.wiki-page--model,.wiki-page--software).wiki-page--manuscript:not(.wiki-page--sustainability) .wiki-subheading--nested .wiki-subheading__title,
+.wiki-page.wiki-page--manuscript:is(.wiki-page--model,.wiki-page--software):not(.wiki-page--sustainability) .wiki-subheading--nested .wiki-subheading__title {
+  font-size: var(--wiki-h4-size) !important;
+  font-weight: 650 !important;
+  line-height: 1.4 !important;
+  color: var(--route-tertiary-ink, var(--route-subheading-ink, #84382b)) !important
+}
+.wiki-page.wiki-page--route:is(.wiki-page--model,.wiki-page--software):not(.wiki-page--sustainability) h5.wiki-subheading .wiki-subheading__title,
+.wiki-page.wiki-page--route:is(.wiki-page--model,.wiki-page--software):not(.wiki-page--sustainability) h5.wiki-content-heading {
+  font-size: var(--wiki-h5-size) !important
+}
+.wiki-page.wiki-page--route:is(.wiki-page--model,.wiki-page--software):not(.wiki-page--sustainability) h6.wiki-subheading .wiki-subheading__title,
+.wiki-page.wiki-page--route:is(.wiki-page--model,.wiki-page--software):not(.wiki-page--sustainability) h6.wiki-content-heading {
+  font-size: var(--wiki-h6-size) !important
+}
+.wiki-page.wiki-page--route:is(.wiki-page--model,.wiki-page--software):not(.wiki-page--sustainability) .wiki-protocol-drawer__title {
+  font-family: var(--font-sans), sans-serif !important;
+  font-size: var(--wiki-h3-size);
+  font-weight: 700;
+  line-height: 1.35;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip
+}
+.wiki-page--route:is(.wiki-page--model,.wiki-page--software) .wiki-table th,
+.wiki-page--route:is(.wiki-page--model,.wiki-page--software) .wiki-table td {
+  text-align: center;
+  vertical-align: middle
+}
+.wiki-page--route:is(.wiki-page--model,.wiki-page--software) .wiki-table thead th {
+  text-align: center
+}
+.wiki-page--route:is(.wiki-page--model,.wiki-page--software) .wiki-table tbody th {
+  text-align: center
+}
+.wiki-page--route:is(.wiki-page--model,.wiki-page--software) .wiki-prose:has(+ .wiki-table-wrap) p {
+  text-align: center
+}

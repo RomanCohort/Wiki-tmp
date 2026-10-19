@@ -1,0 +1,2111 @@
+{
+  "rows": [
+    {
+      "dose_ug": 0.0,
+      "p_effect": 0.0,
+      "p_screen": 1.0,
+      "p_joint": 0.0,
+      "p_joint_mcse": 0.0
+    },
+    {
+      "dose_ug": 0.1,
+      "p_effect": 0.044921875,
+      "p_screen": 1.0,
+      "p_joint": 0.044921875,
+      "p_joint_mcse": 0.006472892706
+    },
+    {
+      "dose_ug": 0.2,
+      "p_effect": 0.1142578125,
+      "p_screen": 1.0,
+      "p_joint": 0.1142578125,
+      "p_joint_mcse": 0.009941379195
+    },
+    {
+      "dose_ug": 0.3,
+      "p_effect": 0.1728515625,
+      "p_screen": 1.0,
+      "p_joint": 0.1728515625,
+      "p_joint_mcse": 0.01181621551
+    },
+    {
+      "dose_ug": 0.4,
+      "p_effect": 0.2275390625,
+      "p_screen": 1.0,
+      "p_joint": 0.2275390625,
+      "p_joint_mcse": 0.01310135659
+    },
+    {
+      "dose_ug": 0.5,
+      "p_effect": 0.26953125,
+      "p_screen": 1.0,
+      "p_joint": 0.26953125,
+      "p_joint_mcse": 0.01386613439
+    },
+    {
+      "dose_ug": 0.6,
+      "p_effect": 0.2998046875,
+      "p_screen": 1.0,
+      "p_joint": 0.2998046875,
+      "p_joint_mcse": 0.01431788371
+    },
+    {
+      "dose_ug": 0.7,
+      "p_effect": 0.318359375,
+      "p_screen": 1.0,
+      "p_joint": 0.318359375,
+      "p_joint_mcse": 0.01455749255
+    },
+    {
+      "dose_ug": 0.8,
+      "p_effect": 0.3388671875,
+      "p_screen": 1.0,
+      "p_joint": 0.3388671875,
+      "p_joint_mcse": 0.01479139506
+    },
+    {
+      "dose_ug": 0.9,
+      "p_effect": 0.361328125,
+      "p_screen": 1.0,
+      "p_joint": 0.361328125,
+      "p_joint_mcse": 0.01501204305
+    },
+    {
+      "dose_ug": 1.0,
+      "p_effect": 0.3857421875,
+      "p_screen": 1.0,
+      "p_joint": 0.3857421875,
+      "p_joint_mcse": 0.01521156633
+    },
+    {
+      "dose_ug": 1.1,
+      "p_effect": 0.40234375,
+      "p_screen": 1.0,
+      "p_joint": 0.40234375,
+      "p_joint_mcse": 0.01532407907
+    },
+    {
+      "dose_ug": 1.2,
+      "p_effect": 0.41796875,
+      "p_screen": 1.0,
+      "p_joint": 0.41796875,
+      "p_joint_mcse": 0.01541328041
+    },
+    {
+      "dose_ug": 1.3,
+      "p_effect": 0.43359375,
+      "p_screen": 1.0,
+      "p_joint": 0.43359375,
+      "p_joint_mcse": 0.01548658095
+    },
+    {
+      "dose_ug": 1.4,
+      "p_effect": 0.4423828125,
+      "p_screen": 1.0,
+      "p_joint": 0.4423828125,
+      "p_joint_mcse": 0.01552091141
+    },
+    {
+      "dose_ug": 1.5,
+      "p_effect": 0.4541015625,
+      "p_screen": 1.0,
+      "p_joint": 0.4541015625,
+      "p_joint_mcse": 0.01555902739
+    },
+    {
+      "dose_ug": 1.6,
+      "p_effect": 0.4765625,
+      "p_screen": 1.0,
+      "p_joint": 0.4765625,
+      "p_joint_mcse": 0.01560782442
+    },
+    {
+      "dose_ug": 1.7,
+      "p_effect": 0.48828125,
+      "p_screen": 1.0,
+      "p_joint": 0.48828125,
+      "p_joint_mcse": 0.01562070788
+    },
+    {
+      "dose_ug": 1.8,
+      "p_effect": 0.50390625,
+      "p_screen": 1.0,
+      "p_joint": 0.50390625,
+      "p_joint_mcse": 0.01562452316
+    },
+    {
+      "dose_ug": 1.9,
+      "p_effect": 0.5166015625,
+      "p_screen": 1.0,
+      "p_joint": 0.5166015625,
+      "p_joint_mcse": 0.01561638475
+    },
+    {
+      "dose_ug": 2.0,
+      "p_effect": 0.525390625,
+      "p_screen": 1.0,
+      "p_joint": 0.525390625,
+      "p_joint_mcse": 0.01560484063
+    },
+    {
+      "dose_ug": 2.1,
+      "p_effect": 0.5400390625,
+      "p_screen": 1.0,
+      "p_joint": 0.5400390625,
+      "p_joint_mcse": 0.01557482172
+    },
+    {
+      "dose_ug": 2.2,
+      "p_effect": 0.55078125,
+      "p_screen": 1.0,
+      "p_joint": 0.55078125,
+      "p_joint_mcse": 0.01554420563
+    },
+    {
+      "dose_ug": 2.3,
+      "p_effect": 0.5615234375,
+      "p_screen": 1.0,
+      "p_joint": 0.5615234375,
+      "p_joint_mcse": 0.01550626343
+    },
+    {
+      "dose_ug": 2.4,
+      "p_effect": 0.5673828125,
+      "p_screen": 1.0,
+      "p_joint": 0.5673828125,
+      "p_joint_mcse": 0.01548246099
+    },
+    {
+      "dose_ug": 2.5,
+      "p_effect": 0.5751953125,
+      "p_screen": 1.0,
+      "p_joint": 0.5751953125,
+      "p_joint_mcse": 0.01544729146
+    },
+    {
+      "dose_ug": 2.6,
+      "p_effect": 0.5849609375,
+      "p_screen": 1.0,
+      "p_joint": 0.5849609375,
+      "p_joint_mcse": 0.01539777401
+    },
+    {
+      "dose_ug": 2.7,
+      "p_effect": 0.5947265625,
+      "p_screen": 1.0,
+      "p_joint": 0.5947265625,
+      "p_joint_mcse": 0.0153420276
+    },
+    {
+      "dose_ug": 2.8,
+      "p_effect": 0.603515625,
+      "p_screen": 1.0,
+      "p_joint": 0.603515625,
+      "p_joint_mcse": 0.01528647391
+    },
+    {
+      "dose_ug": 2.9,
+      "p_effect": 0.6064453125,
+      "p_screen": 1.0,
+      "p_joint": 0.6064453125,
+      "p_joint_mcse": 0.01526681308
+    },
+    {
+      "dose_ug": 3.0,
+      "p_effect": 0.61328125,
+      "p_screen": 1.0,
+      "p_joint": 0.61328125,
+      "p_joint_mcse": 0.01521869733
+    },
+    {
+      "dose_ug": 3.1,
+      "p_effect": 0.6171875,
+      "p_screen": 1.0,
+      "p_joint": 0.6171875,
+      "p_joint_mcse": 0.01518978538
+    },
+    {
+      "dose_ug": 3.2,
+      "p_effect": 0.623046875,
+      "p_screen": 1.0,
+      "p_joint": 0.623046875,
+      "p_joint_mcse": 0.01514446922
+    },
+    {
+      "dose_ug": 3.3,
+      "p_effect": 0.6328125,
+      "p_screen": 1.0,
+      "p_joint": 0.6328125,
+      "p_joint_mcse": 0.01506369419
+    },
+    {
+      "dose_ug": 3.4,
+      "p_effect": 0.6357421875,
+      "p_screen": 1.0,
+      "p_joint": 0.6357421875,
+      "p_joint_mcse": 0.01503816949
+    },
+    {
+      "dose_ug": 3.5,
+      "p_effect": 0.6396484375,
+      "p_screen": 1.0,
+      "p_joint": 0.6396484375,
+      "p_joint_mcse": 0.01500319998
+    },
+    {
+      "dose_ug": 3.6,
+      "p_effect": 0.6455078125,
+      "p_screen": 1.0,
+      "p_joint": 0.6455078125,
+      "p_joint_mcse": 0.01494872344
+    },
+    {
+      "dose_ug": 3.7,
+      "p_effect": 0.6484375,
+      "p_screen": 1.0,
+      "p_joint": 0.6484375,
+      "p_joint_mcse": 0.01492056796
+    },
+    {
+      "dose_ug": 3.8,
+      "p_effect": 0.65625,
+      "p_screen": 1.0,
+      "p_joint": 0.65625,
+      "p_joint_mcse": 0.01484246499
+    },
+    {
+      "dose_ug": 3.9,
+      "p_effect": 0.6591796875,
+      "p_screen": 1.0,
+      "p_joint": 0.6591796875,
+      "p_joint_mcse": 0.01481203279
+    },
+    {
+      "dose_ug": 4.0,
+      "p_effect": 0.662109375,
+      "p_screen": 1.0,
+      "p_joint": 0.662109375,
+      "p_joint_mcse": 0.01478097088
+    },
+    {
+      "dose_ug": 4.1,
+      "p_effect": 0.666015625,
+      "p_screen": 1.0,
+      "p_joint": 0.666015625,
+      "p_joint_mcse": 0.01473856854
+    },
+    {
+      "dose_ug": 4.2,
+      "p_effect": 0.6728515625,
+      "p_screen": 1.0,
+      "p_joint": 0.6728515625,
+      "p_joint_mcse": 0.01466162406
+    },
+    {
+      "dose_ug": 4.3,
+      "p_effect": 0.6767578125,
+      "p_screen": 1.0,
+      "p_joint": 0.6767578125,
+      "p_joint_mcse": 0.01461607219
+    },
+    {
+      "dose_ug": 4.4,
+      "p_effect": 0.6826171875,
+      "p_screen": 1.0,
+      "p_joint": 0.6826171875,
+      "p_joint_mcse": 0.01454555622
+    },
+    {
+      "dose_ug": 4.5,
+      "p_effect": 0.68359375,
+      "p_screen": 1.0,
+      "p_joint": 0.68359375,
+      "p_joint_mcse": 0.01453354602
+    },
+    {
+      "dose_ug": 4.6,
+      "p_effect": 0.6884765625,
+      "p_screen": 1.0,
+      "p_joint": 0.6884765625,
+      "p_joint_mcse": 0.01447238026
+    },
+    {
+      "dose_ug": 4.7,
+      "p_effect": 0.69140625,
+      "p_screen": 1.0,
+      "p_joint": 0.69140625,
+      "p_joint_mcse": 0.01443478219
+    },
+    {
+      "dose_ug": 4.8,
+      "p_effect": 0.6962890625,
+      "p_screen": 1.0,
+      "p_joint": 0.6962890625,
+      "p_joint_mcse": 0.01437060408
+    },
+    {
+      "dose_ug": 4.9,
+      "p_effect": 0.705078125,
+      "p_screen": 1.0,
+      "p_joint": 0.705078125,
+      "p_joint_mcse": 0.01425023858
+    },
+    {
+      "dose_ug": 5.0,
+      "p_effect": 0.712890625,
+      "p_screen": 1.0,
+      "p_joint": 0.712890625,
+      "p_joint_mcse": 0.0141379083
+    },
+    {
+      "dose_ug": 5.1,
+      "p_effect": 0.7158203125,
+      "p_screen": 1.0,
+      "p_joint": 0.7158203125,
+      "p_joint_mcse": 0.01409446342
+    },
+    {
+      "dose_ug": 5.2,
+      "p_effect": 0.7177734375,
+      "p_screen": 1.0,
+      "p_joint": 0.7177734375,
+      "p_joint_mcse": 0.01406509455
+    },
+    {
+      "dose_ug": 5.3,
+      "p_effect": 0.7216796875,
+      "p_screen": 1.0,
+      "p_joint": 0.7216796875,
+      "p_joint_mcse": 0.01400537411
+    },
+    {
+      "dose_ug": 5.4,
+      "p_effect": 0.724609375,
+      "p_screen": 1.0,
+      "p_joint": 0.724609375,
+      "p_joint_mcse": 0.01395971564
+    },
+    {
+      "dose_ug": 5.5,
+      "p_effect": 0.7265625,
+      "p_screen": 1.0,
+      "p_joint": 0.7265625,
+      "p_joint_mcse": 0.0139288592
+    },
+    {
+      "dose_ug": 5.6,
+      "p_effect": 0.7314453125,
+      "p_screen": 1.0,
+      "p_joint": 0.7314453125,
+      "p_joint_mcse": 0.01385024069
+    },
+    {
+      "dose_ug": 5.7,
+      "p_effect": 0.734375,
+      "p_screen": 1.0,
+      "p_joint": 0.734375,
+      "p_joint_mcse": 0.01380204495
+    },
+    {
+      "dose_ug": 5.8,
+      "p_effect": 0.734375,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7333984375,
+      "p_joint_mcse": 0.01381819627
+    },
+    {
+      "dose_ug": 5.9,
+      "p_effect": 0.736328125,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7353515625,
+      "p_joint_mcse": 0.01378580714
+    },
+    {
+      "dose_ug": 6.0,
+      "p_effect": 0.740234375,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7392578125,
+      "p_joint_mcse": 0.01371998497
+    },
+    {
+      "dose_ug": 6.1,
+      "p_effect": 0.7421875,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7412109375,
+      "p_joint_mcse": 0.0136865469
+    },
+    {
+      "dose_ug": 6.2,
+      "p_effect": 0.748046875,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7470703125,
+      "p_joint_mcse": 0.01358409358
+    },
+    {
+      "dose_ug": 6.3,
+      "p_effect": 0.7548828125,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.75390625,
+      "p_joint_mcse": 0.0134604316
+    },
+    {
+      "dose_ug": 6.4,
+      "p_effect": 0.755859375,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7548828125,
+      "p_joint_mcse": 0.01344239562
+    },
+    {
+      "dose_ug": 6.5,
+      "p_effect": 0.7587890625,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7578125,
+      "p_joint_mcse": 0.01338772448
+    },
+    {
+      "dose_ug": 6.6,
+      "p_effect": 0.759765625,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7587890625,
+      "p_joint_mcse": 0.01336931177
+    },
+    {
+      "dose_ug": 6.7,
+      "p_effect": 0.76171875,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7607421875,
+      "p_joint_mcse": 0.01333220049
+    },
+    {
+      "dose_ug": 6.8,
+      "p_effect": 0.763671875,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7626953125,
+      "p_joint_mcse": 0.01329470542
+    },
+    {
+      "dose_ug": 6.9,
+      "p_effect": 0.765625,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7646484375,
+      "p_joint_mcse": 0.01325682329
+    },
+    {
+      "dose_ug": 7.0,
+      "p_effect": 0.76953125,
+      "p_screen": 0.998046875,
+      "p_joint": 0.767578125,
+      "p_joint_mcse": 0.01319926708
+    },
+    {
+      "dose_ug": 7.1,
+      "p_effect": 0.7734375,
+      "p_screen": 0.9970703125,
+      "p_joint": 0.7705078125,
+      "p_joint_mcse": 0.01314082095
+    },
+    {
+      "dose_ug": 7.2,
+      "p_effect": 0.77734375,
+      "p_screen": 0.9970703125,
+      "p_joint": 0.7744140625,
+      "p_joint_mcse": 0.01306148779
+    },
+    {
+      "dose_ug": 7.3,
+      "p_effect": 0.78125,
+      "p_screen": 0.9970703125,
+      "p_joint": 0.7783203125,
+      "p_joint_mcse": 0.0129805219
+    },
+    {
+      "dose_ug": 7.4,
+      "p_effect": 0.7841796875,
+      "p_screen": 0.99609375,
+      "p_joint": 0.7802734375,
+      "p_joint_mcse": 0.01293941714
+    },
+    {
+      "dose_ug": 7.5,
+      "p_effect": 0.78515625,
+      "p_screen": 0.99609375,
+      "p_joint": 0.78125,
+      "p_joint_mcse": 0.01291870757
+    },
+    {
+      "dose_ug": 7.6,
+      "p_effect": 0.7861328125,
+      "p_screen": 0.99609375,
+      "p_joint": 0.7822265625,
+      "p_joint_mcse": 0.01289789255
+    },
+    {
+      "dose_ug": 7.7,
+      "p_effect": 0.791015625,
+      "p_screen": 0.9951171875,
+      "p_joint": 0.7861328125,
+      "p_joint_mcse": 0.01281356755
+    },
+    {
+      "dose_ug": 7.8,
+      "p_effect": 0.79296875,
+      "p_screen": 0.994140625,
+      "p_joint": 0.787109375,
+      "p_joint_mcse": 0.01279221744
+    },
+    {
+      "dose_ug": 7.9,
+      "p_effect": 0.7939453125,
+      "p_screen": 0.994140625,
+      "p_joint": 0.7880859375,
+      "p_joint_mcse": 0.01277075871
+    },
+    {
+      "dose_ug": 8.0,
+      "p_effect": 0.7939453125,
+      "p_screen": 0.994140625,
+      "p_joint": 0.7880859375,
+      "p_joint_mcse": 0.01277075871
+    },
+    {
+      "dose_ug": 8.1,
+      "p_effect": 0.7958984375,
+      "p_screen": 0.9921875,
+      "p_joint": 0.7880859375,
+      "p_joint_mcse": 0.01277075871
+    },
+    {
+      "dose_ug": 8.2,
+      "p_effect": 0.7998046875,
+      "p_screen": 0.9921875,
+      "p_joint": 0.7919921875,
+      "p_joint_mcse": 0.01268382653
+    },
+    {
+      "dose_ug": 8.3,
+      "p_effect": 0.80078125,
+      "p_screen": 0.9921875,
+      "p_joint": 0.79296875,
+      "p_joint_mcse": 0.01266181635
+    },
+    {
+      "dose_ug": 8.4,
+      "p_effect": 0.8037109375,
+      "p_screen": 0.9921875,
+      "p_joint": 0.7958984375,
+      "p_joint_mcse": 0.01259511138
+    },
+    {
+      "dose_ug": 8.5,
+      "p_effect": 0.8056640625,
+      "p_screen": 0.990234375,
+      "p_joint": 0.7958984375,
+      "p_joint_mcse": 0.01259511138
+    },
+    {
+      "dose_ug": 8.6,
+      "p_effect": 0.8076171875,
+      "p_screen": 0.990234375,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341
+    },
+    {
+      "dose_ug": 8.7,
+      "p_effect": 0.8095703125,
+      "p_screen": 0.98828125,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341
+    },
+    {
+      "dose_ug": 8.8,
+      "p_effect": 0.810546875,
+      "p_screen": 0.9873046875,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341
+    },
+    {
+      "dose_ug": 8.9,
+      "p_effect": 0.810546875,
+      "p_screen": 0.9873046875,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341
+    },
+    {
+      "dose_ug": 9.0,
+      "p_effect": 0.810546875,
+      "p_screen": 0.986328125,
+      "p_joint": 0.796875,
+      "p_joint_mcse": 0.0125726496
+    },
+    {
+      "dose_ug": 9.1,
+      "p_effect": 0.8134765625,
+      "p_screen": 0.984375,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341
+    },
+    {
+      "dose_ug": 9.2,
+      "p_effect": 0.81640625,
+      "p_screen": 0.9833984375,
+      "p_joint": 0.7998046875,
+      "p_joint_mcse": 0.01250457531
+    },
+    {
+      "dose_ug": 9.3,
+      "p_effect": 0.81640625,
+      "p_screen": 0.9833984375,
+      "p_joint": 0.7998046875,
+      "p_joint_mcse": 0.01250457531
+    },
+    {
+      "dose_ug": 9.4,
+      "p_effect": 0.818359375,
+      "p_screen": 0.9833984375,
+      "p_joint": 0.8017578125,
+      "p_joint_mcse": 0.01245861205
+    },
+    {
+      "dose_ug": 9.5,
+      "p_effect": 0.8212890625,
+      "p_screen": 0.98046875,
+      "p_joint": 0.802734375,
+      "p_joint_mcse": 0.01243545438
+    },
+    {
+      "dose_ug": 9.6,
+      "p_effect": 0.82421875,
+      "p_screen": 0.98046875,
+      "p_joint": 0.8056640625,
+      "p_joint_mcse": 0.01236526925
+    },
+    {
+      "dose_ug": 9.7,
+      "p_effect": 0.826171875,
+      "p_screen": 0.9794921875,
+      "p_joint": 0.806640625,
+      "p_joint_mcse": 0.01234163459
+    },
+    {
+      "dose_ug": 9.8,
+      "p_effect": 0.8310546875,
+      "p_screen": 0.978515625,
+      "p_joint": 0.810546875,
+      "p_joint_mcse": 0.01224587935
+    },
+    {
+      "dose_ug": 9.9,
+      "p_effect": 0.83203125,
+      "p_screen": 0.9775390625,
+      "p_joint": 0.810546875,
+      "p_joint_mcse": 0.01224587935
+    },
+    {
+      "dose_ug": 10.0,
+      "p_effect": 0.833984375,
+      "p_screen": 0.9765625,
+      "p_joint": 0.8115234375,
+      "p_joint_mcse": 0.01222163281
+    },
+    {
+      "dose_ug": 10.1,
+      "p_effect": 0.8349609375,
+      "p_screen": 0.9765625,
+      "p_joint": 0.8125,
+      "p_joint_mcse": 0.01219726172
+    },
+    {
+      "dose_ug": 10.2,
+      "p_effect": 0.8369140625,
+      "p_screen": 0.9755859375,
+      "p_joint": 0.814453125,
+      "p_joint_mcse": 0.01214814287
+    },
+    {
+      "dose_ug": 10.3,
+      "p_effect": 0.8388671875,
+      "p_screen": 0.9716796875,
+      "p_joint": 0.8125,
+      "p_joint_mcse": 0.01219726172
+    },
+    {
+      "dose_ug": 10.4,
+      "p_effect": 0.8388671875,
+      "p_screen": 0.9716796875,
+      "p_joint": 0.8125,
+      "p_joint_mcse": 0.01219726172
+    },
+    {
+      "dose_ug": 10.5,
+      "p_effect": 0.8388671875,
+      "p_screen": 0.96875,
+      "p_joint": 0.8095703125,
+      "p_joint_mcse": 0.01227000207
+    },
+    {
+      "dose_ug": 10.6,
+      "p_effect": 0.83984375,
+      "p_screen": 0.9658203125,
+      "p_joint": 0.8076171875,
+      "p_joint_mcse": 0.01231787898
+    },
+    {
+      "dose_ug": 10.7,
+      "p_effect": 0.8427734375,
+      "p_screen": 0.962890625,
+      "p_joint": 0.80859375,
+      "p_joint_mcse": 0.01229400171
+    },
+    {
+      "dose_ug": 10.8,
+      "p_effect": 0.845703125,
+      "p_screen": 0.9609375,
+      "p_joint": 0.8095703125,
+      "p_joint_mcse": 0.01227000207
+    },
+    {
+      "dose_ug": 10.9,
+      "p_effect": 0.8466796875,
+      "p_screen": 0.958984375,
+      "p_joint": 0.80859375,
+      "p_joint_mcse": 0.01229400171
+    },
+    {
+      "dose_ug": 11.0,
+      "p_effect": 0.8486328125,
+      "p_screen": 0.95703125,
+      "p_joint": 0.80859375,
+      "p_joint_mcse": 0.01229400171
+    },
+    {
+      "dose_ug": 11.1,
+      "p_effect": 0.8486328125,
+      "p_screen": 0.95703125,
+      "p_joint": 0.80859375,
+      "p_joint_mcse": 0.01229400171
+    },
+    {
+      "dose_ug": 11.2,
+      "p_effect": 0.849609375,
+      "p_screen": 0.9560546875,
+      "p_joint": 0.80859375,
+      "p_joint_mcse": 0.01229400171
+    },
+    {
+      "dose_ug": 11.3,
+      "p_effect": 0.8505859375,
+      "p_screen": 0.955078125,
+      "p_joint": 0.80859375,
+      "p_joint_mcse": 0.01229400171
+    },
+    {
+      "dose_ug": 11.4,
+      "p_effect": 0.8505859375,
+      "p_screen": 0.953125,
+      "p_joint": 0.806640625,
+      "p_joint_mcse": 0.01234163459
+    },
+    {
+      "dose_ug": 11.5,
+      "p_effect": 0.8525390625,
+      "p_screen": 0.953125,
+      "p_joint": 0.80859375,
+      "p_joint_mcse": 0.01229400171
+    },
+    {
+      "dose_ug": 11.6,
+      "p_effect": 0.853515625,
+      "p_screen": 0.951171875,
+      "p_joint": 0.8076171875,
+      "p_joint_mcse": 0.01231787898
+    },
+    {
+      "dose_ug": 11.7,
+      "p_effect": 0.8544921875,
+      "p_screen": 0.94921875,
+      "p_joint": 0.806640625,
+      "p_joint_mcse": 0.01234163459
+    },
+    {
+      "dose_ug": 11.8,
+      "p_effect": 0.8544921875,
+      "p_screen": 0.9462890625,
+      "p_joint": 0.8037109375,
+      "p_joint_mcse": 0.01241217847
+    },
+    {
+      "dose_ug": 11.9,
+      "p_effect": 0.8544921875,
+      "p_screen": 0.9453125,
+      "p_joint": 0.802734375,
+      "p_joint_mcse": 0.01243545438
+    },
+    {
+      "dose_ug": 12.0,
+      "p_effect": 0.85546875,
+      "p_screen": 0.9423828125,
+      "p_joint": 0.80078125,
+      "p_joint_mcse": 0.01248165215
+    },
+    {
+      "dose_ug": 12.1,
+      "p_effect": 0.8564453125,
+      "p_screen": 0.9404296875,
+      "p_joint": 0.7998046875,
+      "p_joint_mcse": 0.01250457531
+    },
+    {
+      "dose_ug": 12.2,
+      "p_effect": 0.8603515625,
+      "p_screen": 0.939453125,
+      "p_joint": 0.802734375,
+      "p_joint_mcse": 0.01243545438
+    },
+    {
+      "dose_ug": 12.3,
+      "p_effect": 0.8603515625,
+      "p_screen": 0.9375,
+      "p_joint": 0.80078125,
+      "p_joint_mcse": 0.01248165215
+    },
+    {
+      "dose_ug": 12.4,
+      "p_effect": 0.8642578125,
+      "p_screen": 0.935546875,
+      "p_joint": 0.802734375,
+      "p_joint_mcse": 0.01243545438
+    },
+    {
+      "dose_ug": 12.5,
+      "p_effect": 0.8642578125,
+      "p_screen": 0.9326171875,
+      "p_joint": 0.7998046875,
+      "p_joint_mcse": 0.01250457531
+    },
+    {
+      "dose_ug": 12.6,
+      "p_effect": 0.8662109375,
+      "p_screen": 0.931640625,
+      "p_joint": 0.80078125,
+      "p_joint_mcse": 0.01248165215
+    },
+    {
+      "dose_ug": 12.7,
+      "p_effect": 0.8671875,
+      "p_screen": 0.9267578125,
+      "p_joint": 0.796875,
+      "p_joint_mcse": 0.0125726496
+    },
+    {
+      "dose_ug": 12.8,
+      "p_effect": 0.8681640625,
+      "p_screen": 0.92578125,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341
+    },
+    {
+      "dose_ug": 12.9,
+      "p_effect": 0.869140625,
+      "p_screen": 0.9248046875,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341
+    },
+    {
+      "dose_ug": 13.0,
+      "p_effect": 0.87109375,
+      "p_screen": 0.923828125,
+      "p_joint": 0.798828125,
+      "p_joint_mcse": 0.01252738218
+    },
+    {
+      "dose_ug": 13.1,
+      "p_effect": 0.87109375,
+      "p_screen": 0.9228515625,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341
+    },
+    {
+      "dose_ug": 13.2,
+      "p_effect": 0.8720703125,
+      "p_screen": 0.921875,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341
+    },
+    {
+      "dose_ug": 13.3,
+      "p_effect": 0.873046875,
+      "p_screen": 0.919921875,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341
+    },
+    {
+      "dose_ug": 13.4,
+      "p_effect": 0.873046875,
+      "p_screen": 0.9169921875,
+      "p_joint": 0.794921875,
+      "p_joint_mcse": 0.01261745937
+    },
+    {
+      "dose_ug": 13.5,
+      "p_effect": 0.873046875,
+      "p_screen": 0.9140625,
+      "p_joint": 0.79296875,
+      "p_joint_mcse": 0.01266181635
+    },
+    {
+      "dose_ug": 13.6,
+      "p_effect": 0.875,
+      "p_screen": 0.908203125,
+      "p_joint": 0.7890625,
+      "p_joint_mcse": 0.01274919081
+    },
+    {
+      "dose_ug": 13.7,
+      "p_effect": 0.876953125,
+      "p_screen": 0.90625,
+      "p_joint": 0.7890625,
+      "p_joint_mcse": 0.01274919081
+    },
+    {
+      "dose_ug": 13.8,
+      "p_effect": 0.8779296875,
+      "p_screen": 0.9033203125,
+      "p_joint": 0.7880859375,
+      "p_joint_mcse": 0.01277075871
+    },
+    {
+      "dose_ug": 13.9,
+      "p_effect": 0.8779296875,
+      "p_screen": 0.90234375,
+      "p_joint": 0.787109375,
+      "p_joint_mcse": 0.01279221744
+    },
+    {
+      "dose_ug": 14.0,
+      "p_effect": 0.8798828125,
+      "p_screen": 0.900390625,
+      "p_joint": 0.787109375,
+      "p_joint_mcse": 0.01279221744
+    },
+    {
+      "dose_ug": 14.1,
+      "p_effect": 0.8798828125,
+      "p_screen": 0.8994140625,
+      "p_joint": 0.7861328125,
+      "p_joint_mcse": 0.01281356755
+    },
+    {
+      "dose_ug": 14.2,
+      "p_effect": 0.880859375,
+      "p_screen": 0.8984375,
+      "p_joint": 0.7861328125,
+      "p_joint_mcse": 0.01281356755
+    },
+    {
+      "dose_ug": 14.3,
+      "p_effect": 0.8828125,
+      "p_screen": 0.8955078125,
+      "p_joint": 0.78515625,
+      "p_joint_mcse": 0.01283480958
+    },
+    {
+      "dose_ug": 14.4,
+      "p_effect": 0.884765625,
+      "p_screen": 0.89453125,
+      "p_joint": 0.7861328125,
+      "p_joint_mcse": 0.01281356755
+    },
+    {
+      "dose_ug": 14.5,
+      "p_effect": 0.884765625,
+      "p_screen": 0.8935546875,
+      "p_joint": 0.7861328125,
+      "p_joint_mcse": 0.01281356755
+    },
+    {
+      "dose_ug": 14.6,
+      "p_effect": 0.8857421875,
+      "p_screen": 0.8916015625,
+      "p_joint": 0.7841796875,
+      "p_joint_mcse": 0.01285594407
+    },
+    {
+      "dose_ug": 14.7,
+      "p_effect": 0.88671875,
+      "p_screen": 0.8896484375,
+      "p_joint": 0.78515625,
+      "p_joint_mcse": 0.01283480958
+    },
+    {
+      "dose_ug": 14.8,
+      "p_effect": 0.88671875,
+      "p_screen": 0.888671875,
+      "p_joint": 0.7841796875,
+      "p_joint_mcse": 0.01285594407
+    },
+    {
+      "dose_ug": 14.9,
+      "p_effect": 0.8876953125,
+      "p_screen": 0.88671875,
+      "p_joint": 0.783203125,
+      "p_joint_mcse": 0.01287697156
+    },
+    {
+      "dose_ug": 15.0,
+      "p_effect": 0.8876953125,
+      "p_screen": 0.8828125,
+      "p_joint": 0.7802734375,
+      "p_joint_mcse": 0.01293941714
+    },
+    {
+      "dose_ug": 15.1,
+      "p_effect": 0.8876953125,
+      "p_screen": 0.8798828125,
+      "p_joint": 0.77734375,
+      "p_joint_mcse": 0.0130009181
+    },
+    {
+      "dose_ug": 15.2,
+      "p_effect": 0.8896484375,
+      "p_screen": 0.8798828125,
+      "p_joint": 0.779296875,
+      "p_joint_mcse": 0.01296002175
+    },
+    {
+      "dose_ug": 15.3,
+      "p_effect": 0.8916015625,
+      "p_screen": 0.875,
+      "p_joint": 0.7763671875,
+      "p_joint_mcse": 0.01302121082
+    },
+    {
+      "dose_ug": 15.4,
+      "p_effect": 0.892578125,
+      "p_screen": 0.873046875,
+      "p_joint": 0.7763671875,
+      "p_joint_mcse": 0.01302121082
+    },
+    {
+      "dose_ug": 15.5,
+      "p_effect": 0.8935546875,
+      "p_screen": 0.8671875,
+      "p_joint": 0.771484375,
+      "p_joint_mcse": 0.01312113909
+    },
+    {
+      "dose_ug": 15.6,
+      "p_effect": 0.8955078125,
+      "p_screen": 0.865234375,
+      "p_joint": 0.771484375,
+      "p_joint_mcse": 0.01312113909
+    },
+    {
+      "dose_ug": 15.7,
+      "p_effect": 0.896484375,
+      "p_screen": 0.857421875,
+      "p_joint": 0.765625,
+      "p_joint_mcse": 0.01323773605
+    },
+    {
+      "dose_ug": 15.8,
+      "p_effect": 0.896484375,
+      "p_screen": 0.8544921875,
+      "p_joint": 0.7626953125,
+      "p_joint_mcse": 0.01329470542
+    },
+    {
+      "dose_ug": 15.9,
+      "p_effect": 0.8974609375,
+      "p_screen": 0.853515625,
+      "p_joint": 0.7626953125,
+      "p_joint_mcse": 0.01329470542
+    },
+    {
+      "dose_ug": 16.0,
+      "p_effect": 0.8974609375,
+      "p_screen": 0.849609375,
+      "p_joint": 0.7587890625,
+      "p_joint_mcse": 0.01336931177
+    },
+    {
+      "dose_ug": 16.1,
+      "p_effect": 0.8994140625,
+      "p_screen": 0.845703125,
+      "p_joint": 0.755859375,
+      "p_joint_mcse": 0.01342426602
+    },
+    {
+      "dose_ug": 16.2,
+      "p_effect": 0.8994140625,
+      "p_screen": 0.8447265625,
+      "p_joint": 0.7548828125,
+      "p_joint_mcse": 0.01344239562
+    },
+    {
+      "dose_ug": 16.3,
+      "p_effect": 0.900390625,
+      "p_screen": 0.8447265625,
+      "p_joint": 0.755859375,
+      "p_joint_mcse": 0.01342426602
+    },
+    {
+      "dose_ug": 16.4,
+      "p_effect": 0.9013671875,
+      "p_screen": 0.8408203125,
+      "p_joint": 0.7529296875,
+      "p_joint_mcse": 0.01347837436
+    },
+    {
+      "dose_ug": 16.5,
+      "p_effect": 0.9013671875,
+      "p_screen": 0.8388671875,
+      "p_joint": 0.7509765625,
+      "p_joint_mcse": 0.01351398166
+    },
+    {
+      "dose_ug": 16.6,
+      "p_effect": 0.90234375,
+      "p_screen": 0.8369140625,
+      "p_joint": 0.7509765625,
+      "p_joint_mcse": 0.01351398166
+    },
+    {
+      "dose_ug": 16.7,
+      "p_effect": 0.90234375,
+      "p_screen": 0.833984375,
+      "p_joint": 0.748046875,
+      "p_joint_mcse": 0.01356670254
+    },
+    {
+      "dose_ug": 16.8,
+      "p_effect": 0.90234375,
+      "p_screen": 0.830078125,
+      "p_joint": 0.744140625,
+      "p_joint_mcse": 0.01363572382
+    },
+    {
+      "dose_ug": 16.9,
+      "p_effect": 0.90234375,
+      "p_screen": 0.8291015625,
+      "p_joint": 0.744140625,
+      "p_joint_mcse": 0.01363572382
+    },
+    {
+      "dose_ug": 17.0,
+      "p_effect": 0.90234375,
+      "p_screen": 0.8271484375,
+      "p_joint": 0.7421875,
+      "p_joint_mcse": 0.013669695
+    },
+    {
+      "dose_ug": 17.1,
+      "p_effect": 0.904296875,
+      "p_screen": 0.822265625,
+      "p_joint": 0.7392578125,
+      "p_joint_mcse": 0.01371998497
+    },
+    {
+      "dose_ug": 17.2,
+      "p_effect": 0.9052734375,
+      "p_screen": 0.8193359375,
+      "p_joint": 0.736328125,
+      "p_joint_mcse": 0.01376948255
+    },
+    {
+      "dose_ug": 17.3,
+      "p_effect": 0.9052734375,
+      "p_screen": 0.8154296875,
+      "p_joint": 0.732421875,
+      "p_joint_mcse": 0.01383426142
+    },
+    {
+      "dose_ug": 17.4,
+      "p_effect": 0.9072265625,
+      "p_screen": 0.814453125,
+      "p_joint": 0.7333984375,
+      "p_joint_mcse": 0.01381819627
+    },
+    {
+      "dose_ug": 17.5,
+      "p_effect": 0.9072265625,
+      "p_screen": 0.8125,
+      "p_joint": 0.7314453125,
+      "p_joint_mcse": 0.01385024069
+    },
+    {
+      "dose_ug": 17.6,
+      "p_effect": 0.9091796875,
+      "p_screen": 0.810546875,
+      "p_joint": 0.7314453125,
+      "p_joint_mcse": 0.01385024069
+    },
+    {
+      "dose_ug": 17.7,
+      "p_effect": 0.9091796875,
+      "p_screen": 0.806640625,
+      "p_joint": 0.7294921875,
+      "p_joint_mcse": 0.0138819428
+    },
+    {
+      "dose_ug": 17.8,
+      "p_effect": 0.9091796875,
+      "p_screen": 0.7998046875,
+      "p_joint": 0.72265625,
+      "p_joint_mcse": 0.01399023775
+    },
+    {
+      "dose_ug": 17.9,
+      "p_effect": 0.91015625,
+      "p_screen": 0.7998046875,
+      "p_joint": 0.7236328125,
+      "p_joint_mcse": 0.01397501835
+    },
+    {
+      "dose_ug": 18.0,
+      "p_effect": 0.91015625,
+      "p_screen": 0.7978515625,
+      "p_joint": 0.7216796875,
+      "p_joint_mcse": 0.01400537411
+    },
+    {
+      "dose_ug": 18.1,
+      "p_effect": 0.91015625,
+      "p_screen": 0.79296875,
+      "p_joint": 0.71875,
+      "p_joint_mcse": 0.01405028767
+    },
+    {
+      "dose_ug": 18.2,
+      "p_effect": 0.91015625,
+      "p_screen": 0.7890625,
+      "p_joint": 0.71484375,
+      "p_joint_mcse": 0.01410902592
+    },
+    {
+      "dose_ug": 18.3,
+      "p_effect": 0.91015625,
+      "p_screen": 0.787109375,
+      "p_joint": 0.7138671875,
+      "p_joint_mcse": 0.01412350746
+    },
+    {
+      "dose_ug": 18.4,
+      "p_effect": 0.91015625,
+      "p_screen": 0.7822265625,
+      "p_joint": 0.7099609375,
+      "p_joint_mcse": 0.01418062901
+    },
+    {
+      "dose_ug": 18.5,
+      "p_effect": 0.91015625,
+      "p_screen": 0.78125,
+      "p_joint": 0.708984375,
+      "p_joint_mcse": 0.01419470945
+    },
+    {
+      "dose_ug": 18.6,
+      "p_effect": 0.91015625,
+      "p_screen": 0.7802734375,
+      "p_joint": 0.7080078125,
+      "p_joint_mcse": 0.0142087104
+    },
+    {
+      "dose_ug": 18.7,
+      "p_effect": 0.91015625,
+      "p_screen": 0.77734375,
+      "p_joint": 0.705078125,
+      "p_joint_mcse": 0.01425023858
+    },
+    {
+      "dose_ug": 18.8,
+      "p_effect": 0.91015625,
+      "p_screen": 0.7744140625,
+      "p_joint": 0.703125,
+      "p_joint_mcse": 0.01427753078
+    },
+    {
+      "dose_ug": 18.9,
+      "p_effect": 0.9111328125,
+      "p_screen": 0.7685546875,
+      "p_joint": 0.6982421875,
+      "p_joint_mcse": 0.01434439797
+    },
+    {
+      "dose_ug": 19.0,
+      "p_effect": 0.9111328125,
+      "p_screen": 0.7666015625,
+      "p_joint": 0.6962890625,
+      "p_joint_mcse": 0.01437060408
+    },
+    {
+      "dose_ug": 19.1,
+      "p_effect": 0.912109375,
+      "p_screen": 0.7626953125,
+      "p_joint": 0.693359375,
+      "p_joint_mcse": 0.01440933915
+    },
+    {
+      "dose_ug": 19.2,
+      "p_effect": 0.912109375,
+      "p_screen": 0.75390625,
+      "p_joint": 0.6845703125,
+      "p_joint_mcse": 0.01452146175
+    },
+    {
+      "dose_ug": 19.3,
+      "p_effect": 0.9130859375,
+      "p_screen": 0.7509765625,
+      "p_joint": 0.68359375,
+      "p_joint_mcse": 0.01453354602
+    },
+    {
+      "dose_ug": 19.4,
+      "p_effect": 0.9150390625,
+      "p_screen": 0.744140625,
+      "p_joint": 0.6806640625,
+      "p_joint_mcse": 0.01456935516
+    },
+    {
+      "dose_ug": 19.5,
+      "p_effect": 0.916015625,
+      "p_screen": 0.7392578125,
+      "p_joint": 0.6767578125,
+      "p_joint_mcse": 0.01461607219
+    },
+    {
+      "dose_ug": 19.6,
+      "p_effect": 0.916015625,
+      "p_screen": 0.7373046875,
+      "p_joint": 0.6748046875,
+      "p_joint_mcse": 0.01463899308
+    },
+    {
+      "dose_ug": 19.7,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.7353515625,
+      "p_joint": 0.6748046875,
+      "p_joint_mcse": 0.01463899308
+    },
+    {
+      "dose_ug": 19.8,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.7333984375,
+      "p_joint": 0.6728515625,
+      "p_joint_mcse": 0.01466162406
+    },
+    {
+      "dose_ug": 19.9,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.732421875,
+      "p_joint": 0.671875,
+      "p_joint_mcse": 0.01467283125
+    },
+    {
+      "dose_ug": 20.0,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.732421875,
+      "p_joint": 0.671875,
+      "p_joint_mcse": 0.01467283125
+    },
+    {
+      "dose_ug": 20.1,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.728515625,
+      "p_joint": 0.66796875,
+      "p_joint_mcse": 0.01471694187
+    },
+    {
+      "dose_ug": 20.2,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.7255859375,
+      "p_joint": 0.666015625,
+      "p_joint_mcse": 0.01473856854
+    },
+    {
+      "dose_ug": 20.3,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.7236328125,
+      "p_joint": 0.6640625,
+      "p_joint_mcse": 0.01475991113
+    },
+    {
+      "dose_ug": 20.4,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.7216796875,
+      "p_joint": 0.662109375,
+      "p_joint_mcse": 0.01478097088
+    },
+    {
+      "dose_ug": 20.5,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.7197265625,
+      "p_joint": 0.66015625,
+      "p_joint_mcse": 0.01480174899
+    },
+    {
+      "dose_ug": 20.6,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.7158203125,
+      "p_joint": 0.6572265625,
+      "p_joint_mcse": 0.01483239066
+    },
+    {
+      "dose_ug": 20.7,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.712890625,
+      "p_joint": 0.654296875,
+      "p_joint_mcse": 0.0148624052
+    },
+    {
+      "dose_ug": 20.8,
+      "p_effect": 0.91796875,
+      "p_screen": 0.70703125,
+      "p_joint": 0.6494140625,
+      "p_joint_mcse": 0.01491104607
+    },
+    {
+      "dose_ug": 20.9,
+      "p_effect": 0.91796875,
+      "p_screen": 0.7001953125,
+      "p_joint": 0.642578125,
+      "p_joint_mcse": 0.01497626632
+    },
+    {
+      "dose_ug": 21.0,
+      "p_effect": 0.91796875,
+      "p_screen": 0.6962890625,
+      "p_joint": 0.6396484375,
+      "p_joint_mcse": 0.01500319998
+    },
+    {
+      "dose_ug": 21.1,
+      "p_effect": 0.91796875,
+      "p_screen": 0.6904296875,
+      "p_joint": 0.6337890625,
+      "p_joint_mcse": 0.01505525262
+    },
+    {
+      "dose_ug": 21.2,
+      "p_effect": 0.9189453125,
+      "p_screen": 0.6884765625,
+      "p_joint": 0.6328125,
+      "p_joint_mcse": 0.01506369419
+    },
+    {
+      "dose_ug": 21.3,
+      "p_effect": 0.9208984375,
+      "p_screen": 0.6875,
+      "p_joint": 0.6318359375,
+      "p_joint_mcse": 0.01507206924
+    },
+    {
+      "dose_ug": 21.4,
+      "p_effect": 0.9208984375,
+      "p_screen": 0.6845703125,
+      "p_joint": 0.62890625,
+      "p_joint_mcse": 0.01509679636
+    },
+    {
+      "dose_ug": 21.5,
+      "p_effect": 0.921875,
+      "p_screen": 0.6806640625,
+      "p_joint": 0.6259765625,
+      "p_joint_mcse": 0.01512092874
+    },
+    {
+      "dose_ug": 21.6,
+      "p_effect": 0.921875,
+      "p_screen": 0.6748046875,
+      "p_joint": 0.6220703125,
+      "p_joint_mcse": 0.01515218498
+    },
+    {
+      "dose_ug": 21.7,
+      "p_effect": 0.921875,
+      "p_screen": 0.6708984375,
+      "p_joint": 0.619140625,
+      "p_joint_mcse": 0.01517494052
+    },
+    {
+      "dose_ug": 21.8,
+      "p_effect": 0.921875,
+      "p_screen": 0.666015625,
+      "p_joint": 0.615234375,
+      "p_joint_mcse": 0.01520437074
+    },
+    {
+      "dose_ug": 21.9,
+      "p_effect": 0.921875,
+      "p_screen": 0.662109375,
+      "p_joint": 0.611328125,
+      "p_joint_mcse": 0.0152327659
+    },
+    {
+      "dose_ug": 22.0,
+      "p_effect": 0.921875,
+      "p_screen": 0.6591796875,
+      "p_joint": 0.6083984375,
+      "p_joint_mcse": 0.01525338649
+    },
+    {
+      "dose_ug": 22.1,
+      "p_effect": 0.921875,
+      "p_screen": 0.6552734375,
+      "p_joint": 0.6044921875,
+      "p_joint_mcse": 0.01527998406
+    },
+    {
+      "dose_ug": 22.2,
+      "p_effect": 0.923828125,
+      "p_screen": 0.6533203125,
+      "p_joint": 0.603515625,
+      "p_joint_mcse": 0.01528647391
+    },
+    {
+      "dose_ug": 22.3,
+      "p_effect": 0.923828125,
+      "p_screen": 0.65234375,
+      "p_joint": 0.6025390625,
+      "p_joint_mcse": 0.0152929001
+    },
+    {
+      "dose_ug": 22.4,
+      "p_effect": 0.923828125,
+      "p_screen": 0.646484375,
+      "p_joint": 0.5966796875,
+      "p_joint_mcse": 0.015330125
+    },
+    {
+      "dose_ug": 22.5,
+      "p_effect": 0.9248046875,
+      "p_screen": 0.6435546875,
+      "p_joint": 0.5947265625,
+      "p_joint_mcse": 0.0153420276
+    },
+    {
+      "dose_ug": 22.6,
+      "p_effect": 0.92578125,
+      "p_screen": 0.638671875,
+      "p_joint": 0.591796875,
+      "p_joint_mcse": 0.01535940945
+    },
+    {
+      "dose_ug": 22.7,
+      "p_effect": 0.92578125,
+      "p_screen": 0.6357421875,
+      "p_joint": 0.5888671875,
+      "p_joint_mcse": 0.01537622654
+    },
+    {
+      "dose_ug": 22.8,
+      "p_effect": 0.92578125,
+      "p_screen": 0.6337890625,
+      "p_joint": 0.5869140625,
+      "p_joint_mcse": 0.0153871251
+    },
+    {
+      "dose_ug": 22.9,
+      "p_effect": 0.9267578125,
+      "p_screen": 0.6328125,
+      "p_joint": 0.5869140625,
+      "p_joint_mcse": 0.0153871251
+    },
+    {
+      "dose_ug": 23.0,
+      "p_effect": 0.927734375,
+      "p_screen": 0.6318359375,
+      "p_joint": 0.5869140625,
+      "p_joint_mcse": 0.0153871251
+    },
+    {
+      "dose_ug": 23.1,
+      "p_effect": 0.9287109375,
+      "p_screen": 0.6298828125,
+      "p_joint": 0.5859375,
+      "p_joint_mcse": 0.01539248073
+    },
+    {
+      "dose_ug": 23.2,
+      "p_effect": 0.9287109375,
+      "p_screen": 0.6279296875,
+      "p_joint": 0.583984375,
+      "p_joint_mcse": 0.01540300501
+    },
+    {
+      "dose_ug": 23.3,
+      "p_effect": 0.9287109375,
+      "p_screen": 0.626953125,
+      "p_joint": 0.5830078125,
+      "p_joint_mcse": 0.01540817379
+    },
+    {
+      "dose_ug": 23.4,
+      "p_effect": 0.9287109375,
+      "p_screen": 0.6259765625,
+      "p_joint": 0.58203125,
+      "p_joint_mcse": 0.01541328041
+    },
+    {
+      "dose_ug": 23.5,
+      "p_effect": 0.9287109375,
+      "p_screen": 0.623046875,
+      "p_joint": 0.5810546875,
+      "p_joint_mcse": 0.01541832493
+    },
+    {
+      "dose_ug": 23.6,
+      "p_effect": 0.9287109375,
+      "p_screen": 0.6181640625,
+      "p_joint": 0.576171875,
+      "p_joint_mcse": 0.01544261825
+    },
+    {
+      "dose_ug": 23.7,
+      "p_effect": 0.9287109375,
+      "p_screen": 0.615234375,
+      "p_joint": 0.5732421875,
+      "p_joint_mcse": 0.01545645288
+    },
+    {
+      "dose_ug": 23.8,
+      "p_effect": 0.9287109375,
+      "p_screen": 0.6142578125,
+      "p_joint": 0.572265625,
+      "p_joint_mcse": 0.01546094119
+    },
+    {
+      "dose_ug": 23.9,
+      "p_effect": 0.9296875,
+      "p_screen": 0.6103515625,
+      "p_joint": 0.568359375,
+      "p_joint_mcse": 0.01547827976
+    },
+    {
+      "dose_ug": 24.0,
+      "p_effect": 0.9296875,
+      "p_screen": 0.6064453125,
+      "p_joint": 0.564453125,
+      "p_joint_mcse": 0.01549463726
+    },
+    {
+      "dose_ug": 24.1,
+      "p_effect": 0.9296875,
+      "p_screen": 0.6025390625,
+      "p_joint": 0.560546875,
+      "p_joint_mcse": 0.0155100168
+    },
+    {
+      "dose_ug": 24.2,
+      "p_effect": 0.9296875,
+      "p_screen": 0.5986328125,
+      "p_joint": 0.556640625,
+      "p_joint_mcse": 0.01552442127
+    },
+    {
+      "dose_ug": 24.3,
+      "p_effect": 0.9306640625,
+      "p_screen": 0.5986328125,
+      "p_joint": 0.5576171875,
+      "p_joint_mcse": 0.01552091141
+    },
+    {
+      "dose_ug": 24.4,
+      "p_effect": 0.9306640625,
+      "p_screen": 0.5966796875,
+      "p_joint": 0.5556640625,
+      "p_joint_mcse": 0.01552787036
+    },
+    {
+      "dose_ug": 24.5,
+      "p_effect": 0.9306640625,
+      "p_screen": 0.591796875,
+      "p_joint": 0.55078125,
+      "p_joint_mcse": 0.01554420563
+    },
+    {
+      "dose_ug": 24.6,
+      "p_effect": 0.9306640625,
+      "p_screen": 0.5888671875,
+      "p_joint": 0.5478515625,
+      "p_joint_mcse": 0.01555328002
+    },
+    {
+      "dose_ug": 24.7,
+      "p_effect": 0.9306640625,
+      "p_screen": 0.5859375,
+      "p_joint": 0.544921875,
+      "p_joint_mcse": 0.01556181051
+    },
+    {
+      "dose_ug": 24.8,
+      "p_effect": 0.9306640625,
+      "p_screen": 0.583984375,
+      "p_joint": 0.54296875,
+      "p_joint_mcse": 0.01556719578
+    },
+    {
+      "dose_ug": 24.9,
+      "p_effect": 0.931640625,
+      "p_screen": 0.580078125,
+      "p_joint": 0.5400390625,
+      "p_joint_mcse": 0.01557482172
+    },
+    {
+      "dose_ug": 25.0,
+      "p_effect": 0.931640625,
+      "p_screen": 0.578125,
+      "p_joint": 0.5380859375,
+      "p_joint_mcse": 0.01557960472
+    },
+    {
+      "dose_ug": 25.1,
+      "p_effect": 0.931640625,
+      "p_screen": 0.578125,
+      "p_joint": 0.5380859375,
+      "p_joint_mcse": 0.01557960472
+    },
+    {
+      "dose_ug": 25.2,
+      "p_effect": 0.931640625,
+      "p_screen": 0.5771484375,
+      "p_joint": 0.537109375,
+      "p_joint_mcse": 0.01558190602
+    },
+    {
+      "dose_ug": 25.3,
+      "p_effect": 0.931640625,
+      "p_screen": 0.5751953125,
+      "p_joint": 0.53515625,
+      "p_joint_mcse": 0.01558632833
+    },
+    {
+      "dose_ug": 25.4,
+      "p_effect": 0.931640625,
+      "p_screen": 0.572265625,
+      "p_joint": 0.5341796875,
+      "p_joint_mcse": 0.0155884494
+    },
+    {
+      "dose_ug": 25.5,
+      "p_effect": 0.931640625,
+      "p_screen": 0.572265625,
+      "p_joint": 0.5341796875,
+      "p_joint_mcse": 0.0155884494
+    },
+    {
+      "dose_ug": 25.6,
+      "p_effect": 0.93359375,
+      "p_screen": 0.5712890625,
+      "p_joint": 0.5341796875,
+      "p_joint_mcse": 0.0155884494
+    },
+    {
+      "dose_ug": 25.7,
+      "p_effect": 0.93359375,
+      "p_screen": 0.5693359375,
+      "p_joint": 0.5341796875,
+      "p_joint_mcse": 0.0155884494
+    },
+    {
+      "dose_ug": 25.8,
+      "p_effect": 0.93359375,
+      "p_screen": 0.5654296875,
+      "p_joint": 0.5302734375,
+      "p_joint_mcse": 0.01559633367
+    },
+    {
+      "dose_ug": 25.9,
+      "p_effect": 0.93359375,
+      "p_screen": 0.5595703125,
+      "p_joint": 0.5244140625,
+      "p_joint_mcse": 0.01560636243
+    },
+    {
+      "dose_ug": 26.0,
+      "p_effect": 0.9345703125,
+      "p_screen": 0.55859375,
+      "p_joint": 0.5244140625,
+      "p_joint_mcse": 0.01560636243
+    },
+    {
+      "dose_ug": 26.1,
+      "p_effect": 0.9345703125,
+      "p_screen": 0.5576171875,
+      "p_joint": 0.5234375,
+      "p_joint_mcse": 0.01560782442
+    },
+    {
+      "dose_ug": 26.2,
+      "p_effect": 0.935546875,
+      "p_screen": 0.556640625,
+      "p_joint": 0.5224609375,
+      "p_joint_mcse": 0.01560922661
+    },
+    {
+      "dose_ug": 26.3,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.5517578125,
+      "p_joint": 0.5185546875,
+      "p_joint_mcse": 0.01561423766
+    },
+    {
+      "dose_ug": 26.4,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.548828125,
+      "p_joint": 0.515625,
+      "p_joint_mcse": 0.01561736874
+    },
+    {
+      "dose_ug": 26.5,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.546875,
+      "p_joint": 0.513671875,
+      "p_joint_mcse": 0.01561915765
+    },
+    {
+      "dose_ug": 26.6,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.544921875,
+      "p_joint": 0.51171875,
+      "p_joint_mcse": 0.01562070788
+    },
+    {
+      "dose_ug": 26.7,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.5400390625,
+      "p_joint": 0.5068359375,
+      "p_joint_mcse": 0.01562353962
+    },
+    {
+      "dose_ug": 26.8,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.537109375,
+      "p_joint": 0.50390625,
+      "p_joint_mcse": 0.01562452316
+    },
+    {
+      "dose_ug": 26.9,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.5341796875,
+      "p_joint": 0.5009765625,
+      "p_joint_mcse": 0.0156249702
+    },
+    {
+      "dose_ug": 27.0,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.5322265625,
+      "p_joint": 0.4990234375,
+      "p_joint_mcse": 0.0156249702
+    },
+    {
+      "dose_ug": 27.1,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.52734375,
+      "p_joint": 0.494140625,
+      "p_joint_mcse": 0.01562392708
+    },
+    {
+      "dose_ug": 27.2,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.525390625,
+      "p_joint": 0.4921875,
+      "p_joint_mcse": 0.01562309253
+    },
+    {
+      "dose_ug": 27.3,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.51953125,
+      "p_joint": 0.486328125,
+      "p_joint_mcse": 0.01561915765
+    },
+    {
+      "dose_ug": 27.4,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.5185546875,
+      "p_joint": 0.4853515625,
+      "p_joint_mcse": 0.01561829304
+    },
+    {
+      "dose_ug": 27.5,
+      "p_effect": 0.9375,
+      "p_screen": 0.5185546875,
+      "p_joint": 0.4853515625,
+      "p_joint_mcse": 0.01561829304
+    },
+    {
+      "dose_ug": 27.6,
+      "p_effect": 0.9375,
+      "p_screen": 0.517578125,
+      "p_joint": 0.484375,
+      "p_joint_mcse": 0.01561736874
+    },
+    {
+      "dose_ug": 27.7,
+      "p_effect": 0.9375,
+      "p_screen": 0.517578125,
+      "p_joint": 0.484375,
+      "p_joint_mcse": 0.01561736874
+    },
+    {
+      "dose_ug": 27.8,
+      "p_effect": 0.9375,
+      "p_screen": 0.513671875,
+      "p_joint": 0.48046875,
+      "p_joint_mcse": 0.01561307452
+    },
+    {
+      "dose_ug": 27.9,
+      "p_effect": 0.9375,
+      "p_screen": 0.5107421875,
+      "p_joint": 0.4775390625,
+      "p_joint_mcse": 0.01560922661
+    },
+    {
+      "dose_ug": 28.0,
+      "p_effect": 0.9375,
+      "p_screen": 0.5087890625,
+      "p_joint": 0.4755859375,
+      "p_joint_mcse": 0.01560636243
+    },
+    {
+      "dose_ug": 28.1,
+      "p_effect": 0.9375,
+      "p_screen": 0.5068359375,
+      "p_joint": 0.4736328125,
+      "p_joint_mcse": 0.01560325898
+    },
+    {
+      "dose_ug": 28.2,
+      "p_effect": 0.9375,
+      "p_screen": 0.50390625,
+      "p_joint": 0.470703125,
+      "p_joint_mcse": 0.01559815485
+    },
+    {
+      "dose_ug": 28.3,
+      "p_effect": 0.9375,
+      "p_screen": 0.4990234375,
+      "p_joint": 0.4658203125,
+      "p_joint_mcse": 0.0155884494
+    },
+    {
+      "dose_ug": 28.4,
+      "p_effect": 0.9375,
+      "p_screen": 0.4921875,
+      "p_joint": 0.458984375,
+      "p_joint_mcse": 0.01557233996
+    },
+    {
+      "dose_ug": 28.5,
+      "p_effect": 0.9375,
+      "p_screen": 0.4892578125,
+      "p_joint": 0.4560546875,
+      "p_joint_mcse": 0.0155645333
+    },
+    {
+      "dose_ug": 28.6,
+      "p_effect": 0.9375,
+      "p_screen": 0.48828125,
+      "p_joint": 0.455078125,
+      "p_joint_mcse": 0.01556181051
+    },
+    {
+      "dose_ug": 28.7,
+      "p_effect": 0.9375,
+      "p_screen": 0.4873046875,
+      "p_joint": 0.4541015625,
+      "p_joint_mcse": 0.01555902739
+    },
+    {
+      "dose_ug": 28.8,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.486328125,
+      "p_joint": 0.453125,
+      "p_joint_mcse": 0.01555618391
+    },
+    {
+      "dose_ug": 28.9,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.486328125,
+      "p_joint": 0.453125,
+      "p_joint_mcse": 0.01555618391
+    },
+    {
+      "dose_ug": 29.0,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.484375,
+      "p_joint": 0.451171875,
+      "p_joint_mcse": 0.01555031571
+    },
+    {
+      "dose_ug": 29.1,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.484375,
+      "p_joint": 0.451171875,
+      "p_joint_mcse": 0.01555031571
+    },
+    {
+      "dose_ug": 29.2,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.484375,
+      "p_joint": 0.451171875,
+      "p_joint_mcse": 0.01555031571
+    },
+    {
+      "dose_ug": 29.3,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.48046875,
+      "p_joint": 0.447265625,
+      "p_joint_mcse": 0.0155378534
+    },
+    {
+      "dose_ug": 29.4,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.4775390625,
+      "p_joint": 0.4443359375,
+      "p_joint_mcse": 0.01552787036
+    },
+    {
+      "dose_ug": 29.5,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.4775390625,
+      "p_joint": 0.4443359375,
+      "p_joint_mcse": 0.01552787036
+    },
+    {
+      "dose_ug": 29.6,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.474609375,
+      "p_joint": 0.4423828125,
+      "p_joint_mcse": 0.01552091141
+    },
+    {
+      "dose_ug": 29.7,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.4736328125,
+      "p_joint": 0.44140625,
+      "p_joint_mcse": 0.01551734074
+    },
+    {
+      "dose_ug": 29.8,
+      "p_effect": 0.939453125,
+      "p_screen": 0.4716796875,
+      "p_joint": 0.439453125,
+      "p_joint_mcse": 0.0155100168
+    },
+    {
+      "dose_ug": 29.9,
+      "p_effect": 0.94140625,
+      "p_screen": 0.4697265625,
+      "p_joint": 0.439453125,
+      "p_joint_mcse": 0.0155100168
+    },
+    {
+      "dose_ug": 30.0,
+      "p_effect": 0.94140625,
+      "p_screen": 0.4677734375,
+      "p_joint": 0.4375,
+      "p_joint_mcse": 0.01550244909
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: ["class"],
+  content: [require('node:path').join(__dirname, 'index.html'), require('node:path').join(__dirname, 'src/**/*.{js,ts,jsx,tsx}')],
+  theme: {
+    extend: {
+      colors: {
+        // CirCure palette names (mirror src/styles/circure-tokens.css).
+        paper: "#eee7dc",
+        "paper-bright": "#fcf8f1",
+        ink: "#1b1719",
+        deep: "#102f59",
+        navy: "#173f78",
+        care: "#d784b3",
+        coral: "#df705b",
+        gold: "#c39a55",
+        mist: "#667e8c",
+        map: "#e5d9d2",
+        blush: "#ddcbd3",
+        slate: {
+          50: "#fcf8f1",
+          100: "#eee7dc",
+          200: "#e5d9d2",
+          300: "#ddcbd3",
+          400: "#a78f99",
+          500: "#766a70",
+          600: "#59474f",
+          700: "#3b2931",
+          800: "#173f78",
+          900: "#102f59",
+          950: "#0b213f",
+        },
+        blue: {
+          50: "#fcf8f1",
+          100: "#eee7dc",
+          200: "#ddcbd3",
+          300: "#d79cbe",
+          400: "#d784b3",
+          500: "#a95f88",
+          600: "#173f78",
+          700: "#143766",
+          800: "#102f59",
+          900: "#0b213f",
+          950: "#07172c",
+        },
+        sky: {
+          100: "#fcf8f1",
+          200: "#e5d9d2",
+          300: "#d79cbe",
+          400: "#667e8c",
+        },
+        // Chalk accents used inside the navy result sheets.
+        cyan: {
+          100: "#fcf8f1",
+          200: "#ecc6dc",
+          300: "#d79cbe",
+          400: "#d784b3",
+        },
+        green: {
+          200: "#eee7dc",
+          400: "#d79cbe",
+          500: "#754356",
+        },
+        emerald: {
+          100: "#fcf8f1",
+          200: "#d9bd8b",
+          300: "#ddcbd3",
+          400: "#d79cbe",
+          500: "#754356",
+          950: "#102f59",
+        },
+        yellow: {
+          200: "#eee7dc",
+          300: "#d9bd8b",
+          400: "#c39a55",
+          500: "#a77d3b",
+        },
+        amber: {
+          100: "#fcf8f1",
+          200: "#eee7dc",
+          300: "#d9bd8b",
+          400: "#c39a55",
+        },
+        red: {
+          400: "#df705b",
+          500: "#bd5544",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive) / <alpha-value>)",
+          foreground: "hsl(var(--destructive-foreground) / <alpha-value>)",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        },
+      },
+      fontFamily: {
+        heading: ["var(--font-heading)"],
+        round: ["var(--font-round)"],
+        mono: ["var(--font-mono)"],
+      },
+      borderRadius: {
+        panel: "28px",
+        xl: "calc(var(--radius) + 4px)",
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+        xs: "calc(var(--radius) - 6px)",
+      },
+      boxShadow: {
+        xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "caret-blink": {
+          "0%,70%,100%": { opacity: "1" },
+          "20%,50%": { opacity: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "caret-blink": "caret-blink 1.25s ease-out infinite",
+      },
+    },
+  },
+  plugins: [require("tailwindcss-animate")],
+}

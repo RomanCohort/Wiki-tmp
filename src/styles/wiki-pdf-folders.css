@@ -1,0 +1,348 @@
+/* Shared Sustainability folder presentation, reused by document archives. */
+.sust-archive {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 20px;
+  /* Both columns share one height: the cabinet's top and bottom line up with
+     the open tool card on the right. Headroom accommodates the 3D-tilted paper rising high. */
+  align-items: stretch;
+  padding-top: 54px;
+  overflow: visible;
+}
+
+.sust-archive__side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  overflow: visible;
+}
+
+.sust-archive__cabinet {
+  display: grid;
+  flex: 1;
+  /* Ample row gap accommodates high 3D paper slide-out without colliding with adjacent folders. */
+  gap: 52px 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  overflow: visible;
+}
+
+.sust-archive__hint {
+  margin: 0;
+  color: var(--route-muted);
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* One tool needs no cabinet; three fall back to a single row. */
+.sust-archive--single .sust-archive__cabinet {
+  grid-template-columns: minmax(0, 1fr);
+  max-inline-size: 260px;
+}
+
+.sust-archive--3up .sust-archive__cabinet {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* A physical 3D folder: a structured back plate, a document sheet sliding up at an angle,
+   and a front cover tilting open in 3D perspective. */
+.sust-folder {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  isolation: isolate;
+  perspective: 850px;
+  transform-style: preserve-3d;
+  overflow: visible;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Folder back plate: provides solid physical backing so opening the cover reveals no dark voids */
+.sust-folder__back {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px 9px 9px 9px;
+  background: color-mix(
+    in srgb,
+    var(--folder-tint, var(--route-soft)) 82%,
+    #d2c4ae
+  );
+  box-shadow: 0 1px 3px rgb(27 36 18 / 0.08);
+  z-index: 0;
+  pointer-events: none;
+  transition: transform 420ms var(--ease-out);
+}
+
+.sust-folder__back::before {
+  content: "";
+  position: absolute;
+  inset-block-start: -8px;
+  inset-inline-end: 8px;
+  inline-size: 34%;
+  block-size: 10px;
+  border-radius: 6px 6px 0 0;
+  background: inherit;
+  opacity: 0.95;
+}
+
+/* Ruled paper so the sheet reads as a document when it slides out. */
+.sust-folder__paper {
+  position: absolute;
+  inset-inline: 5% 5%;
+  inset-block-start: 0;
+  block-size: 88%;
+  border-radius: 6px 6px 0 0;
+  background:
+    repeating-linear-gradient(
+        to bottom,
+        transparent 0 9px,
+        rgb(27 36 18 / 0.07) 9px 10px
+      )
+      0 28px / 100% calc(100% - 28px) no-repeat,
+    #fffdf4;
+  border: 1px solid rgb(27 36 18 / 0.12);
+  box-shadow: 0 -2px 8px rgb(27 36 18 / 0.08);
+  transform: rotate(-1.5deg) translateY(0);
+  transform-origin: bottom center;
+  z-index: 1;
+  transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1.15);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.sust-folder__paper-label {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 4px;
+  padding-inline: 9px;
+  color: color-mix(in srgb, var(--route-muted) 85%, #5a4a38);
+  font-family: inherit;
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  white-space: normal;
+  word-break: break-word;
+  opacity: 0;
+  transition: opacity 240ms var(--ease-out);
+}
+
+.sust-folder__cover {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+  min-block-size: 104px;
+  padding: 14px 15px 13px;
+  border-radius: 4px 9px 9px 9px;
+  background: var(--folder-tint, var(--route-soft));
+  box-shadow: 0 1px 3px rgb(27 36 18 / 0.08);
+  transform-origin: bottom center;
+  z-index: 2;
+  transition:
+    transform 420ms var(--ease-out),
+    box-shadow 420ms var(--ease-out);
+}
+
+/* The folder tab: a short raised lip on the top-left of the cover. */
+.sust-folder__cover::before {
+  content: "";
+  position: absolute;
+  inset-block-start: -9px;
+  inset-inline-start: 0;
+  inline-size: 38%;
+  block-size: 11px;
+  border-radius: 7px 7px 0 0;
+  background: var(--folder-tint, var(--route-soft));
+}
+
+.sust-folder__no {
+  color: color-mix(in srgb, var(--route-ink) 62%, transparent);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  transition: color 240ms var(--ease-out);
+}
+
+.sust-folder__title {
+  color: var(--route-heading-ink, var(--route-ink));
+  font-family: var(--font-editorial);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.sust-folder__meta {
+  margin-block-start: auto;
+  color: color-mix(in srgb, var(--route-ink) 58%, transparent);
+  font-size: 11px;
+}
+
+/* Hover: the paper peeks out and the cover tilts forward slightly in 3D. */
+.sust-folder:hover .sust-folder__paper,
+.sust-folder:focus-visible .sust-folder__paper {
+  transform: rotate(-3deg) translateY(-20px);
+}
+
+.sust-folder:hover .sust-folder__paper-label,
+.sust-folder:focus-visible .sust-folder__paper-label {
+  opacity: 1;
+}
+
+.sust-folder:hover .sust-folder__cover,
+.sust-folder:focus-visible .sust-folder__cover {
+  transform: translateY(-2px) rotateX(-10deg);
+  box-shadow: 0 10px 22px rgb(27 36 18 / 0.14);
+}
+
+/* Open: 3D tilt on the front cover + high paper elevation, smoothly rendered with zero clipping */
+.sust-folder[aria-selected="true"] {
+  z-index: 3;
+}
+
+.sust-folder[aria-selected="true"] .sust-folder__paper {
+  transform: rotate(-4.5deg) translateY(-44px);
+}
+
+.sust-folder[aria-selected="true"] .sust-folder__paper-label {
+  opacity: 1;
+}
+
+.sust-folder[aria-selected="true"] .sust-folder__cover {
+  transform: translateY(-2px) rotateX(-22deg);
+  box-shadow:
+    0 18px 36px rgb(27 36 18 / 0.22),
+    inset 0 0 0 1.5px color-mix(in srgb, var(--route-main) 45%, transparent);
+}
+
+.sust-folder[aria-selected="true"] .sust-folder__no {
+  color: var(--route-accent);
+  font-weight: 700;
+}
+
+.sust-folder:focus-visible {
+  outline: 2px solid var(--route-accent);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* Four tints drawn from the existing cream / olive / orange palette. */
+.sust-folder[data-tint="peach"] {
+  --folder-tint: color-mix(in srgb, var(--route-soft) 74%, #ffffff);
+}
+
+.sust-folder[data-tint="wheat"] {
+  --folder-tint: color-mix(in srgb, var(--route-base) 62%, #f3e3c2);
+}
+
+.sust-folder[data-tint="sage"] {
+  --folder-tint: color-mix(in srgb, #dfe8d2 74%, #ffffff);
+}
+
+.sust-folder[data-tint="sand"] {
+  --folder-tint: color-mix(in srgb, var(--route-main) 26%, #f6ead6);
+}
+
+.sust-archive__panels {
+  display: grid;
+  min-width: 0;
+}
+
+.sust-archive__panels > .sust-tool-card {
+  grid-area: 1 / 1;
+}
+
+.sust-archive__panels > .sust-tool-card[aria-hidden="true"] {
+  visibility: hidden;
+}
+
+.sust-tool-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid var(--route-line);
+  border-top: 3px solid var(--route-main);
+  border-radius: 10px;
+  background: #fff;
+  min-height: 410px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.sust-tool-card:focus-visible {
+  outline: 2px solid var(--route-accent);
+  outline-offset: 2px;
+}
+
+.sust-tool-card__title {
+  margin: 0;
+  color: var(--route-heading-ink, var(--route-ink));
+  font-family: var(--font-editorial);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.sust-tool-card__rows {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.sust-tool-card__row dt {
+  color: var(--route-accent);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sust-tool-card__row dd {
+  margin: 2px 0 0;
+  color: var(--route-ink);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.sust-tool-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.sust-tool-card__btn {
+  padding: 6px 12px;
+  border: 1px solid var(--route-line-strong, var(--route-line));
+  border-radius: var(--radius-control);
+  color: var(--route-accent);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.sust-tool-card__btn:hover {
+  background: var(--route-panel);
+}
+
+.sust-tool-card__btn:focus-visible {
+  outline: 2px solid var(--route-accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  .sust-archive {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

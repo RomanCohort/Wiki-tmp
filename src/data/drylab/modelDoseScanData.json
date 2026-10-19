@@ -1,0 +1,3016 @@
+{
+  "sourceSha256": "f0afd106ecd92896fa1e3f2ced6dac94440587d84dbd840048e448fdfa3000bc",
+  "draws": 1024,
+  "rows": [
+    {
+      "dose_ug": 0.0,
+      "p_effect": 0.0,
+      "p_screen": 1.0,
+      "p_joint": 0.0,
+      "p_joint_mcse": 0.0,
+      "volume_lo": 258.0429871,
+      "volume_median": 1103.581085,
+      "volume_hi": 2933.363623
+    },
+    {
+      "dose_ug": 0.1,
+      "p_effect": 0.044921875,
+      "p_screen": 1.0,
+      "p_joint": 0.044921875,
+      "p_joint_mcse": 0.006472892706,
+      "volume_lo": 166.6936394,
+      "volume_median": 1054.945789,
+      "volume_hi": 2907.201077
+    },
+    {
+      "dose_ug": 0.2,
+      "p_effect": 0.1142578125,
+      "p_screen": 1.0,
+      "p_joint": 0.1142578125,
+      "p_joint_mcse": 0.009941379195,
+      "volume_lo": 35.33436386,
+      "volume_median": 994.0749049,
+      "volume_hi": 2835.267355
+    },
+    {
+      "dose_ug": 0.3,
+      "p_effect": 0.1728515625,
+      "p_screen": 1.0,
+      "p_joint": 0.1728515625,
+      "p_joint_mcse": 0.01181621551,
+      "volume_lo": 1.720322984,
+      "volume_median": 926.6301005,
+      "volume_hi": 2835.227938
+    },
+    {
+      "dose_ug": 0.4,
+      "p_effect": 0.2275390625,
+      "p_screen": 1.0,
+      "p_joint": 0.2275390625,
+      "p_joint_mcse": 0.01310135659,
+      "volume_lo": 0.0,
+      "volume_median": 876.6328697,
+      "volume_hi": 2817.40596
+    },
+    {
+      "dose_ug": 0.5,
+      "p_effect": 0.26953125,
+      "p_screen": 1.0,
+      "p_joint": 0.26953125,
+      "p_joint_mcse": 0.01386613439,
+      "volume_lo": 0.0,
+      "volume_median": 843.0667724,
+      "volume_hi": 2787.262964
+    },
+    {
+      "dose_ug": 0.6,
+      "p_effect": 0.2998046875,
+      "p_screen": 1.0,
+      "p_joint": 0.2998046875,
+      "p_joint_mcse": 0.01431788371,
+      "volume_lo": 0.0,
+      "volume_median": 810.0194999,
+      "volume_hi": 2787.228439
+    },
+    {
+      "dose_ug": 0.7,
+      "p_effect": 0.318359375,
+      "p_screen": 1.0,
+      "p_joint": 0.318359375,
+      "p_joint_mcse": 0.01455749255,
+      "volume_lo": 0.0,
+      "volume_median": 773.4014846,
+      "volume_hi": 2763.482504
+    },
+    {
+      "dose_ug": 0.8,
+      "p_effect": 0.3388671875,
+      "p_screen": 1.0,
+      "p_joint": 0.3388671875,
+      "p_joint_mcse": 0.01479139506,
+      "volume_lo": 0.0,
+      "volume_median": 750.7950579,
+      "volume_hi": 2720.815123
+    },
+    {
+      "dose_ug": 0.9,
+      "p_effect": 0.361328125,
+      "p_screen": 1.0,
+      "p_joint": 0.361328125,
+      "p_joint_mcse": 0.01501204305,
+      "volume_lo": 0.0,
+      "volume_median": 725.9565572,
+      "volume_hi": 2689.466973
+    },
+    {
+      "dose_ug": 1.0,
+      "p_effect": 0.3857421875,
+      "p_screen": 1.0,
+      "p_joint": 0.3857421875,
+      "p_joint_mcse": 0.01521156633,
+      "volume_lo": 0.0,
+      "volume_median": 704.3561252,
+      "volume_hi": 2664.254798
+    },
+    {
+      "dose_ug": 1.1,
+      "p_effect": 0.40234375,
+      "p_screen": 1.0,
+      "p_joint": 0.40234375,
+      "p_joint_mcse": 0.01532407907,
+      "volume_lo": 0.0,
+      "volume_median": 680.1706496,
+      "volume_hi": 2649.456095
+    },
+    {
+      "dose_ug": 1.2,
+      "p_effect": 0.41796875,
+      "p_screen": 1.0,
+      "p_joint": 0.41796875,
+      "p_joint_mcse": 0.01541328041,
+      "volume_lo": 0.0,
+      "volume_median": 667.1692219,
+      "volume_hi": 2642.661465
+    },
+    {
+      "dose_ug": 1.3,
+      "p_effect": 0.43359375,
+      "p_screen": 1.0,
+      "p_joint": 0.43359375,
+      "p_joint_mcse": 0.01548658095,
+      "volume_lo": 0.0,
+      "volume_median": 654.5306317,
+      "volume_hi": 2629.900544
+    },
+    {
+      "dose_ug": 1.4,
+      "p_effect": 0.4423828125,
+      "p_screen": 1.0,
+      "p_joint": 0.4423828125,
+      "p_joint_mcse": 0.01552091141,
+      "volume_lo": 0.0,
+      "volume_median": 626.6101885,
+      "volume_hi": 2599.533538
+    },
+    {
+      "dose_ug": 1.5,
+      "p_effect": 0.4541015625,
+      "p_screen": 1.0,
+      "p_joint": 0.4541015625,
+      "p_joint_mcse": 0.01555902739,
+      "volume_lo": 0.0,
+      "volume_median": 606.6824968,
+      "volume_hi": 2584.367476
+    },
+    {
+      "dose_ug": 1.6,
+      "p_effect": 0.4765625,
+      "p_screen": 1.0,
+      "p_joint": 0.4765625,
+      "p_joint_mcse": 0.01560782442,
+      "volume_lo": 0.0,
+      "volume_median": 588.3622565,
+      "volume_hi": 2556.747619
+    },
+    {
+      "dose_ug": 1.7,
+      "p_effect": 0.48828125,
+      "p_screen": 1.0,
+      "p_joint": 0.48828125,
+      "p_joint_mcse": 0.01562070788,
+      "volume_lo": 0.0,
+      "volume_median": 577.2001746,
+      "volume_hi": 2544.726977
+    },
+    {
+      "dose_ug": 1.8,
+      "p_effect": 0.50390625,
+      "p_screen": 1.0,
+      "p_joint": 0.50390625,
+      "p_joint_mcse": 0.01562452316,
+      "volume_lo": 0.0,
+      "volume_median": 557.6751217,
+      "volume_hi": 2534.010615
+    },
+    {
+      "dose_ug": 1.9,
+      "p_effect": 0.5166015625,
+      "p_screen": 1.0,
+      "p_joint": 0.5166015625,
+      "p_joint_mcse": 0.01561638475,
+      "volume_lo": 0.0,
+      "volume_median": 545.2349483,
+      "volume_hi": 2508.444152
+    },
+    {
+      "dose_ug": 2.0,
+      "p_effect": 0.525390625,
+      "p_screen": 1.0,
+      "p_joint": 0.525390625,
+      "p_joint_mcse": 0.01560484063,
+      "volume_lo": 0.0,
+      "volume_median": 532.1930919,
+      "volume_hi": 2465.240237
+    },
+    {
+      "dose_ug": 2.1,
+      "p_effect": 0.5400390625,
+      "p_screen": 1.0,
+      "p_joint": 0.5400390625,
+      "p_joint_mcse": 0.01557482172,
+      "volume_lo": 0.0,
+      "volume_median": 521.1046245,
+      "volume_hi": 2425.608916
+    },
+    {
+      "dose_ug": 2.2,
+      "p_effect": 0.55078125,
+      "p_screen": 1.0,
+      "p_joint": 0.55078125,
+      "p_joint_mcse": 0.01554420563,
+      "volume_lo": 0.0,
+      "volume_median": 508.5533867,
+      "volume_hi": 2412.308754
+    },
+    {
+      "dose_ug": 2.3,
+      "p_effect": 0.5615234375,
+      "p_screen": 1.0,
+      "p_joint": 0.5615234375,
+      "p_joint_mcse": 0.01550626343,
+      "volume_lo": 0.0,
+      "volume_median": 496.0192737,
+      "volume_hi": 2411.910835
+    },
+    {
+      "dose_ug": 2.4,
+      "p_effect": 0.5673828125,
+      "p_screen": 1.0,
+      "p_joint": 0.5673828125,
+      "p_joint_mcse": 0.01548246099,
+      "volume_lo": 0.0,
+      "volume_median": 486.3860453,
+      "volume_hi": 2410.470789
+    },
+    {
+      "dose_ug": 2.5,
+      "p_effect": 0.5751953125,
+      "p_screen": 1.0,
+      "p_joint": 0.5751953125,
+      "p_joint_mcse": 0.01544729146,
+      "volume_lo": 0.0,
+      "volume_median": 473.439903,
+      "volume_hi": 2395.35094
+    },
+    {
+      "dose_ug": 2.6,
+      "p_effect": 0.5849609375,
+      "p_screen": 1.0,
+      "p_joint": 0.5849609375,
+      "p_joint_mcse": 0.01539777401,
+      "volume_lo": 0.0,
+      "volume_median": 459.1299213,
+      "volume_hi": 2379.767756
+    },
+    {
+      "dose_ug": 2.7,
+      "p_effect": 0.5947265625,
+      "p_screen": 1.0,
+      "p_joint": 0.5947265625,
+      "p_joint_mcse": 0.0153420276,
+      "volume_lo": 0.0,
+      "volume_median": 451.0328931,
+      "volume_hi": 2377.506717
+    },
+    {
+      "dose_ug": 2.8,
+      "p_effect": 0.603515625,
+      "p_screen": 1.0,
+      "p_joint": 0.603515625,
+      "p_joint_mcse": 0.01528647391,
+      "volume_lo": 0.0,
+      "volume_median": 439.1366821,
+      "volume_hi": 2374.872819
+    },
+    {
+      "dose_ug": 2.9,
+      "p_effect": 0.6064453125,
+      "p_screen": 1.0,
+      "p_joint": 0.6064453125,
+      "p_joint_mcse": 0.01526681308,
+      "volume_lo": 0.0,
+      "volume_median": 428.4015089,
+      "volume_hi": 2371.817035
+    },
+    {
+      "dose_ug": 3.0,
+      "p_effect": 0.61328125,
+      "p_screen": 1.0,
+      "p_joint": 0.61328125,
+      "p_joint_mcse": 0.01521869733,
+      "volume_lo": 0.0,
+      "volume_median": 421.1575916,
+      "volume_hi": 2368.653638
+    },
+    {
+      "dose_ug": 3.1,
+      "p_effect": 0.6171875,
+      "p_screen": 1.0,
+      "p_joint": 0.6171875,
+      "p_joint_mcse": 0.01518978538,
+      "volume_lo": 0.0,
+      "volume_median": 409.8351622,
+      "volume_hi": 2367.034341
+    },
+    {
+      "dose_ug": 3.2,
+      "p_effect": 0.623046875,
+      "p_screen": 1.0,
+      "p_joint": 0.623046875,
+      "p_joint_mcse": 0.01514446922,
+      "volume_lo": 0.0,
+      "volume_median": 389.8291086,
+      "volume_hi": 2357.434393
+    },
+    {
+      "dose_ug": 3.3,
+      "p_effect": 0.6328125,
+      "p_screen": 1.0,
+      "p_joint": 0.6328125,
+      "p_joint_mcse": 0.01506369419,
+      "volume_lo": 0.0,
+      "volume_median": 377.5043784,
+      "volume_hi": 2351.164186
+    },
+    {
+      "dose_ug": 3.4,
+      "p_effect": 0.6357421875,
+      "p_screen": 1.0,
+      "p_joint": 0.6357421875,
+      "p_joint_mcse": 0.01503816949,
+      "volume_lo": 0.0,
+      "volume_median": 367.9757358,
+      "volume_hi": 2343.044697
+    },
+    {
+      "dose_ug": 3.5,
+      "p_effect": 0.6396484375,
+      "p_screen": 1.0,
+      "p_joint": 0.6396484375,
+      "p_joint_mcse": 0.01500319998,
+      "volume_lo": 0.0,
+      "volume_median": 353.5696255,
+      "volume_hi": 2337.553637
+    },
+    {
+      "dose_ug": 3.6,
+      "p_effect": 0.6455078125,
+      "p_screen": 1.0,
+      "p_joint": 0.6455078125,
+      "p_joint_mcse": 0.01494872344,
+      "volume_lo": 0.0,
+      "volume_median": 348.4714955,
+      "volume_hi": 2331.894386
+    },
+    {
+      "dose_ug": 3.7,
+      "p_effect": 0.6484375,
+      "p_screen": 1.0,
+      "p_joint": 0.6484375,
+      "p_joint_mcse": 0.01492056796,
+      "volume_lo": 0.0,
+      "volume_median": 340.9655183,
+      "volume_hi": 2326.068691
+    },
+    {
+      "dose_ug": 3.8,
+      "p_effect": 0.65625,
+      "p_screen": 1.0,
+      "p_joint": 0.65625,
+      "p_joint_mcse": 0.01484246499,
+      "volume_lo": 0.0,
+      "volume_median": 326.0262336,
+      "volume_hi": 2320.074522
+    },
+    {
+      "dose_ug": 3.9,
+      "p_effect": 0.6591796875,
+      "p_screen": 1.0,
+      "p_joint": 0.6591796875,
+      "p_joint_mcse": 0.01481203279,
+      "volume_lo": 0.0,
+      "volume_median": 310.3873312,
+      "volume_hi": 2313.920021
+    },
+    {
+      "dose_ug": 4.0,
+      "p_effect": 0.662109375,
+      "p_screen": 1.0,
+      "p_joint": 0.662109375,
+      "p_joint_mcse": 0.01478097088,
+      "volume_lo": 0.0,
+      "volume_median": 303.3667256,
+      "volume_hi": 2307.609293
+    },
+    {
+      "dose_ug": 4.1,
+      "p_effect": 0.666015625,
+      "p_screen": 1.0,
+      "p_joint": 0.666015625,
+      "p_joint_mcse": 0.01473856854,
+      "volume_lo": 0.0,
+      "volume_median": 296.1720375,
+      "volume_hi": 2299.815916
+    },
+    {
+      "dose_ug": 4.2,
+      "p_effect": 0.6728515625,
+      "p_screen": 1.0,
+      "p_joint": 0.6728515625,
+      "p_joint_mcse": 0.01466162406,
+      "volume_lo": 0.0,
+      "volume_median": 292.1760253,
+      "volume_hi": 2286.318502
+    },
+    {
+      "dose_ug": 4.3,
+      "p_effect": 0.6767578125,
+      "p_screen": 1.0,
+      "p_joint": 0.6767578125,
+      "p_joint_mcse": 0.01461607219,
+      "volume_lo": 0.0,
+      "volume_median": 282.3500223,
+      "volume_hi": 2272.764232
+    },
+    {
+      "dose_ug": 4.4,
+      "p_effect": 0.6826171875,
+      "p_screen": 1.0,
+      "p_joint": 0.6826171875,
+      "p_joint_mcse": 0.01454555622,
+      "volume_lo": 0.0,
+      "volume_median": 276.9473264,
+      "volume_hi": 2264.132761
+    },
+    {
+      "dose_ug": 4.5,
+      "p_effect": 0.68359375,
+      "p_screen": 1.0,
+      "p_joint": 0.68359375,
+      "p_joint_mcse": 0.01453354602,
+      "volume_lo": 0.0,
+      "volume_median": 269.0349386,
+      "volume_hi": 2260.500352
+    },
+    {
+      "dose_ug": 4.6,
+      "p_effect": 0.6884765625,
+      "p_screen": 1.0,
+      "p_joint": 0.6884765625,
+      "p_joint_mcse": 0.01447238026,
+      "volume_lo": 0.0,
+      "volume_median": 261.6837249,
+      "volume_hi": 2256.588666
+    },
+    {
+      "dose_ug": 4.7,
+      "p_effect": 0.69140625,
+      "p_screen": 1.0,
+      "p_joint": 0.69140625,
+      "p_joint_mcse": 0.01443478219,
+      "volume_lo": 0.0,
+      "volume_median": 254.3204279,
+      "volume_hi": 2252.536444
+    },
+    {
+      "dose_ug": 4.8,
+      "p_effect": 0.6962890625,
+      "p_screen": 1.0,
+      "p_joint": 0.6962890625,
+      "p_joint_mcse": 0.01437060408,
+      "volume_lo": 0.0,
+      "volume_median": 245.3808038,
+      "volume_hi": 2242.956307
+    },
+    {
+      "dose_ug": 4.9,
+      "p_effect": 0.705078125,
+      "p_screen": 1.0,
+      "p_joint": 0.705078125,
+      "p_joint_mcse": 0.01425023858,
+      "volume_lo": 0.0,
+      "volume_median": 239.8643076,
+      "volume_hi": 2240.013664
+    },
+    {
+      "dose_ug": 5.0,
+      "p_effect": 0.712890625,
+      "p_screen": 1.0,
+      "p_joint": 0.712890625,
+      "p_joint_mcse": 0.0141379083,
+      "volume_lo": 0.0,
+      "volume_median": 234.0927664,
+      "volume_hi": 2235.81313
+    },
+    {
+      "dose_ug": 5.1,
+      "p_effect": 0.7158203125,
+      "p_screen": 1.0,
+      "p_joint": 0.7158203125,
+      "p_joint_mcse": 0.01409446342,
+      "volume_lo": 0.0,
+      "volume_median": 227.4962545,
+      "volume_hi": 2226.217938
+    },
+    {
+      "dose_ug": 5.2,
+      "p_effect": 0.7177734375,
+      "p_screen": 1.0,
+      "p_joint": 0.7177734375,
+      "p_joint_mcse": 0.01406509455,
+      "volume_lo": 0.0,
+      "volume_median": 220.5922387,
+      "volume_hi": 2215.1777
+    },
+    {
+      "dose_ug": 5.3,
+      "p_effect": 0.7216796875,
+      "p_screen": 1.0,
+      "p_joint": 0.7216796875,
+      "p_joint_mcse": 0.01400537411,
+      "volume_lo": 0.0,
+      "volume_median": 210.0771796,
+      "volume_hi": 2205.616041
+    },
+    {
+      "dose_ug": 5.4,
+      "p_effect": 0.724609375,
+      "p_screen": 1.0,
+      "p_joint": 0.724609375,
+      "p_joint_mcse": 0.01395971564,
+      "volume_lo": 0.0,
+      "volume_median": 201.9420558,
+      "volume_hi": 2194.895082
+    },
+    {
+      "dose_ug": 5.5,
+      "p_effect": 0.7265625,
+      "p_screen": 1.0,
+      "p_joint": 0.7265625,
+      "p_joint_mcse": 0.0139288592,
+      "volume_lo": 0.0,
+      "volume_median": 196.3641882,
+      "volume_hi": 2181.873105
+    },
+    {
+      "dose_ug": 5.6,
+      "p_effect": 0.7314453125,
+      "p_screen": 1.0,
+      "p_joint": 0.7314453125,
+      "p_joint_mcse": 0.01385024069,
+      "volume_lo": 0.0,
+      "volume_median": 192.9170615,
+      "volume_hi": 2169.339789
+    },
+    {
+      "dose_ug": 5.7,
+      "p_effect": 0.734375,
+      "p_screen": 1.0,
+      "p_joint": 0.734375,
+      "p_joint_mcse": 0.01380204495,
+      "volume_lo": 0.0,
+      "volume_median": 185.1387379,
+      "volume_hi": 2157.61627
+    },
+    {
+      "dose_ug": 5.8,
+      "p_effect": 0.734375,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7333984375,
+      "p_joint_mcse": 0.01381819627,
+      "volume_lo": 0.0,
+      "volume_median": 182.0763444,
+      "volume_hi": 2145.805161
+    },
+    {
+      "dose_ug": 5.9,
+      "p_effect": 0.736328125,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7353515625,
+      "p_joint_mcse": 0.01378580714,
+      "volume_lo": 0.0,
+      "volume_median": 179.5631616,
+      "volume_hi": 2139.952274
+    },
+    {
+      "dose_ug": 6.0,
+      "p_effect": 0.740234375,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7392578125,
+      "p_joint_mcse": 0.01371998497,
+      "volume_lo": 0.0,
+      "volume_median": 175.9847975,
+      "volume_hi": 2134.700418
+    },
+    {
+      "dose_ug": 6.1,
+      "p_effect": 0.7421875,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7412109375,
+      "p_joint_mcse": 0.0136865469,
+      "volume_lo": 0.0,
+      "volume_median": 170.2355211,
+      "volume_hi": 2129.354812
+    },
+    {
+      "dose_ug": 6.2,
+      "p_effect": 0.748046875,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7470703125,
+      "p_joint_mcse": 0.01358409358,
+      "volume_lo": 0.0,
+      "volume_median": 166.7489929,
+      "volume_hi": 2123.461761
+    },
+    {
+      "dose_ug": 6.3,
+      "p_effect": 0.7548828125,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.75390625,
+      "p_joint_mcse": 0.0134604316,
+      "volume_lo": 0.0,
+      "volume_median": 163.3777023,
+      "volume_hi": 2116.70692
+    },
+    {
+      "dose_ug": 6.4,
+      "p_effect": 0.755859375,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7548828125,
+      "p_joint_mcse": 0.01344239562,
+      "volume_lo": 0.0,
+      "volume_median": 159.8707217,
+      "volume_hi": 2113.083747
+    },
+    {
+      "dose_ug": 6.5,
+      "p_effect": 0.7587890625,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7578125,
+      "p_joint_mcse": 0.01338772448,
+      "volume_lo": 0.0,
+      "volume_median": 151.2602252,
+      "volume_hi": 2111.566436
+    },
+    {
+      "dose_ug": 6.6,
+      "p_effect": 0.759765625,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7587890625,
+      "p_joint_mcse": 0.01336931177,
+      "volume_lo": 0.0,
+      "volume_median": 140.8385987,
+      "volume_hi": 2109.455561
+    },
+    {
+      "dose_ug": 6.7,
+      "p_effect": 0.76171875,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7607421875,
+      "p_joint_mcse": 0.01333220049,
+      "volume_lo": 0.0,
+      "volume_median": 138.1975309,
+      "volume_hi": 2105.42823
+    },
+    {
+      "dose_ug": 6.8,
+      "p_effect": 0.763671875,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7626953125,
+      "p_joint_mcse": 0.01329470542,
+      "volume_lo": 0.0,
+      "volume_median": 134.4150797,
+      "volume_hi": 2100.96879
+    },
+    {
+      "dose_ug": 6.9,
+      "p_effect": 0.765625,
+      "p_screen": 0.9990234375,
+      "p_joint": 0.7646484375,
+      "p_joint_mcse": 0.01325682329,
+      "volume_lo": 0.0,
+      "volume_median": 132.4479506,
+      "volume_hi": 2096.565228
+    },
+    {
+      "dose_ug": 7.0,
+      "p_effect": 0.76953125,
+      "p_screen": 0.998046875,
+      "p_joint": 0.767578125,
+      "p_joint_mcse": 0.01319926708,
+      "volume_lo": 0.0,
+      "volume_median": 124.9364123,
+      "volume_hi": 2095.927064
+    },
+    {
+      "dose_ug": 7.1,
+      "p_effect": 0.7734375,
+      "p_screen": 0.9970703125,
+      "p_joint": 0.7705078125,
+      "p_joint_mcse": 0.01314082095,
+      "volume_lo": 0.0,
+      "volume_median": 120.3788384,
+      "volume_hi": 2095.275554
+    },
+    {
+      "dose_ug": 7.2,
+      "p_effect": 0.77734375,
+      "p_screen": 0.9970703125,
+      "p_joint": 0.7744140625,
+      "p_joint_mcse": 0.01306148779,
+      "volume_lo": 0.0,
+      "volume_median": 116.6849539,
+      "volume_hi": 2094.610705
+    },
+    {
+      "dose_ug": 7.3,
+      "p_effect": 0.78125,
+      "p_screen": 0.9970703125,
+      "p_joint": 0.7783203125,
+      "p_joint_mcse": 0.0129805219,
+      "volume_lo": 0.0,
+      "volume_median": 112.6581065,
+      "volume_hi": 2093.932533
+    },
+    {
+      "dose_ug": 7.4,
+      "p_effect": 0.7841796875,
+      "p_screen": 0.99609375,
+      "p_joint": 0.7802734375,
+      "p_joint_mcse": 0.01293941714,
+      "volume_lo": 0.0,
+      "volume_median": 107.556318,
+      "volume_hi": 2093.241055
+    },
+    {
+      "dose_ug": 7.5,
+      "p_effect": 0.78515625,
+      "p_screen": 0.99609375,
+      "p_joint": 0.78125,
+      "p_joint_mcse": 0.01291870757,
+      "volume_lo": 0.0,
+      "volume_median": 102.8768841,
+      "volume_hi": 2092.536292
+    },
+    {
+      "dose_ug": 7.6,
+      "p_effect": 0.7861328125,
+      "p_screen": 0.99609375,
+      "p_joint": 0.7822265625,
+      "p_joint_mcse": 0.01289789255,
+      "volume_lo": 0.0,
+      "volume_median": 100.1040994,
+      "volume_hi": 2091.818267
+    },
+    {
+      "dose_ug": 7.7,
+      "p_effect": 0.791015625,
+      "p_screen": 0.9951171875,
+      "p_joint": 0.7861328125,
+      "p_joint_mcse": 0.01281356755,
+      "volume_lo": 0.0,
+      "volume_median": 97.66292233,
+      "volume_hi": 2089.29285
+    },
+    {
+      "dose_ug": 7.8,
+      "p_effect": 0.79296875,
+      "p_screen": 0.994140625,
+      "p_joint": 0.787109375,
+      "p_joint_mcse": 0.01279221744,
+      "volume_lo": 0.0,
+      "volume_median": 92.08376852,
+      "volume_hi": 2079.887586
+    },
+    {
+      "dose_ug": 7.9,
+      "p_effect": 0.7939453125,
+      "p_screen": 0.994140625,
+      "p_joint": 0.7880859375,
+      "p_joint_mcse": 0.01277075871,
+      "volume_lo": 0.0,
+      "volume_median": 84.79139969,
+      "volume_hi": 2070.483565
+    },
+    {
+      "dose_ug": 8.0,
+      "p_effect": 0.7939453125,
+      "p_screen": 0.994140625,
+      "p_joint": 0.7880859375,
+      "p_joint_mcse": 0.01277075871,
+      "volume_lo": 0.0,
+      "volume_median": 83.20703119,
+      "volume_hi": 2063.753574
+    },
+    {
+      "dose_ug": 8.1,
+      "p_effect": 0.7958984375,
+      "p_screen": 0.9921875,
+      "p_joint": 0.7880859375,
+      "p_joint_mcse": 0.01277075871,
+      "volume_lo": 0.0,
+      "volume_median": 82.24050343,
+      "volume_hi": 2062.486676
+    },
+    {
+      "dose_ug": 8.2,
+      "p_effect": 0.7998046875,
+      "p_screen": 0.9921875,
+      "p_joint": 0.7919921875,
+      "p_joint_mcse": 0.01268382653,
+      "volume_lo": 0.0,
+      "volume_median": 81.4985749,
+      "volume_hi": 2061.196852
+    },
+    {
+      "dose_ug": 8.3,
+      "p_effect": 0.80078125,
+      "p_screen": 0.9921875,
+      "p_joint": 0.79296875,
+      "p_joint_mcse": 0.01266181635,
+      "volume_lo": 0.0,
+      "volume_median": 80.50866799,
+      "volume_hi": 2059.884141
+    },
+    {
+      "dose_ug": 8.4,
+      "p_effect": 0.8037109375,
+      "p_screen": 0.9921875,
+      "p_joint": 0.7958984375,
+      "p_joint_mcse": 0.01259511138,
+      "volume_lo": 0.0,
+      "volume_median": 78.94061686,
+      "volume_hi": 2058.548585
+    },
+    {
+      "dose_ug": 8.5,
+      "p_effect": 0.8056640625,
+      "p_screen": 0.990234375,
+      "p_joint": 0.7958984375,
+      "p_joint_mcse": 0.01259511138,
+      "volume_lo": 0.0,
+      "volume_median": 75.69867926,
+      "volume_hi": 2057.190234
+    },
+    {
+      "dose_ug": 8.6,
+      "p_effect": 0.8076171875,
+      "p_screen": 0.990234375,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341,
+      "volume_lo": 0.0,
+      "volume_median": 73.75967825,
+      "volume_hi": 2055.809146
+    },
+    {
+      "dose_ug": 8.7,
+      "p_effect": 0.8095703125,
+      "p_screen": 0.98828125,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341,
+      "volume_lo": 0.0,
+      "volume_median": 70.92890945,
+      "volume_hi": 2054.405384
+    },
+    {
+      "dose_ug": 8.8,
+      "p_effect": 0.810546875,
+      "p_screen": 0.9873046875,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341,
+      "volume_lo": 0.0,
+      "volume_median": 69.50490491,
+      "volume_hi": 2052.97902
+    },
+    {
+      "dose_ug": 8.9,
+      "p_effect": 0.810546875,
+      "p_screen": 0.9873046875,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341,
+      "volume_lo": 0.0,
+      "volume_median": 67.51093591,
+      "volume_hi": 2051.530129
+    },
+    {
+      "dose_ug": 9.0,
+      "p_effect": 0.810546875,
+      "p_screen": 0.986328125,
+      "p_joint": 0.796875,
+      "p_joint_mcse": 0.0125726496,
+      "volume_lo": 0.0,
+      "volume_median": 64.3956927,
+      "volume_hi": 2048.357125
+    },
+    {
+      "dose_ug": 9.1,
+      "p_effect": 0.8134765625,
+      "p_screen": 0.984375,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341,
+      "volume_lo": 0.0,
+      "volume_median": 61.85370059,
+      "volume_hi": 2043.411513
+    },
+    {
+      "dose_ug": 9.2,
+      "p_effect": 0.81640625,
+      "p_screen": 0.9833984375,
+      "p_joint": 0.7998046875,
+      "p_joint_mcse": 0.01250457531,
+      "volume_lo": 0.0,
+      "volume_median": 59.81850814,
+      "volume_hi": 2038.395282
+    },
+    {
+      "dose_ug": 9.3,
+      "p_effect": 0.81640625,
+      "p_screen": 0.9833984375,
+      "p_joint": 0.7998046875,
+      "p_joint_mcse": 0.01250457531,
+      "volume_lo": 0.0,
+      "volume_median": 58.0568749,
+      "volume_hi": 2033.309211
+    },
+    {
+      "dose_ug": 9.4,
+      "p_effect": 0.818359375,
+      "p_screen": 0.9833984375,
+      "p_joint": 0.8017578125,
+      "p_joint_mcse": 0.01245861205,
+      "volume_lo": 0.0,
+      "volume_median": 56.55706442,
+      "volume_hi": 2028.154107
+    },
+    {
+      "dose_ug": 9.5,
+      "p_effect": 0.8212890625,
+      "p_screen": 0.98046875,
+      "p_joint": 0.802734375,
+      "p_joint_mcse": 0.01243545438,
+      "volume_lo": 0.0,
+      "volume_median": 55.51083294,
+      "volume_hi": 2022.920353
+    },
+    {
+      "dose_ug": 9.6,
+      "p_effect": 0.82421875,
+      "p_screen": 0.98046875,
+      "p_joint": 0.8056640625,
+      "p_joint_mcse": 0.01236526925,
+      "volume_lo": 0.0,
+      "volume_median": 53.39430647,
+      "volume_hi": 2017.618874
+    },
+    {
+      "dose_ug": 9.7,
+      "p_effect": 0.826171875,
+      "p_screen": 0.9794921875,
+      "p_joint": 0.806640625,
+      "p_joint_mcse": 0.01234163459,
+      "volume_lo": 0.0,
+      "volume_median": 51.71385979,
+      "volume_hi": 2012.250863
+    },
+    {
+      "dose_ug": 9.8,
+      "p_effect": 0.8310546875,
+      "p_screen": 0.978515625,
+      "p_joint": 0.810546875,
+      "p_joint_mcse": 0.01224587935,
+      "volume_lo": 0.0,
+      "volume_median": 50.99489501,
+      "volume_hi": 2006.817238
+    },
+    {
+      "dose_ug": 9.9,
+      "p_effect": 0.83203125,
+      "p_screen": 0.9775390625,
+      "p_joint": 0.810546875,
+      "p_joint_mcse": 0.01224587935,
+      "volume_lo": 0.0,
+      "volume_median": 49.52201921,
+      "volume_hi": 2001.318941
+    },
+    {
+      "dose_ug": 10.0,
+      "p_effect": 0.833984375,
+      "p_screen": 0.9765625,
+      "p_joint": 0.8115234375,
+      "p_joint_mcse": 0.01222163281,
+      "volume_lo": 0.0,
+      "volume_median": 48.89062221,
+      "volume_hi": 1990.947707
+    },
+    {
+      "dose_ug": 10.1,
+      "p_effect": 0.8349609375,
+      "p_screen": 0.9765625,
+      "p_joint": 0.8125,
+      "p_joint_mcse": 0.01219726172,
+      "volume_lo": 0.0,
+      "volume_median": 48.16409221,
+      "volume_hi": 1977.11726
+    },
+    {
+      "dose_ug": 10.2,
+      "p_effect": 0.8369140625,
+      "p_screen": 0.9755859375,
+      "p_joint": 0.814453125,
+      "p_joint_mcse": 0.01214814287,
+      "volume_lo": 0.0,
+      "volume_median": 46.84707573,
+      "volume_hi": 1966.323888
+    },
+    {
+      "dose_ug": 10.3,
+      "p_effect": 0.8388671875,
+      "p_screen": 0.9716796875,
+      "p_joint": 0.8125,
+      "p_joint_mcse": 0.01219726172,
+      "volume_lo": 0.0,
+      "volume_median": 46.73096737,
+      "volume_hi": 1961.00654
+    },
+    {
+      "dose_ug": 10.4,
+      "p_effect": 0.8388671875,
+      "p_screen": 0.9716796875,
+      "p_joint": 0.8125,
+      "p_joint_mcse": 0.01219726172,
+      "volume_lo": 0.0,
+      "volume_median": 45.2905395,
+      "volume_hi": 1955.565429
+    },
+    {
+      "dose_ug": 10.5,
+      "p_effect": 0.8388671875,
+      "p_screen": 0.96875,
+      "p_joint": 0.8095703125,
+      "p_joint_mcse": 0.01227000207,
+      "volume_lo": 0.0,
+      "volume_median": 43.83686452,
+      "volume_hi": 1952.220604
+    },
+    {
+      "dose_ug": 10.6,
+      "p_effect": 0.83984375,
+      "p_screen": 0.9658203125,
+      "p_joint": 0.8076171875,
+      "p_joint_mcse": 0.01231787898,
+      "volume_lo": 0.0,
+      "volume_median": 42.63807715,
+      "volume_hi": 1949.712303
+    },
+    {
+      "dose_ug": 10.7,
+      "p_effect": 0.8427734375,
+      "p_screen": 0.962890625,
+      "p_joint": 0.80859375,
+      "p_joint_mcse": 0.01229400171,
+      "volume_lo": 0.0,
+      "volume_median": 42.56487532,
+      "volume_hi": 1947.177066
+    },
+    {
+      "dose_ug": 10.8,
+      "p_effect": 0.845703125,
+      "p_screen": 0.9609375,
+      "p_joint": 0.8095703125,
+      "p_joint_mcse": 0.01227000207,
+      "volume_lo": 0.0,
+      "volume_median": 41.84297436,
+      "volume_hi": 1944.61527
+    },
+    {
+      "dose_ug": 10.9,
+      "p_effect": 0.8466796875,
+      "p_screen": 0.958984375,
+      "p_joint": 0.80859375,
+      "p_joint_mcse": 0.01229400171,
+      "volume_lo": 0.0,
+      "volume_median": 41.27832541,
+      "volume_hi": 1942.027302
+    },
+    {
+      "dose_ug": 11.0,
+      "p_effect": 0.8486328125,
+      "p_screen": 0.95703125,
+      "p_joint": 0.80859375,
+      "p_joint_mcse": 0.01229400171,
+      "volume_lo": 0.0,
+      "volume_median": 40.8575204,
+      "volume_hi": 1940.084287
+    },
+    {
+      "dose_ug": 11.1,
+      "p_effect": 0.8486328125,
+      "p_screen": 0.95703125,
+      "p_joint": 0.80859375,
+      "p_joint_mcse": 0.01229400171,
+      "volume_lo": 0.0,
+      "volume_median": 39.96027123,
+      "volume_hi": 1938.362501
+    },
+    {
+      "dose_ug": 11.2,
+      "p_effect": 0.849609375,
+      "p_screen": 0.9560546875,
+      "p_joint": 0.80859375,
+      "p_joint_mcse": 0.01229400171,
+      "volume_lo": 0.0,
+      "volume_median": 39.44394496,
+      "volume_hi": 1936.630019
+    },
+    {
+      "dose_ug": 11.3,
+      "p_effect": 0.8505859375,
+      "p_screen": 0.955078125,
+      "p_joint": 0.80859375,
+      "p_joint_mcse": 0.01229400171,
+      "volume_lo": 0.0,
+      "volume_median": 37.51882329,
+      "volume_hi": 1934.887057
+    },
+    {
+      "dose_ug": 11.4,
+      "p_effect": 0.8505859375,
+      "p_screen": 0.953125,
+      "p_joint": 0.806640625,
+      "p_joint_mcse": 0.01234163459,
+      "volume_lo": 0.0,
+      "volume_median": 36.3347164,
+      "volume_hi": 1933.13383
+    },
+    {
+      "dose_ug": 11.5,
+      "p_effect": 0.8525390625,
+      "p_screen": 0.953125,
+      "p_joint": 0.80859375,
+      "p_joint_mcse": 0.01229400171,
+      "volume_lo": 0.0,
+      "volume_median": 34.89217971,
+      "volume_hi": 1930.271414
+    },
+    {
+      "dose_ug": 11.6,
+      "p_effect": 0.853515625,
+      "p_screen": 0.951171875,
+      "p_joint": 0.8076171875,
+      "p_joint_mcse": 0.01231787898,
+      "volume_lo": 0.0,
+      "volume_median": 34.77792022,
+      "volume_hi": 1926.613397
+    },
+    {
+      "dose_ug": 11.7,
+      "p_effect": 0.8544921875,
+      "p_screen": 0.94921875,
+      "p_joint": 0.806640625,
+      "p_joint_mcse": 0.01234163459,
+      "volume_lo": 0.0,
+      "volume_median": 35.0224172,
+      "volume_hi": 1921.393301
+    },
+    {
+      "dose_ug": 11.8,
+      "p_effect": 0.8544921875,
+      "p_screen": 0.9462890625,
+      "p_joint": 0.8037109375,
+      "p_joint_mcse": 0.01241217847,
+      "volume_lo": 0.0,
+      "volume_median": 34.26279666,
+      "volume_hi": 1915.025019
+    },
+    {
+      "dose_ug": 11.9,
+      "p_effect": 0.8544921875,
+      "p_screen": 0.9453125,
+      "p_joint": 0.802734375,
+      "p_joint_mcse": 0.01243545438,
+      "volume_lo": 0.0,
+      "volume_median": 33.6405018,
+      "volume_hi": 1908.669042
+    },
+    {
+      "dose_ug": 12.0,
+      "p_effect": 0.85546875,
+      "p_screen": 0.9423828125,
+      "p_joint": 0.80078125,
+      "p_joint_mcse": 0.01248165215,
+      "volume_lo": 0.0,
+      "volume_median": 33.31404576,
+      "volume_hi": 1902.334068
+    },
+    {
+      "dose_ug": 12.1,
+      "p_effect": 0.8564453125,
+      "p_screen": 0.9404296875,
+      "p_joint": 0.7998046875,
+      "p_joint_mcse": 0.01250457531,
+      "volume_lo": 0.0,
+      "volume_median": 33.28828904,
+      "volume_hi": 1894.883911
+    },
+    {
+      "dose_ug": 12.2,
+      "p_effect": 0.8603515625,
+      "p_screen": 0.939453125,
+      "p_joint": 0.802734375,
+      "p_joint_mcse": 0.01243545438,
+      "volume_lo": 0.0,
+      "volume_median": 33.26450808,
+      "volume_hi": 1887.41483
+    },
+    {
+      "dose_ug": 12.3,
+      "p_effect": 0.8603515625,
+      "p_screen": 0.9375,
+      "p_joint": 0.80078125,
+      "p_joint_mcse": 0.01248165215,
+      "volume_lo": 0.0,
+      "volume_median": 33.23762486,
+      "volume_hi": 1879.977643
+    },
+    {
+      "dose_ug": 12.4,
+      "p_effect": 0.8642578125,
+      "p_screen": 0.935546875,
+      "p_joint": 0.802734375,
+      "p_joint_mcse": 0.01243545438,
+      "volume_lo": 0.0,
+      "volume_median": 32.55901132,
+      "volume_hi": 1875.482223
+    },
+    {
+      "dose_ug": 12.5,
+      "p_effect": 0.8642578125,
+      "p_screen": 0.9326171875,
+      "p_joint": 0.7998046875,
+      "p_joint_mcse": 0.01250457531,
+      "volume_lo": 0.0,
+      "volume_median": 32.12518609,
+      "volume_hi": 1871.345888
+    },
+    {
+      "dose_ug": 12.6,
+      "p_effect": 0.8662109375,
+      "p_screen": 0.931640625,
+      "p_joint": 0.80078125,
+      "p_joint_mcse": 0.01248165215,
+      "volume_lo": 0.0,
+      "volume_median": 31.33014721,
+      "volume_hi": 1867.186726
+    },
+    {
+      "dose_ug": 12.7,
+      "p_effect": 0.8671875,
+      "p_screen": 0.9267578125,
+      "p_joint": 0.796875,
+      "p_joint_mcse": 0.0125726496,
+      "volume_lo": 0.0,
+      "volume_median": 30.75339716,
+      "volume_hi": 1863.003088
+    },
+    {
+      "dose_ug": 12.8,
+      "p_effect": 0.8681640625,
+      "p_screen": 0.92578125,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341,
+      "volume_lo": 0.0,
+      "volume_median": 30.26525979,
+      "volume_hi": 1858.794695
+    },
+    {
+      "dose_ug": 12.9,
+      "p_effect": 0.869140625,
+      "p_screen": 0.9248046875,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341,
+      "volume_lo": 0.0,
+      "volume_median": 29.21408707,
+      "volume_hi": 1853.275673
+    },
+    {
+      "dose_ug": 13.0,
+      "p_effect": 0.87109375,
+      "p_screen": 0.923828125,
+      "p_joint": 0.798828125,
+      "p_joint_mcse": 0.01252738218,
+      "volume_lo": 0.0,
+      "volume_median": 28.89017553,
+      "volume_hi": 1846.689358
+    },
+    {
+      "dose_ug": 13.1,
+      "p_effect": 0.87109375,
+      "p_screen": 0.9228515625,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341,
+      "volume_lo": 0.0,
+      "volume_median": 28.47323101,
+      "volume_hi": 1840.087632
+    },
+    {
+      "dose_ug": 13.2,
+      "p_effect": 0.8720703125,
+      "p_screen": 0.921875,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341,
+      "volume_lo": 0.0,
+      "volume_median": 28.06903791,
+      "volume_hi": 1833.467359
+    },
+    {
+      "dose_ug": 13.3,
+      "p_effect": 0.873046875,
+      "p_screen": 0.919921875,
+      "p_joint": 0.7978515625,
+      "p_joint_mcse": 0.01255007341,
+      "volume_lo": 0.0,
+      "volume_median": 27.67566063,
+      "volume_hi": 1826.830166
+    },
+    {
+      "dose_ug": 13.4,
+      "p_effect": 0.873046875,
+      "p_screen": 0.9169921875,
+      "p_joint": 0.794921875,
+      "p_joint_mcse": 0.01261745937,
+      "volume_lo": 0.0,
+      "volume_median": 26.8566126,
+      "volume_hi": 1820.164392
+    },
+    {
+      "dose_ug": 13.5,
+      "p_effect": 0.873046875,
+      "p_screen": 0.9140625,
+      "p_joint": 0.79296875,
+      "p_joint_mcse": 0.01266181635,
+      "volume_lo": 0.0,
+      "volume_median": 25.89511299,
+      "volume_hi": 1813.488826
+    },
+    {
+      "dose_ug": 13.6,
+      "p_effect": 0.875,
+      "p_screen": 0.908203125,
+      "p_joint": 0.7890625,
+      "p_joint_mcse": 0.01274919081,
+      "volume_lo": 0.0,
+      "volume_median": 24.97352771,
+      "volume_hi": 1808.765983
+    },
+    {
+      "dose_ug": 13.7,
+      "p_effect": 0.876953125,
+      "p_screen": 0.90625,
+      "p_joint": 0.7890625,
+      "p_joint_mcse": 0.01274919081,
+      "volume_lo": 0.0,
+      "volume_median": 24.46801323,
+      "volume_hi": 1801.2991
+    },
+    {
+      "dose_ug": 13.8,
+      "p_effect": 0.8779296875,
+      "p_screen": 0.9033203125,
+      "p_joint": 0.7880859375,
+      "p_joint_mcse": 0.01277075871,
+      "volume_lo": 0.0,
+      "volume_median": 24.32157567,
+      "volume_hi": 1793.363832
+    },
+    {
+      "dose_ug": 13.9,
+      "p_effect": 0.8779296875,
+      "p_screen": 0.90234375,
+      "p_joint": 0.787109375,
+      "p_joint_mcse": 0.01279221744,
+      "volume_lo": 0.0,
+      "volume_median": 24.0498607,
+      "volume_hi": 1786.309593
+    },
+    {
+      "dose_ug": 14.0,
+      "p_effect": 0.8798828125,
+      "p_screen": 0.900390625,
+      "p_joint": 0.787109375,
+      "p_joint_mcse": 0.01279221744,
+      "volume_lo": 0.0,
+      "volume_median": 23.49769597,
+      "volume_hi": 1781.809965
+    },
+    {
+      "dose_ug": 14.1,
+      "p_effect": 0.8798828125,
+      "p_screen": 0.8994140625,
+      "p_joint": 0.7861328125,
+      "p_joint_mcse": 0.01281356755,
+      "volume_lo": 0.0,
+      "volume_median": 23.13329741,
+      "volume_hi": 1778.701797
+    },
+    {
+      "dose_ug": 14.2,
+      "p_effect": 0.880859375,
+      "p_screen": 0.8984375,
+      "p_joint": 0.7861328125,
+      "p_joint_mcse": 0.01281356755,
+      "volume_lo": 0.0,
+      "volume_median": 22.83850066,
+      "volume_hi": 1775.479502
+    },
+    {
+      "dose_ug": 14.3,
+      "p_effect": 0.8828125,
+      "p_screen": 0.8955078125,
+      "p_joint": 0.78515625,
+      "p_joint_mcse": 0.01283480958,
+      "volume_lo": 0.0,
+      "volume_median": 22.51575686,
+      "volume_hi": 1772.245219
+    },
+    {
+      "dose_ug": 14.4,
+      "p_effect": 0.884765625,
+      "p_screen": 0.89453125,
+      "p_joint": 0.7861328125,
+      "p_joint_mcse": 0.01281356755,
+      "volume_lo": 0.0,
+      "volume_median": 22.12099816,
+      "volume_hi": 1770.580704
+    },
+    {
+      "dose_ug": 14.5,
+      "p_effect": 0.884765625,
+      "p_screen": 0.8935546875,
+      "p_joint": 0.7861328125,
+      "p_joint_mcse": 0.01281356755,
+      "volume_lo": 0.0,
+      "volume_median": 21.89698957,
+      "volume_hi": 1767.32829
+    },
+    {
+      "dose_ug": 14.6,
+      "p_effect": 0.8857421875,
+      "p_screen": 0.8916015625,
+      "p_joint": 0.7841796875,
+      "p_joint_mcse": 0.01285594407,
+      "volume_lo": 0.0,
+      "volume_median": 21.8526645,
+      "volume_hi": 1763.573405
+    },
+    {
+      "dose_ug": 14.7,
+      "p_effect": 0.88671875,
+      "p_screen": 0.8896484375,
+      "p_joint": 0.78515625,
+      "p_joint_mcse": 0.01283480958,
+      "volume_lo": 0.0,
+      "volume_median": 21.53951847,
+      "volume_hi": 1759.219168
+    },
+    {
+      "dose_ug": 14.8,
+      "p_effect": 0.88671875,
+      "p_screen": 0.888671875,
+      "p_joint": 0.7841796875,
+      "p_joint_mcse": 0.01285594407,
+      "volume_lo": 0.0,
+      "volume_median": 21.11487624,
+      "volume_hi": 1754.871259
+    },
+    {
+      "dose_ug": 14.9,
+      "p_effect": 0.8876953125,
+      "p_screen": 0.88671875,
+      "p_joint": 0.783203125,
+      "p_joint_mcse": 0.01287697156,
+      "volume_lo": 0.0,
+      "volume_median": 20.70909601,
+      "volume_hi": 1754.041748
+    },
+    {
+      "dose_ug": 15.0,
+      "p_effect": 0.8876953125,
+      "p_screen": 0.8828125,
+      "p_joint": 0.7802734375,
+      "p_joint_mcse": 0.01293941714,
+      "volume_lo": 0.0,
+      "volume_median": 20.45968642,
+      "volume_hi": 1752.95784
+    },
+    {
+      "dose_ug": 15.1,
+      "p_effect": 0.8876953125,
+      "p_screen": 0.8798828125,
+      "p_joint": 0.77734375,
+      "p_joint_mcse": 0.0130009181,
+      "volume_lo": 0.0,
+      "volume_median": 20.2582881,
+      "volume_hi": 1749.741158
+    },
+    {
+      "dose_ug": 15.2,
+      "p_effect": 0.8896484375,
+      "p_screen": 0.8798828125,
+      "p_joint": 0.779296875,
+      "p_joint_mcse": 0.01296002175,
+      "volume_lo": 0.0,
+      "volume_median": 20.13568778,
+      "volume_hi": 1744.327391
+    },
+    {
+      "dose_ug": 15.3,
+      "p_effect": 0.8916015625,
+      "p_screen": 0.875,
+      "p_joint": 0.7763671875,
+      "p_joint_mcse": 0.01302121082,
+      "volume_lo": 0.0,
+      "volume_median": 19.84795166,
+      "volume_hi": 1738.165
+    },
+    {
+      "dose_ug": 15.4,
+      "p_effect": 0.892578125,
+      "p_screen": 0.873046875,
+      "p_joint": 0.7763671875,
+      "p_joint_mcse": 0.01302121082,
+      "volume_lo": 0.0,
+      "volume_median": 19.79167523,
+      "volume_hi": 1733.634904
+    },
+    {
+      "dose_ug": 15.5,
+      "p_effect": 0.8935546875,
+      "p_screen": 0.8671875,
+      "p_joint": 0.771484375,
+      "p_joint_mcse": 0.01312113909,
+      "volume_lo": 0.0,
+      "volume_median": 19.50874672,
+      "volume_hi": 1731.153441
+    },
+    {
+      "dose_ug": 15.6,
+      "p_effect": 0.8955078125,
+      "p_screen": 0.865234375,
+      "p_joint": 0.771484375,
+      "p_joint_mcse": 0.01312113909,
+      "volume_lo": 0.0,
+      "volume_median": 18.974655,
+      "volume_hi": 1726.819394
+    },
+    {
+      "dose_ug": 15.7,
+      "p_effect": 0.896484375,
+      "p_screen": 0.857421875,
+      "p_joint": 0.765625,
+      "p_joint_mcse": 0.01323773605,
+      "volume_lo": 0.0,
+      "volume_median": 18.50619104,
+      "volume_hi": 1719.93446
+    },
+    {
+      "dose_ug": 15.8,
+      "p_effect": 0.896484375,
+      "p_screen": 0.8544921875,
+      "p_joint": 0.7626953125,
+      "p_joint_mcse": 0.01329470542,
+      "volume_lo": 0.0,
+      "volume_median": 17.99990854,
+      "volume_hi": 1713.0693
+    },
+    {
+      "dose_ug": 15.9,
+      "p_effect": 0.8974609375,
+      "p_screen": 0.853515625,
+      "p_joint": 0.7626953125,
+      "p_joint_mcse": 0.01329470542,
+      "volume_lo": 0.0,
+      "volume_median": 17.64472463,
+      "volume_hi": 1706.224212
+    },
+    {
+      "dose_ug": 16.0,
+      "p_effect": 0.8974609375,
+      "p_screen": 0.849609375,
+      "p_joint": 0.7587890625,
+      "p_joint_mcse": 0.01336931177,
+      "volume_lo": 0.0,
+      "volume_median": 17.42630318,
+      "volume_hi": 1699.394245
+    },
+    {
+      "dose_ug": 16.1,
+      "p_effect": 0.8994140625,
+      "p_screen": 0.845703125,
+      "p_joint": 0.755859375,
+      "p_joint_mcse": 0.01342426602,
+      "volume_lo": 0.0,
+      "volume_median": 17.42322941,
+      "volume_hi": 1693.672712
+    },
+    {
+      "dose_ug": 16.2,
+      "p_effect": 0.8994140625,
+      "p_screen": 0.8447265625,
+      "p_joint": 0.7548828125,
+      "p_joint_mcse": 0.01344239562,
+      "volume_lo": 0.0,
+      "volume_median": 17.34524094,
+      "volume_hi": 1690.956154
+    },
+    {
+      "dose_ug": 16.3,
+      "p_effect": 0.900390625,
+      "p_screen": 0.8447265625,
+      "p_joint": 0.755859375,
+      "p_joint_mcse": 0.01342426602,
+      "volume_lo": 0.0,
+      "volume_median": 17.30770597,
+      "volume_hi": 1688.138701
+    },
+    {
+      "dose_ug": 16.4,
+      "p_effect": 0.9013671875,
+      "p_screen": 0.8408203125,
+      "p_joint": 0.7529296875,
+      "p_joint_mcse": 0.01347837436,
+      "volume_lo": 0.0,
+      "volume_median": 17.34777033,
+      "volume_hi": 1684.559864
+    },
+    {
+      "dose_ug": 16.5,
+      "p_effect": 0.9013671875,
+      "p_screen": 0.8388671875,
+      "p_joint": 0.7509765625,
+      "p_joint_mcse": 0.01351398166,
+      "volume_lo": 0.0,
+      "volume_median": 17.32253157,
+      "volume_hi": 1680.972514
+    },
+    {
+      "dose_ug": 16.6,
+      "p_effect": 0.90234375,
+      "p_screen": 0.8369140625,
+      "p_joint": 0.7509765625,
+      "p_joint_mcse": 0.01351398166,
+      "volume_lo": 0.0,
+      "volume_median": 17.35092498,
+      "volume_hi": 1677.377008
+    },
+    {
+      "dose_ug": 16.7,
+      "p_effect": 0.90234375,
+      "p_screen": 0.833984375,
+      "p_joint": 0.748046875,
+      "p_joint_mcse": 0.01356670254,
+      "volume_lo": 0.0,
+      "volume_median": 17.05749688,
+      "volume_hi": 1673.773701
+    },
+    {
+      "dose_ug": 16.8,
+      "p_effect": 0.90234375,
+      "p_screen": 0.830078125,
+      "p_joint": 0.744140625,
+      "p_joint_mcse": 0.01363572382,
+      "volume_lo": 0.0,
+      "volume_median": 16.99401267,
+      "volume_hi": 1670.162948
+    },
+    {
+      "dose_ug": 16.9,
+      "p_effect": 0.90234375,
+      "p_screen": 0.8291015625,
+      "p_joint": 0.744140625,
+      "p_joint_mcse": 0.01363572382,
+      "volume_lo": 0.0,
+      "volume_median": 16.80588706,
+      "volume_hi": 1666.5451
+    },
+    {
+      "dose_ug": 17.0,
+      "p_effect": 0.90234375,
+      "p_screen": 0.8271484375,
+      "p_joint": 0.7421875,
+      "p_joint_mcse": 0.013669695,
+      "volume_lo": 0.0,
+      "volume_median": 16.34538822,
+      "volume_hi": 1662.920508
+    },
+    {
+      "dose_ug": 17.1,
+      "p_effect": 0.904296875,
+      "p_screen": 0.822265625,
+      "p_joint": 0.7392578125,
+      "p_joint_mcse": 0.01371998497,
+      "volume_lo": 0.0,
+      "volume_median": 16.12698517,
+      "volume_hi": 1659.289518
+    },
+    {
+      "dose_ug": 17.2,
+      "p_effect": 0.9052734375,
+      "p_screen": 0.8193359375,
+      "p_joint": 0.736328125,
+      "p_joint_mcse": 0.01376948255,
+      "volume_lo": 0.0,
+      "volume_median": 16.06727198,
+      "volume_hi": 1655.652476
+    },
+    {
+      "dose_ug": 17.3,
+      "p_effect": 0.9052734375,
+      "p_screen": 0.8154296875,
+      "p_joint": 0.732421875,
+      "p_joint_mcse": 0.01383426142,
+      "volume_lo": 0.0,
+      "volume_median": 16.08913297,
+      "volume_hi": 1652.009726
+    },
+    {
+      "dose_ug": 17.4,
+      "p_effect": 0.9072265625,
+      "p_screen": 0.814453125,
+      "p_joint": 0.7333984375,
+      "p_joint_mcse": 0.01381819627,
+      "volume_lo": 0.0,
+      "volume_median": 16.11181026,
+      "volume_hi": 1648.361609
+    },
+    {
+      "dose_ug": 17.5,
+      "p_effect": 0.9072265625,
+      "p_screen": 0.8125,
+      "p_joint": 0.7314453125,
+      "p_joint_mcse": 0.01385024069,
+      "volume_lo": 0.0,
+      "volume_median": 16.07885927,
+      "volume_hi": 1644.708463
+    },
+    {
+      "dose_ug": 17.6,
+      "p_effect": 0.9091796875,
+      "p_screen": 0.810546875,
+      "p_joint": 0.7314453125,
+      "p_joint_mcse": 0.01385024069,
+      "volume_lo": 0.0,
+      "volume_median": 15.97972159,
+      "volume_hi": 1641.050624
+    },
+    {
+      "dose_ug": 17.7,
+      "p_effect": 0.9091796875,
+      "p_screen": 0.806640625,
+      "p_joint": 0.7294921875,
+      "p_joint_mcse": 0.0138819428,
+      "volume_lo": 0.0,
+      "volume_median": 15.77334413,
+      "volume_hi": 1638.238173
+    },
+    {
+      "dose_ug": 17.8,
+      "p_effect": 0.9091796875,
+      "p_screen": 0.7998046875,
+      "p_joint": 0.72265625,
+      "p_joint_mcse": 0.01399023775,
+      "volume_lo": 0.0,
+      "volume_median": 15.57235499,
+      "volume_hi": 1637.337774
+    },
+    {
+      "dose_ug": 17.9,
+      "p_effect": 0.91015625,
+      "p_screen": 0.7998046875,
+      "p_joint": 0.7236328125,
+      "p_joint_mcse": 0.01397501835,
+      "volume_lo": 0.0,
+      "volume_median": 15.47738394,
+      "volume_hi": 1636.44152
+    },
+    {
+      "dose_ug": 18.0,
+      "p_effect": 0.91015625,
+      "p_screen": 0.7978515625,
+      "p_joint": 0.7216796875,
+      "p_joint_mcse": 0.01400537411,
+      "volume_lo": 0.0,
+      "volume_median": 15.33271583,
+      "volume_hi": 1635.54935
+    },
+    {
+      "dose_ug": 18.1,
+      "p_effect": 0.91015625,
+      "p_screen": 0.79296875,
+      "p_joint": 0.71875,
+      "p_joint_mcse": 0.01405028767,
+      "volume_lo": 0.0,
+      "volume_median": 15.20205934,
+      "volume_hi": 1634.661206
+    },
+    {
+      "dose_ug": 18.2,
+      "p_effect": 0.91015625,
+      "p_screen": 0.7890625,
+      "p_joint": 0.71484375,
+      "p_joint_mcse": 0.01410902592,
+      "volume_lo": 0.0,
+      "volume_median": 14.91668794,
+      "volume_hi": 1633.77703
+    },
+    {
+      "dose_ug": 18.3,
+      "p_effect": 0.91015625,
+      "p_screen": 0.787109375,
+      "p_joint": 0.7138671875,
+      "p_joint_mcse": 0.01412350746,
+      "volume_lo": 0.0,
+      "volume_median": 14.67251899,
+      "volume_hi": 1632.896764
+    },
+    {
+      "dose_ug": 18.4,
+      "p_effect": 0.91015625,
+      "p_screen": 0.7822265625,
+      "p_joint": 0.7099609375,
+      "p_joint_mcse": 0.01418062901,
+      "volume_lo": 0.0,
+      "volume_median": 14.63978377,
+      "volume_hi": 1632.02035
+    },
+    {
+      "dose_ug": 18.5,
+      "p_effect": 0.91015625,
+      "p_screen": 0.78125,
+      "p_joint": 0.708984375,
+      "p_joint_mcse": 0.01419470945,
+      "volume_lo": 0.0,
+      "volume_median": 14.47817449,
+      "volume_hi": 1631.147733
+    },
+    {
+      "dose_ug": 18.6,
+      "p_effect": 0.91015625,
+      "p_screen": 0.7802734375,
+      "p_joint": 0.7080078125,
+      "p_joint_mcse": 0.0142087104,
+      "volume_lo": 0.0,
+      "volume_median": 14.46738433,
+      "volume_hi": 1630.278856
+    },
+    {
+      "dose_ug": 18.7,
+      "p_effect": 0.91015625,
+      "p_screen": 0.77734375,
+      "p_joint": 0.705078125,
+      "p_joint_mcse": 0.01425023858,
+      "volume_lo": 0.0,
+      "volume_median": 14.46420514,
+      "volume_hi": 1629.413663
+    },
+    {
+      "dose_ug": 18.8,
+      "p_effect": 0.91015625,
+      "p_screen": 0.7744140625,
+      "p_joint": 0.703125,
+      "p_joint_mcse": 0.01427753078,
+      "volume_lo": 0.0,
+      "volume_median": 14.46198824,
+      "volume_hi": 1628.5521
+    },
+    {
+      "dose_ug": 18.9,
+      "p_effect": 0.9111328125,
+      "p_screen": 0.7685546875,
+      "p_joint": 0.6982421875,
+      "p_joint_mcse": 0.01434439797,
+      "volume_lo": 0.0,
+      "volume_median": 14.33195467,
+      "volume_hi": 1627.694113
+    },
+    {
+      "dose_ug": 19.0,
+      "p_effect": 0.9111328125,
+      "p_screen": 0.7666015625,
+      "p_joint": 0.6962890625,
+      "p_joint_mcse": 0.01437060408,
+      "volume_lo": 0.0,
+      "volume_median": 14.15062389,
+      "volume_hi": 1625.682159
+    },
+    {
+      "dose_ug": 19.1,
+      "p_effect": 0.912109375,
+      "p_screen": 0.7626953125,
+      "p_joint": 0.693359375,
+      "p_joint_mcse": 0.01440933915,
+      "volume_lo": 0.0,
+      "volume_median": 13.97416189,
+      "volume_hi": 1623.61968
+    },
+    {
+      "dose_ug": 19.2,
+      "p_effect": 0.912109375,
+      "p_screen": 0.75390625,
+      "p_joint": 0.6845703125,
+      "p_joint_mcse": 0.01452146175,
+      "volume_lo": 0.0,
+      "volume_median": 13.86720471,
+      "volume_hi": 1621.564423
+    },
+    {
+      "dose_ug": 19.3,
+      "p_effect": 0.9130859375,
+      "p_screen": 0.7509765625,
+      "p_joint": 0.68359375,
+      "p_joint_mcse": 0.01453354602,
+      "volume_lo": 0.0,
+      "volume_median": 13.7731951,
+      "volume_hi": 1619.516401
+    },
+    {
+      "dose_ug": 19.4,
+      "p_effect": 0.9150390625,
+      "p_screen": 0.744140625,
+      "p_joint": 0.6806640625,
+      "p_joint_mcse": 0.01456935516,
+      "volume_lo": 0.0,
+      "volume_median": 13.72598369,
+      "volume_hi": 1617.475622
+    },
+    {
+      "dose_ug": 19.5,
+      "p_effect": 0.916015625,
+      "p_screen": 0.7392578125,
+      "p_joint": 0.6767578125,
+      "p_joint_mcse": 0.01461607219,
+      "volume_lo": 0.0,
+      "volume_median": 13.66485784,
+      "volume_hi": 1615.442097
+    },
+    {
+      "dose_ug": 19.6,
+      "p_effect": 0.916015625,
+      "p_screen": 0.7373046875,
+      "p_joint": 0.6748046875,
+      "p_joint_mcse": 0.01463899308,
+      "volume_lo": 0.0,
+      "volume_median": 13.54165871,
+      "volume_hi": 1613.415835
+    },
+    {
+      "dose_ug": 19.7,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.7353515625,
+      "p_joint": 0.6748046875,
+      "p_joint_mcse": 0.01463899308,
+      "volume_lo": 0.0,
+      "volume_median": 13.50049723,
+      "volume_hi": 1611.395526
+    },
+    {
+      "dose_ug": 19.8,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.7333984375,
+      "p_joint": 0.6728515625,
+      "p_joint_mcse": 0.01466162406,
+      "volume_lo": 0.0,
+      "volume_median": 13.56399313,
+      "volume_hi": 1609.377312
+    },
+    {
+      "dose_ug": 19.9,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.732421875,
+      "p_joint": 0.671875,
+      "p_joint_mcse": 0.01467283125,
+      "volume_lo": 0.0,
+      "volume_median": 13.55017448,
+      "volume_hi": 1607.366416
+    },
+    {
+      "dose_ug": 20.0,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.732421875,
+      "p_joint": 0.671875,
+      "p_joint_mcse": 0.01467283125,
+      "volume_lo": 0.0,
+      "volume_median": 13.53722806,
+      "volume_hi": 1605.362843
+    },
+    {
+      "dose_ug": 20.1,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.728515625,
+      "p_joint": 0.66796875,
+      "p_joint_mcse": 0.01471694187,
+      "volume_lo": 0.0,
+      "volume_median": 13.52513452,
+      "volume_hi": 1603.3666
+    },
+    {
+      "dose_ug": 20.2,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.7255859375,
+      "p_joint": 0.666015625,
+      "p_joint_mcse": 0.01473856854,
+      "volume_lo": 0.0,
+      "volume_median": 13.52132929,
+      "volume_hi": 1601.377692
+    },
+    {
+      "dose_ug": 20.3,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.7236328125,
+      "p_joint": 0.6640625,
+      "p_joint_mcse": 0.01475991113,
+      "volume_lo": 0.0,
+      "volume_median": 13.53476483,
+      "volume_hi": 1599.396123
+    },
+    {
+      "dose_ug": 20.4,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.7216796875,
+      "p_joint": 0.662109375,
+      "p_joint_mcse": 0.01478097088,
+      "volume_lo": 0.0,
+      "volume_median": 13.54843396,
+      "volume_hi": 1597.421896
+    },
+    {
+      "dose_ug": 20.5,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.7197265625,
+      "p_joint": 0.66015625,
+      "p_joint_mcse": 0.01480174899,
+      "volume_lo": 0.0,
+      "volume_median": 13.57715607,
+      "volume_hi": 1595.452206
+    },
+    {
+      "dose_ug": 20.6,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.7158203125,
+      "p_joint": 0.6572265625,
+      "p_joint_mcse": 0.01483239066,
+      "volume_lo": 0.0,
+      "volume_median": 13.52566204,
+      "volume_hi": 1593.489423
+    },
+    {
+      "dose_ug": 20.7,
+      "p_effect": 0.9169921875,
+      "p_screen": 0.712890625,
+      "p_joint": 0.654296875,
+      "p_joint_mcse": 0.0148624052,
+      "volume_lo": 0.0,
+      "volume_median": 13.45852063,
+      "volume_hi": 1591.534009
+    },
+    {
+      "dose_ug": 20.8,
+      "p_effect": 0.91796875,
+      "p_screen": 0.70703125,
+      "p_joint": 0.6494140625,
+      "p_joint_mcse": 0.01491104607,
+      "volume_lo": 0.0,
+      "volume_median": 13.51298804,
+      "volume_hi": 1589.585964
+    },
+    {
+      "dose_ug": 20.9,
+      "p_effect": 0.91796875,
+      "p_screen": 0.7001953125,
+      "p_joint": 0.642578125,
+      "p_joint_mcse": 0.01497626632,
+      "volume_lo": 0.0,
+      "volume_median": 13.47623686,
+      "volume_hi": 1587.64529
+    },
+    {
+      "dose_ug": 21.0,
+      "p_effect": 0.91796875,
+      "p_screen": 0.6962890625,
+      "p_joint": 0.6396484375,
+      "p_joint_mcse": 0.01500319998,
+      "volume_lo": 0.0,
+      "volume_median": 13.37637131,
+      "volume_hi": 1585.711986
+    },
+    {
+      "dose_ug": 21.1,
+      "p_effect": 0.91796875,
+      "p_screen": 0.6904296875,
+      "p_joint": 0.6337890625,
+      "p_joint_mcse": 0.01505525262,
+      "volume_lo": 0.0,
+      "volume_median": 13.27541057,
+      "volume_hi": 1583.786054
+    },
+    {
+      "dose_ug": 21.2,
+      "p_effect": 0.9189453125,
+      "p_screen": 0.6884765625,
+      "p_joint": 0.6328125,
+      "p_joint_mcse": 0.01506369419,
+      "volume_lo": 0.0,
+      "volume_median": 13.29137792,
+      "volume_hi": 1581.86289
+    },
+    {
+      "dose_ug": 21.3,
+      "p_effect": 0.9208984375,
+      "p_screen": 0.6875,
+      "p_joint": 0.6318359375,
+      "p_joint_mcse": 0.01507206924,
+      "volume_lo": 0.0,
+      "volume_median": 13.1712862,
+      "volume_hi": 1579.671721
+    },
+    {
+      "dose_ug": 21.4,
+      "p_effect": 0.9208984375,
+      "p_screen": 0.6845703125,
+      "p_joint": 0.62890625,
+      "p_joint_mcse": 0.01509679636,
+      "volume_lo": 0.0,
+      "volume_median": 12.90846697,
+      "volume_hi": 1577.014013
+    },
+    {
+      "dose_ug": 21.5,
+      "p_effect": 0.921875,
+      "p_screen": 0.6806640625,
+      "p_joint": 0.6259765625,
+      "p_joint_mcse": 0.01512092874,
+      "volume_lo": 0.0,
+      "volume_median": 12.74214413,
+      "volume_hi": 1574.365817
+    },
+    {
+      "dose_ug": 21.6,
+      "p_effect": 0.921875,
+      "p_screen": 0.6748046875,
+      "p_joint": 0.6220703125,
+      "p_joint_mcse": 0.01515218498,
+      "volume_lo": 0.0,
+      "volume_median": 12.70717846,
+      "volume_hi": 1571.726221
+    },
+    {
+      "dose_ug": 21.7,
+      "p_effect": 0.921875,
+      "p_screen": 0.6708984375,
+      "p_joint": 0.619140625,
+      "p_joint_mcse": 0.01517494052,
+      "volume_lo": 0.0,
+      "volume_median": 12.67307101,
+      "volume_hi": 1569.083405
+    },
+    {
+      "dose_ug": 21.8,
+      "p_effect": 0.921875,
+      "p_screen": 0.666015625,
+      "p_joint": 0.615234375,
+      "p_joint_mcse": 0.01520437074,
+      "volume_lo": 0.0,
+      "volume_median": 12.65373842,
+      "volume_hi": 1566.450348
+    },
+    {
+      "dose_ug": 21.9,
+      "p_effect": 0.921875,
+      "p_screen": 0.662109375,
+      "p_joint": 0.611328125,
+      "p_joint_mcse": 0.0152327659,
+      "volume_lo": 0.0,
+      "volume_median": 12.61164115,
+      "volume_hi": 1563.827098
+    },
+    {
+      "dose_ug": 22.0,
+      "p_effect": 0.921875,
+      "p_screen": 0.6591796875,
+      "p_joint": 0.6083984375,
+      "p_joint_mcse": 0.01525338649,
+      "volume_lo": 0.0,
+      "volume_median": 12.47071286,
+      "volume_hi": 1561.207762
+    },
+    {
+      "dose_ug": 22.1,
+      "p_effect": 0.921875,
+      "p_screen": 0.6552734375,
+      "p_joint": 0.6044921875,
+      "p_joint_mcse": 0.01527998406,
+      "volume_lo": 0.0,
+      "volume_median": 12.35905263,
+      "volume_hi": 1558.597361
+    },
+    {
+      "dose_ug": 22.2,
+      "p_effect": 0.923828125,
+      "p_screen": 0.6533203125,
+      "p_joint": 0.603515625,
+      "p_joint_mcse": 0.01528647391,
+      "volume_lo": 0.0,
+      "volume_median": 12.22340018,
+      "volume_hi": 1555.874441
+    },
+    {
+      "dose_ug": 22.3,
+      "p_effect": 0.923828125,
+      "p_screen": 0.65234375,
+      "p_joint": 0.6025390625,
+      "p_joint_mcse": 0.0152929001,
+      "volume_lo": 0.0,
+      "volume_median": 12.22929372,
+      "volume_hi": 1552.673208
+    },
+    {
+      "dose_ug": 22.4,
+      "p_effect": 0.923828125,
+      "p_screen": 0.646484375,
+      "p_joint": 0.5966796875,
+      "p_joint_mcse": 0.015330125,
+      "volume_lo": 0.0,
+      "volume_median": 12.23545842,
+      "volume_hi": 1549.477701
+    },
+    {
+      "dose_ug": 22.5,
+      "p_effect": 0.9248046875,
+      "p_screen": 0.6435546875,
+      "p_joint": 0.5947265625,
+      "p_joint_mcse": 0.0153420276,
+      "volume_lo": 0.0,
+      "volume_median": 12.24188976,
+      "volume_hi": 1547.891928
+    },
+    {
+      "dose_ug": 22.6,
+      "p_effect": 0.92578125,
+      "p_screen": 0.638671875,
+      "p_joint": 0.591796875,
+      "p_joint_mcse": 0.01535940945,
+      "volume_lo": 0.0,
+      "volume_median": 12.24858339,
+      "volume_hi": 1547.498469
+    },
+    {
+      "dose_ug": 22.7,
+      "p_effect": 0.92578125,
+      "p_screen": 0.6357421875,
+      "p_joint": 0.5888671875,
+      "p_joint_mcse": 0.01537622654,
+      "volume_lo": 0.0,
+      "volume_median": 12.22595943,
+      "volume_hi": 1547.107692
+    },
+    {
+      "dose_ug": 22.8,
+      "p_effect": 0.92578125,
+      "p_screen": 0.6337890625,
+      "p_joint": 0.5869140625,
+      "p_joint_mcse": 0.0153871251,
+      "volume_lo": 0.0,
+      "volume_median": 12.17332621,
+      "volume_hi": 1546.719569
+    },
+    {
+      "dose_ug": 22.9,
+      "p_effect": 0.9267578125,
+      "p_screen": 0.6328125,
+      "p_joint": 0.5869140625,
+      "p_joint_mcse": 0.0153871251,
+      "volume_lo": 0.0,
+      "volume_median": 12.11408607,
+      "volume_hi": 1546.324222
+    },
+    {
+      "dose_ug": 23.0,
+      "p_effect": 0.927734375,
+      "p_screen": 0.6318359375,
+      "p_joint": 0.5869140625,
+      "p_joint_mcse": 0.0153871251,
+      "volume_lo": 0.0,
+      "volume_median": 12.04877911,
+      "volume_hi": 1544.989872
+    },
+    {
+      "dose_ug": 23.1,
+      "p_effect": 0.9287109375,
+      "p_screen": 0.6298828125,
+      "p_joint": 0.5859375,
+      "p_joint_mcse": 0.01539248073,
+      "volume_lo": 0.0,
+      "volume_median": 11.97042671,
+      "volume_hi": 1543.659149
+    },
+    {
+      "dose_ug": 23.2,
+      "p_effect": 0.9287109375,
+      "p_screen": 0.6279296875,
+      "p_joint": 0.583984375,
+      "p_joint_mcse": 0.01540300501,
+      "volume_lo": 0.0,
+      "volume_median": 11.8846104,
+      "volume_hi": 1541.967321
+    },
+    {
+      "dose_ug": 23.3,
+      "p_effect": 0.9287109375,
+      "p_screen": 0.626953125,
+      "p_joint": 0.5830078125,
+      "p_joint_mcse": 0.01540817379,
+      "volume_lo": 0.0,
+      "volume_median": 11.81751706,
+      "volume_hi": 1540.18558
+    },
+    {
+      "dose_ug": 23.4,
+      "p_effect": 0.9287109375,
+      "p_screen": 0.6259765625,
+      "p_joint": 0.58203125,
+      "p_joint_mcse": 0.01541328041,
+      "volume_lo": 0.0,
+      "volume_median": 11.74290575,
+      "volume_hi": 1539.346005
+    },
+    {
+      "dose_ug": 23.5,
+      "p_effect": 0.9287109375,
+      "p_screen": 0.623046875,
+      "p_joint": 0.5810546875,
+      "p_joint_mcse": 0.01541832493,
+      "volume_lo": 0.0,
+      "volume_median": 11.66948864,
+      "volume_hi": 1539.167651
+    },
+    {
+      "dose_ug": 23.6,
+      "p_effect": 0.9287109375,
+      "p_screen": 0.6181640625,
+      "p_joint": 0.576171875,
+      "p_joint_mcse": 0.01544261825,
+      "volume_lo": 0.0,
+      "volume_median": 11.58912717,
+      "volume_hi": 1538.988398
+    },
+    {
+      "dose_ug": 23.7,
+      "p_effect": 0.9287109375,
+      "p_screen": 0.615234375,
+      "p_joint": 0.5732421875,
+      "p_joint_mcse": 0.01545645288,
+      "volume_lo": 0.0,
+      "volume_median": 11.50496777,
+      "volume_hi": 1538.808247
+    },
+    {
+      "dose_ug": 23.8,
+      "p_effect": 0.9287109375,
+      "p_screen": 0.6142578125,
+      "p_joint": 0.572265625,
+      "p_joint_mcse": 0.01546094119,
+      "volume_lo": 0.0,
+      "volume_median": 11.42211051,
+      "volume_hi": 1538.468562
+    },
+    {
+      "dose_ug": 23.9,
+      "p_effect": 0.9296875,
+      "p_screen": 0.6103515625,
+      "p_joint": 0.568359375,
+      "p_joint_mcse": 0.01547827976,
+      "volume_lo": 0.0,
+      "volume_median": 11.34052882,
+      "volume_hi": 1537.964419
+    },
+    {
+      "dose_ug": 24.0,
+      "p_effect": 0.9296875,
+      "p_screen": 0.6064453125,
+      "p_joint": 0.564453125,
+      "p_joint_mcse": 0.01549463726,
+      "volume_lo": 0.0,
+      "volume_median": 11.26019682,
+      "volume_hi": 1537.461929
+    },
+    {
+      "dose_ug": 24.1,
+      "p_effect": 0.9296875,
+      "p_screen": 0.6025390625,
+      "p_joint": 0.560546875,
+      "p_joint_mcse": 0.0155100168,
+      "volume_lo": 0.0,
+      "volume_median": 11.18108928,
+      "volume_hi": 1536.961072
+    },
+    {
+      "dose_ug": 24.2,
+      "p_effect": 0.9296875,
+      "p_screen": 0.5986328125,
+      "p_joint": 0.556640625,
+      "p_joint_mcse": 0.01552442127,
+      "volume_lo": 0.0,
+      "volume_median": 11.1031816,
+      "volume_hi": 1536.461824
+    },
+    {
+      "dose_ug": 24.3,
+      "p_effect": 0.9306640625,
+      "p_screen": 0.5986328125,
+      "p_joint": 0.5576171875,
+      "p_joint_mcse": 0.01552091141,
+      "volume_lo": 0.0,
+      "volume_median": 11.03108204,
+      "volume_hi": 1535.964166
+    },
+    {
+      "dose_ug": 24.4,
+      "p_effect": 0.9306640625,
+      "p_screen": 0.5966796875,
+      "p_joint": 0.5556640625,
+      "p_joint_mcse": 0.01552787036,
+      "volume_lo": 0.0,
+      "volume_median": 10.98270611,
+      "volume_hi": 1535.468008
+    },
+    {
+      "dose_ug": 24.5,
+      "p_effect": 0.9306640625,
+      "p_screen": 0.591796875,
+      "p_joint": 0.55078125,
+      "p_joint_mcse": 0.01554420563,
+      "volume_lo": 0.0,
+      "volume_median": 10.96746901,
+      "volume_hi": 1534.973243
+    },
+    {
+      "dose_ug": 24.6,
+      "p_effect": 0.9306640625,
+      "p_screen": 0.5888671875,
+      "p_joint": 0.5478515625,
+      "p_joint_mcse": 0.01555328002,
+      "volume_lo": 0.0,
+      "volume_median": 10.98138606,
+      "volume_hi": 1534.480005
+    },
+    {
+      "dose_ug": 24.7,
+      "p_effect": 0.9306640625,
+      "p_screen": 0.5859375,
+      "p_joint": 0.544921875,
+      "p_joint_mcse": 0.01556181051,
+      "volume_lo": 0.0,
+      "volume_median": 10.98450578,
+      "volume_hi": 1533.456843
+    },
+    {
+      "dose_ug": 24.8,
+      "p_effect": 0.9306640625,
+      "p_screen": 0.583984375,
+      "p_joint": 0.54296875,
+      "p_joint_mcse": 0.01556719578,
+      "volume_lo": 0.0,
+      "volume_median": 10.95042486,
+      "volume_hi": 1530.630226
+    },
+    {
+      "dose_ug": 24.9,
+      "p_effect": 0.931640625,
+      "p_screen": 0.580078125,
+      "p_joint": 0.5400390625,
+      "p_joint_mcse": 0.01557482172,
+      "volume_lo": 0.0,
+      "volume_median": 10.91692671,
+      "volume_hi": 1527.531849
+    },
+    {
+      "dose_ug": 25.0,
+      "p_effect": 0.931640625,
+      "p_screen": 0.578125,
+      "p_joint": 0.5380859375,
+      "p_joint_mcse": 0.01557960472,
+      "volume_lo": 0.0,
+      "volume_median": 10.72048339,
+      "volume_hi": 1524.44682
+    },
+    {
+      "dose_ug": 25.1,
+      "p_effect": 0.931640625,
+      "p_screen": 0.578125,
+      "p_joint": 0.5380859375,
+      "p_joint_mcse": 0.01557960472,
+      "volume_lo": 0.0,
+      "volume_median": 10.62147974,
+      "volume_hi": 1521.443952
+    },
+    {
+      "dose_ug": 25.2,
+      "p_effect": 0.931640625,
+      "p_screen": 0.5771484375,
+      "p_joint": 0.537109375,
+      "p_joint_mcse": 0.01558190602,
+      "volume_lo": 0.0,
+      "volume_median": 10.53836952,
+      "volume_hi": 1520.719056
+    },
+    {
+      "dose_ug": 25.3,
+      "p_effect": 0.931640625,
+      "p_screen": 0.5751953125,
+      "p_joint": 0.53515625,
+      "p_joint_mcse": 0.01558632833,
+      "volume_lo": 0.0,
+      "volume_median": 10.39502528,
+      "volume_hi": 1519.432637
+    },
+    {
+      "dose_ug": 25.4,
+      "p_effect": 0.931640625,
+      "p_screen": 0.572265625,
+      "p_joint": 0.5341796875,
+      "p_joint_mcse": 0.0155884494,
+      "volume_lo": 0.0,
+      "volume_median": 10.25371015,
+      "volume_hi": 1517.760212
+    },
+    {
+      "dose_ug": 25.5,
+      "p_effect": 0.931640625,
+      "p_screen": 0.572265625,
+      "p_joint": 0.5341796875,
+      "p_joint_mcse": 0.0155884494,
+      "volume_lo": 0.0,
+      "volume_median": 10.18941824,
+      "volume_hi": 1516.09203
+    },
+    {
+      "dose_ug": 25.6,
+      "p_effect": 0.93359375,
+      "p_screen": 0.5712890625,
+      "p_joint": 0.5341796875,
+      "p_joint_mcse": 0.0155884494,
+      "volume_lo": 0.0,
+      "volume_median": 10.12603874,
+      "volume_hi": 1514.430794
+    },
+    {
+      "dose_ug": 25.7,
+      "p_effect": 0.93359375,
+      "p_screen": 0.5693359375,
+      "p_joint": 0.5341796875,
+      "p_joint_mcse": 0.0155884494,
+      "volume_lo": 0.0,
+      "volume_median": 10.06355462,
+      "volume_hi": 1512.776459
+    },
+    {
+      "dose_ug": 25.8,
+      "p_effect": 0.93359375,
+      "p_screen": 0.5654296875,
+      "p_joint": 0.5302734375,
+      "p_joint_mcse": 0.01559633367,
+      "volume_lo": 0.0,
+      "volume_median": 9.988422978,
+      "volume_hi": 1511.128981
+    },
+    {
+      "dose_ug": 25.9,
+      "p_effect": 0.93359375,
+      "p_screen": 0.5595703125,
+      "p_joint": 0.5244140625,
+      "p_joint_mcse": 0.01560636243,
+      "volume_lo": 0.0,
+      "volume_median": 9.876187135,
+      "volume_hi": 1509.488316
+    },
+    {
+      "dose_ug": 26.0,
+      "p_effect": 0.9345703125,
+      "p_screen": 0.55859375,
+      "p_joint": 0.5244140625,
+      "p_joint_mcse": 0.01560636243,
+      "volume_lo": 0.0,
+      "volume_median": 9.765831334,
+      "volume_hi": 1507.854422
+    },
+    {
+      "dose_ug": 26.1,
+      "p_effect": 0.9345703125,
+      "p_screen": 0.5576171875,
+      "p_joint": 0.5234375,
+      "p_joint_mcse": 0.01560782442,
+      "volume_lo": 0.0,
+      "volume_median": 9.676444148,
+      "volume_hi": 1506.227254
+    },
+    {
+      "dose_ug": 26.2,
+      "p_effect": 0.935546875,
+      "p_screen": 0.556640625,
+      "p_joint": 0.5224609375,
+      "p_joint_mcse": 0.01560922661,
+      "volume_lo": 0.0,
+      "volume_median": 9.664771277,
+      "volume_hi": 1504.606205
+    },
+    {
+      "dose_ug": 26.3,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.5517578125,
+      "p_joint": 0.5185546875,
+      "p_joint_mcse": 0.01561423766,
+      "volume_lo": 0.0,
+      "volume_median": 9.569893991,
+      "volume_hi": 1502.990389
+    },
+    {
+      "dose_ug": 26.4,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.548828125,
+      "p_joint": 0.515625,
+      "p_joint_mcse": 0.01561736874,
+      "volume_lo": 0.0,
+      "volume_median": 9.497016532,
+      "volume_hi": 1501.381191
+    },
+    {
+      "dose_ug": 26.5,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.546875,
+      "p_joint": 0.513671875,
+      "p_joint_mcse": 0.01561915765,
+      "volume_lo": 0.0,
+      "volume_median": 9.48479235,
+      "volume_hi": 1499.77857
+    },
+    {
+      "dose_ug": 26.6,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.544921875,
+      "p_joint": 0.51171875,
+      "p_joint_mcse": 0.01562070788,
+      "volume_lo": 0.0,
+      "volume_median": 9.385557996,
+      "volume_hi": 1498.106467
+    },
+    {
+      "dose_ug": 26.7,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.5400390625,
+      "p_joint": 0.5068359375,
+      "p_joint_mcse": 0.01562353962,
+      "volume_lo": 0.0,
+      "volume_median": 9.383604172,
+      "volume_hi": 1496.328017
+    },
+    {
+      "dose_ug": 26.8,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.537109375,
+      "p_joint": 0.50390625,
+      "p_joint_mcse": 0.01562452316,
+      "volume_lo": 0.0,
+      "volume_median": 9.432821827,
+      "volume_hi": 1494.558713
+    },
+    {
+      "dose_ug": 26.9,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.5341796875,
+      "p_joint": 0.5009765625,
+      "p_joint_mcse": 0.0156249702,
+      "volume_lo": 0.0,
+      "volume_median": 9.482140928,
+      "volume_hi": 1492.798492
+    },
+    {
+      "dose_ug": 27.0,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.5322265625,
+      "p_joint": 0.4990234375,
+      "p_joint_mcse": 0.0156249702,
+      "volume_lo": 0.0,
+      "volume_median": 9.487171097,
+      "volume_hi": 1491.04635
+    },
+    {
+      "dose_ug": 27.1,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.52734375,
+      "p_joint": 0.494140625,
+      "p_joint_mcse": 0.01562392708,
+      "volume_lo": 0.0,
+      "volume_median": 9.449492755,
+      "volume_hi": 1489.298925
+    },
+    {
+      "dose_ug": 27.2,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.525390625,
+      "p_joint": 0.4921875,
+      "p_joint_mcse": 0.01562309253,
+      "volume_lo": 0.0,
+      "volume_median": 9.362076312,
+      "volume_hi": 1487.560445
+    },
+    {
+      "dose_ug": 27.3,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.51953125,
+      "p_joint": 0.486328125,
+      "p_joint_mcse": 0.01561915765,
+      "volume_lo": 0.0,
+      "volume_median": 9.34756841,
+      "volume_hi": 1485.830849
+    },
+    {
+      "dose_ug": 27.4,
+      "p_effect": 0.9365234375,
+      "p_screen": 0.5185546875,
+      "p_joint": 0.4853515625,
+      "p_joint_mcse": 0.01561829304,
+      "volume_lo": 0.0,
+      "volume_median": 9.278534626,
+      "volume_hi": 1484.110076
+    },
+    {
+      "dose_ug": 27.5,
+      "p_effect": 0.9375,
+      "p_screen": 0.5185546875,
+      "p_joint": 0.4853515625,
+      "p_joint_mcse": 0.01561829304,
+      "volume_lo": 0.0,
+      "volume_median": 9.262402176,
+      "volume_hi": 1482.398068
+    },
+    {
+      "dose_ug": 27.6,
+      "p_effect": 0.9375,
+      "p_screen": 0.517578125,
+      "p_joint": 0.484375,
+      "p_joint_mcse": 0.01561736874,
+      "volume_lo": 0.0,
+      "volume_median": 9.246623123,
+      "volume_hi": 1480.694764
+    },
+    {
+      "dose_ug": 27.7,
+      "p_effect": 0.9375,
+      "p_screen": 0.517578125,
+      "p_joint": 0.484375,
+      "p_joint_mcse": 0.01561736874,
+      "volume_lo": 0.0,
+      "volume_median": 9.231191742,
+      "volume_hi": 1479.000106
+    },
+    {
+      "dose_ug": 27.8,
+      "p_effect": 0.9375,
+      "p_screen": 0.513671875,
+      "p_joint": 0.48046875,
+      "p_joint_mcse": 0.01561307452,
+      "volume_lo": 0.0,
+      "volume_median": 9.172188773,
+      "volume_hi": 1477.314015
+    },
+    {
+      "dose_ug": 27.9,
+      "p_effect": 0.9375,
+      "p_screen": 0.5107421875,
+      "p_joint": 0.4775390625,
+      "p_joint_mcse": 0.01560922661,
+      "volume_lo": 0.0,
+      "volume_median": 9.095248934,
+      "volume_hi": 1475.63396
+    },
+    {
+      "dose_ug": 28.0,
+      "p_effect": 0.9375,
+      "p_screen": 0.5087890625,
+      "p_joint": 0.4755859375,
+      "p_joint_mcse": 0.01560636243,
+      "volume_lo": 0.0,
+      "volume_median": 9.0194959,
+      "volume_hi": 1474.03025
+    },
+    {
+      "dose_ug": 28.1,
+      "p_effect": 0.9375,
+      "p_screen": 0.5068359375,
+      "p_joint": 0.4736328125,
+      "p_joint_mcse": 0.01560325898,
+      "volume_lo": 0.0,
+      "volume_median": 8.926278788,
+      "volume_hi": 1473.45068
+    },
+    {
+      "dose_ug": 28.2,
+      "p_effect": 0.9375,
+      "p_screen": 0.50390625,
+      "p_joint": 0.470703125,
+      "p_joint_mcse": 0.01559815485,
+      "volume_lo": 0.0,
+      "volume_median": 8.820205569,
+      "volume_hi": 1472.870333
+    },
+    {
+      "dose_ug": 28.3,
+      "p_effect": 0.9375,
+      "p_screen": 0.4990234375,
+      "p_joint": 0.4658203125,
+      "p_joint_mcse": 0.0155884494,
+      "volume_lo": 0.0,
+      "volume_median": 8.715848011,
+      "volume_hi": 1472.289218
+    },
+    {
+      "dose_ug": 28.4,
+      "p_effect": 0.9375,
+      "p_screen": 0.4921875,
+      "p_joint": 0.458984375,
+      "p_joint_mcse": 0.01557233996,
+      "volume_lo": 0.0,
+      "volume_median": 8.61317171,
+      "volume_hi": 1471.707345
+    },
+    {
+      "dose_ug": 28.5,
+      "p_effect": 0.9375,
+      "p_screen": 0.4892578125,
+      "p_joint": 0.4560546875,
+      "p_joint_mcse": 0.0155645333,
+      "volume_lo": 0.0,
+      "volume_median": 8.491436246,
+      "volume_hi": 1471.124724
+    },
+    {
+      "dose_ug": 28.6,
+      "p_effect": 0.9375,
+      "p_screen": 0.48828125,
+      "p_joint": 0.455078125,
+      "p_joint_mcse": 0.01556181051,
+      "volume_lo": 0.0,
+      "volume_median": 8.412729279,
+      "volume_hi": 1470.541365
+    },
+    {
+      "dose_ug": 28.7,
+      "p_effect": 0.9375,
+      "p_screen": 0.4873046875,
+      "p_joint": 0.4541015625,
+      "p_joint_mcse": 0.01555902739,
+      "volume_lo": 0.0,
+      "volume_median": 8.391277924,
+      "volume_hi": 1469.957279
+    },
+    {
+      "dose_ug": 28.8,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.486328125,
+      "p_joint": 0.453125,
+      "p_joint_mcse": 0.01555618391,
+      "volume_lo": 0.0,
+      "volume_median": 8.389832299,
+      "volume_hi": 1468.410805
+    },
+    {
+      "dose_ug": 28.9,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.486328125,
+      "p_joint": 0.453125,
+      "p_joint_mcse": 0.01555618391,
+      "volume_lo": 0.0,
+      "volume_median": 8.397991065,
+      "volume_hi": 1466.368868
+    },
+    {
+      "dose_ug": 29.0,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.484375,
+      "p_joint": 0.451171875,
+      "p_joint_mcse": 0.01555031571,
+      "volume_lo": 0.0,
+      "volume_median": 8.370378876,
+      "volume_hi": 1464.16904
+    },
+    {
+      "dose_ug": 29.1,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.484375,
+      "p_joint": 0.451171875,
+      "p_joint_mcse": 0.01555031571,
+      "volume_lo": 0.0,
+      "volume_median": 8.331688092,
+      "volume_hi": 1461.503293
+    },
+    {
+      "dose_ug": 29.2,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.484375,
+      "p_joint": 0.451171875,
+      "p_joint_mcse": 0.01555031571,
+      "volume_lo": 0.0,
+      "volume_median": 8.293836898,
+      "volume_hi": 1458.849216
+    },
+    {
+      "dose_ug": 29.3,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.48046875,
+      "p_joint": 0.447265625,
+      "p_joint_mcse": 0.0155378534,
+      "volume_lo": 0.0,
+      "volume_median": 8.256806762,
+      "volume_hi": 1456.206805
+    },
+    {
+      "dose_ug": 29.4,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.4775390625,
+      "p_joint": 0.4443359375,
+      "p_joint_mcse": 0.01552787036,
+      "volume_lo": 0.0,
+      "volume_median": 8.229545556,
+      "volume_hi": 1453.576055
+    },
+    {
+      "dose_ug": 29.5,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.4775390625,
+      "p_joint": 0.4443359375,
+      "p_joint_mcse": 0.01552787036,
+      "volume_lo": 0.0,
+      "volume_median": 8.198499585,
+      "volume_hi": 1450.956959
+    },
+    {
+      "dose_ug": 29.6,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.474609375,
+      "p_joint": 0.4423828125,
+      "p_joint_mcse": 0.01552091141,
+      "volume_lo": 0.0,
+      "volume_median": 8.155114188,
+      "volume_hi": 1448.34795
+    },
+    {
+      "dose_ug": 29.7,
+      "p_effect": 0.9384765625,
+      "p_screen": 0.4736328125,
+      "p_joint": 0.44140625,
+      "p_joint_mcse": 0.01551734074,
+      "volume_lo": 0.0,
+      "volume_median": 8.1126206,
+      "volume_hi": 1445.862211
+    },
+    {
+      "dose_ug": 29.8,
+      "p_effect": 0.939453125,
+      "p_screen": 0.4716796875,
+      "p_joint": 0.439453125,
+      "p_joint_mcse": 0.0155100168,
+      "volume_lo": 0.0,
+      "volume_median": 8.11243545,
+      "volume_hi": 1444.689285
+    },
+    {
+      "dose_ug": 29.9,
+      "p_effect": 0.94140625,
+      "p_screen": 0.4697265625,
+      "p_joint": 0.439453125,
+      "p_joint_mcse": 0.0155100168,
+      "volume_lo": 0.0,
+      "volume_median": 8.122050843,
+      "volume_hi": 1443.523851
+    },
+    {
+      "dose_ug": 30.0,
+      "p_effect": 0.94140625,
+      "p_screen": 0.4677734375,
+      "p_joint": 0.4375,
+      "p_joint_mcse": 0.01550244909,
+      "volume_lo": 0.0,
+      "volume_median": 8.131769908,
+      "volume_hi": 1442.15522
+    }
+  ]
+}

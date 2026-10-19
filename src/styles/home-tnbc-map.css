@@ -1,0 +1,351 @@
+#why-tnbc {
+  --scene-hold: 165svh;
+}
+.tnbc-map-illustration {
+  position: absolute;
+  inset: 0;
+}
+.home-story:not(.has-story-motion) .tnbc-map-illustration {
+  opacity: 0.14;
+}
+#why-tnbc .story-art--3 {
+  left: 50%;
+  /* Leave breathing room above the sources without changing the painted scale. */
+  top: calc(50% - clamp(12px, 3.5svh, 36px));
+  width: min(98%, calc((var(--scene-height) - 24px) * var(--art-aspect)));
+  container-type: inline-size;
+}
+.tnbc-map-copy {
+  position: absolute;
+  inset: 17% 5% auto;
+  z-index: 4;
+  pointer-events: none;
+}
+.home-story .tnbc-map-intro {
+  display: grid;
+  justify-items: center;
+  gap: clamp(8px, 1.4svh, 16px);
+  margin: 0;
+  color: #314969;
+  text-align: center;
+  text-wrap: balance;
+  font-synthesis: none;
+}
+.tnbc-map-intro-lead {
+  font: 400 clamp(24px, 2.5vw, 40px)/1.2 var(--font-heading);
+}
+.tnbc-map-intro-shared {
+  display: inline-block;
+  white-space: nowrap;
+}
+.tnbc-map-intro-focus {
+  color: #874052;
+  font: 600 clamp(48px, 6vw, 96px)/1.08 var(--font-heading);
+  letter-spacing: -0.025em;
+}
+.tnbc-map-intro-context {
+  font: 400 clamp(20px, 2vw, 30px)/1.3 var(--font-body);
+}
+.tnbc-map-source {
+  position: absolute;
+  z-index: 6;
+  right: clamp(70px, 7vw, 150px);
+  bottom: 2%;
+  color: #806772;
+  font: 400 11px/1.3 var(--font-body);
+  text-decoration: none;
+  text-underline-offset: 4px;
+  pointer-events: auto;
+}
+.tnbc-map-source:hover {
+  text-decoration: underline;
+}
+.tnbc-map-marker {
+  z-index: 3;
+  overflow: hidden;
+  transform-origin: 50% 90%;
+}
+/* DUPLICATE: shared timing (delay, iteration, play-state) for these pieces
+   is in home-story.css (.story-map-piece--*); names and durations are here. */
+#why-tnbc .story-map-piece--wave {
+  animation-name: tnbc-sea-swell;
+  animation-duration: calc(4.8s + var(--piece-index) * 0.12s);
+}
+#why-tnbc .story-map-piece--cloud {
+  animation-name: tnbc-cloud-drift;
+  animation-duration: calc(13s + var(--piece-index) * 0.8s);
+}
+#why-tnbc [data-map-piece="boat-smoke"] {
+  animation-name: tnbc-smoke-drift;
+  animation-duration: 6s;
+}
+#why-tnbc .story-map-piece--boat {
+  animation-name: tnbc-boat-sway;
+  animation-duration: 5.8s;
+}
+@keyframes tnbc-sea-swell {
+  0%,
+  100% {
+    transform: translate(-15%, 14%) rotate(-2deg) scale(1.24, 1.1);
+  }
+  50% {
+    transform: translate(15%, -24%) rotate(2deg) scale(1.4, 1.55);
+  }
+}
+@keyframes tnbc-cloud-drift {
+  0%,
+  100% {
+    transform: translate(-30%, 9%) scale(1.35);
+  }
+  50% {
+    transform: translate(30%, -12%) scale(1.45);
+  }
+}
+@keyframes tnbc-smoke-drift {
+  0%,
+  100% {
+    transform: translate(-10%, 0) scale(1.05);
+  }
+  50% {
+    transform: translate(16%, -22%) scale(1.18);
+  }
+}
+@keyframes tnbc-boat-sway {
+  0%,
+  100% {
+    transform: translate(-6%, 5%) rotate(-3deg);
+  }
+  50% {
+    transform: translate(7%, -9%) rotate(3deg);
+  }
+}
+/* Four small notes live in the side margins so the illustrated map stays clear. */
+.tnbc-map-notes {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  padding: clamp(120px, 15svh, 190px) clamp(70px, 7vw, 150px)
+    clamp(70px, 10svh, 110px);
+  pointer-events: none;
+}
+.home-story.has-story-motion .tnbc-map-note {
+  opacity: 0;
+}
+.home-story.has-story-motion #why-tnbc.is-visible .tnbc-map-note {
+  /* Keep the four small surfaces ready through entrance and gathering. */
+  will-change: transform, opacity;
+}
+.home-story:not(.has-story-motion) .tnbc-map-notes {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: auto;
+  align-content: start;
+  justify-content: center;
+  gap: 16px;
+  padding-top: calc(var(--scene-height) * 0.67 - 90px);
+}
+.home-story:not(.has-story-motion) .tnbc-map-note {
+  grid-column: auto;
+  grid-row: auto;
+  align-self: start;
+  justify-self: center;
+  width: min(100%, clamp(180px, 12.5vw, 225px));
+}
+.tnbc-map-note {
+  --note-value-size: clamp(34px, 2.6vw, 46px);
+  --note-detail-size: clamp(12px, 0.95vw, 15px);
+  position: relative;
+  width: clamp(180px, 12.5vw, 225px);
+  aspect-ratio: 900 / 685;
+  transform-origin: center;
+}
+.tnbc-map-note--incidence-countries {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+  align-self: start;
+}
+.tnbc-map-note--incidence-share {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: start;
+  align-self: end;
+}
+.tnbc-map-note--mortality-countries {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  align-self: start;
+}
+.tnbc-map-note--mortality-share {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: end;
+  align-self: end;
+}
+.tnbc-map-note-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.tnbc-map-note-body {
+  position: absolute;
+  inset: 19% 10% 10% 16%;
+  display: grid;
+  /* Reserve two caption lines so short captions keep the same number baseline. */
+  grid-template-rows: var(--note-value-size) 2.5em;
+  align-content: center;
+  justify-items: center;
+  gap: clamp(6px, 0.75vw, 10px);
+  font-size: var(--note-detail-size);
+  text-align: center;
+}
+.tnbc-map-note-val {
+  color: #874052;
+  font: 600 var(--note-value-size)/1 var(--font-heading);
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.tnbc-map-note-detail {
+  color: #425571;
+  align-self: start;
+  font: 400 var(--note-detail-size)/1.25 var(--font-body);
+  text-wrap: balance;
+}
+.tnbc-map-data-source {
+  position: absolute;
+  left: clamp(70px, 7vw, 150px);
+  bottom: 2%;
+  color: #806772;
+  font: 400 11px/1.3 var(--font-body);
+  pointer-events: auto;
+}
+.tnbc-map-data-source:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+@media (max-width: 800px) and (orientation: portrait) {
+  #why-tnbc {
+    --scene-height: max(620px, calc(100svh - var(--header-height)));
+    --scene-hold: 145svh;
+  }
+  #why-tnbc .story-art--3 {
+    top: 28%;
+    width: min(96vw, 560px);
+  }
+  .tnbc-map-copy {
+    inset: 15% 5% auto;
+  }
+  .tnbc-map-intro-lead {
+    font-size: clamp(21px, 5.5vw, 30px);
+  }
+  .tnbc-map-intro-focus {
+    max-width: 11em;
+    font-size: clamp(40px, 10vw, 60px);
+  }
+  .tnbc-map-intro-context {
+    font-size: clamp(16px, 4.2vw, 22px);
+  }
+  .tnbc-map-notes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, auto);
+    align-content: start;
+    justify-items: center;
+    row-gap: clamp(18px, 3svh, 32px);
+    column-gap: 4px;
+    padding: calc(var(--scene-height) * 0.49) 3% 40px;
+  }
+  .home-story:not(.has-story-motion) .tnbc-map-notes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: normal;
+    gap: 24px 4px;
+    padding: calc(var(--scene-height) * 0.43) 3% 40px;
+  }
+  .tnbc-map-note {
+    --note-value-size: clamp(30px, 8vw, 38px);
+    --note-detail-size: clamp(11px, 2.8vw, 13px);
+    width: min(43vw, 180px);
+    align-self: start;
+    justify-self: center;
+  }
+  .tnbc-map-note--incidence-countries,
+  .tnbc-map-note--incidence-share {
+    grid-row: 1;
+  }
+  .tnbc-map-note--mortality-countries,
+  .tnbc-map-note--mortality-share {
+    grid-row: 2;
+  }
+  .tnbc-map-note--incidence-share,
+  .tnbc-map-note--mortality-share {
+    grid-column: 2;
+  }
+  .tnbc-map-note--mortality-countries {
+    grid-column: 1;
+  }
+  .tnbc-map-data-source {
+    left: 5%;
+    bottom: max(76px, 10%);
+  }
+  .tnbc-map-source {
+    bottom: max(76px, 10%);
+    right: 5%;
+  }
+}
+@media (max-width: 380px) and (orientation: portrait) {
+  .tnbc-map-copy {
+    top: 16%;
+  }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .tnbc-map-copy {
+    top: 8%;
+  }
+  .tnbc-map-intro-lead {
+    font-size: 21px;
+  }
+  .tnbc-map-intro-focus {
+    font-size: 42px;
+  }
+  .tnbc-map-intro-context {
+    font-size: 16px;
+  }
+  .tnbc-map-notes {
+    padding: 50px 3% 30px;
+  }
+  .tnbc-map-note {
+    --note-value-size: 32px;
+    width: clamp(145px, 19vw, 170px);
+  }
+  .tnbc-map-note-body {
+    gap: 6px;
+  }
+  .tnbc-map-source {
+    font-size: 9px;
+  }
+}
+/* Also covered by home-story.css reduced-motion (.story-map-piece). */
+@media (prefers-reduced-motion: reduce) {
+  #why-tnbc .story-map-piece {
+    animation: none;
+  }
+  .tnbc-map-note {
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+  .tnbc-map-copy {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  [data-map-copy] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

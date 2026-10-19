@@ -1,0 +1,766 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Build on the backbone</title>
+<style>
+:root{
+  --ink:#274538; --muted:#64766c; --paper:#fffdf5; --mint:#e7f5ee;
+  --border:#d5e5d9; --accent:#317c63; --line:#c4d4c9; --fixed:#dfe9e2; --warn:#b5572f;
+  --translation:#9cbb85; --signal:#c9b8a0; --epitope:#d196a3; --linker:#aabdd8;
+  --adjuvant:#bd9ac6; --traffic:#7fb2bd; --tag:#9aa7ab; --junction:#cdd8d1;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Segoe UI","Helvetica Neue",Arial,"Microsoft YaHei",sans-serif;font-size:15px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:20px 16px 30px}
+h2{font-size:20px;margin:0 0 4px;font-weight:650}
+.sub{color:var(--muted);font-size:13.5px;margin:0 0 14px}
+button{font:inherit}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.wbtn,.back{border:1px solid var(--border);background:#fff;color:var(--ink);font-size:13px;
+  padding:7px 13px;border-radius:999px;cursor:pointer;text-align:left}
+.wbtn:hover,.back:hover{border-color:var(--accent)}
+.wbtn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.wbtn small{display:block;font-size:11px;opacity:.74}
+.back{margin-left:auto;color:var(--muted)}
+
+#start{text-align:center}
+#start .sub{max-width:900px;margin-left:auto;margin-right:auto}
+#start .bar{justify-content:center}
+#startMap{display:block;width:100%;max-width:560px;margin:0 auto}
+.picked{font-size:13.5px;color:var(--muted);margin:6px auto 10px;min-height:42px;max-width:900px}
+.picked b{color:var(--ink);font-weight:650}
+.go{border:0;background:var(--accent);color:#fff;font-size:15px;padding:10px 30px;
+  border-radius:999px;cursor:pointer}
+.foot{color:var(--muted);font-size:13px;margin:10px 0 0}
+
+#editor[hidden]{display:none}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.card{border:1px solid var(--border);border-radius:11px;background:#fff;padding:13px 14px}
+.card{display:flex;flex-direction:column}
+.card--map,.card--parts{height:492px}
+.card--build,.card--seq{height:470px}
+.card>h3,.card>h4{flex:none}
+.card--parts .parts{flex:1;min-height:0;overflow-y:auto;padding-right:2px}
+.card--seq .seqbody{flex:1;min-height:0;overflow-y:auto}
+@media(max-width:900px){.card--map,.card--parts,.card--build,.card--seq{height:auto;min-height:0}}
+.card h3{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+  font-weight:650;margin:0 0 10px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.card h3 span{text-transform:none;letter-spacing:0;font-size:12.5px;color:var(--ink);
+  font-variant-numeric:tabular-nums}
+.card h4{font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);
+  font-weight:650;margin:14px 0 4px}
+.card h4:first-of-type{margin-top:2px}
+
+.maprow{display:grid;grid-template-columns:1fr 136px;gap:8px;align-items:center}
+@media(max-width:430px){.maprow{grid-template-columns:1fr}}
+#ring{display:block;width:100%}
+.bubbles{display:flex;flex-direction:column;gap:6px}
+.bub{border:1.5px solid var(--border);background:#fff;border-radius:999px;padding:6px 4px;
+  font-size:11.5px;cursor:pointer;color:var(--ink);line-height:1.2;text-align:center}
+.bub .n{display:block;font-size:10px;color:var(--muted)}
+.bub[disabled]{opacity:.28;cursor:default;filter:saturate(.3)}
+.bub[aria-pressed="true"]{border-width:2px}
+.swatches{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:9px;font-size:11.5px;color:var(--muted)}
+.swatches span{display:flex;align-items:center;gap:5px}
+.swatches span.off{color:#a3b0a8}
+.swatches span.off .sw{opacity:.55}
+.sw{width:10px;height:10px;border-radius:3px;flex:none;border:1px solid rgba(0,0,0,.1)}
+
+.parts{display:flex;flex-direction:column;gap:7px}
+.part{display:flex;align-items:center;gap:9px}
+.part .bar2{flex:1;min-width:0;border-radius:6px;padding:6px 10px;color:#2c3b33;
+  border:1px solid rgba(0,0,0,.07)}
+.part .nm{font-size:12.5px;font-weight:600;line-height:1.25}
+.part .sq{font-size:11px;opacity:.78;letter-spacing:.4px;word-break:break-all;line-height:1.25}
+.part .bp{font-size:11.5px;color:var(--muted);width:54px;text-align:right;flex:none;
+  font-variant-numeric:tabular-nums}
+.plus{border:1px solid var(--border);background:#fff;color:var(--accent);width:28px;height:28px;
+  border-radius:7px;cursor:pointer;flex:none;font-size:16px;line-height:1}
+.plus:hover{background:var(--mint);border-color:var(--accent)}
+.minus{border:1px solid var(--border);background:#fff;color:var(--warn);width:28px;height:28px;
+  border-radius:7px;cursor:pointer;flex:none;font-size:16px;line-height:1}
+.minus:hover{border-color:var(--warn)}
+.minus[disabled]{opacity:.3;cursor:default;color:var(--muted)}
+.part .cnt{font-size:11.5px;color:var(--accent);width:24px;text-align:right;flex:none;
+  font-variant-numeric:tabular-nums;font-weight:650}
+
+.bform label{display:block;font-size:11.5px;color:var(--muted);margin:0 0 4px}
+.bform input,.bform select{width:100%;font:inherit;font-size:13px;padding:7px 9px;
+  border:1px solid var(--border);border-radius:7px;background:var(--paper);color:var(--ink)}
+.bform input#bseq{letter-spacing:.07em;text-transform:uppercase}
+.bform input#bseq::placeholder{text-transform:none;letter-spacing:0;color:#9aa8a0}
+.bform input:focus,.bform select:focus{outline:none;border-color:var(--accent)}
+.brow{display:grid;grid-template-columns:1fr 150px auto;gap:8px;align-items:end;margin-top:9px}
+@media(max-width:560px){.brow{grid-template-columns:1fr}}
+.addbtn{border:1px solid var(--accent);background:var(--accent);color:#fff;font-size:13px;
+  padding:8px 16px;border-radius:7px;cursor:pointer;white-space:nowrap}
+.addbtn[disabled]{opacity:.4;cursor:default}
+.msg{margin-top:9px;font-size:12.5px;min-height:18px;color:var(--accent)}
+.msg.bad{color:var(--warn)}
+
+#orf,#inside{display:block;width:100%}
+.inspect{margin-top:9px;border:1px solid var(--border);border-radius:8px;padding:8px 10px;
+  display:flex;align-items:center;gap:10px;font-size:12.5px;min-height:42px;background:var(--paper)}
+.inspect .who{flex:1;min-width:0}
+.inspect .who b{display:block;font-weight:650}
+.inspect .who i{font-style:normal;color:var(--muted);font-size:11.5px;letter-spacing:.3px;
+  word-break:break-all}
+.inspect .hint{color:var(--muted)}
+.rm{border:1px solid var(--border);background:#fff;color:var(--warn);font-size:12.5px;
+  padding:6px 12px;border-radius:7px;cursor:pointer;white-space:nowrap;flex:none}
+.rm:hover{border-color:var(--warn)}
+.rm[disabled]{opacity:.35;cursor:default;color:var(--muted)}
+.hgroup{display:flex;align-items:center;gap:7px}
+.tool{border:1px solid var(--border);background:#fff;color:var(--muted);font-size:11px;
+  padding:3px 9px;border-radius:6px;cursor:pointer;text-transform:none;letter-spacing:0;font-weight:400}
+.tool:hover{color:var(--accent);border-color:var(--accent)}
+.stats{margin-top:11px;border-top:1px solid var(--border);padding-top:9px;display:grid;
+  grid-template-columns:1fr 1fr;gap:3px 14px;font-size:12.5px}
+.stats div{display:flex;justify-content:space-between;gap:8px}
+.stats .k{color:var(--muted)}
+.stats .v{font-variant-numeric:tabular-nums;font-weight:600}
+.stats .hold .k,.stats .hold .v{color:var(--accent)}
+.note{margin-top:16px;padding:10px 13px;border-left:3px solid var(--border);
+  color:var(--muted);font-size:12.5px}
+
+/* ---- compact mode: everything the fit button tightens ---- */
+body.compact .wrap{padding:10px 16px 12px}
+body.compact h2{font-size:19px;margin:0 0 3px}
+body.compact .sub{margin:0 0 10px}
+body.compact .bar{margin-bottom:8px}
+body.compact .wbtn,body.compact .back{font-size:12.5px;padding:5px 12px}
+body.compact .wbtn small{font-size:10.5px}
+body.compact #startMap{max-width:470px}
+body.compact .picked{margin:4px auto 8px}
+body.compact .foot{font-size:12.5px;margin:8px 0 0}
+body.compact .grid{gap:12px}
+body.compact .card--map,body.compact .card--parts{height:390px}
+body.compact .card--build,body.compact .card--seq{height:388px}
+body.compact .card{padding:11px 13px}
+body.compact .card h3{margin:0 0 7px}
+body.compact .card h4{margin:10px 0 2px}
+body.compact #ring{max-height:300px}
+body.compact .bubbles{gap:4px}
+body.compact .bub{padding:4px 4px;font-size:11px;line-height:1.15}
+body.compact .bub .n{font-size:9.5px}
+body.compact .swatches{gap:3px 11px;margin-top:7px;font-size:11px}
+body.compact .parts{gap:5px}
+body.compact .draghint{font-size:10.5px;margin:0 0 5px}
+body.compact .part .bar2{padding:5px 9px}
+body.compact #orf{max-height:78px}
+body.compact #inside{max-height:76px}
+body.compact .inspect{margin-top:7px;padding:6px 9px;min-height:38px}
+body.compact .stats{margin-top:7px;padding-top:6px}
+body.compact .note{margin-top:8px;padding:7px 12px;font-size:11.5px}
+
+/* the fit toggle itself */
+.fit{border:1px solid var(--border);background:#fff;color:var(--muted);width:32px;height:32px;
+  border-radius:999px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex:none}
+.fit:hover{color:var(--accent);border-color:var(--accent)}
+.fit svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round}
+.back{margin-left:auto}
+.fit{margin-left:0}
+
+text{font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif}
+.hit{cursor:pointer}
+.part{cursor:grab}
+.part.dragging{opacity:.45}
+.card.dropping{outline:2px dashed var(--accent);outline-offset:-5px;background:var(--mint)}
+.draghint{font-size:11px;color:var(--muted);margin:0 0 7px}
+</style>
+<link rel="stylesheet" href="wiki-embed.css">
+</head>
+<body>
+<div class="wrap" data-wiki-embed-root>
+
+<section id="start">
+  <h2>Build on the backbone</h2>
+  <p class="sub">Three nested windows open this plasmid to another team. The smallest holds the
+    epitopes alone; each larger one contains it and hands over more of the construct. Everything
+    outside the window you choose stays exactly as we built it.</p>
+  <div class="bar" id="startBar"></div>
+  <svg id="startMap" viewBox="0 0 580 356" aria-label="Plasmid overview"></svg>
+  <p class="picked" id="picked"></p>
+  <button class="go" id="go">Start</button>
+  <p class="foot">5,267 bp &middot; pCirCure-circMEV</p>
+</section>
+
+<section id="editor" hidden>
+  <div class="bar" id="wbar"></div>
+  <div class="grid">
+    <div class="card card--map">
+      <h3>Plasmid map <span id="mapBp"></span></h3>
+      <div class="maprow">
+        <svg id="ring" viewBox="0 0 320 300" aria-label="Plasmid map"></svg>
+        <div class="bubbles" id="bubbles"></div>
+      </div>
+      <div class="swatches" id="swatches"></div>
+    </div>
+
+    <div class="card card--parts">
+      <h3>Our parts <span id="partHead"></span></h3>
+      <p class="draghint">Drag a part onto the sequence window or onto the plasmid, or use the buttons.</p>
+      <div class="parts" id="parts"></div>
+    </div>
+
+    <div class="card card--build bform">
+      <h3>Build your own</h3>
+      <label for="bseq">Sequence</label>
+      <input id="bseq" spellcheck="false" placeholder="amino acids, e.g. SVCWCVNSV">
+      <div class="brow">
+        <div><label for="btype">Part type</label><select id="btype"></select></div>
+        <div><label for="bname">Name</label>
+          <input id="bname" placeholder="your label" style="text-transform:none;letter-spacing:0"></div>
+        <button class="addbtn" id="badd">Add</button>
+      </div>
+      <div class="msg" id="bmsg"></div>
+    </div>
+
+    <div class="card card--seq">
+      <h3>Sequence window
+        <span class="hgroup">
+          <button class="tool" id="loadOurs">Load our version</button>
+          <button class="tool" id="clearAll">Clear</button>
+          <span id="winBp"></span>
+        </span>
+      </h3>
+      <div class="seqbody">
+      <h4>Expression unit</h4>
+      <svg id="orf" aria-label="The expression unit with the open window marked"></svg>
+      <h4 id="insideHead">Inside the window</h4>
+      <svg id="inside" aria-label="Contents of the open window"></svg>
+      <div class="inspect" id="inspect"></div>
+      <div class="stats" id="wstats"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="note">This studio computes lengths and reading frame. It does not predict
+  whether a construct will fold, splice, translate or raise a response. Choosing what goes in the
+  window is a separate step, and on this platform it is a wet one.</p>
+</section>
+
+</div>
+<script>
+/* ===== data, read off 111 YRH pUC57-ALL4-4xmC3dP28 (5,267 bp) ===== */
+const PLASMID=5267, AA="ACDEFGHIKLMNPQRSTVWY", NT="ACGT";
+
+const CAT={
+  translation:{n:"Translation element",v:"--translation",coding:false},
+  signal     :{n:"Signal peptide",     v:"--signal",    coding:true},
+  epitope    :{n:"Epitope",            v:"--epitope",   coding:true},
+  linker     :{n:"Linker",             v:"--linker",    coding:true},
+  adjuvant   :{n:"Adjuvant",           v:"--adjuvant",  coding:true},
+  traffic    :{n:"Trafficking domain", v:"--traffic",   coding:true},
+  tag        :{n:"Tag",                v:"--tag",       coding:true}
+};
+const CAT_ORDER=["translation","signal","epitope","linker","adjuvant","traffic","tag"];
+
+const CATALOGUE={
+  translation:[
+    {n:"HRV-3 5' UTR IRES",s:"synIRES-RC25, carries Apt-eIF4G",bp:653},
+    {n:"Kozak and junction",s:"GCCACCATGG with the NcoI scar",bp:12}],
+  signal:[{n:"Secretion signal peptide",s:"MDAMKRGLCCVLLLCGAVFVSPSQEIHARFRR",bp:96}],
+  epitope:[
+    {n:"TROP2-CTL1",s:"SVCWCVNSV",bp:27},{n:"TROP2-CTL2",s:"RLFRERYRL",bp:27},
+    {n:"B7H4-CTL1",s:"WLKEGVLGL",bp:27},{n:"B7H4-CTL2",s:"AVFADQVIV",bp:27},
+    {n:"Nectin4-CTL1",s:"FQARLRLRVLVPPL",bp:42},{n:"Nectin4-CTL2",s:"AVTSEFHLV",bp:27},
+    {n:"LIV1-CTL2",s:"GVATLAWMV",bp:27},{n:"LIV1-CTL3",s:"GLHNFSDGL",bp:27}],
+  linker:[
+    {n:"GSG linker",s:"GSG",bp:9},{n:"GSGGS linker",s:"GSGGS",bp:15},
+    {n:"GGGGSG linker",s:"GGGGSG",bp:18},
+    {n:"GS junction",s:"GS, the BamHI site",bp:6,lock:true},
+    {n:"GSGGS-LE junction",s:"GSGGSLE, the XhoI site",bp:21,lock:true}],
+  adjuvant:[{n:"mC3d-P28 repeat",s:"KFLNTAKDRNRWEEPDQQLYNVEATSYALL",bp:90}],
+  traffic:[{n:"MITD",s:"MHC class I trafficking domain",bp:165}],
+  tag:[{n:"FLAG tag",s:"DYKDDDDK",bp:24},{n:"Stop codon",s:"TGA",bp:3,lock:true}]
+};
+
+const FIXED=[
+  {a:402,b:434,n:"T7 promoter"},{a:491,b:746,n:"PIE 3' half"},
+  {a:2714,b:2920,n:"PIE 5' half"},{a:2980,b:3027,n:"T7 terminator"},
+  {a:3448,b:4036,n:"ori"},{a:5068,b:5172,n:"AmpR promoter"}
+];
+
+/* The expression unit, 839..2586, as one ordered list.
+   Each element carries the zone it belongs to; the windows are unions of zones,
+   so they genuinely nest.  pre 665 + sig 102 + ag 336 + adj 645 = 1748 bp. */
+const ZONES=["pre","sig","ag","adj"];
+let seed=0; const uid=()=>"e"+(++seed);
+function mk(zone,cat,name){
+  const p=CATALOGUE[cat].find(x=>x.n===name);
+  if(!p) throw new Error("no part "+cat+"/"+name);
+  return {id:uid(),zone,cat,n:p.n,s:p.s,bp:p.bp,lock:p.lock===true};
+}
+const EPI=["TROP2-CTL1","TROP2-CTL2","B7H4-CTL1","B7H4-CTL2",
+           "Nectin4-CTL1","Nectin4-CTL2","LIV1-CTL2","LIV1-CTL3"];
+
+function fullDefault(){
+  const out=[
+    mk("pre","translation","HRV-3 5' UTR IRES"),
+    mk("pre","translation","Kozak and junction"),
+    mk("sig","signal","Secretion signal peptide"),
+    mk("sig","linker","GS junction")
+  ];
+  EPI.forEach((e,i)=>{ if(i) out.push(mk("ag","linker","GSGGS linker")); out.push(mk("ag","epitope",e)); });
+  out.push(
+    mk("adj","linker","GSGGS-LE junction"),
+    mk("adj","adjuvant","mC3d-P28 repeat"), mk("adj","linker","GSGGS linker"),
+    mk("adj","adjuvant","mC3d-P28 repeat"), mk("adj","linker","GGGGSG linker"),
+    mk("adj","adjuvant","mC3d-P28 repeat"), mk("adj","linker","GSGGS linker"),
+    mk("adj","adjuvant","mC3d-P28 repeat"), mk("adj","linker","GSGGS linker"),
+    mk("adj","traffic","MITD"), mk("adj","linker","GSG linker"),
+    mk("adj","tag","FLAG tag"), mk("adj","tag","Stop codon"));
+  return out;
+}
+
+const WINDOWS=[
+  {id:"antigen",   label:"Antigen window",   enz:"BamHI 1600 / XhoI 1957", start:1606,
+   zones:["ag"], cats:["epitope","linker"], coding:true,
+   what:"the epitopes the vaccine presents"},
+  {id:"payload",   label:"Payload window",   enz:"NcoI 1502 / ClaI 2587",  start:1504,
+   zones:["sig","ag","adj"], cats:["signal","epitope","linker","adjuvant","traffic","tag"],
+   coding:true, what:"the whole fusion protein: where it goes, what it shows, what it carries"},
+  {id:"expression",label:"Expression window",enz:"KpnI 838 / ClaI 2587",   start:839,
+   zones:["pre","sig","ag","adj"],
+   cats:["translation","signal","epitope","linker","adjuvant","traffic","tag"],
+   coding:false, what:"everything the circle translates, starting with how translation begins"}
+];
+{
+  const base=fullDefault(), zbp={};
+  ZONES.forEach(z=>{ zbp[z]=base.filter(e=>e.zone===z).reduce((s,e)=>s+e.bp,0); });
+  WINDOWS.forEach(w=>{
+    w.def=w.zones.reduce((s,z)=>s+zbp[z],0);
+    w.outside=PLASMID-w.def;
+  });
+}
+const winById=id=>WINDOWS.find(w=>w.id===id);
+
+/* ===== state ===== */
+let win=winById("antigen"), cat="epitope", chain=fullDefault(), picked=null, preview="antigen";
+const $=s=>document.querySelector(s);
+const fmt=n=>n.toLocaleString("en-US");
+const col=c=>`var(${CAT[c].v})`;
+const inWin=e=>win.zones.includes(e.zone);
+const body=()=>chain.filter(inWin);
+const bpOf=list=>list.reduce((s,e)=>s+e.bp,0);
+
+/* ===== ring geometry ===== */
+function pol(cx,cy,r,bp,total){const a=(bp/total)*2*Math.PI-Math.PI/2;
+  return [cx+r*Math.cos(a),cy+r*Math.sin(a)];}
+function arc(cx,cy,r,b1,b2,total){
+  const [x1,y1]=pol(cx,cy,r,b1,total),[x2,y2]=pol(cx,cy,r,b2,total);
+  const big=((b2-b1)/total)>0.5?1:0;
+  return `M${x1.toFixed(2)} ${y1.toFixed(2)} A${r} ${r} 0 ${big} 1 ${x2.toFixed(2)} ${y2.toFixed(2)}`;
+}
+function labelRing(cx,cy,r,marks,total,fs){
+  const items=marks.map(m=>{const [x,y]=pol(cx,cy,r+13,(m.a+m.b)/2,total);
+    return {...m,x,y,side:x<cx?"l":"r"};});
+  ["l","r"].forEach(side=>{
+    const g=items.filter(i=>i.side===side).sort((p,q)=>p.y-q.y);
+    for(let i=1;i<g.length;i++) if(g[i].y-g[i-1].y<fs+3) g[i].y=g[i-1].y+fs+3;
+  });
+  return items.map(m=>{
+    const [ax,ay]=pol(cx,cy,r+2,(m.a+m.b)/2,total);
+    const tx=m.side==="l"?Math.min(m.x,cx-r*0.5):Math.max(m.x,cx+r*0.5);
+    return `<path d="M${ax.toFixed(1)} ${ay.toFixed(1)} L${m.x.toFixed(1)} ${m.y.toFixed(1)} L${tx.toFixed(1)} ${m.y.toFixed(1)}"
+      fill="none" stroke="var(--line)" stroke-width="1"/>
+      <text x="${(tx+(m.side==="l"?-4:4)).toFixed(1)}" y="${m.y.toFixed(1)}" font-size="${fs}"
+      fill="${m.fill||"var(--muted)"}" text-anchor="${m.side==="l"?"end":"start"}"
+      dominant-baseline="middle">${m.n}</text>`;
+  }).join("");
+}
+/* ===== start screen: nested arcs at three radii ===== */
+function drawStart(){
+  const cx=290,cy=186,r=126,t=PLASMID;
+  let s=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--line)" stroke-width="2"/>`;
+  FIXED.forEach(f=>{s+=`<path d="${arc(cx,cy,r,f.a,f.b,t)}" fill="none" stroke="var(--fixed)"
+      stroke-width="13" stroke-linecap="round"/>`;});
+  const rings=[
+    {w:winById("expression"),r:r,     c:"var(--translation)"},
+    {w:winById("payload"),   r:r-19,  c:"var(--signal)"},
+    {w:winById("antigen"),   r:r-38,  c:"var(--epitope)"}
+  ];
+  const tags=[];
+  rings.forEach(({w,r:rr,c})=>{
+    const on=preview===w.id;
+    s+=`<path d="${arc(cx,cy,rr,w.start,w.start+w.def,t)}" fill="none" stroke="${c}"
+        stroke-width="${on?15:10}" stroke-linecap="round" opacity="${on?1:.5}"/>
+        <path class="hit" data-w="${w.id}" d="${arc(cx,cy,rr,w.start,w.start+w.def,t)}"
+        fill="none" stroke="transparent" stroke-width="26"/>`;
+    const [lx,ly]=pol(cx,cy,rr,w.start+w.def/2,t);
+    tags.push({w,on,lx,ly,y:ly});
+  });
+  /* keep the three window tags from stacking on each other */
+  tags.sort((a,b)=>a.y-b.y);
+  for(let i=1;i<tags.length;i++) if(tags[i].y-tags[i-1].y<19) tags[i].y=tags[i-1].y+19;
+  const ex=cx+r+26;
+  tags.forEach(tg=>{
+    s+=`<path d="M${tg.lx.toFixed(1)} ${tg.ly.toFixed(1)} L${(tg.lx+18).toFixed(1)} ${tg.y.toFixed(1)} L${ex.toFixed(1)} ${tg.y.toFixed(1)}"
+        fill="none" stroke="var(--line)" stroke-width="1"/>
+        <text x="${(ex+5).toFixed(1)}" y="${tg.y.toFixed(1)}" font-size="12"
+        fill="${tg.on?"var(--ink)":"var(--muted)"}" font-weight="${tg.on?650:400}"
+        dominant-baseline="middle">${tg.w.label.replace(" window","")}</text>`;
+  });
+  s+=labelRing(cx,cy,r,FIXED.map(f=>({...f})),t,10.5);
+  s+=`<text x="${cx}" y="${cy-4}" text-anchor="middle" font-size="20" font-weight="650"
+      fill="var(--ink)">5,267</text>
+      <text x="${cx}" y="${cy+14}" text-anchor="middle" font-size="11" fill="var(--muted)">bp</text>`;
+  $("#startMap").innerHTML=s;
+  $("#startMap").querySelectorAll(".hit").forEach(p=>
+    p.addEventListener("click",()=>choose(p.dataset.w)));
+}
+function renderStartBar(){
+  $("#startBar").innerHTML=WINDOWS.map(w=>
+    `<button class="wbtn" data-w="${w.id}" aria-pressed="${w.id===preview}">${w.label}
+      <small>${w.enz}</small></button>`).join("");
+  $("#startBar").querySelectorAll(".wbtn").forEach(b=>
+    b.addEventListener("click",()=>choose(b.dataset.w)));
+}
+function choose(id){
+  preview=id; const w=winById(id);
+  $("#picked").innerHTML=`<b>${w.label}</b> &middot; ${w.enz} &middot; ${fmt(w.def)} bp in our version.
+    You would be changing ${w.what}.`;
+  renderStartBar(); drawStart();
+}
+
+/* ===== editor: plasmid map ===== */
+function renderRing(){
+  const L=bpOf(body()), d=L-win.def, total=win.outside+L;
+  const cx=150,cy=142,r=96, sh=p=>p>2586?p+d:p;
+  let s=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--line)" stroke-width="1.6"/>`;
+  FIXED.forEach(f=>{s+=`<path d="${arc(cx,cy,r,sh(f.a),sh(f.b),total)}" fill="none"
+      stroke="var(--fixed)" stroke-width="11" stroke-linecap="round"/>`;});
+  /* the whole expression unit, drawn element by element; the parts the chosen
+     window does not reach are still shown, just dimmed */
+  const zi=ZONES.indexOf(win.zones[0]);
+  let p=839, slot=null;
+  chain.forEach(e=>{
+    if(slot===null && ZONES.indexOf(e.zone)>=zi) slot=p;
+    const open=inWin(e);
+    s+=`<path d="${arc(cx,cy,r,p,p+e.bp,total)}" fill="none" stroke="${col(e.cat)}"
+        stroke-width="${open?16:9}" opacity="${open?1:.34}"/>`;
+    p+=e.bp;
+  });
+  if(slot===null) slot=p;
+  const marks=FIXED.map(f=>({a:sh(f.a),b:sh(f.b),n:f.n}));
+  if(L===0){
+    /* nothing left in the window, so draw the slot itself or it vanishes */
+    const span=Math.max(total*0.022,18);
+    s+=`<path d="${arc(cx,cy,r,slot,slot+span,total)}" fill="none" stroke="${col(win.cats[0])}"
+        stroke-width="16" stroke-dasharray="3.5 3" opacity=".95"/>`;
+    marks.push({a:slot,b:slot+span,n:"window, empty",fill:"var(--ink)"});
+  }
+  s+=labelRing(cx,cy,r,marks,total,9.5);
+  s+=`<text x="${cx}" y="${cy-4}" text-anchor="middle" font-size="18" font-weight="650"
+      fill="var(--ink)">${fmt(total)}</text>
+      <text x="${cx}" y="${cy+12}" text-anchor="middle" font-size="10" fill="var(--muted)">bp</text>`;
+  $("#ring").innerHTML=s;
+  $("#mapBp").textContent=fmt(total)+" bp";
+}
+
+/* ===== the expression-unit bar ===== */
+const W=520;
+function renderOrf(){
+  const y=34, h=22, MIN=0.30;
+  let first=-1,last=-1;
+  chain.forEach((e,i)=>{ if(inWin(e)){ if(first<0) first=i; last=i; } });
+  const left = first<0?chain.slice():chain.slice(0,first);
+  const mid  = first<0?[]:chain.slice(first,last+1);
+  const right= first<0?[]:chain.slice(last+1);
+  const lbp=bpOf(left), mbp=bpOf(mid), rbp=bpOf(right), total=lbp+mbp+rbp;
+
+  /* the window keeps a readable share of the bar even when the reader has
+     emptied it; when that happens the flanks are compressed and we say so */
+  const trueFrac = total? mbp/total : 0;
+  const frac = Math.max(trueFrac, MIN);
+  const squashed = frac > trueFrac + 1e-9 && (lbp+rbp) > 0;
+  const wMid = frac*W, rest = W-wMid, ctx = lbp+rbp;
+  const wLeft = ctx? rest*lbp/ctx : 0, wRight = rest-wLeft;
+
+  const placed=[]; let x=0;
+  const run=(list,bp,width)=>{ list.forEach(e=>{ const w=bp? e.bp/bp*width : 0;
+    placed.push({e,x,w}); x+=w; }); if(!list.length) x+=width; };
+  run(left,lbp,wLeft); const mx0=x; run(mid,mbp,wMid); const mx1=x; run(right,rbp,wRight);
+
+  let s="";
+  placed.forEach(({e,x,w})=>{
+    s+=`<rect x="${x.toFixed(2)}" y="${y}" width="${Math.max(w,0).toFixed(2)}" height="${h}"
+        fill="${col(e.cat)}" opacity="${inWin(e)?1:.3}" stroke="#fff" stroke-width=".6"/>`;
+  });
+  if(!mid.length){
+    s+=`<rect x="${mx0.toFixed(2)}" y="${y}" width="${(mx1-mx0).toFixed(2)}" height="${h}" rx="3"
+        fill="none" stroke="var(--border)" stroke-width="1.2" stroke-dasharray="5 4"/>`;
+  }
+
+  /* names for the stretches a reader recognises */
+  const groups=[["pre","translation element"],["sig","signal peptide"],
+                ["ag","antigen cassette"],["adj","adjuvant, trafficking, tag"]];
+  let k=0;
+  groups.forEach(([z,name])=>{
+    const own=placed.filter(p=>p.e.zone===z); if(!own.length) return;
+    const x0=own[0].x, x1=own[own.length-1].x+own[own.length-1].w, w=x1-x0;
+    if(w<26) return;
+    const m=x0+w/2, ly=k%2?y+h+30:y+h+15, near=m<40, far=m>W-40; k++;
+    s+=`<line x1="${m.toFixed(1)}" y1="${y+h}" x2="${m.toFixed(1)}" y2="${ly-9}"
+        stroke="var(--line)" stroke-width="1"/>
+        <text x="${(near?0:far?W:m).toFixed(1)}" y="${ly}" font-size="10.5" fill="var(--muted)"
+        text-anchor="${near?"start":far?"end":"middle"}">${name}</text>`;
+  });
+
+  const m=(mx0+mx1)/2, near=m<110, far=m>W-110;
+  s+=`<path d="M${mx0.toFixed(1)} ${y-5} L${mx0.toFixed(1)} ${y-9} L${mx1.toFixed(1)} ${y-9} L${mx1.toFixed(1)} ${y-5}"
+      fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+      <text x="${(near?0:far?W:m).toFixed(1)}" y="${y-13}" font-size="10.5" fill="var(--accent)"
+      text-anchor="${near?"start":far?"end":"middle"}">${win.label.toLowerCase()} &middot; ${win.enz}</text>`;
+
+  s+=`<text x="0" y="${y+h+46}" font-size="10" fill="var(--muted)">5'</text>
+      <text x="${W}" y="${y+h+46}" font-size="10" fill="var(--muted)" text-anchor="end">3'</text>`;
+  if(squashed) s+=`<text x="${(W/2).toFixed(1)}" y="${y+h+46}" font-size="9.5" fill="var(--muted)"
+      text-anchor="middle">flanks compressed so the window stays readable</text>`;
+
+  const o=$("#orf"); o.setAttribute("viewBox",`0 0 ${W} ${y+h+52}`); o.innerHTML=s;
+}
+
+/* ===== the window contents, expanded ===== */
+function renderInside(){
+  const list=body(), el=$("#inside");
+  $("#insideHead").textContent="Inside the window";
+  if(!list.length){
+    el.setAttribute("viewBox",`0 0 ${W} 52`);
+    el.innerHTML=`<rect x="1" y="12" width="${W-2}" height="24" fill="none" stroke="var(--border)"
+      stroke-width="1.2" stroke-dasharray="5 4" rx="4"/>
+      <text x="${W/2}" y="28" font-size="12" fill="var(--muted)" text-anchor="middle">
+      window empty, add parts from the shelf</text>`;
+    return;
+  }
+  const total=bpOf(list), y=12, h=26;
+  let x=0,s="",k=0;
+  list.forEach(e=>{
+    const w=e.bp/total*W, mid=x+w/2, sel=picked===e.id;
+    s+=`<rect class="hit" data-id="${e.id}" x="${x.toFixed(2)}" y="${y}" width="${Math.max(w,1.2).toFixed(2)}"
+        height="${h}" rx="3" fill="${col(e.cat)}" stroke="${sel?"var(--ink)":"#fff"}"
+        stroke-width="${sel?2:0.8}" opacity="${e.lock?.62:1}"/>`;
+    if(w>30){
+      const hi=k%2===0, ly=hi?y+h+14:y+h+40;
+      const near=mid<44,far=mid>W-44;
+      s+=`<line x1="${mid.toFixed(1)}" y1="${y+h}" x2="${mid.toFixed(1)}" y2="${ly-11}"
+          stroke="var(--line)" stroke-width="1"/>
+          <text x="${(near?0:far?W:mid).toFixed(1)}" y="${ly}" font-size="11" fill="var(--ink)"
+          text-anchor="${near?"start":far?"end":"middle"}">${e.n}</text>
+          <text x="${(near?0:far?W:mid).toFixed(1)}" y="${ly+12}" font-size="10" fill="var(--muted)"
+          text-anchor="${near?"start":far?"end":"middle"}" letter-spacing=".3">${e.bp} bp</text>`;
+      k++;
+    }
+    x+=w;
+  });
+  el.setAttribute("viewBox",`0 0 ${W} ${y+h+58}`); el.innerHTML=s;
+  el.querySelectorAll(".hit").forEach(r=>
+    r.addEventListener("click",()=>{picked=r.dataset.id; renderInside(); renderInspect();}));
+}
+function renderInspect(){
+  const e=chain.find(x=>x.id===picked && inWin(x));
+  if(!e){ picked=null;
+    $("#inspect").innerHTML=`<span class="hint">Click a block above to inspect or remove it.</span>`;
+    return; }
+  $("#inspect").innerHTML=`<span class="who"><b>${e.n}</b><i>${e.s} &middot; ${e.bp} bp &middot; ${CAT[e.cat].n}</i></span>
+    <button class="rm" id="rmBtn" ${e.lock?"disabled title='This junction carries a cut site and stays put'":""}>Remove</button>`;
+  const b=$("#rmBtn");
+  if(b && !e.lock) b.addEventListener("click",()=>{
+    chain=chain.filter(x=>x.id!==e.id); picked=null; renderAll(); });
+}
+/* ===== shelf, bubbles, builder, stats ===== */
+function renderBubbles(){
+  $("#bubbles").innerHTML=CAT_ORDER.map(k=>{
+    const on=win.cats.includes(k), n=CATALOGUE[k].filter(p=>!p.lock).length;
+    return `<button class="bub" data-c="${k}" ${on?"":"disabled"} aria-pressed="${on&&k===cat}"
+      style="border-color:${on?col(k):"var(--border)"};background:${on&&k===cat?col(k):"#fff"}">
+      ${CAT[k].n}<span class="n">${n} part${n>1?"s":""}</span></button>`;}).join("");
+  $("#bubbles").querySelectorAll(".bub").forEach(b=>{ if(b.disabled) return;
+    b.addEventListener("click",()=>{cat=b.dataset.c;renderBubbles();renderParts();}); });
+  $("#swatches").innerHTML=
+    CAT_ORDER.map(k=>{const on=win.cats.includes(k);
+      return `<span class="${on?"":"off"}"><i class="sw" style="background:${col(k)}"></i>${CAT[k].n}</span>`;}).join("")
+    + `<span><i class="sw" style="background:var(--fixed)"></i>backbone, unchanged</span>`;
+}
+const countIn=(c,n)=>body().filter(e=>e.cat===c&&e.n===n&&!e.lock).length;
+function removeOne(c,n){
+  for(let i=chain.length-1;i>=0;i--){
+    const e=chain[i];
+    if(inWin(e)&&!e.lock&&e.cat===c&&e.n===n){
+      chain.splice(i,1); if(picked===e.id) picked=null; renderAll(); return;
+    }
+  }
+}
+function renderParts(){
+  $("#partHead").textContent=CAT[cat].n;
+  const list=CATALOGUE[cat].filter(p=>!p.lock);
+  $("#parts").innerHTML=list.map((p,i)=>{
+    const k=countIn(cat,p.n);
+    return `<div class="part"><div class="bar2" style="background:${col(cat)}">
+      <div class="nm">${p.n}</div><div class="sq">${p.s}</div></div>
+      <span class="bp">${fmt(p.bp)} bp</span>
+      <span class="cnt">${k?"&times;"+k:""}</span>
+      <button class="minus" data-i="${i}" ${k?"":"disabled"}
+        aria-label="Remove one ${p.n} from the window">&minus;</button>
+      <button class="plus" data-i="${i}" aria-label="Add ${p.n} to the window">+</button></div>`;
+  }).join("");
+  $("#parts").querySelectorAll(".part").forEach((row,i)=>{
+    row.setAttribute("draggable","true");
+    row.addEventListener("dragstart",ev=>{
+      ev.dataTransfer.setData("text/plain",JSON.stringify({c:cat,n:list[i].n}));
+      ev.dataTransfer.effectAllowed="copy";
+      row.classList.add("dragging");
+    });
+    row.addEventListener("dragend",()=>row.classList.remove("dragging"));
+  });
+  $("#parts").querySelectorAll(".plus").forEach(b=>
+    b.addEventListener("click",()=>addToWindow(mk(win.zones[win.zones.length-1],cat,list[+b.dataset.i].n))));
+  $("#parts").querySelectorAll(".minus").forEach(b=>{
+    if(b.disabled) return;
+    b.addEventListener("click",()=>removeOne(cat,list[+b.dataset.i].n));
+  });
+}
+/* pos is a slot among the window's own elements; null means the end */
+function addToWindow(item,pos){
+  const idx=[]; chain.forEach((e,i)=>{ if(inWin(e)) idx.push(i); });
+  if(!idx.length){
+    let at=chain.length;
+    chain.forEach((e,i)=>{ if(at===chain.length && ZONES.indexOf(e.zone)>ZONES.indexOf(win.zones[0])) at=i; });
+    chain.splice(at,0,item);
+  } else if(pos===null||pos===undefined||pos>=idx.length){
+    chain.splice(idx[idx.length-1]+1,0,item);
+  } else {
+    chain.splice(idx[Math.max(pos,0)],0,item);
+  }
+  picked=item.id; renderAll();
+}
+
+/* which slot in the window a pointer at clientX falls on */
+function slotAt(clientX){
+  const svg=$("#inside"), r=svg.getBoundingClientRect(), list=body();
+  if(!list.length||r.width<=0) return null;
+  const frac=Math.min(Math.max((clientX-r.left)/r.width,0),1);
+  const total=bpOf(list); let acc=0;
+  for(let i=0;i<list.length;i++){
+    const w=list[i].bp/total;
+    if(frac < acc+w/2) return i;
+    acc+=w;
+  }
+  return list.length;
+}
+
+function dropPart(ev,useSlot){
+  ev.preventDefault();
+  let data; try{ data=JSON.parse(ev.dataTransfer.getData("text/plain")); }catch(_){ return; }
+  if(!data||!CAT[data.c]||!win.cats.includes(data.c)) return;
+  const pos = useSlot ? slotAt(ev.clientX) : null;
+  addToWindow(mk(win.zones[win.zones.length-1],data.c,data.n),pos);
+}
+function armDropZone(sel,useSlot){
+  const el=$(sel); if(!el) return;
+  el.addEventListener("dragover",ev=>{ ev.preventDefault();
+    ev.dataTransfer.dropEffect="copy"; el.classList.add("dropping"); });
+  ["dragleave","drop"].forEach(t=>el.addEventListener(t,()=>el.classList.remove("dropping")));
+  el.addEventListener("drop",ev=>{ ev.stopPropagation(); dropPart(ev,useSlot); });
+}
+function renderType(){
+  $("#btype").innerHTML=win.cats.map(k=>`<option value="${k}">${CAT[k].n}</option>`).join("");
+}
+function validate(){
+  const k=$("#btype").value; if(!CAT[k]) return {err:""};
+  const raw=$("#bseq").value.toUpperCase().replace(/[^A-Z]/g,"");
+  const coding=CAT[k].coding, ok=coding?AA:NT;
+  if(!raw) return {err:""};
+  const bad=[...new Set([...raw].filter(c=>!ok.includes(c)))];
+  if(bad.length) return {err:`${bad.join(", ")} ${bad.length>1?"are":"is"} not ${coding?"one of the twenty amino acids":"a DNA base"}.`};
+  const bp=coding?raw.length*3:raw.length;
+  const warn=(k==="epitope"&&(raw.length<8||raw.length>25))
+    ? `${raw.length} aa sits outside the usual 8 to 25 for a class I epitope.` : "";
+  return {raw,bp,warn,err:""};
+}
+function bindBuilder(){
+  const upd=()=>{
+    const k=$("#btype").value; if(!CAT[k]){$("#badd").disabled=true;return;}
+    $("#bseq").placeholder=CAT[k].coding?"amino acids, e.g. SVCWCVNSV":"DNA bases, e.g. GCCACCATGG";
+    const v=validate();
+    $("#bmsg").className="msg"+(v.err?" bad":"");
+    $("#bmsg").textContent=v.err||(v.raw?`${fmt(v.bp)} bp. ${v.warn}`:"");
+    $("#badd").disabled=!!v.err||!v.raw;
+  };
+  $("#bseq").addEventListener("input",upd);
+  $("#btype").addEventListener("change",upd);
+  $("#badd").addEventListener("click",()=>{
+    const v=validate(); if(v.err||!v.raw) return;
+    const k=$("#btype").value;
+    const nm=$("#bname").value.trim()||("Your "+CAT[k].n.toLowerCase());
+    addToWindow({id:uid(),zone:win.zones[win.zones.length-1],cat:k,n:nm,s:v.raw,bp:v.bp,lock:false});
+    $("#bseq").value=""; $("#bname").value=""; upd();
+  });
+  upd();
+}
+function renderStats(){
+  const L=bpOf(body()), rows=[
+    ["Elements in the window", body().length],
+    ["This window", fmt(L)+" bp"],
+    ["Our version", fmt(win.def)+" bp"],
+    ["Outside, unchanged", fmt(win.outside)+" bp","hold"],
+    ["Plasmid total", fmt(win.outside+L)+" bp"]
+  ];
+  if(win.coding) rows.push(["Reading frame", L%3===0?"in frame":"out of frame"]);
+  $("#wstats").innerHTML=rows.map(([k,v,c])=>
+    `<div class="${c||""}"><span class="k">${k}</span><span class="v">${v}</span></div>`).join("");
+  $("#winBp").textContent=fmt(L)+" bp";
+}
+function renderAll(){
+  renderBubbles(); renderParts(); renderRing();
+  renderOrf(); renderInside(); renderInspect(); renderStats();
+}
+
+const ICON_IN ='<svg viewBox="0 0 16 16"><path d="M9.5 2.5v4h4"/><path d="M9.5 6.5 14 2"/>'+
+                  '<path d="M6.5 13.5v-4h-4"/><path d="M6.5 9.5 2 14"/></svg>';
+const ICON_OUT='<svg viewBox="0 0 16 16"><path d="M10 2h4v4"/><path d="M14 2 9.5 6.5"/>'+
+                  '<path d="M6 14H2v-4"/><path d="M2 14l4.5-4.5"/></svg>';
+function paintFit(){
+  const on=document.body.classList.contains("compact"), b=$("#fit");
+  if(!b) return;
+  b.innerHTML = on ? ICON_OUT : ICON_IN;
+  b.title = on ? "Back to the roomier layout" : "Fit the whole studio into the window";
+  b.setAttribute("aria-pressed",String(on));
+  b.setAttribute("aria-label",b.title);
+}
+
+/* ===== wiring ===== */
+function setWindow(id){
+  win=winById(id); cat=win.cats[0]; picked=null;
+  $("#wbar").querySelectorAll(".wbtn").forEach(b=>
+    b.setAttribute("aria-pressed",String(b.dataset.w===id)));
+  renderType(); renderAll();
+}
+function renderBar(){
+  $("#wbar").innerHTML=WINDOWS.map(w=>
+    `<button class="wbtn" data-w="${w.id}" aria-pressed="false">${w.label}
+      <small>${w.enz}</small></button>`).join("")+`<button class="back" id="back">Overview</button>
+     <button class="fit" id="fit" type="button"></button>`;
+  $("#wbar").querySelectorAll(".wbtn").forEach(b=>
+    b.addEventListener("click",()=>setWindow(b.dataset.w)));
+  $("#back").addEventListener("click",()=>{
+    $("#editor").hidden=true; $("#start").hidden=false; choose(win.id); window.scrollTo(0,0); });
+  $("#fit").addEventListener("click",()=>{
+    document.body.classList.toggle("compact"); paintFit(); });
+  paintFit();
+}
+$("#go").addEventListener("click",()=>{
+  $("#start").hidden=true; $("#editor").hidden=false;
+  chain=fullDefault(); setWindow(preview); window.scrollTo(0,0); });
+$("#loadOurs").addEventListener("click",()=>{ chain=fullDefault(); picked=null; renderAll(); });
+$("#clearAll").addEventListener("click",()=>{ chain=chain.filter(e=>!inWin(e)); picked=null; renderAll(); });
+
+renderBar(); bindBuilder(); choose("antigen");
+armDropZone(".card--seq",true); armDropZone(".card--map",false);
+</script></body></html>

@@ -1,0 +1,300 @@
+.home-story .story-finale {
+  position: relative;
+  --scene-height: calc(100svh - var(--header-height));
+  min-height: calc(100svh - var(--header-height));
+  padding: 0;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(#f7e7e6, #fcf6ed);
+}
+
+.home-story.has-story-motion .story-finale {
+  height: auto;
+}
+.story-finale > .story-final-statement {
+  display: grid;
+  align-content: center;
+  min-height: var(--scene-height);
+  padding: clamp(32px, 10svh, 108px) 7%;
+}
+.story-finale-explore {
+  position: relative;
+  height: var(--scene-height);
+  overflow: hidden;
+  isolation: isolate;
+}
+/* Resolve the painted backdrop into the same pink that opens the Home footer. */
+.story-finale-explore::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: clamp(64px, 12svh, 120px);
+  background: linear-gradient(to bottom, transparent, var(--home-footer-surface));
+  opacity: var(--care-footer-blend, 1);
+  z-index: 1;
+  pointer-events: none;
+}
+.has-story-motion .story-finale-explore {
+  --care-footer-blend: 0;
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 0;
+}
+.has-story-motion .story-finale-explore .story-backdrop {
+  /* A fixed centre keeps the pigment aligned through refresh and reverse scroll. */
+  --care-mask: radial-gradient(
+    circle at 50% 50%,
+    #000 calc(var(--care-radius, 0px) * 0.78),
+    transparent var(--care-radius, 0px)
+  );
+  -webkit-mask-image: var(--care-mask);
+  mask-image: var(--care-mask);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+.has-story-motion .story-finale-ambient {
+  z-index: 1;
+}
+.has-story-motion .story-final-statement {
+  z-index: 2;
+}
+.story-finale-explore .story-backdrop {
+  inset: 0;
+  height: 100%;
+}
+.story-finale-explore .story-art {
+  z-index: 2;
+}
+.home-story:has(.story-finale-explore) {
+  padding-bottom: 0;
+}
+/* Ambient layer: the painted circRNA ring from "Why circRNA?" and a warm
+   glow. HomeFinale motion in useHomeStoryAnimation.ts draws, turns and
+   lights them while the statement is pinned. Without motion they rest here. */
+.story-finale-ambient {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: center;
+  pointer-events: none;
+}
+.story-finale-glow,
+.story-finale-ring {
+  grid-area: 1 / 1;
+}
+.story-finale-glow {
+  width: min(96vw, 110svh);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #fff8f1 0%,
+    rgba(252, 232, 238, 0.85) 38%,
+    rgba(247, 231, 230, 0) 70%
+  );
+  opacity: 0.9;
+}
+.story-finale-ring {
+  position: relative;
+  width: min(72vw, 62svh);
+  aspect-ratio: 459 / 448;
+  opacity: 0.2;
+}
+
+.story-final-statement {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+/* The closing line folds into "That is CirCure." */
+.home-story .story-final-statement__kicker {
+  color: var(--story-ink);
+  font-style: italic;
+  font-weight: 400;
+  white-space: nowrap;
+}
+/* circure-tokens.css forces the body face on every <p> (!important). */
+.home-story [data-final-carry] {
+  font-family: var(--font-editorial);
+}
+.home-story .story-final-statement__kicker {
+  font-size: clamp(22px, min(2.4vw, 4.4svh), 36px);
+  line-height: 1.3;
+}
+.home-story .story-final-statement__kicker {
+  margin: 0 0 clamp(18px, 3.2svh, 34px);
+}
+/* Without motion there is no fold to watch: show the answer directly. */
+.home-story:not(.has-story-motion) .story-final-statement__fold {
+  display: none;
+}
+.story-final-statement__fold {
+  /* Grid preserves the text baseline while clipping, including in Safari. */
+  display: inline-grid;
+  /* Masks also clip italic overhangs beyond the advance width. Include that
+     ink in scrollWidth; the matching margin keeps the sentence spacing intact. */
+  padding-inline-end: 0.3em;
+  margin-inline-end: -0.3em;
+  overflow: clip;
+  overflow-clip-margin: 0.2em;
+  white-space: nowrap;
+  vertical-align: baseline;
+  /* Feathered trailing edge while folding (--feather: 0 → 1). */
+  mask-image: linear-gradient(
+    90deg,
+    #000 calc(100% - var(--feather, 0) * 2.4em),
+    transparent
+  );
+}
+.story-final-statement__name {
+  color: var(--story-accent);
+  text-shadow: 0 0 calc(var(--merge, 0) * 18px)
+    rgba(217, 139, 176, calc(var(--merge, 0) * 0.55));
+}
+.story-final-statement h2 {
+  margin: 0;
+  color: var(--story-ink);
+  /* One line on desktop: about 17em of display type fits 86% of the width. */
+  font: var(--weight-display) clamp(30px, min(4.6vw, 9svh), 76px)/1.15
+    var(--font-heading);
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+}
+/* A single light pass after the reveal. The band stays a deep rose so the
+   phrase keeps its contrast on the cream ground mid-sweep. */
+.story-final-statement h2 .story-final-statement__accent {
+  color: var(--story-accent);
+  white-space: nowrap;
+}
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .story-final-statement h2 .story-final-statement__accent {
+    background: linear-gradient(
+        105deg,
+        var(--story-accent) 0 42%,
+        #c46a93 47%,
+        #d98bb0 50%,
+        #c46a93 53%,
+        var(--story-accent) 58% 100%
+      )
+      0 0 / 300% 100% no-repeat;
+    background-position: var(--shine, 100%) 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+.home-story .story-final-statement__tagline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.2em 0.4em;
+  margin: clamp(22px, 4svh, 40px) 0 0;
+  color: var(--story-ink);
+  font: 400 clamp(17px, 1.6vw, 23px)/1.5 var(--font-body);
+  text-wrap: balance;
+}
+.story-final-statement__tagline > span,
+.story-final-statement__tagline > strong {
+  white-space: nowrap;
+}
+.story-final-statement__tagline strong {
+  color: var(--story-accent);
+  font-weight: var(--weight-label);
+}
+@media (max-width: 800px) {
+  .story-finale > .story-final-statement {
+    padding-inline: 6%;
+  }
+  .story-finale-explore .story-art {
+    top: 35%;
+    width: calc(var(--scene-height) * 16 / 9 * 0.7);
+  }
+  body:has(.story-finale-explore[data-explore-in-view="true"])
+    .circure-back-to-top {
+    top: calc(var(--header-height) + 12px);
+    right: 14px;
+    bottom: auto;
+    width: 56px;
+    height: 56px;
+  }
+  .home-story .story-final-statement__kicker {
+    font-size: clamp(15px, 4.4vw, 24px);
+  }
+  /* Too narrow for one line: "with the tumor." takes the second. */
+  .story-final-statement h2 {
+    font-size: clamp(32px, min(8.2vw, 10svh), 58px);
+  }
+  .home-story .story-final-statement__tagline {
+    margin-top: 22px;
+  }
+  .story-finale-ring {
+    width: min(100vw, 58svh);
+    opacity: 0.16;
+  }
+}
+
+@media (min-width: 801px) and (max-width: 1000px) and (max-height: 500px) {
+  body:has(.story-finale-explore[data-explore-in-view="true"])
+    .circure-back-to-top {
+    top: calc(var(--header-height) + 12px);
+    right: 8px;
+    bottom: auto;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-finale-explore,
+  .story-finale-explore [data-hope-card] {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+}
+
+/* Continue the finale's warm paper into the mandatory site credits. */
+body:has(.home-story) .footer {
+  margin-top: 0 !important;
+  background: #fcf6ed !important;
+  color: #483741 !important;
+  border-top: 1px solid #e9d9dc;
+  box-shadow: none;
+}
+body:has(.home-story) .footer .container {
+  max-width: 1140px;
+}
+body:has(.home-story) .footer h4 {
+  color: #483741;
+  font-family: var(--font-heading);
+  font-weight: var(--weight-label);
+}
+body:has(.home-story) .footer p,
+body:has(.home-story) .footer small {
+  color: #695a64;
+}
+body:has(.home-story) .footer a {
+  color: #a25172;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: #d6afb9;
+  text-underline-offset: 0.2em;
+}
+body:has(.home-story) .footer a:hover {
+  color: #75364f;
+  text-decoration-color: currentColor;
+}
+body:has(.home-story) .footer a:focus-visible {
+  outline: 2px solid #a25172;
+  outline-offset: 4px;
+}
+body:has(.home-story) .footer hr {
+  border-color: #d6afb9;
+  opacity: 0.6;
+}

@@ -1,0 +1,166 @@
+/* ============================================================================
+   Citations — the one skin for in-text links, the hover card and the register.
+   ----------------------------------------------------------------------------
+   Shared by every page that cites sources. Colours come from the module palette
+   (`--route-heading-ink`, `--route-ink`, `--route-muted`), so Project reads
+   forest green, Wet Lab deep sea blue, Dry Lab pine — without one rule per page.
+   Anchors are shared too: `#ref-N` is the bibliography entry, `#cite-N-M` the
+   in-text occurrence.
+   ========================================================================== */
+
+/* ------------------------------------------------------- in-text reference */
+
+.wiki-page--route .wiki-cite {
+  color: inherit;
+  text-decoration: underline dotted
+    color-mix(in srgb, var(--route-heading-ink) 55%, transparent);
+  text-underline-offset: 0.2em;
+  border-radius: 3px;
+}
+
+.wiki-page--route .wiki-cite:hover {
+  text-decoration-style: solid;
+}
+
+.wiki-cite__additional-target {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.wiki-page--route .wiki-cite:focus-visible,
+.wiki-page--route .wiki-reference-item:focus-visible {
+  outline: 2px solid var(--route-heading-ink);
+  outline-offset: 2px;
+}
+
+.wiki-page--route .wiki-reference-item:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ---------------------------------------------------------------- register */
+
+.wiki-page--route .wiki-reference-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.wiki-page--route .wiki-reference-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--route-ink);
+}
+
+.wiki-page--route .wiki-reference-item__index {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--route-muted);
+  flex-shrink: 0;
+}
+
+.wiki-page--route .wiki-reference-item__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.wiki-page--route .wiki-reference-item__authors {
+  font-weight: 600;
+  color: var(--route-ink);
+}
+
+.wiki-page--route .wiki-reference-item__title {
+  color: var(--route-ink);
+}
+
+.wiki-page--route .wiki-reference-item__journal {
+  font-style: italic;
+  font-family: var(--font-editorial, serif);
+  color: var(--route-muted);
+}
+
+.wiki-page--route .wiki-reference-item__vol {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.82rem;
+  color: var(--route-muted);
+}
+
+/* DOI / PMID / URL tails of a reference. */
+.wiki-page--route .wiki-reference-item__link {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.78rem;
+  color: var(--route-heading-ink);
+  text-decoration: none;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--route-heading-ink) 35%, transparent);
+}
+
+.wiki-page--route .wiki-reference-item__link:hover {
+  border-bottom-color: currentColor;
+}
+
+.wiki-page--route .wiki-reference-item__backlinks {
+  margin-left: 0.4em;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.wiki-page--route .wiki-reference-item__backlinks a {
+  margin-left: 0.25em;
+  color: var(--route-heading-ink);
+  text-decoration: none;
+}
+
+.wiki-page--route .wiki-reference-item__backlinks a:hover {
+  text-decoration: underline;
+}
+
+/* ------------------------------------------------------------ hover card */
+
+/* Portalled to <body>, so it cannot be scoped to a page or a module. */
+.wiki-cite-preview {
+  position: fixed;
+  z-index: 60;
+  max-width: min(22rem, calc(100vw - 24px));
+  max-height: min(22rem, calc(50vh - 24px));
+  overflow-y: auto;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid color-mix(in srgb, var(--route-heading-ink, #14354c) 32%, transparent);
+  box-shadow: 0 8px 24px -6px rgba(20, 53, 76, 0.18);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--route-ink, #14354c);
+}
+
+.wiki-cite-preview__index {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  color: var(--route-muted, #5a6673);
+}
+
+.wiki-cite-preview__entry + .wiki-cite-preview__entry {
+  margin-top: 0.65rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgb(0 0 0 / 10%);
+}
+
+.wiki-cite-preview em {
+  font-style: italic;
+}
+
+@media (hover: none) {
+  .wiki-cite-preview {
+    display: none;
+  }
+}

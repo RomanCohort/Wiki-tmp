@@ -1,0 +1,274 @@
+.home-redesign {
+  background: #21141f;
+}
+/* The floating navigation overlays the opening instead of reserving a band. */
+body:has(.home-redesign) {
+  padding-top: 0;
+}
+.home-redesign #top {
+  scroll-margin-top: var(--header-height);
+}
+.home-scene01 {
+  --scene01-scroll: calc(180svh + var(--header-height));
+  position: relative;
+  height: calc(100svh + var(--scene01-scroll) * var(--scene01-scroll-scale, 1));
+}
+.home-scene01-canvas {
+  position: sticky;
+  top: 0;
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  width: 100%;
+  height: 100svh;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(
+      ellipse 60% 55% at 50% 48%,
+      #5b4456 0%,
+      #332330 62%,
+      #21141f 100%
+    ),
+    #21141f;
+}
+.scene01-darkness {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+  background: #21141f;
+  opacity: 1;
+}
+/* HomeIntro sets data-intro: "playing" keeps the dark, "done" lifts it. Its
+   timeline also fades this layer inline; see components/home/HomeIntro.tsx. */
+.home-scene01[data-intro="done"] .scene01-darkness {
+  opacity: 0;
+}
+.scene01-stage {
+  position: relative;
+  /* Cover the viewport with the original proportions; crop overflow at edges. */
+  width: max(100%, calc(100svh * 16 / 9));
+  aspect-ratio: 16 / 9;
+}
+.scene01-orbit,
+.scene01-label,
+.scene01-portrait,
+.scene01-person,
+.scene01-frame-layer {
+  position: absolute;
+  margin: 0;
+  pointer-events: none;
+  user-select: none;
+  backface-visibility: hidden;
+}
+.scene01-orbit {
+  inset: 0;
+  z-index: 1;
+}
+/* Soften the original canvas edges on each painted layer. The stage stays
+   unmasked so the approaching head can fill a tall viewport. */
+.scene01-orbit,
+.scene01-person-image,
+.scene01-frame-layer img {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 5%,
+    #000 98%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 5%,
+    #000 98%,
+    transparent
+  );
+}
+.scene01-head-darkness {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  background: #1e1616;
+  opacity: 0;
+  pointer-events: none;
+}
+.scene01-visual {
+  position: absolute;
+  display: block;
+  height: auto;
+}
+.scene01-label {
+  z-index: 4;
+  height: auto;
+}
+.scene01-portrait {
+  z-index: 5;
+  inset: 0;
+  transform-origin: 52% 64%;
+}
+.scene01-person,
+.scene01-frame-layer {
+  inset: 0;
+}
+.scene01-frame-layer {
+  z-index: 4;
+  -webkit-mask-image: url("https://static.igem.wiki/teams/6056/wiki/files/pages/home/frame-mask-120c57e35eaf.svg");
+  mask-image: url("https://static.igem.wiki/teams/6056/wiki/files/pages/home/frame-mask-120c57e35eaf.svg");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+/* The vector portrait supplies its own smooth alpha contour. Let it render
+   at the current scale instead of stretching a small composited texture. */
+.scene01-portrait,
+.scene01-person {
+  backface-visibility: visible;
+}
+.scene01-portrait img,
+.scene01-frame-layer img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* Every layer, including painted labels, shares the same 4000 × 2250 canvas. */
+.scene01-orbit--anxiety .scene01-visual {
+  left: 32.65%;
+  top: 0;
+  width: 34.675%;
+}
+.scene01-orbit--surgery .scene01-visual {
+  left: 0;
+  top: 0;
+  width: 47.675%;
+}
+.scene01-orbit--hair-loss .scene01-visual {
+  left: 52.425%;
+  top: 0;
+  width: 47.575%;
+}
+.scene01-orbit--chemotherapy .scene01-visual {
+  left: 0;
+  top: 41.511%;
+  width: 45.925%;
+}
+.scene01-orbit--death-rate .scene01-visual {
+  left: 50.275%;
+  top: 43.289%;
+  width: 49.725%;
+}
+.scene01-label--anxiety {
+  left: 43.225%;
+  top: 16.933%;
+  width: 13.55%;
+}
+.scene01-label--surgery {
+  left: 17.15%;
+  top: 46.8%;
+  width: 17.125%;
+}
+.scene01-label--hair-loss {
+  left: 68.675%;
+  top: 47.2%;
+  width: 15.1%;
+}
+.scene01-label--chemotherapy {
+  left: 8.375%;
+  bottom: 2.5%;
+  width: 26.75%;
+}
+.scene01-label--death-rate {
+  left: 65.575%;
+  bottom: 2.5%;
+  width: 15.45%;
+}
+.scene01-orbit--surgery,
+.scene01-orbit--hair-loss {
+  z-index: 2;
+}
+.scene01-orbit--chemotherapy,
+.scene01-orbit--death-rate {
+  z-index: 3;
+}
+.story-prologue.scene01-prologue {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  min-height: 0;
+  padding: clamp(32px, 7svh, 80px) 24px;
+  background: #1e1616;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+.scene01-prologue.story-prologue > p {
+  max-width: 1280px;
+  font-size: clamp(30px, 3.8vw, 56px);
+}
+.scene01-prologue .story-prologue-line {
+  display: block;
+}
+.scene01-prologue button {
+  pointer-events: auto;
+  font-size: clamp(23px, 2vw, 32px);
+  font-weight: 500;
+  line-height: 1.35;
+}
+.scene01-prologue button:focus-visible {
+  outline: 2px solid #d9abc1;
+  outline-offset: 6px;
+}
+.home-scene01.has-scene01-motion .scene01-frame-layer,
+.home-scene01.has-scene01-motion .scene01-orbit,
+.home-scene01.has-scene01-motion .scene01-label {
+  will-change: transform, opacity;
+}
+.scene01-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+@media (max-width: 800px) {
+  .home-scene01 {
+    --scene01-scroll: 160svh;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-scene01 {
+    height: auto;
+  }
+  .home-scene01-canvas {
+    position: relative;
+    top: 0;
+    height: auto;
+    min-height: 100svh;
+  }
+  .scene01-head-darkness {
+    display: none;
+  }
+  .story-prologue.scene01-prologue {
+    position: relative;
+    width: 100%;
+    min-height: 60svh;
+    background: #21141f;
+    visibility: visible;
+    opacity: 1;
+  }
+  .scene01-stage,
+  .scene01-orbit,
+  .scene01-label,
+  .scene01-portrait,
+  .scene01-person,
+  .scene01-frame-layer {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+}

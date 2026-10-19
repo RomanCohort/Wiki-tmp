@@ -1,0 +1,357 @@
+[
+  {
+    "index": 0,
+    "step": 0,
+    "prompt": "Prepare a PCR mix in a sterile PCR tube with 2× Taq PCR Master Mix, forward primer, reverse primer and ddH₂O."
+  },
+  {
+    "index": 1,
+    "step": 0,
+    "prompt": "Prepare a PCR mix in a sterile PCR tube with 2× Taq PCR Master Mix, forward primer, reverse primer and ddH₂O."
+  },
+  {
+    "index": 2,
+    "step": 1,
+    "prompt": "Pick a small candidate colony with an inoculation loop, dip it into the PCR mix, gently stir and remove the loop. Use the cells as the template; include negative and positive controls."
+  },
+  {
+    "index": 3,
+    "step": 1,
+    "prompt": "Pick a small candidate colony with an inoculation loop, dip it into the PCR mix, gently stir and remove the loop. Use the cells as the template; include negative and positive controls."
+  },
+  {
+    "index": 4,
+    "step": 1,
+    "prompt": "Pick a small candidate colony with an inoculation loop, dip it into the PCR mix, gently stir and remove the loop. Use the cells as the template; include negative and positive controls."
+  },
+  {
+    "index": 5,
+    "step": 1,
+    "prompt": "Pick a small candidate colony with an inoculation loop, dip it into the PCR mix, gently stir and remove the loop. Use the cells as the template; include negative and positive controls."
+  },
+  {
+    "index": 6,
+    "step": 1,
+    "prompt": "Pick a small candidate colony with an inoculation loop, dip it into the PCR mix, gently stir and remove the loop. Use the cells as the template; include negative and positive controls."
+  },
+  {
+    "index": 7,
+    "step": 1,
+    "prompt": "Pick a small candidate colony with an inoculation loop, dip it into the PCR mix, gently stir and remove the loop. Use the cells as the template; include negative and positive controls."
+  },
+  {
+    "index": 8,
+    "step": 2,
+    "prompt": "Pick a small candidate colony with an inoculation loop, dip it into the PCR mix, gently stir and remove the loop. Use the cells as the template; include negative and positive controls."
+  },
+  {
+    "index": 9,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 10,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 11,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 12,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 13,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 14,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 15,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 16,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 17,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 18,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 19,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 20,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 21,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 22,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 23,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 24,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 25,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 26,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 27,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 28,
+    "step": 3,
+    "prompt": "Mix 5 μL PCR product with 1 μL loading buffer. Run agarose gel electrophoresis with a DL2000 ladder and view under UV light."
+  },
+  {
+    "index": 29,
+    "step": 4,
+    "prompt": "Inoculate a positive clone into 5 mL LB with kanamycin. Shake at 37°C to early logarithmic growth, then add IPTG and induce for 4–6 h."
+  },
+  {
+    "index": 30,
+    "step": 4,
+    "prompt": "Inoculate a positive clone into 5 mL LB with kanamycin. Shake at 37°C to early logarithmic growth, then add IPTG and induce for 4–6 h."
+  },
+  {
+    "index": 31,
+    "step": 4,
+    "prompt": "Inoculate a positive clone into 5 mL LB with kanamycin. Shake at 37°C to early logarithmic growth, then add IPTG and induce for 4–6 h."
+  },
+  {
+    "index": 32,
+    "step": 4,
+    "prompt": "Inoculate a positive clone into 5 mL LB with kanamycin. Shake at 37°C to early logarithmic growth, then add IPTG and induce for 4–6 h."
+  },
+  {
+    "index": 33,
+    "step": 4,
+    "prompt": "Inoculate a positive clone into 5 mL LB with kanamycin. Shake at 37°C to early logarithmic growth, then add IPTG and induce for 4–6 h."
+  },
+  {
+    "index": 34,
+    "step": 4,
+    "prompt": "Inoculate a positive clone into 5 mL LB with kanamycin. Shake at 37°C to early logarithmic growth, then add IPTG and induce for 4–6 h."
+  },
+  {
+    "index": 35,
+    "step": 4,
+    "prompt": "Inoculate a positive clone into 5 mL LB with kanamycin. Shake at 37°C to early logarithmic growth, then add IPTG and induce for 4–6 h."
+  },
+  {
+    "index": 36,
+    "step": 4,
+    "prompt": "Inoculate a positive clone into 5 mL LB with kanamycin. Shake at 37°C to early logarithmic growth, then add IPTG and induce for 4–6 h."
+  },
+  {
+    "index": 37,
+    "step": 5,
+    "prompt": "Place 10 μL induced culture on a slide and add a coverslip. Use 488 nm excitation to observe green fluorescence under a fluorescence microscope."
+  },
+  {
+    "index": 38,
+    "step": 5,
+    "prompt": "Place 10 μL induced culture on a slide and add a coverslip. Use 488 nm excitation to observe green fluorescence under a fluorescence microscope."
+  },
+  {
+    "index": 39,
+    "step": 5,
+    "prompt": "Place 10 μL induced culture on a slide and add a coverslip. Use 488 nm excitation to observe green fluorescence under a fluorescence microscope."
+  },
+  {
+    "index": 40,
+    "step": 5,
+    "prompt": "Place 10 μL induced culture on a slide and add a coverslip. Use 488 nm excitation to observe green fluorescence under a fluorescence microscope."
+  },
+  {
+    "index": 41,
+    "step": 5,
+    "prompt": "Place 10 μL induced culture on a slide and add a coverslip. Use 488 nm excitation to observe green fluorescence under a fluorescence microscope."
+  },
+  {
+    "index": 42,
+    "step": 6,
+    "prompt": "Centrifuge 1 mL induced culture. Resuspend in 100 μL saline and add 25 μL 5× SDS loading buffer. Boil for 10 min, centrifuge and collect the supernatant."
+  },
+  {
+    "index": 43,
+    "step": 6,
+    "prompt": "Centrifuge 1 mL induced culture. Resuspend in 100 μL saline and add 25 μL 5× SDS loading buffer. Boil for 10 min, centrifuge and collect the supernatant."
+  },
+  {
+    "index": 44,
+    "step": 6,
+    "prompt": "Centrifuge 1 mL induced culture. Resuspend in 100 μL saline and add 25 μL 5× SDS loading buffer. Boil for 10 min, centrifuge and collect the supernatant."
+  },
+  {
+    "index": 45,
+    "step": 6,
+    "prompt": "Centrifuge 1 mL induced culture. Resuspend in 100 μL saline and add 25 μL 5× SDS loading buffer. Boil for 10 min, centrifuge and collect the supernatant."
+  },
+  {
+    "index": 46,
+    "step": 6,
+    "prompt": "Centrifuge 1 mL induced culture. Resuspend in 100 μL saline and add 25 μL 5× SDS loading buffer. Boil for 10 min, centrifuge and collect the supernatant."
+  },
+  {
+    "index": 47,
+    "step": 6,
+    "prompt": "Centrifuge 1 mL induced culture. Resuspend in 100 μL saline and add 25 μL 5× SDS loading buffer. Boil for 10 min, centrifuge and collect the supernatant."
+  },
+  {
+    "index": 48,
+    "step": 6,
+    "prompt": "Centrifuge 1 mL induced culture. Resuspend in 100 μL saline and add 25 μL 5× SDS loading buffer. Boil for 10 min, centrifuge and collect the supernatant."
+  },
+  {
+    "index": 49,
+    "step": 6,
+    "prompt": "Centrifuge 1 mL induced culture. Resuspend in 100 μL saline and add 25 μL 5× SDS loading buffer. Boil for 10 min, centrifuge and collect the supernatant."
+  },
+  {
+    "index": 50,
+    "step": 6,
+    "prompt": "Centrifuge 1 mL induced culture. Resuspend in 100 μL saline and add 25 μL 5× SDS loading buffer. Boil for 10 min, centrifuge and collect the supernatant."
+  },
+  {
+    "index": 51,
+    "step": 6,
+    "prompt": "Centrifuge 1 mL induced culture. Resuspend in 100 μL saline and add 25 μL 5× SDS loading buffer. Boil for 10 min, centrifuge and collect the supernatant."
+  },
+  {
+    "index": 52,
+    "step": 6,
+    "prompt": "Centrifuge 1 mL induced culture. Resuspend in 100 μL saline and add 25 μL 5× SDS loading buffer. Boil for 10 min, centrifuge and collect the supernatant."
+  },
+  {
+    "index": 53,
+    "step": 6,
+    "prompt": "Centrifuge 1 mL induced culture. Resuspend in 100 μL saline and add 25 μL 5× SDS loading buffer. Boil for 10 min, centrifuge and collect the supernatant."
+  },
+  {
+    "index": 54,
+    "step": 6,
+    "prompt": "Centrifuge 1 mL induced culture. Resuspend in 100 μL saline and add 25 μL 5× SDS loading buffer. Boil for 10 min, centrifuge and collect the supernatant."
+  },
+  {
+    "index": 55,
+    "step": 6,
+    "prompt": "Centrifuge 1 mL induced culture. Resuspend in 100 μL saline and add 25 μL 5× SDS loading buffer. Boil for 10 min, centrifuge and collect the supernatant."
+  },
+  {
+    "index": 56,
+    "step": 6,
+    "prompt": "Centrifuge 1 mL induced culture. Resuspend in 100 μL saline and add 25 μL 5× SDS loading buffer. Boil for 10 min, centrifuge and collect the supernatant."
+  },
+  {
+    "index": 57,
+    "step": 7,
+    "prompt": "Prepare SDS-PAGE gel, pour it between the casting plates and allow it to set. Assemble the tank and add running buffer."
+  },
+  {
+    "index": 58,
+    "step": 7,
+    "prompt": "Prepare SDS-PAGE gel, pour it between the casting plates and allow it to set. Assemble the tank and add running buffer."
+  },
+  {
+    "index": 59,
+    "step": 7,
+    "prompt": "Prepare SDS-PAGE gel, pour it between the casting plates and allow it to set. Assemble the tank and add running buffer."
+  },
+  {
+    "index": 60,
+    "step": 7,
+    "prompt": "Prepare SDS-PAGE gel, pour it between the casting plates and allow it to set. Assemble the tank and add running buffer."
+  },
+  {
+    "index": 61,
+    "step": 8,
+    "prompt": "Load 20 μL protein sample and a protein ladder. Run at constant voltage: 80 V through the stacking gel and 120 V through the resolving gel, until the dye front reaches the bottom."
+  },
+  {
+    "index": 62,
+    "step": 8,
+    "prompt": "Load 20 μL protein sample and a protein ladder. Run at constant voltage: 80 V through the stacking gel and 120 V through the resolving gel, until the dye front reaches the bottom."
+  },
+  {
+    "index": 63,
+    "step": 8,
+    "prompt": "Load 20 μL protein sample and a protein ladder. Run at constant voltage: 80 V through the stacking gel and 120 V through the resolving gel, until the dye front reaches the bottom."
+  },
+  {
+    "index": 64,
+    "step": 8,
+    "prompt": "Load 20 μL protein sample and a protein ladder. Run at constant voltage: 80 V through the stacking gel and 120 V through the resolving gel, until the dye front reaches the bottom."
+  },
+  {
+    "index": 65,
+    "step": 9,
+    "prompt": "Stain with Coomassie Brilliant Blue R-250 for 2 h at room temperature. Discard the stain and repeatedly destain until the background is clear. Look for a 27 kDa band."
+  },
+  {
+    "index": 66,
+    "step": 9,
+    "prompt": "Stain with Coomassie Brilliant Blue R-250 for 2 h at room temperature. Discard the stain and repeatedly destain until the background is clear. Look for a 27 kDa band."
+  },
+  {
+    "index": 67,
+    "step": 9,
+    "prompt": "Stain with Coomassie Brilliant Blue R-250 for 2 h at room temperature. Discard the stain and repeatedly destain until the background is clear. Look for a 27 kDa band."
+  },
+  {
+    "index": 68,
+    "step": 9,
+    "prompt": "Stain with Coomassie Brilliant Blue R-250 for 2 h at room temperature. Discard the stain and repeatedly destain until the background is clear. Look for a 27 kDa band."
+  },
+  {
+    "index": 69,
+    "step": 9,
+    "prompt": "Stain with Coomassie Brilliant Blue R-250 for 2 h at room temperature. Discard the stain and repeatedly destain until the background is clear. Look for a 27 kDa band."
+  },
+  {
+    "index": 70,
+    "step": 9,
+    "prompt": "Stain with Coomassie Brilliant Blue R-250 for 2 h at room temperature. Discard the stain and repeatedly destain until the background is clear. Look for a 27 kDa band."
+  }
+]

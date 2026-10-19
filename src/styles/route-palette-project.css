@@ -1,0 +1,34 @@
+/* ============================================================================
+   Project module palette  (换色唯一入口)
+   ----------------------------------------------------------------------------
+   The whole Project reader (4 pages) shares this one palette. To re-skin the
+   module — or to copy this file for the next module — only the three hex
+   values below need to change; every other colour used by
+   `wiki-route-skin.css` is derived from them with color-mix().
+
+   Role mapping (identical to Wet Lab's, verified against the live page):
+     主色 --route-main : fixed global header bar + optional chapter rail
+     辅色 --route-soft : left TOC/sidebar card, panels, header nav pills
+     底色 --route-base : page surface behind the mat (the reader background)
+   Plus the module's vine border illustration for the article frame.
+   ========================================================================== */
+
+/* The footer is a sibling of <Routes>, so it needs the palette named directly.
+   See route-palette-team.css for the rationale. */
+.wiki-page--project,
+.site-header.is-project-page,
+.circure-footer.is-project-page {
+  /* ① 三色板 —— 只有这三行需要改 */
+  --route-main: #b7d782; /* 主色 rgb(183, 215, 130) */
+  --route-soft: #dfee91; /* 辅色 rgb(223, 238, 145) */
+  --route-base: #f3f7e0; /* 底色 rgb(243, 247, 224) */
+
+  /* ② 模块专属装饰素材（正文面板的植物藤蔓边框） */
+  --route-frame-image: url("https://static.igem.wiki/teams/6056/wiki/files/pages/project/project.avif");
+
+  /* ③ 标题与马克笔专属主题配色（深浅分明的双色层级设计） */
+  --route-heading-ink: #243d2c;      /* 大标题 H2：深墨冷森绿，沉稳厚重 */
+  --route-marker-bg: #c4c7be;        /* 大标题马克笔：柔和灰鼠绿底涂 */
+  --route-subheading-ink: #84382b;   /* 小标题 H3：暖陶土褐红，与墨绿形成自然界赤陶与针叶的鲜明撞色，不相近且典雅克制 */
+  --route-watermark: rgba(36, 61, 44, 0.12);
+}

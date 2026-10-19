@@ -1,0 +1,759 @@
+/* Watercolor experiment map; protocol content and viewer keep their own skin. */
+.exp-atlas {
+  container: experiment-atlas / inline-size;
+  min-width: 0;
+  margin: 0;
+  color: var(--route-ink, #263c44);
+}
+
+.exp-atlas__map {
+  position: relative;
+  min-width: 0;
+  height: 280px;
+  isolation: isolate;
+}
+
+.exp-atlas.is-expanded .exp-atlas__map {
+  height: 500px;
+}
+
+.exp-atlas__connections {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.exp-atlas__orbit {
+  fill: none;
+  stroke: #8ba3a6;
+  stroke-width: 0.8;
+  stroke-dasharray: 1 9;
+  stroke-linecap: round;
+  opacity: 0.28;
+  transition:
+    cx 340ms cubic-bezier(0.2, 0, 0, 1),
+    cy 340ms cubic-bezier(0.2, 0, 0, 1),
+    rx 340ms cubic-bezier(0.2, 0, 0, 1),
+    ry 340ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.exp-atlas__spoke,
+.exp-atlas__branch {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.25;
+  opacity: 0.3;
+  transition: d 340ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.exp-atlas__spoke.is-selected,
+.exp-atlas__branch {
+  opacity: 0.58;
+}
+
+.exp-atlas__centre-position,
+.exp-atlas__stage-position,
+.exp-atlas__leaf-position {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  transform: translate(var(--node-x), var(--node-y));
+  transition: transform 340ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.exp-atlas__stages[hidden] {
+  display: none;
+}
+
+.exp-atlas__centre,
+.exp-atlas__stage,
+.exp-atlas__node {
+  --watercolor-color: var(--node-color, #72a4a5);
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: color-mix(in srgb, var(--node-color, #527f8a) 76%, #263c44);
+  font-family: var(--font-body, sans-serif);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.exp-atlas__centre,
+.exp-atlas__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+}
+
+.exp-atlas__centre {
+  width: 88px;
+  transform: translate(-50%, -44px);
+}
+
+.exp-atlas__stage {
+  width: 92px;
+  transform: translate(-50%, -28px);
+}
+
+.exp-atlas__centre-circle,
+.exp-atlas__stage-circle,
+.exp-atlas__node-code {
+  position: relative;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  isolation: isolate;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  font-weight: 600;
+  transition: transform 180ms ease;
+}
+
+.exp-atlas__wash {
+  position: absolute;
+  z-index: -1;
+  inset: -14%;
+  display: block;
+  width: 128%;
+  height: 128%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.exp-atlas__pigment {
+  opacity: 0.85;
+  transition: opacity 180ms ease;
+}
+
+.exp-atlas__pigment__edge {
+  fill: none;
+  stroke: var(--watercolor-color);
+  stroke-width: 1.35;
+  opacity: 0.28;
+}
+
+.exp-atlas__ink {
+  position: relative;
+}
+
+.exp-atlas__centre-circle {
+  width: 88px;
+  height: 88px;
+  font: 500 38px/1 var(--font-heading, serif);
+}
+
+.exp-atlas__stage-circle {
+  width: 56px;
+  height: 56px;
+  font: 500 26px/1 var(--font-heading, serif);
+}
+
+.exp-atlas__stage-title {
+  max-width: 92px;
+  color: color-mix(in srgb, var(--node-color, #527f8a) 30%, #263c44);
+  font-size: 13px;
+  font-weight: 550;
+  line-height: 1.35;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.exp-atlas__toggle {
+  position: absolute;
+  z-index: 1;
+  right: -3px;
+  bottom: -3px;
+  display: grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, currentColor 42%, transparent);
+  border-radius: 48% 52% 45% 55% / 53% 46% 54% 47%;
+  background: #fffefb;
+  font: 500 14px/1 var(--font-body, sans-serif);
+}
+
+.exp-atlas__centre .exp-atlas__toggle {
+  right: 1px;
+  bottom: 1px;
+  width: 23px;
+  height: 23px;
+  font-size: 17px;
+}
+
+.exp-atlas__centre:hover .exp-atlas__centre-circle,
+.exp-atlas__stage:hover .exp-atlas__stage-circle,
+.exp-atlas__stage.is-selected .exp-atlas__stage-circle,
+.exp-atlas__node:hover .exp-atlas__node-code,
+.exp-atlas__node.is-active .exp-atlas__node-code {
+  transform: scale(1.06);
+}
+
+.exp-atlas__centre:hover .exp-atlas__pigment,
+.exp-atlas__centre:focus-visible .exp-atlas__pigment,
+.exp-atlas__stage:hover .exp-atlas__pigment,
+.exp-atlas__stage:focus-visible .exp-atlas__pigment,
+.exp-atlas__stage.is-selected .exp-atlas__pigment,
+.exp-atlas__node:hover .exp-atlas__pigment,
+.exp-atlas__node:focus-visible .exp-atlas__pigment,
+.exp-atlas__node.is-active .exp-atlas__pigment {
+  opacity: 1;
+}
+
+.exp-atlas__centre:active .exp-atlas__centre-circle,
+.exp-atlas__stage:active .exp-atlas__stage-circle,
+.exp-atlas__node:active .exp-atlas__node-code {
+  transform: scale(0.96);
+}
+
+.exp-atlas__centre:focus-visible,
+.exp-atlas__stage:focus-visible,
+.exp-atlas__node:focus-visible {
+  border-radius: 10px;
+  outline: 2px solid currentColor;
+  outline-offset: 6px;
+}
+
+.exp-atlas__node {
+  display: flex;
+  width: 100%;
+  min-height: 54px;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  text-align: left;
+}
+
+.exp-atlas__leaf-position {
+  width: calc(39cqw - 24px);
+  margin-top: -27px;
+}
+
+.exp-atlas__node-code {
+  width: 50px;
+  height: 50px;
+  font: 600 15px/1 var(--font-heading, serif);
+  font-variant-numeric: tabular-nums;
+}
+
+.exp-atlas__node-title {
+  flex: 1;
+  color: var(--route-ink, #263c44);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.exp-atlas__node-arrow {
+  flex: 0 0 auto;
+  padding-right: 3px;
+  font-size: 16px;
+  opacity: 0.55;
+  transition: opacity 180ms ease;
+}
+
+.exp-atlas__node:hover .exp-atlas__node-arrow {
+  opacity: 1;
+}
+
+.exp-atlas .exp-atlas__instruction {
+  margin: 0;
+  padding: 10px 12px 16px;
+  color: var(--route-muted, #587977);
+  font: 400 12px/1.5 var(--font-body, sans-serif);
+  text-align: center;
+}
+
+/* Use document flow when the actual article column cannot fit the radial map. */
+@container experiment-atlas (max-width: 749px) {
+  .exp-atlas__map,
+  .exp-atlas.is-expanded .exp-atlas__map {
+    display: flex;
+    height: auto;
+    min-height: 230px;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 28px 12px 18px;
+  }
+
+  .exp-atlas__connections {
+    display: none;
+  }
+
+  .exp-atlas__centre-position,
+  .exp-atlas__stage-position,
+  .exp-atlas__leaf-position {
+    position: relative;
+    width: auto;
+    height: auto;
+    margin: 0;
+    transform: none;
+    transition: none;
+  }
+
+  .exp-atlas__centre,
+  .exp-atlas__stage {
+    transform: none;
+  }
+
+  .exp-atlas__centre-circle {
+    width: 76px;
+    height: 76px;
+  }
+
+  .exp-atlas__centre {
+    width: 76px;
+  }
+
+  .exp-atlas__stages:not([hidden]) {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px 8px;
+    align-items: start;
+  }
+
+  .exp-atlas__stage {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .exp-atlas__stage-title {
+    font-size: 12px;
+  }
+
+  .exp-atlas__leaves {
+    display: grid;
+    width: 100%;
+    gap: 14px;
+    padding-top: 20px;
+    border-top: 1px solid
+      color-mix(in srgb, var(--route-ink, #263c44) 12%, transparent);
+  }
+
+  .exp-atlas__node {
+    min-height: 56px;
+    gap: 14px;
+  }
+
+  .exp-atlas__node-title {
+    font-size: 14px;
+  }
+}
+
+@container experiment-atlas (max-width: 390px) {
+  .exp-atlas__stages:not([hidden]) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-atlas__orbit,
+  .exp-atlas__spoke,
+  .exp-atlas__branch,
+  .exp-atlas__centre-position,
+  .exp-atlas__stage-position,
+  .exp-atlas__leaf-position,
+  .exp-atlas__centre-circle,
+  .exp-atlas__stage-circle,
+  .exp-atlas__node-code,
+  .exp-atlas__pigment,
+  .exp-atlas__node-arrow {
+    transition: none;
+  }
+
+  .exp-atlas__centre-circle,
+  .exp-atlas__stage-circle,
+  .exp-atlas__node-code {
+    transform: none !important;
+  }
+}
+
+/* Top-layer protocol viewer */
+.wiki-protocol-modal {
+  position: fixed;
+  z-index: 10000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: clamp(10px, 2vw, 24px);
+  background: rgba(12, 35, 45, 0.78);
+  backdrop-filter: blur(4px);
+}
+
+.wiki-protocol-modal__surface {
+  display: flex;
+  width: min(1240px, 96vw);
+  height: min(92vh, 940px);
+  min-height: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #aac7cc;
+  border-radius: 14px;
+  background: #f6fbfa;
+  box-shadow: 0 26px 90px rgba(7, 29, 38, 0.38);
+  outline: none;
+}
+
+.wiki-protocol-modal .wiki-protocol-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #d0e1e1;
+  background: #fff;
+}
+
+.wiki-protocol-modal__meta {
+  min-width: 0;
+}
+
+.wiki-protocol-modal__meta h4 {
+  margin: 0;
+  color: #173f52;
+  font: 700 clamp(17px, 2vw, 24px)/1.25 var(--font-heading, serif);
+}
+
+.wiki-protocol-modal__code {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 4px 7px;
+  border-radius: 5px;
+  background: #173f52;
+  color: #fff;
+  font: 700 12px/1 var(--font-mono, monospace);
+  vertical-align: 2px;
+}
+
+.wiki-protocol-modal__header-actions,
+.wiki-protocol-modal__tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.wiki-protocol-modal__header-actions {
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+}
+
+.wiki-protocol-modal__header-actions button,
+.wiki-protocol-modal__tabs button {
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid #aac7cc;
+  border-radius: 7px;
+  background: #fff;
+  color: #173f52;
+  font: 600 12px/1.1 var(--font-body, sans-serif);
+  cursor: pointer;
+}
+
+.wiki-protocol-modal__header-actions button:hover:not(:disabled),
+.wiki-protocol-modal__tabs button:hover:not(:disabled) {
+  border-color: #267b84;
+  background: #edf7f6;
+}
+
+.wiki-protocol-modal__header-actions button:disabled,
+.wiki-protocol-modal__tabs button:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.wiki-protocol-modal__close {
+  border-color: #173f52 !important;
+  background: #173f52 !important;
+  color: #fff !important;
+}
+
+.wiki-protocol-modal button.wiki-protocol-modal__icon-button {
+  display: inline-grid;
+  width: 38px;
+  min-width: 38px;
+  height: 38px;
+  padding: 8px;
+  place-items: center;
+}
+
+.wiki-protocol-modal__icon-button svg {
+  width: 19px;
+  height: 19px;
+  stroke-width: 1.8;
+}
+
+.wiki-protocol-modal button:focus-visible {
+  outline: 2px solid #267b84;
+  outline-offset: 3px;
+}
+
+.wiki-protocol-modal__boundary {
+  margin: 0;
+  padding: 10px 20px;
+  border-bottom: 1px solid #f0dbab;
+  background: #fff8e8;
+  color: #664d1a;
+  font: 400 12px/1.5 var(--font-body, sans-serif);
+}
+
+.wiki-protocol-modal__tabs {
+  padding: 10px 20px;
+  border-bottom: 1px solid #d0e1e1;
+  background: #fff;
+}
+
+.wiki-protocol-modal__tabs button.is-active {
+  border-color: #173f52;
+  background: #173f52;
+  color: #fff;
+}
+
+.wiki-protocol-modal__tabs button span {
+  margin-right: 5px;
+  font: 700 11px/1 var(--font-mono, monospace);
+}
+
+.wiki-protocol-modal__size-toggle {
+  margin-left: auto;
+}
+
+.wiki-protocol-modal__stage {
+  position: relative;
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 66px 28px;
+  background: #eff6f5;
+  touch-action: pan-y;
+}
+
+.wiki-protocol-modal__image-scroll {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: auto;
+  border: 1px solid #d0e1e1;
+  border-radius: 9px;
+  background: #fff;
+  scrollbar-width: thin;
+}
+
+.wiki-protocol-modal__image-scroll img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #fff;
+}
+
+.wiki-protocol-modal__image-scroll img.is-actual {
+  position: static;
+  width: auto;
+  height: auto;
+  max-width: none;
+  max-height: none;
+}
+
+.wiki-protocol-modal__edge {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  display: grid;
+  width: 44px;
+  height: 68px;
+  place-items: center;
+  border: 1px solid #aac7cc;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #173f52;
+  font: 400 34px/1 var(--font-body, sans-serif);
+  cursor: pointer;
+  box-shadow: 0 5px 18px rgba(23, 63, 82, 0.14);
+  transform: translateY(-50%);
+}
+
+.wiki-protocol-modal__edge:hover:not(:disabled) {
+  border-color: #173f52;
+  background: #173f52;
+  color: #fff;
+}
+
+.wiki-protocol-modal__edge:disabled {
+  cursor: default;
+  opacity: 0.22;
+}
+
+.wiki-protocol-modal__edge--left {
+  left: 12px;
+}
+.wiki-protocol-modal__edge--right {
+  right: 12px;
+}
+
+.wiki-protocol-modal__empty {
+  display: grid;
+  gap: 8px;
+  place-items: center;
+  padding: 40px;
+  color: #587977;
+  text-align: center;
+  font: 400 13px/1.5 var(--font-body, sans-serif);
+}
+
+.wiki-protocol-modal__empty strong {
+  color: #173f52;
+  font: 700 18px/1.25 var(--font-heading, serif);
+}
+
+/* Static protocol figures in the article */
+.exp-protocol-spread {
+  margin: 28px 0 36px;
+  padding: 18px;
+  border: 1px solid #d0e1e1;
+  border-radius: 9px;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(23, 63, 82, 0.05);
+}
+
+.exp-protocol-spread__heading {
+  margin: 0 0 8px;
+  color: #173f52;
+  font: 700 16px/1.3 var(--font-heading, serif);
+}
+
+.exp-protocol-spread__boundary {
+  margin: 0 0 14px;
+  padding: 8px 12px;
+  border-left: 3px solid #3e8d97;
+  border-radius: 0 4px 4px 0;
+  background: #f0f7f6;
+  font: 400 12px/1.5 var(--font-body, sans-serif);
+}
+
+.exp-protocol-spread__images {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+.exp-protocol-spread__workflow,
+.exp-protocol-spread__materials a {
+  display: block;
+  color: #263c44;
+  text-decoration: none;
+}
+
+.exp-protocol-spread__workflow span,
+.exp-protocol-spread__materials a span {
+  display: block;
+  margin-bottom: 6px;
+  color: #173f52;
+  font: 700 12px/1.2 var(--font-body, sans-serif);
+}
+
+.exp-protocol-spread__workflow img,
+.exp-protocol-spread__materials a img {
+  display: block;
+  width: 100%;
+  max-height: 520px;
+  border: 1px solid #d4e5e4;
+  border-radius: 6px;
+  background: #fff;
+  object-fit: contain;
+}
+
+.exp-protocol-spread__workflow small,
+.exp-protocol-spread__materials a small {
+  display: inline-block;
+  margin-top: 6px;
+  color: #267b84;
+  font: 600 11px/1 var(--font-body, sans-serif);
+}
+
+.exp-protocol-spread__materials {
+  margin-top: 12px;
+}
+
+.exp-protocol-spread__materials summary {
+  width: fit-content;
+  padding: 8px 14px;
+  border: 1px solid #aac7cc;
+  border-radius: 6px;
+  background: #f0f7f6;
+  color: #173f52;
+  font: 600 12px/1.2 var(--font-body, sans-serif);
+  cursor: pointer;
+}
+
+.exp-protocol-spread__materials[open] summary {
+  margin-bottom: 12px;
+}
+
+@media (max-width: 860px) {
+  .wiki-protocol-modal__surface {
+    width: 98vw;
+    height: 94vh;
+  }
+  .wiki-protocol-modal .wiki-protocol-modal__header {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .wiki-protocol-modal {
+    padding: 0;
+  }
+  .wiki-protocol-modal__surface {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
+  .wiki-protocol-modal .wiki-protocol-modal__header,
+  .wiki-protocol-modal__tabs {
+    padding-inline: 14px;
+  }
+  .wiki-protocol-modal button.wiki-protocol-modal__icon-button {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+  }
+  .wiki-protocol-modal__stage {
+    padding: 12px 48px 24px;
+  }
+  .wiki-protocol-modal__edge {
+    width: 34px;
+    height: 54px;
+  }
+  .wiki-protocol-modal__edge--left {
+    left: 7px;
+  }
+  .wiki-protocol-modal__edge--right {
+    right: 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-atlas__node-dot {
+    transition: none;
+  }
+}

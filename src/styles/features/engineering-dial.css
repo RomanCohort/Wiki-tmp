@@ -1,0 +1,74 @@
+/* Engineering TIME dial — Layered artwork and dual animated pointers */
+.eng-dial a {
+  cursor: pointer;
+  outline: none;
+}
+
+.eng-dial__base-image {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Outer TIME ring interactive sectors -------------------------------------- */
+.eng-dial__cycle-face {
+  fill: transparent;
+  stroke: none;
+  transition: fill 240ms ease;
+}
+
+.eng-dial__cycle.is-active .eng-dial__cycle-face {
+  fill: rgba(255, 255, 255, 0.3);
+}
+
+.eng-dial__cycle.is-planned {
+  cursor: not-allowed;
+}
+
+a.eng-dial__cycle:not(.is-active):hover .eng-dial__cycle-face,
+a.eng-dial__cycle:focus-visible .eng-dial__cycle-face {
+  fill: rgba(255, 255, 255, 0.16);
+}
+
+/* Inner DBTL dial interactive sectors -------------------------------------- */
+.eng-dial__stage-face {
+  fill: transparent;
+  stroke: none;
+  transition: fill 240ms ease;
+}
+
+.eng-dial__stage.is-active .eng-dial__stage-face {
+  fill: rgba(255, 255, 255, 0.36);
+}
+
+a.eng-dial__stage:not(.is-active):hover .eng-dial__stage-face,
+a.eng-dial__stage:focus-visible .eng-dial__stage-face {
+  fill: rgba(255, 255, 255, 0.18);
+}
+
+/* Dual pointers and center cap --------------------------------------------- */
+.eng-dial__hand-long,
+.eng-dial__hand-short {
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.18));
+  /* Rotate around the pointer artwork's own centre (= dial centre, 366 366).
+     Declared in CSS so the origin is layout-guaranteed and cannot drift. */
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 420ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eng-dial__hand-long,
+  .eng-dial__hand-short {
+    transition: none;
+  }
+}
+
+.eng-dial__cap {
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.22));
+}
+

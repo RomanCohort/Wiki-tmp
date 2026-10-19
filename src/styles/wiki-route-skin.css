@@ -1,0 +1,2494 @@
+/* ============================================================================
+   CirCure abstract reader-route skin  (reusable across every wiki module)
+   ----------------------------------------------------------------------------
+   This file owns STRUCTURE ONLY: layout, spacing, typography scale, component
+   shapes, motion and responsive rules. It never hard-codes a palette colour —
+   every colour is read from a `--route-*` token.
+
+   A new page/module therefore only needs a palette file with THREE hex values
+   (see `route-palette-project.css`):
+
+       .wiki-page--<module>,
+       .site-header.is-<module>-page {
+         --route-main: #rrggbb;   // 主色 — header bar / rail
+         --route-soft: #rrggbb;   // 辅色 — sidebar card / panels / pills
+         --route-base: #rrggbb;   // 底色 — page surface / mat
+         --route-frame-image: url("../assets/wiki/<module>.png"); // 藤蔓边框
+       }
+
+   Everything below (paper, ink, muted, accent, hairlines, shadows, tints) is
+   derived from those three values in section 1, so a new page needs no other
+   colour decisions.
+
+   Scope contract
+     .wiki-page--route   the reader page root (hero → mat → closing prompt)
+     .site-header.is-route-page   the fixed global header while such a page is
+                         open; the per-module class carries the palette.
+
+   Wet Lab records use this same skin with a module palette and
+   `wiki-page--route` on each record root.
+   ========================================================================== */
+
+/* 1. Derived tokens -------------------------------------------------------- */
+.wiki-page--route,
+.site-header.is-route-page {
+  /* Neutrals derived from the palette so every module stays in family. */
+  --route-paper: color-mix(in srgb, var(--route-base) 30%, #ffffff);
+  --route-ink: color-mix(in srgb, var(--route-main) 16%, #1b2412);
+  --route-body-ink: #1d1d1f;
+  --route-muted: color-mix(in srgb, var(--route-main) 22%, #4a5540);
+  --route-accent: color-mix(in srgb, var(--route-main) 50%, #2f4d18);
+  --route-line: color-mix(in srgb, var(--route-accent) 22%, transparent);
+  --route-line-strong: color-mix(
+    in srgb,
+    var(--route-accent) 40%,
+    transparent
+  );
+  --route-panel: color-mix(in srgb, var(--route-soft) 76%, #ffffff);
+  --route-next-card: color-mix(in srgb, var(--route-soft) 55%, #ffffff);
+  --route-shadow:
+    0 2px 4px color-mix(in srgb, var(--route-ink) 8%, transparent),
+    0 18px 44px color-mix(in srgb, var(--route-ink) 9%, transparent);
+
+  /* Reader layout contract — single source of truth for every height below.
+     --reader-header-h : fixed header the reader sits under (tokens.layout
+                         .headerHeight, 78px desktop / 62px <=640px).
+     --reader-pad      : mat inner padding (space/4–space/5 band).
+     --toc-w           : TOC card column.
+     --reader-h        : reader surface = viewport minus header. The mat, the
+                         TOC card, and the frame all derive from THIS value;
+                         no other viewport calc is allowed on the card side.
+     --route-page-bg   : route theme surface shared by mat + closing block. */
+  --reader-header-h: var(--header-height);
+  --reader-pad: clamp(14px, 1.8vw, 22px);
+  --toc-w: minmax(190px, 250px);
+  --reader-h: calc(100dvh - var(--reader-header-h));
+  --route-page: 1120px;
+  --route-page-bg: var(--route-base);
+
+  /* Editorial vertical rhythm scale (全站正文排版与统一间距层级规范) */
+  --wiki-space-p: 16px;              /* 1. 最小：段落与段落间距 (p ↔ p) */
+  --wiki-space-subhead-top: 28px;    /* 2. 稍大：正文到小标题顶部 (Body → H3) */
+  --wiki-space-subhead-bottom: 14px; /* 2b. 贴合：小标题到底部紧随正文 (H3 → Body) */
+  --wiki-space-block: 24px;          /* 3. 规范：块级元素间距 (正文↔组件/图表/表格/Callout) */
+  --wiki-space-head-bottom: 24px;    /* 4. 再稍大：大标题到底下内容 (H2 → Content/H3) */
+  --wiki-space-section: 44px;        /* 5. 宏观：章节与章节间距 (Section ↔ Section) */
+}
+
+/* 2. Page surface ---------------------------------------------------------- */
+.wiki-page--route {
+  min-width: 320px;
+  /* Re-point the shared wiki tokens at the route palette so base components
+     (progress hairline, status chips, hero rules) stay in family instead of
+     falling back to the default pink/navy category hues. */
+  --wiki-accent: var(--route-accent);
+  --wiki-structure: var(--route-ink);
+  --wiki-deep: var(--route-ink);
+  --wiki-surface: var(--route-paper);
+  --wiki-muted-surface: color-mix(
+    in srgb,
+    var(--route-paper) 68%,
+    var(--route-base)
+  );
+  background: var(--route-base);
+  color: var(--route-ink);
+}
+
+.wiki-page--route *,
+.wiki-page--route *::before,
+.wiki-page--route *::after {
+  letter-spacing: 0;
+}
+
+/* Pull the route under the fixed header so the full-height hero starts at the
+   top of the viewport. The document then owns hero, mat, prompt, footer scroll.
+   Contract: the page surface uses --route-page-bg so the mat and the closing
+   block join it with zero colour seam. */
+.wiki-page.wiki-page--route {
+  display: block;
+  margin-top: calc(-1 * var(--header-height));
+  overflow: visible;
+  background: var(--route-page-bg);
+  background-image: none;
+}
+
+/* Reading-progress hairline: anchored to the mat's top edge (the hero is
+   exactly 100dvh from y=0), so at scroll = 0 no fragment shows in the fold. */
+.wiki-page--route .wiki-page-progress {
+  --wiki-page-progress: 0;
+  position: absolute;
+  z-index: 98;
+  top: 100dvh;
+  right: 0;
+  left: 0;
+  height: 2px;
+  pointer-events: none;
+}
+
+.wiki-page--route .wiki-page-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--route-accent);
+  transform: scaleX(var(--wiki-page-progress));
+  transform-origin: 0 50%;
+}
+
+.wiki-page--route [id] {
+  scroll-margin-top: calc(var(--header-height) + 24px);
+}
+
+body:has(.route--reader) {
+  background: var(--brand-navy-deep);
+}
+
+html.has-route-reader-scroll {
+  scroll-padding-top: var(--header-height);
+  /* Snapping is deliberately off on reader routes. The document owns the
+     scroll while the mat is pinned (`.wiki-record` is `position: sticky`), and
+     a *sticky* scroll-snap target re-anchors itself every frame — the browser
+     then fights the gesture and yanks the document (and the projected article
+     position) backwards mid-scroll. Measured with wheel-driven frame sampling
+     on the long-form reader: `y proximity` produced repeated 30–100px rebounds, the
+     frame's scrollTop flipping back to 0, and 73ms worst frames; with snapping
+     off the scroll is strictly monotonic and the worst frame is 43ms. */
+  scroll-snap-type: none;
+}
+
+/* 3. Hero ------------------------------------------------------------------ */
+/* Full-bleed route-specific opening. Contract: the hero is intentionally
+   100dvh INCLUDING the header zone (the page is pulled up by
+   --header-height); the reader mat below uses the separate --reader-h
+   contract and must not reuse this value. */
+.wiki-page.wiki-page--route.wiki-page--manuscript .wiki-hero {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  place-items: center;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background-color: var(--route-paper);
+  background-image: var(--route-hero-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--route-ink);
+}
+
+.wiki-page.wiki-page--route.wiki-page--manuscript .wiki-hero::before,
+.wiki-page.wiki-page--route.wiki-page--manuscript .wiki-hero::after {
+  display: none;
+}
+
+.wiki-hero__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.wiki-page.wiki-page--route.wiki-page--manuscript .wiki-hero__copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: min(900px, calc(100% - 48px));
+  max-width: 900px;
+  grid-column: 1;
+  grid-row: 1;
+  gap: 0;
+  place-self: stretch center;
+  place-content: center;
+  margin: 0;
+  /* Optical centering under the fixed header (contract A — hero starts at
+     y=0, height 100dvh). */
+  padding: var(--reader-header-h) 0 24px;
+  text-align: center;
+}
+
+.wiki-page.wiki-page--route.wiki-page--manuscript .wiki-hero h1 {
+  max-width: 880px;
+  margin: 0 auto;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: clamp(58px, 7.2vw, 108px);
+  font-weight: 600;
+  line-height: 0.98;
+}
+
+.wiki-page.wiki-page--route.wiki-page--manuscript .wiki-hero__lede {
+  max-width: 720px;
+  margin: 28px auto 0;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: clamp(18px, 1.6vw, 24px);
+  line-height: 1.48;
+}
+
+/* 4. Chapter rail (optional per module) ------------------------------------ */
+.wiki-page--route .sub-nav {
+  position: sticky;
+  z-index: 24;
+  top: var(--header-height);
+  width: 100%;
+  margin: 0;
+  padding: 18px clamp(24px, 5vw, 72px);
+  background: var(--route-main);
+  background-image: none;
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--route-ink) 8%, transparent),
+    0 8px 22px color-mix(in srgb, var(--route-ink) 10%, transparent);
+}
+
+.wiki-page--route .sub-nav__track {
+  width: min(1160px, 100%);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0 auto;
+  border: 0;
+}
+
+.wiki-page--route .sub-nav__track a,
+.wiki-page--route .sub-nav__track a:last-child {
+  min-height: 58px;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--route-panel);
+  color: var(--route-ink);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.52);
+  transition-property: color, background-color, box-shadow, transform;
+  transition-duration: 180ms;
+  transition-timing-function: var(--ease-out);
+}
+
+.wiki-page--route .sub-nav__track a:hover,
+.wiki-page--route .sub-nav__track a:focus-visible {
+  background: color-mix(in srgb, var(--route-soft) 55%, #ffffff);
+  color: var(--route-accent);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72),
+    0 5px 14px color-mix(in srgb, var(--route-ink) 12%, transparent);
+  transform: translateY(-2px);
+}
+
+.wiki-page--route .sub-nav__track a:active {
+  transform: scale(0.96);
+}
+
+.wiki-page--route .sub-nav__track a.is-active {
+  background: var(--route-paper);
+  color: var(--route-accent);
+  box-shadow:
+    inset 0 0 0 2px var(--route-line),
+    0 7px 18px color-mix(in srgb, var(--route-ink) 13%, transparent);
+}
+
+.wiki-page--route .sub-nav__track a.is-active::after {
+  right: 18px;
+  bottom: 6px;
+  left: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--route-accent);
+}
+
+.wiki-page--route .sub-nav__head {
+  justify-content: center;
+}
+
+.wiki-page--route .sub-nav__track strong {
+  overflow-wrap: anywhere;
+  color: inherit;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 720;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.wiki-page--route .sub-nav__track i,
+.wiki-page--route .sub-nav__track small {
+  display: none;
+}
+
+/* 5. Work surface (mat) ---------------------------------------------------- */
+/* This file alone owns .wiki-record geometry, including responsive rules.
+   Lazy route CSS can load in any order, so legacy skins must not size it.
+   Contract: --reader-h is the ONLY viewport height here; the TOC card and the
+   frame are grid children stretched to the mat's content box (mat height minus
+   --reader-pad on both edges). The frame's border colour is this mat's own
+   padding, not a body inset. */
+.wiki-page.wiki-page--route .wiki-record {
+  display: grid;
+  width: 100%;
+  max-width: none;
+  height: var(--reader-h);
+  max-height: var(--reader-h);
+  min-height: 0;
+  grid-template-columns: var(--toc-w) minmax(0, 1fr);
+  gap: 22px; /* space/5 */
+  align-items: stretch;
+  margin: 0;
+  padding: var(--reader-pad);
+  box-sizing: border-box;
+  background: var(--route-page-bg);
+  background-image: none;
+  overflow: hidden;
+  /* No `scroll-snap-align` here: the mat is pinned inside
+     `.wiki-reader-track`, so a snap target on it would re-anchor every frame
+     and fight the reader's gesture (see the note on
+     `html.has-route-reader-scroll`). */
+}
+
+/* Slot wrapper for custom page-specific sidebar outlines */
+.wiki-page--route .wiki-outline-slot {
+  height: 100%;
+  max-height: calc(var(--reader-h) - var(--reader-pad) * 2);
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Optional full-width reader variant. The sidebar is omitted by the renderer,
+   so the article frame consumes the released column without changing the
+   default two-column route. */
+.wiki-page.wiki-page--route .wiki-record--full {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* 6. TOC — marker outline ---------------------------------------------------
+   One outline for every reader route (desktop column + mobile drawer). No
+   card chrome: typography carries the hierarchy and the article's highlighter
+   swash marks the reading position. Inks come from the module's own heading
+   colours, so a new module only needs its palette (`route-palette-*.css`).
+
+   Levels
+     1  section     Fraunces old-style figure + 15px label
+     2  subheading  13.5px, indented under the label column, no number
+     3  subheading  12.5px, extra indent on a hairline guide; listed only
+                    under the level-2 heading being read ("1.1.1" etc.)
+   Labels wrap (hanging indent) instead of truncating.
+
+   The marker outline is the shared navigation style for every reader route. */
+.wiki-page.wiki-page--route .wiki-outline.wiki-outline--marker {
+  --toc-ink: var(--route-heading-ink, var(--route-ink));
+  --toc-ink-sub: var(--route-subheading-ink, var(--route-ink));
+  /* Rest/faint inks stay legible (>= 4.5:1 target) on every module's mat. */
+  --toc-rest: color-mix(in srgb, var(--toc-ink) 82%, transparent);
+  --toc-faint: color-mix(in srgb, var(--toc-ink) 72%, transparent);
+  /* The article swash sits on white paper; the TOC sits on the tinted mat,
+     so pull the swash toward the module colour to keep it visible. */
+  --toc-marker: color-mix(
+    in srgb,
+    var(--route-main) 45%,
+    var(--route-marker-bg, #c4c7be)
+  );
+
+  position: relative;
+  inset: auto;
+  z-index: 4;
+  /* Vertically centred in the mat; scrolls once taller than the mat. */
+  align-self: center;
+  width: 100%;
+  max-height: calc(var(--reader-h) - var(--reader-pad) * 2);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 6px 6px 6px 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+  scrollbar-width: none;
+}
+
+.wiki-page.wiki-page--route .wiki-outline--marker::-webkit-scrollbar {
+  display: none;
+}
+
+/* The draggable ribbon scrubber is retired; its measuring JS stays harmless. */
+.wiki-page.wiki-page--route .wiki-outline--marker .wiki-outline__ribbon,
+.wiki-page.wiki-page--route .wiki-outline--marker .wiki-outline__sub-index {
+  display: none;
+}
+
+.wiki-page.wiki-page--route .wiki-outline.wiki-outline--marker nav {
+  position: relative;
+  display: grid;
+  gap: 0;
+  padding: 0;
+  border: 0;
+}
+
+.wiki-page.wiki-page--route .wiki-outline--marker .wiki-outline__group {
+  border: 0;
+}
+
+/* Shared row reset (all levels). */
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  nav
+  :is(.wiki-outline__primary, .wiki-outline__secondary) {
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  opacity: 1;
+  text-decoration: none;
+  transform: none;
+  transition: color 220ms var(--ease-out);
+}
+
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  nav
+  :is(.wiki-outline__primary, .wiki-outline__secondary):is(:hover, :focus-visible, .is-active) {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  :is(.wiki-outline__primary, .wiki-outline__secondary, .wiki-outline__related a):focus-visible {
+  outline: 2px solid var(--route-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Level 1 ------------------------------------------------------------------ */
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  nav
+  .wiki-outline__primary {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 8px;
+  align-items: baseline;
+  padding: 8px 0;
+  color: var(--toc-rest);
+}
+
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  nav
+  .wiki-outline__primary:is(:hover, :focus-visible, .is-active) {
+  padding-left: 0;
+  color: var(--toc-ink);
+}
+
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  nav
+  .wiki-outline__primary
+  .wiki-outline__index {
+  display: inline;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  color: var(--toc-faint);
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  transform: none;
+  transition: color 220ms var(--ease-out);
+}
+
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  nav
+  .wiki-outline__primary.is-active
+  .wiki-outline__index {
+  color: var(--toc-ink);
+}
+
+/* Labels are inline so the swash follows every wrapped line. */
+.wiki-page.wiki-page--route .wiki-outline--marker .wiki-outline__copy {
+  display: block;
+}
+
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  .wiki-outline__primary
+  .wiki-outline__copy
+  strong {
+  overflow: visible;
+  color: inherit;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.4;
+  text-overflow: clip;
+  text-wrap: pretty;
+  white-space: normal;
+}
+
+/* Levels 2 + 3 ------------------------------------------------------------- */
+.wiki-page.wiki-page--route .wiki-outline.wiki-outline--marker .wiki-outline__subnav {
+  display: grid;
+  gap: 0;
+  margin: 0 0 8px 32px;
+  padding: 0;
+  border: 0;
+}
+
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  nav
+  .wiki-outline__secondary {
+  display: block;
+  padding: 5px 0;
+  color: var(--toc-faint);
+}
+
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  nav
+  .wiki-outline__secondary:is(:hover, :focus-visible, .is-active, .is-trail) {
+  padding-left: 0;
+  color: var(--toc-ink-sub);
+}
+
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  .wiki-outline__secondary
+  > strong {
+  overflow: visible;
+  /* Overrides the manuscript skin's wet-ink colour on active rows. */
+  color: inherit;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 450;
+  letter-spacing: 0;
+  line-height: 1.4;
+  text-overflow: clip;
+  text-wrap: pretty;
+  white-space: normal;
+}
+
+/* Level 3: indented on a hairline guide; consecutive rows join into one line. */
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  nav
+  .wiki-outline__secondary.is-tertiary {
+  margin-left: 2px;
+  padding: 4px 0 4px 12px;
+  border-left: 1px solid var(--route-line);
+}
+
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  nav
+  .wiki-outline__secondary.is-tertiary:is(:hover, :focus-visible, .is-active) {
+  padding-left: 12px;
+  border-left-color: var(--route-line);
+}
+
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  .wiki-outline__secondary.is-tertiary
+  > strong {
+  font-size: 12.5px;
+}
+
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  nav
+  .wiki-outline__secondary--depth-4.is-tertiary {
+  margin-left: 14px;
+}
+
+/* Level-2 parent of the heading being read: ink only, no swash. */
+.wiki-page.wiki-page--route
+  .wiki-outline--marker
+  .wiki-outline__secondary.is-trail
+  > strong {
+  font-weight: 550;
+}
+
+/* Experiments: protocol preview button rides at the end of the label. */
+.wiki-page.wiki-page--route .wiki-outline--marker .wiki-outline__protocol-icon {
+  display: inline-flex;
+  margin-left: 4px;
+  vertical-align: -1px;
+}
+
+/* Highlighter swash (all levels) ------------------------------------------- */
+.wiki-page.wiki-page--route
+  .wiki-outline--marker
+  :is(.wiki-outline__copy strong, .wiki-outline__secondary > strong) {
+  display: inline;
+  margin: 0 -0.12em;
+  padding: 0 0.12em;
+  background: linear-gradient(
+      to bottom,
+      transparent 54%,
+      var(--toc-marker) 54%,
+      var(--toc-marker) 92%,
+      transparent 92%
+    )
+    no-repeat 0 0 / 0% 100%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-size 460ms var(--ease-out);
+}
+
+.wiki-page.wiki-page--route
+  .wiki-outline--marker
+  :is(.wiki-outline__primary, .wiki-outline__secondary).is-active
+  strong {
+  background-size: 100% 100%;
+}
+
+/* Related links: a quiet footnote, not a second menu. ---------------------- */
+.wiki-page.wiki-page--route .wiki-outline.wiki-outline--marker .wiki-outline__related {
+  display: grid;
+  gap: 0;
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid var(--route-line);
+}
+
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  .wiki-outline__related-title {
+  margin-bottom: 6px;
+  color: var(--toc-faint);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  .wiki-outline__related
+  a {
+  display: flex;
+  min-height: 0;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  padding: 4px 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  color: var(--toc-rest);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-decoration: none;
+  transition: color 200ms var(--ease-out);
+}
+
+.wiki-page.wiki-page--route
+  .wiki-outline.wiki-outline--marker
+  .wiki-outline__related
+  a:is(:hover, :focus-visible) {
+  background: none;
+  box-shadow: none;
+  color: var(--toc-ink);
+  transform: none;
+}
+
+.wiki-page.wiki-page--route .wiki-outline--marker .wiki-outline__link-arrow {
+  display: inline-block;
+  transition: transform 200ms var(--ease-out);
+}
+
+.wiki-page.wiki-page--route
+  .wiki-outline--marker
+  .wiki-outline__related
+  a:is(:hover, :focus-visible)
+  .wiki-outline__link-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* 6c. Section masthead ------------------------------------------------------
+   Full-bleed photo at the top of a section (e.g. Sustainability / Overview).
+   The photo bleeds to the frame edges and dissolves into the paper; the
+   epigraph is set over its faded lower edge, institutional-report style.
+   Bleed offsets mirror `.wiki-article` padding. */
+.wiki-page--route .wiki-masthead {
+  --masthead-bleed-top: clamp(40px, 5vw, 64px);
+  --masthead-bleed-x: clamp(26px, 5vw, 72px);
+
+  position: relative;
+  margin: calc(-1 * var(--masthead-bleed-top))
+    calc(-1 * var(--masthead-bleed-x)) clamp(36px, 4vw, 56px);
+  padding: 0;
+}
+
+.wiki-page--route .wiki-masthead--quote-only {
+  margin: 0 0 clamp(32px, 4vw, 48px);
+  padding: clamp(8px, 1.5vw, 16px) 0 0;
+  background: transparent;
+}
+
+.wiki-page--route .wiki-masthead--quote-only .wiki-masthead__epigraph {
+  margin: 0 auto;
+  padding: 0 clamp(20px, 3vw, 40px);
+  animation: none;
+}
+
+.wiki-page--route .wiki-masthead__image {
+  display: block;
+  width: 100%;
+  height: clamp(240px, 26vw, 380px);
+  object-fit: cover;
+  object-position: center 38%;
+  -webkit-mask-image: linear-gradient(to bottom, #000 42%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 42%, transparent 100%);
+  animation: wiki-masthead-image 1600ms var(--ease-out) both;
+}
+
+.wiki-page--route .wiki-masthead__epigraph,
+.wiki-page--route .wiki-epigraph {
+  position: relative;
+  /* Wide measure: the quote should read as 2-3 long lines, not a column. */
+  max-width: 64rem;
+  padding: 0 clamp(20px, 3vw, 40px);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.wiki-page--route .wiki-masthead__epigraph {
+  /* Light overlap only: the quote starts where the photo is mostly faded. */
+  margin: clamp(-56px, -3.5vw, -32px) auto 0;
+  animation: wiki-masthead-copy 1100ms var(--ease-out) 420ms both;
+}
+
+.wiki-page--route .wiki-epigraph {
+  margin: clamp(36px, 4.5vw, 56px) auto !important;
+  border: none !important;
+}
+
+.wiki-page--route .wiki-masthead__epigraph blockquote,
+.wiki-page--route .wiki-epigraph blockquote {
+  margin: 0 auto;
+  max-width: 58rem;
+  color: var(--route-heading-ink, var(--route-ink));
+  font-family: var(--font-display) !important;
+  font-size: clamp(19px, 1.75vw, 25px);
+  font-weight: 650;
+  letter-spacing: -0.005em;
+  line-height: 1.45;
+  text-wrap: pretty;
+  text-align: center;
+}
+
+.wiki-page--route .wiki-masthead__epigraph blockquote::before,
+.wiki-page--route .wiki-masthead__epigraph blockquote::after,
+.wiki-page--route .wiki-epigraph blockquote::before,
+.wiki-page--route .wiki-epigraph blockquote::after {
+  color: var(--route-accent);
+}
+
+.wiki-page--route .wiki-masthead__epigraph blockquote::before,
+.wiki-page--route .wiki-epigraph blockquote::before {
+  content: "\201C";
+}
+
+.wiki-page--route .wiki-masthead__epigraph blockquote::after,
+.wiki-page--route .wiki-epigraph blockquote::after {
+  content: "\201D";
+}
+
+/* Attribution sits flush right under the centred quote. */
+.wiki-page--route .wiki-masthead__epigraph cite,
+.wiki-page--route .wiki-epigraph cite,
+.wiki-page--route .wiki-epigraph figcaption {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  margin-top: 18px;
+  font-style: normal;
+  text-align: right;
+}
+
+/* Short hairline between quote and attribution. */
+.wiki-page--route .wiki-masthead__epigraph cite::before,
+.wiki-page--route .wiki-epigraph cite::before,
+.wiki-page--route .wiki-epigraph figcaption::before {
+  width: 40px;
+  height: 1px;
+  margin-bottom: 12px;
+  background: var(--route-line-strong);
+  content: "";
+}
+
+.wiki-page--route .wiki-masthead__epigraph cite strong,
+.wiki-page--route .wiki-epigraph cite strong,
+.wiki-page--route .wiki-epigraph figcaption strong {
+  color: var(--route-heading-ink, var(--route-ink));
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+
+.wiki-page--route .wiki-masthead__epigraph cite span,
+.wiki-page--route .wiki-epigraph cite span,
+.wiki-page--route .wiki-epigraph figcaption span {
+  color: color-mix(in srgb, var(--route-heading-ink, var(--route-ink)) 72%, transparent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.wiki-page--route .wiki-epigraph__zh {
+  margin: 12px auto 0;
+  max-width: 54rem;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: color-mix(in srgb, var(--route-heading-ink, var(--route-ink)) 75%, transparent);
+  line-height: 1.6;
+}
+
+@keyframes wiki-masthead-image {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes wiki-masthead-copy {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@media (max-width: 640px) {
+  .wiki-page--route .wiki-masthead {
+    --masthead-bleed-top: 24px;
+    --masthead-bleed-x: 20px;
+  }
+
+  .wiki-page--route .wiki-masthead--quote-only {
+    margin: 0 0 24px;
+    padding: 0;
+  }
+
+  .wiki-page--route .wiki-masthead--quote-only .wiki-masthead__epigraph {
+    margin-top: 0;
+  }
+
+  .wiki-page--route .wiki-masthead__image {
+    height: 200px;
+  }
+
+  .wiki-page--route .wiki-masthead__epigraph {
+    margin-top: -20px;
+  }
+}
+
+/* 7. Frame + inner reader -------------------------------------------------- */
+/* Contract: its height derives from the grid stretch (row = mat content box);
+   the inner scroll container fills the frame, so no viewport calc exists
+   anywhere inside the frame. */
+.wiki-page--route .route-frame {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--route-line-strong);
+  border-radius: 6px;
+  background-color: var(--route-paper);
+  background-image: var(--route-frame-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  box-shadow: var(--route-shadow);
+}
+
+.wiki-page--route .route-frame__scroll {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: auto;
+  background: transparent;
+  scroll-padding-top: 32px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--route-line-strong) transparent;
+}
+
+.wiki-page--route .route-frame__scroll:focus-visible {
+  outline: 2px solid var(--route-accent);
+  outline-offset: -3px;
+}
+
+.wiki-page--route .route-frame__scroll::-webkit-scrollbar {
+  width: 7px;
+}
+
+.wiki-page--route .route-frame__scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.wiki-page--route .route-frame__scroll::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: var(--route-line-strong);
+  background-clip: padding-box;
+}
+
+/* 8. Article rhythm -------------------------------------------------------- */
+.wiki-page--route .wiki-article {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  counter-reset: wiki-figure;
+  padding: clamp(40px, 5vw, 64px) clamp(26px, 5vw, 72px) clamp(100px, 14vh, 180px);
+  background: transparent;
+  /* Clipping must not create a second scroll owner inside the reader frame. */
+  overflow-x: clip;
+  overflow-y: clip;
+}
+
+.wiki-page--route.wiki-page--manuscript .wiki-section,
+.wiki-page.wiki-page--manuscript .wiki-section,
+.wiki-page--route .wiki-section {
+  position: relative;
+  display: block;
+  min-height: 0;
+  margin-top: var(--wiki-space-section, 44px);
+  padding: 0 0 0 0 !important;
+  border-top: 0;
+  background: transparent;
+}
+
+.wiki-page--route .wiki-section:first-child,
+.wiki-page.wiki-page--manuscript .wiki-section:first-child {
+  margin-top: 0 !important;
+  padding: 0;
+  border-top: 0;
+}
+
+/* ==========================================================================
+   Scheme D + Highlighter Marker Effect (马克笔高亮手绘涂刷效果)
+   ========================================================================== */
+.wiki-page--route .wiki-section__heading,
+.wiki-page--route.wiki-page--manuscript .wiki-section__heading,
+.wiki-page.wiki-page--manuscript .wiki-section__heading {
+  position: relative;
+  display: block;
+  grid-template-columns: none;
+  gap: 0;
+  margin: 0 0 var(--wiki-space-head-bottom, 24px) !important;
+  padding: 0;
+  border: 0;
+  overflow: visible;
+}
+
+/* 铁律：首块顶边距强制归零。当首块是小标题时，大标题与小标题的间距与正文严格相等 (24px) */
+.wiki-page--route .wiki-section > .wiki-blocks > *:first-child,
+.wiki-page--route .wiki-section > .wiki-prose:first-child,
+.wiki-page--route .wiki-section > .wiki-prose,
+.wiki-page--route .wiki-blocks > *:first-child,
+.wiki-page.wiki-page--manuscript .wiki-blocks > *:first-child {
+  margin-top: 0 !important;
+}
+
+/* 正文排版系统：段内段间距最小 (16px)，单向 flex 流彻底消除 margin 泄漏与多重叠加 */
+.wiki-page--route.wiki-page--manuscript .wiki-prose,
+.wiki-page.wiki-page--manuscript .wiki-prose,
+.wiki-page--route .wiki-prose {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: var(--wiki-space-p, 16px) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: none !important;
+}
+
+.wiki-page--route.wiki-page--manuscript .wiki-prose p,
+.wiki-page.wiki-page--manuscript .wiki-prose p,
+.wiki-page--route .wiki-prose p {
+  margin: 0 !important;
+  color: var(--route-body-ink);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+
+.wiki-page--route .wiki-prose .wiki-prose-list {
+  margin: 0;
+  padding-inline-start: 1.4em;
+  color: var(--route-body-ink);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.wiki-page--route .wiki-prose ul.wiki-prose-list { list-style: disc; }
+.wiki-page--route .wiki-prose ol.wiki-prose-list { list-style: decimal; }
+.wiki-page--route .wiki-prose-list li + li { margin-top: 8px; }
+
+.wiki-page--route .wiki-blocks--split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
+  gap: clamp(24px, 3vw, 44px);
+  align-items: start;
+}
+
+.wiki-page--route .wiki-blocks--split__prose,
+.wiki-page--route .wiki-blocks--split__aside {
+  min-width: 0;
+}
+
+.wiki-page--route .wiki-blocks--split__aside > * {
+  margin: 0;
+  max-width: none;
+}
+
+@media (max-width: 880px) {
+  .wiki-page--route .wiki-blocks--split { grid-template-columns: minmax(0, 1fr); }
+}
+
+.wiki-page--route .wiki-content-heading {
+  margin: var(--wiki-space-subhead-top, 28px) 0 var(--wiki-space-subhead-bottom, 14px);
+  font-family: var(--font-sans);
+  font-size: clamp(17px, 1.8vw, 20px);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--route-subheading-ink);
+  border: 0;
+}
+
+/* 连续两个 prose 块相邻时，保持标准正文段落间距，消除 80px 异常大断层 */
+.wiki-page--route .wiki-prose + .wiki-prose {
+  margin-top: var(--wiki-space-p, 16px) !important;
+}
+
+/* 组件/插槽容器归一化：消除 42px 冗余，与正文保持统一 24px 呼吸感 */
+.wiki-page--route.wiki-page--manuscript .wiki-feature,
+.wiki-page.wiki-page--manuscript .wiki-feature,
+.wiki-page--route .wiki-feature {
+  margin-top: var(--wiki-space-block, 24px) !important;
+  margin-bottom: var(--wiki-space-block, 24px) !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 0 !important;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+/* 图片/表格/Callout/Split 标准块级间距统一收敛为 24px，图表与表格居中放置 */
+.wiki-page--route .wiki-figure {
+  margin: var(--wiki-space-block, 24px) auto !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+
+.wiki-page--route .wiki-table-wrap {
+  margin: var(--wiki-space-block, 24px) auto !important;
+  width: 100%;
+}
+
+.wiki-page--route .wiki-callout {
+  margin: var(--wiki-space-block, 24px) 0 !important;
+}
+
+.wiki-page--route .wiki-boundary {
+  margin: var(--wiki-space-block, 24px) 0 !important;
+}
+
+.wiki-page--route .wiki-blocks--split {
+  margin-top: var(--wiki-space-block, 24px) !important;
+  margin-bottom: var(--wiki-space-block, 24px) !important;
+}
+
+.wiki-page--route .wiki-section__heading--unnumbered,
+.wiki-page.wiki-page--manuscript .wiki-section__heading--unnumbered {
+  padding-top: clamp(12px, 1.5vw, 18px);
+}
+
+/* 彻底删除所有顶部引导线、移动圆点与底部生硬线条 */
+.wiki-page--route .wiki-section__heading::before,
+.wiki-page--route .wiki-section__heading::after,
+.wiki-page.wiki-page--manuscript .wiki-section__heading::before,
+.wiki-page.wiki-page--manuscript .wiki-section__heading::after,
+.wiki-page--route .wiki-section__heading > div::after,
+.wiki-page--route .wiki-section__heading-body::after,
+.wiki-page.wiki-page--manuscript .wiki-section__heading > div::after,
+.wiki-page--route .wiki-section[data-wiki-active] .wiki-section__heading > div::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* 适度比例半透数字水印 (叠印在标题左后方背景层，尺寸与标题紧凑平衡) */
+.wiki-page--route .wiki-section-number,
+.wiki-page--route .wiki-section__heading > .wiki-section-number,
+.wiki-page.wiki-page--manuscript .wiki-section__heading > .wiki-section-number {
+  position: absolute;
+  top: -8px;
+  left: -4px;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  font-family: var(--font-sans), sans-serif;
+  font-size: clamp(48px, 5.2vw, 68px);
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+  color: var(--route-watermark, rgba(51, 77, 59, 0.12));
+  opacity: 0.14;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  transition: opacity var(--duration-fast, 220ms) var(--ease-out, ease-out);
+}
+
+.wiki-page--route .wiki-section:hover .wiki-section-number,
+.wiki-page--route .wiki-section[data-wiki-active] .wiki-section-number,
+.wiki-page.wiki-page--manuscript .wiki-section:hover .wiki-section-number,
+.wiki-page.wiki-page--manuscript .wiki-section[data-wiki-active] .wiki-section-number {
+  opacity: 0.20;
+}
+
+/* 标题主体层，浮于水印之上 */
+.wiki-page--route .wiki-section__heading-body,
+.wiki-page--route .wiki-section__heading > div,
+.wiki-page.wiki-page--manuscript .wiki-section__heading > div {
+  position: relative;
+  z-index: 1;
+  padding-left: 2px;
+}
+
+.wiki-page--route .wiki-section__heading h2,
+.wiki-page--route.wiki-page--manuscript .wiki-section__heading h2,
+.wiki-page.wiki-page--manuscript .wiki-section__heading h2 {
+  max-width: 880px;
+  margin: 0;
+  color: var(--route-heading-ink, #2e4334);
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: clamp(21px, 2.2vw, 25px);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  text-wrap: balance;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+/* 标题行级容器 (冒号自动分行时 lead 与 sub 各占一行) */
+.wiki-heading-line {
+  display: block;
+}
+
+.wiki-heading-line--sub {
+  margin-top: 0;
+}
+
+/* 子标题行级容器 (若含冒号同样另起一行) */
+.wiki-subheading-line {
+  display: block;
+}
+
+.wiki-subheading-line--sub {
+  margin-top: 4px;
+}
+
+/* 马克笔手绘涂刷高亮效果 (完全复刻参考图) */
+.wiki-heading-marker {
+  position: relative;
+  display: inline;
+  background: linear-gradient(
+    to bottom,
+    transparent 52%,
+    var(--route-marker-bg, #c4c7be) 52%,
+    var(--route-marker-bg, #c4c7be) 94%,
+    transparent 94%
+  );
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0.04em 0.22em;
+  border-radius: 2px;
+}
+
+.wiki-heading-marker--lead {
+  font-size: clamp(21px, 2.2vw, 25px);
+  font-weight: 750;
+}
+
+.wiki-heading-marker--sub {
+  font-size: clamp(18px, 1.9vw, 22px);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.wiki-page--route .wiki-subheading,
+.wiki-page--route.wiki-page--manuscript .wiki-subheading,
+.wiki-page.wiki-page--manuscript .wiki-subheading {
+  position: relative;
+  padding-left: 0;
+  margin-top: var(--wiki-space-subhead-top, 28px) !important;
+  margin-bottom: var(--wiki-space-subhead-bottom, 14px) !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  border: 0;
+}
+
+.wiki-page--route .wiki-subheading::before,
+.wiki-page--route.wiki-page--manuscript .wiki-subheading::before,
+.wiki-page.wiki-page--manuscript .wiki-subheading::before {
+  display: none !important;
+  content: none !important;
+}
+
+.wiki-page--route .wiki-subheading__kicker,
+.wiki-page--route.wiki-page--manuscript .wiki-subheading__kicker,
+.wiki-page.wiki-page--manuscript .wiki-subheading__kicker {
+  display: none !important;
+  content: none !important;
+}
+
+.wiki-page--route .wiki-subheading__title,
+.wiki-page--route.wiki-page--manuscript .wiki-subheading__title,
+.wiki-page.wiki-page--manuscript .wiki-subheading__title {
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: clamp(17px, 1.8vw, 20px);
+  font-weight: 700;
+  color: var(--route-subheading-ink, #84382b) !important;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.wiki-page--route .wiki-manuscript-list__toggle button > span:nth-child(2) {
+  color: var(--route-ink);
+  letter-spacing: 0;
+}
+
+.wiki-page--route .wiki-section__summary,
+.wiki-page--route .wiki-manuscript-list__content > p,
+.wiki-page--route .wiki-manuscript-list__content li,
+.wiki-page--route .wiki-manuscript-list__content > aside p {
+  color: var(--route-muted);
+}
+
+.wiki-page--route .wiki-section__summary {
+  margin: 24px 0 0;
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.64;
+}
+
+.wiki-page--route .wiki-section__summary strong,
+.wiki-page--route .wiki-prose strong,
+.wiki-page--route .wiki-callout strong,
+.wiki-page--route .wiki-boundary strong,
+.wiki-page--route .wiki-manuscript-list__content strong,
+.wiki-page--route .wiki-epigraph strong {
+  color: var(--route-ink);
+  font-weight: 700;
+}
+
+.wiki-page--route .wiki-manuscript-list article {
+  border-bottom: 1px solid var(--route-line-strong);
+  border-color: var(--route-line-strong);
+}
+
+.wiki-page--route .wiki-manuscript-list {
+  margin-top: var(--wiki-space-block);
+  border-top: 1px solid var(--route-line-strong);
+}
+
+.wiki-page--route .wiki-manuscript-list__toggle { margin: 0; }
+
+.wiki-page--route .wiki-manuscript-list__toggle button {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 66px minmax(0, 1fr) 28px;
+  gap: 18px;
+  align-items: center;
+  padding: 24px 0;
+  border: 0;
+  background: transparent;
+  color: var(--route-ink);
+  cursor: pointer;
+  text-align: left;
+}
+
+.wiki-page--route .wiki-manuscript-list__toggle button > span:nth-child(2) {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.wiki-page--route .wiki-manuscript-list__index {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;
+}
+
+.wiki-page--route .wiki-manuscript-list__toggle i {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  justify-self: end;
+}
+
+.wiki-page--route .wiki-manuscript-list__toggle i::before,
+.wiki-page--route .wiki-manuscript-list__toggle i::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 1px;
+  content: "";
+  transform: translate(-50%, -50%);
+}
+
+.wiki-page--route .wiki-manuscript-list__toggle i::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.wiki-page--route .wiki-manuscript-list article.is-open .wiki-manuscript-list__toggle i::after {
+  display: none;
+}
+
+.wiki-page--route .wiki-manuscript-list__fold {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 300ms var(--ease-out), opacity 180ms ease;
+}
+
+.wiki-page--route .wiki-manuscript-list article.is-open .wiki-manuscript-list__fold {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.wiki-page--route .wiki-manuscript-list__fold > div {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.wiki-page--route .wiki-manuscript-list__content {
+  display: grid;
+  gap: var(--wiki-space-block);
+  padding: 0 24px 32px 84px;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.wiki-page--route .wiki-manuscript-list__content :is(p, ul, h4) { margin: 0; }
+.wiki-page--route .wiki-manuscript-list__content :is(section, aside) { display: grid; gap: 14px; }
+.wiki-page--route .wiki-manuscript-list__content h4 { color: var(--route-subheading-ink); font-size: 16px; }
+
+@media (max-width: 640px) {
+  .wiki-page--route .wiki-manuscript-list__toggle button {
+    grid-template-columns: 36px minmax(0, 1fr) 18px;
+    gap: 10px;
+  }
+  .wiki-page--route .wiki-manuscript-list__content { padding: 0 0 24px; }
+}
+
+/* Item label + status line (see the format note in WikiRoutePage.tsx). */
+.wiki-page--route
+  .wiki-manuscript-list__content
+  > .wiki-manuscript-list__meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  color: var(--route-accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 720;
+  letter-spacing: 0.055em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+/* Status chips stay semantic but re-tinted from the palette. */
+.wiki-page--route .wiki-status {
+  color: var(--route-muted);
+}
+
+.wiki-page--route .wiki-status[data-status="recorded"] {
+  color: var(--route-accent);
+}
+
+.wiki-page--route .wiki-status[data-status="boundary"] {
+  color: color-mix(in srgb, var(--route-muted) 55%, #b04a3a);
+}
+
+.wiki-page--route .wiki-status[data-status="open"] {
+  color: color-mix(in srgb, var(--route-muted) 55%, #b07a22);
+}
+
+.wiki-page--route .wiki-manuscript-list__toggle button {
+  min-height: 72px;
+  transition-property: color, background-color, transform;
+  transition-duration: 180ms;
+  transition-timing-function: var(--ease-out);
+}
+
+.wiki-page--route .wiki-manuscript-list__toggle button:hover {
+  background: color-mix(in srgb, var(--route-soft) 58%, transparent);
+}
+
+.wiki-page--route .wiki-manuscript-list__toggle button:active {
+  transform: scale(0.96);
+}
+
+.wiki-page--route .wiki-manuscript-list__index,
+.wiki-page--route
+  .wiki-manuscript-list
+  article.is-open
+  .wiki-manuscript-list__index,
+.wiki-page--route
+  .wiki-manuscript-list
+  article.is-open
+  .wiki-manuscript-list__toggle
+  i {
+  color: var(--route-accent);
+}
+
+.wiki-page--route .wiki-manuscript-list__toggle i::before,
+.wiki-page--route .wiki-manuscript-list__toggle i::after,
+.wiki-page--route .wiki-manuscript-list__content li::before {
+  background: var(--route-accent);
+}
+
+/* 9. Panels, callouts, tables, figures ------------------------------------ */
+.wiki-page--route .wiki-callout,
+.wiki-page--route .wiki-boundary,
+.wiki-page--route .wiki-mini-visual,
+.wiki-page--route .feature-panel,
+.wiki-page--route .signature-panel--wet {
+  border: 0;
+  border-radius: 6px;
+  background: var(--route-panel);
+  color: var(--route-ink);
+  box-shadow:
+    inset 0 0 0 1px var(--route-line),
+    0 10px 26px color-mix(in srgb, var(--route-ink) 8%, transparent);
+}
+
+.wiki-page--route .wiki-callout,
+.wiki-page--route .wiki-boundary {
+  display: grid;
+  gap: 10px;
+  padding: 22px 24px;
+}
+
+.wiki-page--route .wiki-callout p,
+.wiki-page--route .wiki-boundary p { margin: 0; font-size: 17px; line-height: 1.75; }
+
+.wiki-page--route .wiki-callout__label,
+.wiki-page--route .wiki-boundary__label {
+  color: var(--route-subheading-ink);
+  font-family: var(--font-sans);
+  font-weight: 700;
+}
+
+.wiki-page--route .wiki-status {
+  padding: 4px 7px;
+  background: color-mix(in srgb, var(--route-soft) 45%, transparent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.wiki-page--route .wiki-figure { counter-increment: wiki-figure; }
+
+.wiki-page--route .wiki-figure figcaption {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--route-muted);
+}
+
+.wiki-page--route .wiki-figure:not(.wiki-figure--labelled) figcaption::before,
+.wiki-page--route .wiki-figure-caption-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 2.5px 8px;
+  margin-right: 10px;
+  border-radius: 4px;
+  background: var(--route-heading-ink);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.25;
+  content: "FIG. " counter(wiki-figure, decimal-leading-zero);
+}
+
+.wiki-page--route .wiki-figure__label { display: block; font-weight: 700; }
+
+.wiki-page--route .feature-panel > header,
+.wiki-page--route .signature-panel--wet figcaption {
+  border-color: var(--route-line-strong);
+  color: var(--route-ink);
+}
+
+.wiki-page--route .feature-panel > header span,
+.wiki-page--route .signature-panel--wet figcaption span {
+  color: var(--route-accent);
+}
+
+.wiki-page--route .wiki-table-wrap {
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: inset 0 0 0 1px var(--route-line);
+}
+
+.wiki-page--route .wiki-figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 4px;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.wiki-page--route .wiki-figure figcaption {
+  width: 100%;
+  max-width: 760px;
+  margin-top: 14px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* 9b. Side-by-side image row (`carousel`) — document/translation pairs, photo sets. */
+.wiki-page--route .wiki-figure--carousel .wiki-figure__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.wiki-page--route .wiki-figure--carousel .wiki-figure__row img {
+  flex: 1 1 300px;
+  min-width: 0;
+  height: auto;
+  object-fit: contain;
+}
+
+/* 9a. Pull-out card (`mini-visual`) --------------------------------------- */
+/* Structural port of the Hardware module's "SYSTEM AT A GLANCE" card. The
+   container line above already supplies the skin (radius, panel fill, inset
+   hairline, lift); what follows restores the INTERNAL hierarchy the reader
+   needs: eyebrow, display title, hairline, and one numbered row per item.
+   Positioning (sticky right rail inside `.wiki-blocks--split`) is untouched. */
+.wiki-page--route .wiki-mini-visual {
+  display: grid;
+  gap: 14px;
+  padding: 24px;
+}
+
+.wiki-page--route .wiki-mini-visual > span {
+  display: block;
+  color: var(--route-accent);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.wiki-page--route .wiki-mini-visual > strong {
+  display: block;
+  color: var(--route-ink);
+  font-family: var(--font-editorial);
+  font-size: clamp(20px, 1.8vw, 26px);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.wiki-page--route .wiki-mini-visual ol {
+  display: grid;
+  gap: 0;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--route-line);
+}
+
+.wiki-page--route .wiki-mini-visual li {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--route-line);
+  color: var(--route-muted);
+  font-size: 13px;
+  line-height: 1.45;
+  list-style: none;
+}
+
+.wiki-page--route .wiki-mini-visual li b {
+  color: var(--route-accent);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* 9b. Skill / capability matrix (`table`) --------------------------------- */
+/* Hardware's Table 1–3 carry every ✓ / ✗ / △ cell. The shared line only
+   painted the scroll container, so the matrix lost its caption, monospace
+   uppercase head, cell padding and row rules; restore them from the route
+   palette and let the container own horizontal overflow on narrow screens. */
+.wiki-page--route .wiki-table-wrap {
+  width: 100%;
+  margin-top: 8px;
+  overflow-x: auto;
+  scrollbar-color: var(--route-line-strong) transparent;
+}
+
+.wiki-page--route .wiki-table {
+  width: 100%;
+  min-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  color: var(--route-ink);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.wiki-page--route .wiki-table caption {
+  padding: 12px 0;
+  color: var(--route-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+  /* Override Bootstrap reboot's global `table { caption-side: bottom }`. */
+  caption-side: top;
+}
+
+.wiki-page--route .wiki-table th,
+.wiki-page--route .wiki-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--route-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.wiki-page--route .wiki-table thead th {
+  border-bottom: 1px solid var(--route-line-strong);
+  color: var(--route-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.wiki-page--route .wiki-table tbody th {
+  min-width: 160px;
+  color: var(--route-ink);
+  font-weight: 700;
+}
+
+/* 9c. Empty figure boundary (`image-placeholder`) ------------------------- */
+/* Every Hardware figure is still an explicit empty slot. Keep the boundary
+   and the evidence note unmistakably visible — dashed frame + hatch fill —
+   while the palette comes from the route tokens rather than the old page
+   sheet. The `FIG. nn` caption rule further down is untouched. */
+.wiki-page--route .wiki-image-placeholder {
+  display: grid;
+  min-height: clamp(220px, 32vw, 460px);
+  align-content: center;
+  gap: 10px;
+  padding: 32px;
+  border: 1px dashed color-mix(in srgb, var(--route-accent) 62%, var(--route-ink) 38%);
+  border-radius: 6px;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--route-accent) 14%, transparent),
+      transparent 42%
+    ),
+    repeating-linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--route-ink) 5%, transparent) 0 1px,
+      transparent 1px 12px
+    ),
+    var(--route-paper);
+  color: var(--route-ink);
+  text-align: center;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--route-ink) 10%, transparent);
+}
+
+.wiki-page--route .wiki-image-placeholder > span {
+  color: var(--route-accent);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.wiki-page--route .wiki-image-placeholder > strong {
+  color: var(--route-ink);
+  font-family: var(--font-editorial);
+  font-size: clamp(24px, 3vw, 42px);
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+
+.wiki-page--route .wiki-image-placeholder > p {
+  max-width: 620px;
+  margin: 0 auto;
+  color: var(--route-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* 9d. In-paragraph cross-reference (`chapter-link--inline`) --------------- */
+/* The Hardware body routes the reader with "(click to see Chapter n)" inside
+   a running sentence. It must stay a link, an inline one: no block box, no
+   min-height, never on its own line. */
+.wiki-page--route .wiki-chapter-link--inline {
+  display: inline;
+  color: var(--route-accent);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+  letter-spacing: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--route-accent) 46%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.wiki-page--route .wiki-chapter-link--inline:is(:hover, :focus-visible) {
+  color: var(--route-ink);
+  text-decoration-color: currentColor;
+}
+
+.wiki-page--route .wiki-chapter-link--inline:focus-visible {
+  outline: 2px solid var(--route-accent);
+  outline-offset: 3px;
+}
+
+/* 10. Closing prompt (next-page guide) ------------------------------------ */
+/* Contract: background is the shared --route-page-bg (zero seam with the mat
+   above, separated only by the hairline); section height = content + padding,
+   no min-height/viewport placeholder; hairline→question gap is space/7 (42px). */
+.wiki-page--route .wiki-next.wiki-next--record {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0 clamp(24px, 5vw, 72px);
+  border: 0;
+  background: var(--route-page-bg);
+}
+
+.wiki-page--route .wiki-next.wiki-next--record > .wiki-next__inner {
+  display: grid;
+  width: min(var(--route-page), 100%);
+  grid-template-columns: minmax(0, 1fr) clamp(260px, 28vw, 340px);
+  gap: clamp(56px, 8vw, 124px);
+  align-items: center;
+  margin: 0 auto;
+  padding: 42px 0 82px; /* top = space/7 hairline→question; bottom = 原稿 */
+  border-top: 1px solid var(--line);
+}
+
+.wiki-page--route .wiki-next.wiki-next--record h2 {
+  max-width: 760px;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 2.8vw, 38px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.18;
+}
+
+.wiki-page--route .wiki-next.wiki-next--record p:not(.wiki-kicker) {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.wiki-page--route .wiki-next.wiki-next--record p strong {
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 600;
+}
+
+.wiki-page--route
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action {
+  min-height: 224px;
+  grid-template-columns: minmax(0, 1fr) 52px;
+  grid-template-rows: auto 1fr;
+  gap: 28px 18px;
+  padding: 30px;
+  border: 1px solid var(--route-line-strong);
+  border-radius: var(--radius-panel);
+  background: var(--route-next-card);
+  color: var(--route-ink);
+  box-shadow: 0 16px 38px color-mix(in srgb, var(--route-ink) 7%, transparent);
+  transition:
+    border-color 360ms var(--ease-out),
+    box-shadow 420ms var(--ease-out),
+    transform 420ms var(--ease-out);
+}
+
+.wiki-page--route
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action::before {
+  display: none;
+}
+
+.wiki-page--route
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action
+  span {
+  color: var(--route-muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.wiki-page--route
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action
+  strong,
+.wiki-page--route
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action
+  strong.wiki-next__label--long {
+  color: var(--route-ink);
+  font-family: var(--font-heading);
+  font-size: clamp(25px, 2.4vw, 34px);
+  font-weight: 600;
+  line-height: 1.08;
+}
+
+.wiki-page--route
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action
+  b {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--route-accent);
+  color: #fff;
+  font-size: 27px;
+}
+
+.wiki-page--route
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action:is(:hover, :focus-visible) {
+  border-color: var(--route-accent);
+  background: var(--route-next-card);
+  color: var(--route-ink);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--route-ink) 12%, transparent);
+  transform: translateY(-3px);
+}
+
+.wiki-page--route
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action:focus-visible {
+  outline: 2px solid var(--care);
+  outline-offset: 2px;
+}
+
+.wiki-page--route
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action:is(:hover, :focus-visible)
+  span {
+  color: var(--route-muted);
+}
+
+.wiki-page--route
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action:is(:hover, :focus-visible)
+  b {
+  /* 原稿 arrow motion: the ↗ glyph rotates to point onward on hover. */
+  transform: rotate(45deg);
+}
+
+.wiki-page--route
+  .wiki-next.wiki-next--record
+  .wiki-next__inner
+  > .wiki-next__action:active {
+  transform: translateY(-1px) scale(0.985);
+}
+
+/* Closing prompt palette overrides for the shared WikiNextRecord component. */
+.wiki-page--route .wiki-next.wiki-next--record {
+  --next-record-ink: var(--route-ink);
+  --next-record-muted: var(--route-muted);
+  --next-record-line: var(--route-line-strong);
+  --next-record-paper: var(--route-next-card);
+  --next-record-accent: var(--route-accent);
+}
+
+/* 11. Global header on a skinned route ------------------------------------ */
+/* The bar, dropdown and search inherit one module palette. */
+.site-header.is-route-page {
+  --header-surface: var(--route-main);
+  --header-ink: var(--route-ink);
+  --header-pill: var(--route-soft);
+  --header-pill-hover: color-mix(in srgb, var(--route-soft) 78%, var(--route-main));
+  --header-pill-active: color-mix(in srgb, var(--route-soft) 62%, var(--route-main));
+  --nav-surface-line: var(--route-line);
+  --nav-surface-shadow: color-mix(in srgb, var(--route-ink) 16%, transparent);
+}
+
+.site-header.is-route-page::before {
+  border-bottom-color: transparent;
+  background-color: var(--route-main);
+}
+
+.site-header.is-route-page .wordmark-folio {
+  color: color-mix(in srgb, var(--route-ink) 62%, transparent);
+}
+
+/* 12. Footer on a skinned route ------------------------------------------- */
+/* Nothing to override any more. The panel used to be painted here with a
+   hard-coded navy and `!important`, because it sat outside every palette scope.
+   It now carries its own module class and paints itself from
+   `route-palette-<module>.css` via `circure-footer.css`; the `.mt-5` seam is
+   handled there too. The old `.footer.footer--route` rule had no effect once
+   the Footer stopped emitting that class, so it is gone rather than kept. */
+
+/* 13. Back-to-top on a skinned route (matches the reader z-index band) ----- */
+.circure-back-to-top--route-reader {
+  z-index: 140;
+}
+
+/* 14. Responsive ----------------------------------------------------------- */
+@media (max-width: 980px) {
+  .wiki-page--route .sub-nav {
+    position: relative;
+    top: auto;
+  }
+
+  .wiki-page--route .sub-nav__track {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* Mobile = plain document flow (WikiRoutePage disables the pinned reader at
+     this same breakpoint). The hero sits under the header instead of behind
+     it, keeps its 16:9 art whole, and the article follows directly. */
+  .wiki-page.wiki-page--route {
+    margin-top: 0;
+  }
+
+  .wiki-page--route .wiki-page-progress {
+    display: none;
+  }
+
+  .wiki-page.wiki-page--route.wiki-page--manuscript .wiki-hero {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: 45vh;
+    aspect-ratio: 16 / 9;
+    background-position: center top;
+    background-size: contain;
+  }
+
+  /* Heroes that still print a title/lede grow with their copy (16:9 stays the
+     minimum) instead of clipping it. */
+  .wiki-page.wiki-page--route.wiki-page--manuscript
+    .wiki-hero:has(.wiki-hero__copy) {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .wiki-page.wiki-page--route.wiki-page--manuscript .wiki-hero__copy {
+    padding: 24px 0;
+  }
+
+  .wiki-page.wiki-page--route .wiki-reader-track {
+    height: auto;
+  }
+
+  .wiki-page.wiki-page--route .wiki-reader-track > .wiki-record {
+    position: relative;
+    top: auto;
+    display: block;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    padding: 16px;
+  }
+
+  .wiki-page.wiki-page--route .wiki-record .route-frame {
+    height: auto;
+    min-height: 0;
+    overflow: clip;
+    background-position: top center;
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+  }
+
+  .wiki-page.wiki-page--route .wiki-record .route-frame__scroll {
+    height: auto;
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+
+  /* TOC → off-canvas drawer. Out of flow; slides in from the right. */
+  .wiki-page.wiki-page--route .wiki-record .wiki-outline {
+    position: fixed;
+    z-index: 160;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    width: min(80vw, 420px);
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: calc(16px + env(safe-area-inset-top)) 16px
+      calc(20px + env(safe-area-inset-bottom));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border: 0;
+    border-left: 2px solid color-mix(in srgb, var(--route-accent) 20%, #ffffff);
+    border-radius: 22px 0 0 22px;
+    background: color-mix(
+      in srgb,
+      var(--route-soft) 62%,
+      rgba(255, 255, 255, 0.82)
+    );
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    visibility: hidden;
+    transform: translateX(100%);
+    transition:
+      transform 320ms var(--ease-out),
+      visibility 0s linear 320ms;
+  }
+
+  .wiki-page--route.is-toc-open .wiki-record .wiki-outline {
+    visibility: visible;
+    transform: translateX(0);
+    transition:
+      transform 320ms var(--ease-out),
+      visibility 0s;
+  }
+
+  .wiki-page--route .wiki-outline__drawer-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 2px 10px;
+    color: var(--route-ink);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 750;
+  }
+
+  .wiki-page--route .wiki-outline__close {
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid color-mix(in srgb, var(--route-accent) 22%, transparent);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--route-accent);
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .wiki-page--route .wiki-outline__close:focus-visible,
+  .wiki-page--route .wiki-toc-trigger:focus-visible {
+    outline: 2px solid var(--route-accent);
+    outline-offset: 2px;
+  }
+
+  /* Comfortable one-thumb targets inside the drawer. */
+  .wiki-page.wiki-page--route .wiki-record .wiki-outline nav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .wiki-page.wiki-page--route .wiki-record .wiki-outline nav .wiki-outline__primary {
+    min-height: 46px;
+  }
+
+  .wiki-page.wiki-page--route .wiki-record .wiki-outline nav .wiki-outline__secondary {
+    min-height: 40px;
+  }
+
+  .wiki-page.wiki-page--route .wiki-record .wiki-outline__related a {
+    min-height: 42px;
+  }
+
+  .wiki-page--route .wiki-toc-backdrop {
+    position: fixed;
+    z-index: 150;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    touch-action: none;
+    transition:
+      opacity 280ms var(--ease-out),
+      visibility 0s linear 280ms;
+  }
+
+  .wiki-page--route.is-toc-open .wiki-toc-backdrop {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 280ms var(--ease-out), visibility 0s;
+  }
+
+  /* Floating trigger: right edge, above the back-to-top sheep (88–96px). */
+  .wiki-page--route .wiki-toc-trigger {
+    position: fixed;
+    z-index: 90;
+    right: 12px;
+    bottom: calc(136px + env(safe-area-inset-bottom));
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    padding: 6px 8px;
+    border: 1px solid color-mix(in srgb, var(--route-accent) 26%, #ffffff);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--route-soft) 55%, rgba(255, 255, 255, 0.7));
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--route-ink) 16%, transparent);
+    color: var(--route-accent);
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 750;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 180ms var(--ease-out);
+  }
+
+  .wiki-page--route .wiki-toc-trigger:active {
+    transform: scale(0.94);
+  }
+}
+
+/* The TOC trigger and backdrop only exist on mobile. */
+@media (min-width: 981px) {
+  .wiki-page--route .wiki-toc-trigger,
+  .wiki-page--route .wiki-toc-backdrop {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  html.has-route-reader-scroll,
+  html:has(.wiki-page--route) {
+    --header-height: 62px;
+  }
+
+  .wiki-page.wiki-page--route.wiki-page--manuscript .wiki-hero__copy {
+    width: calc(100% - 36px);
+    padding-bottom: 18px;
+  }
+
+  .wiki-page.wiki-page--route.wiki-page--manuscript .wiki-hero h1 {
+    max-width: 360px;
+    font-size: clamp(46px, 15vw, 64px);
+  }
+
+  .wiki-page.wiki-page--route.wiki-page--manuscript .wiki-hero__lede {
+    max-width: 340px;
+    margin-top: 22px;
+    font-size: 17px;
+  }
+
+  .wiki-page--route .sub-nav {
+    padding: 14px 16px;
+  }
+
+  .wiki-page--route .sub-nav__track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .wiki-page--route .sub-nav__track a {
+    min-height: 52px;
+    padding: 8px 10px;
+  }
+
+  .wiki-page--route .sub-nav__track strong {
+    font-size: 12px;
+  }
+
+  .wiki-page.wiki-page--route .wiki-record {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .wiki-page.wiki-page--route .wiki-outline {
+    padding: 14px;
+  }
+
+  .wiki-page.wiki-page--route .wiki-outline nav {
+    grid-template-columns: 1fr;
+  }
+
+  .wiki-page--route .wiki-article {
+    padding: 24px 20px;
+  }
+
+  .wiki-page--route .route-frame,
+  .wiki-page--route .route-frame__scroll {
+    min-width: 0;
+  }
+
+  .wiki-page--route .route-frame {
+    background-size: auto 100%;
+  }
+
+  .wiki-page--route .wiki-section__heading {
+    display: block;
+    grid-template-columns: none;
+    gap: 0;
+  }
+
+  /* Empty figure slots and matrices keep their shape on a phone: the
+     placeholder shrinks and the table keeps a readable measure inside its own
+     horizontal scroller instead of squeezing the head against the cells. */
+  .wiki-page--route .wiki-image-placeholder {
+    min-height: 230px;
+    padding: 22px;
+  }
+
+  .wiki-page--route .wiki-table {
+    min-width: 680px;
+    font-size: 12px;
+  }
+
+  .wiki-page--route .wiki-next.wiki-next--record {
+    padding-inline: 20px;
+  }
+
+  .wiki-page--route .wiki-next.wiki-next--record > .wiki-next__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 42px;
+    padding: 42px 0 64px; /* hairline→question = space/7, matches desktop */
+  }
+
+  .wiki-page--route .wiki-next.wiki-next--record h2 {
+    font-size: clamp(22px, 5.5vw, 28px);
+    line-height: 1.25;
+  }
+
+  .wiki-page--route
+    .wiki-next.wiki-next--record
+    .wiki-next__inner
+    > .wiki-next__action {
+    min-height: 176px;
+    padding: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wiki-page--route *,
+  .wiki-page--route *::before,
+  .wiki-page--route *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* Unified document timeline: the reader frame remains visually fixed while its
+   internal progress is represented by the track's document height. */
+.wiki-page--route .wiki-reader-track { position: relative; z-index: 2; height: calc(var(--reader-h) + var(--reader-scroll-extra, 0px)); }
+.wiki-page--route .wiki-reader-track > .wiki-record { position: sticky; top: var(--header-height); height: var(--reader-h); max-height: var(--reader-h); z-index: 2; background: var(--route-page-bg); overflow: hidden; }
+
+
+/* The document is the only scroll owner during the reader timeline. */
+.wiki-page--route .route-frame__scroll {
+  overflow-y: hidden;
+  overscroll-behavior-y: auto;
+}
+
+/* Route pages project the article onto the document scroll. Keeping the route
+   frame itself non-scrollable prevents the scrollbar from stealing/releasing
+   the article width while the browser is deciding which scroll owner wins. */
+.wiki-page.wiki-page--route.route--document-flow .wiki-reader-track {
+  height: auto;
+}
+
+.wiki-page.wiki-page--route.route--document-flow .wiki-reader-track > .wiki-record {
+  position: relative;
+  top: auto;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+
+.wiki-page.wiki-page--route.route--document-flow .route-frame,
+.wiki-page.wiki-page--route.route--document-flow .route-frame__scroll {
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+
+.wiki-page.wiki-page--route.route--document-flow .route-frame {
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: repeat-y;
+}
+
+/* Natural document flow keeps the shared desktop outline beside the article. */
+@media (min-width: 981px) {
+  .wiki-page.wiki-page--route.route--document-flow .wiki-outline.wiki-outline--marker {
+    position: sticky;
+    top: calc(var(--header-height) + var(--reader-pad));
+    align-self: start;
+    height: fit-content;
+    max-height: calc(100dvh - var(--header-height) - (var(--reader-pad) * 2));
+  }
+}
+
+@media (min-width: 1200px) and (min-height: 700px) {
+  .wiki-page--route.route--wide-flow .wiki-reader-track {
+    height: auto;
+  }
+
+  .wiki-page--route.route--wide-flow
+    .wiki-reader-track
+    > .wiki-record {
+    position: relative;
+    top: auto;
+    height: auto;
+  }
+
+  .wiki-page--route.route--wide-flow .route-frame {
+    height: auto;
+    min-height: var(--reader-h);
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
+  }
+
+  /* Keep the smooth document scroll while restoring the same framed reading
+     surface used by the other Engagement records. The overlay is sticky to
+     the viewport and does not create a second scroll owner. */
+  .wiki-page--route.route--wide-flow .route-frame::before {
+    position: sticky;
+    z-index: 2;
+    top: var(--header-height);
+    display: block;
+    height: var(--reader-h);
+    margin-bottom: calc(-1 * var(--reader-h));
+    box-sizing: border-box;
+    border: 1px solid var(--route-line-strong);
+    border-radius: 6px;
+    box-shadow: var(--route-shadow);
+    content: "";
+    pointer-events: none;
+  }
+
+  .wiki-page.wiki-page--route.route--wide-flow .wiki-outline.wiki-outline--marker {
+    position: sticky;
+    top: calc(var(--header-height) + var(--reader-pad));
+    align-self: start;
+    height: fit-content;
+    max-height: calc(100dvh - var(--header-height) - (var(--reader-pad) * 2));
+    overflow: auto;
+  }
+
+  .wiki-page--route.route--wide-flow .route-frame__scroll {
+    height: auto;
+    overflow: visible !important;
+    scrollbar-width: none;
+  }
+
+  .wiki-page--route.route--wide-flow
+    .route-frame__scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .wiki-page--route .route-frame__scroll {
+    scrollbar-gutter: stable;
+  }
+
+  .wiki-page--route .route-frame__scroll {
+    scrollbar-width: none;
+  }
+
+  .wiki-page--route .route-frame__scroll::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -1,0 +1,124 @@
+.circure-back-to-top {
+  position: fixed;
+  z-index: 90;
+  right: clamp(24px, 3vw, 52px);
+  bottom: calc(30px + env(safe-area-inset-bottom));
+  display: grid;
+  width: 96px;
+  height: 96px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms var(--ease-out);
+}
+
+.circure-back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Magnet layer: only this element translates toward the cursor. Inactive uses
+   the slow settle, active the snappy follow (ReactBits Magnet defaults). */
+.circure-back-to-top__magnet {
+  display: block;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  transition: transform 500ms ease-in-out;
+}
+
+.circure-back-to-top__magnet[data-magnet="true"] {
+  transition: transform 300ms ease-out;
+}
+
+.circure-back-to-top__artwork {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  isolation: isolate;
+  pointer-events: none;
+  transform-origin: 50% 80%;
+}
+
+.circure-back-to-top img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  transition: filter 160ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .circure-back-to-top.is-visible:not(.is-launching):hover img {
+    filter: brightness(1.03) drop-shadow(0 2px 5px rgb(120 58 54 / 16%));
+  }
+}
+
+.circure-back-to-top.is-visible:not(.is-launching):active img {
+  filter: brightness(0.94);
+}
+
+.circure-back-to-top:focus-visible {
+  outline: 2px solid var(--care);
+  outline-offset: 4px;
+}
+
+.circure-back-to-top.is-launching {
+  pointer-events: none;
+  outline: none;
+}
+
+.circure-back-to-top.is-launching .circure-back-to-top__artwork {
+  animation: circure-back-to-top-launch 720ms ease-in both;
+}
+
+@keyframes circure-back-to-top-launch {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  14% {
+    transform: translateY(5px) scale(1.02, 0.96);
+    animation-timing-function: cubic-bezier(0.48, 0.02, 0.76, 0.52);
+  }
+
+  0%,
+  78% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(calc(-100dvh - 120px)) scale(0.75);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .circure-back-to-top {
+    right: 16px;
+    bottom: calc(18px + env(safe-area-inset-bottom));
+    width: 88px;
+    height: 88px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .circure-back-to-top,
+  .circure-back-to-top img,
+  .circure-back-to-top__magnet {
+    transition: none;
+  }
+
+  .circure-back-to-top.is-launching .circure-back-to-top__artwork {
+    animation-duration: 1ms;
+  }
+}

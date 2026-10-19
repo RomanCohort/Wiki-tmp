@@ -1,0 +1,382 @@
+.education-interactive {
+  width: 100%;
+  margin: 0;
+  border: 1px solid var(--route-line, #d8c8b1);
+  border-radius: 12px;
+  background: #fffaf1;
+  overflow: hidden;
+}
+
+.education-gallery {
+  width: 100%;
+  margin: 0;
+  background: transparent;
+}
+
+.education-stations {
+  width: 100%;
+  margin: var(--wiki-space-block, 24px) 0;
+}
+
+.education-stations__labels {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: end;
+  gap: 4px;
+}
+
+.education-stations__label {
+  min-width: 0;
+  padding: 7px 2px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #57635a;
+  cursor: pointer;
+  font: inherit;
+  font-size: clamp(10px, 1.2vw, 14px);
+  font-weight: 650;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.education-stations__label--active,
+.education-stations__label:is(:hover, :focus-visible) {
+  background: #e8f0e7;
+  color: #24594c;
+}
+
+.education-stations__label:focus-visible,
+.education-stations__range:focus-visible {
+  outline: 3px solid #d89d4c;
+  outline-offset: 3px;
+}
+
+.education-stations__range {
+  display: block;
+  width: 80%;
+  height: 10px;
+  margin: 13px auto 28px;
+  border-radius: 999px;
+  appearance: none;
+  background: linear-gradient(to right, #35675d 0 var(--education-station-progress), #dacdbb var(--education-station-progress) 100%);
+  cursor: grab;
+}
+
+.education-stations__range:active { cursor: grabbing; }
+.education-stations__range::-webkit-slider-thumb {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #fffaf1;
+  border-radius: 50%;
+  appearance: none;
+  background: #35675d;
+  box-shadow: 0 2px 8px #21483e55;
+}
+.education-stations__range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fffaf1;
+  border-radius: 50%;
+  background: #35675d;
+  box-shadow: 0 2px 8px #21483e55;
+}
+
+.wiki-page--education .wiki-article .wiki-prose-link--route[href$="/games"],
+.wiki-page--education .wiki-article .wiki-prose-link--route[href$="/sustainability"] {
+  display: inline-flex;
+  align-items: center;
+  gap: .7em;
+  max-width: 100%;
+  margin: 8px 0;
+  padding: .68em 1.12em;
+  border: 2px solid #35675d;
+  border-radius: 999px;
+  background: #35675d;
+  box-shadow: 0 5px 0 #21483e, 0 9px 20px #21483e2b;
+  color: #fff;
+  font-weight: 750;
+  line-height: 1.35;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.wiki-page--education .wiki-article .wiki-prose-link--route[href$="/games"]::after,
+.wiki-page--education .wiki-article .wiki-prose-link--route[href$="/sustainability"]::after {
+  content: "↗";
+  flex: none;
+  font-size: 1.25em;
+  line-height: 1;
+  transition: transform 180ms ease;
+}
+
+.wiki-page--education .wiki-article .wiki-prose-link--route[href$="/games"]:is(:hover, :focus-visible),
+.wiki-page--education .wiki-article .wiki-prose-link--route[href$="/sustainability"]:is(:hover, :focus-visible) {
+  transform: translateY(-3px);
+  background: #27584e;
+  box-shadow: 0 8px 0 #21483e, 0 14px 26px #21483e38;
+}
+
+.wiki-page--education .wiki-article .wiki-prose-link--route[href$="/games"]:is(:hover, :focus-visible)::after,
+.wiki-page--education .wiki-article .wiki-prose-link--route[href$="/sustainability"]:is(:hover, :focus-visible)::after {
+  transform: translate(3px, -3px);
+}
+
+.wiki-page--education .wiki-article .wiki-prose-link--route[href$="/games"]:focus-visible,
+.wiki-page--education .wiki-article .wiki-prose-link--route[href$="/sustainability"]:focus-visible {
+  outline: 3px solid #e3a64a;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wiki-page--education .wiki-article .wiki-prose-link--route[href$="/games"],
+  .wiki-page--education .wiki-article .wiki-prose-link--route[href$="/sustainability"],
+  .wiki-page--education .wiki-article .wiki-prose-link--route[href$="/games"]::after,
+  .wiki-page--education .wiki-article .wiki-prose-link--route[href$="/sustainability"]::after {
+    transition: none;
+  }
+}
+
+.wiki-page--engagement .wiki-chapter-link--image {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: min(180px, 100%);
+  margin: 18px 0;
+  text-align: center;
+  text-decoration: none;
+  color: #344f66;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.wiki-page--engagement .wiki-chapter-link--image img {
+  display: block;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  transition: transform 180ms ease;
+}
+
+.wiki-page--engagement .wiki-chapter-link--image:hover img,
+.wiki-page--engagement .wiki-chapter-link--image:focus-visible img { transform: scale(1.07); }
+.wiki-page--engagement .wiki-chapter-link--image b { display: none; }
+
+.wiki-page--engagement .wiki-figure--education-feedback {
+  max-width: 300px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.wiki-page--engagement .wiki-figure--education-feedback img { width: 100%; height: auto; }
+
+.wiki-page--route.wiki-page--education .wiki-figure--ethics-poster img {
+  width: min(100%, 760px);
+  height: auto;
+}
+
+.education-figure-window { display: block; width: 100%; aspect-ratio: 16 / 9; }
+.education-figure-window:has(img) { aspect-ratio: auto; }
+
+.education-interactive__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  color: #344f66;
+  font-size: 14px;
+}
+
+.education-interactive iframe { display: block; width: 100%; border: 0; background: #fffaf1; }
+
+.education-interactive__launch {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 12px;
+  padding: 36px 20px 44px;
+  text-align: center;
+  color: #51372d;
+}
+
+.education-interactive__launch p { margin: 0; }
+.education-interactive__launch button {
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 24px;
+  background: #344f66;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+.education-interactive__launch button:disabled { opacity: .6; cursor: wait; }
+
+.education-document-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin: var(--wiki-space-block, 24px) 0;
+}
+
+.education-document-group .wiki-document {
+  margin: 0 auto;
+}
+
+.education-media-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  width: 100%;
+}
+
+.education-media-grid[data-count="3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.education-media-grid[data-count="4"] { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.education-media-grid[data-count="5"] { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.education-media-grid[data-count="5"] > *:nth-child(-n+3) { grid-column: span 2; }
+.education-media-grid[data-count="5"] > *:nth-child(n+4) { grid-column: span 3; }
+
+.education-media-grid__image {
+  display: block;
+  min-width: 0;
+  margin: 0;
+  border: 1px solid #d9dfe2;
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.education-media-grid__image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: #f8f8f6;
+}
+
+.education-media-grid__placeholder--image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #f8f8f6;
+}
+
+.education-media-grid__image figcaption {
+  display: block;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.education-equation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  padding: 24px 12px;
+  overflow-x: auto;
+  color: #263b53;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(18px, 2vw, 25px);
+  white-space: nowrap;
+}
+
+.education-equation--stacked { flex-direction: column; gap: 14px; }
+.education-equation__brace { font-size: 2.8em; line-height: 1; font-weight: 200; }
+.education-equation__cases { display: grid; gap: 8px; }
+.education-equation__cases small { font-family: var(--font-sans); font-size: .58em; }
+.education-equation__sum { position: relative; display: inline-block; padding: 0 6px; font-size: 1.6em; line-height: 1.3; vertical-align: -.12em; }
+.education-equation__sum sup,
+.education-equation__sum sub { position: absolute; left: 50%; transform: translateX(-50%); font-size: .35em; line-height: 1; }
+.education-equation__sum sup { top: -.45em; }
+.education-equation__sum sub { bottom: -.5em; }
+.education-inline-math { font-family: Georgia, "Times New Roman", serif; white-space: nowrap; }
+
+.education-gallery__stage {
+  position: relative;
+  min-height: 240px;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  perspective: 1600px;
+  background: transparent;
+}
+
+.education-gallery__card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 68%;
+  height: 86%;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #d5dfe5;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 14px 36px #233e5a24;
+  cursor: pointer;
+  transition: transform 420ms cubic-bezier(.22, 1, .36, 1), opacity 420ms, box-shadow 420ms;
+}
+
+.education-gallery__card--active { z-index: 3; transform: translate(-50%, -50%); cursor: default; box-shadow: 0 20px 48px #233e5a36; }
+.education-gallery__card--previous { z-index: 2; transform: translate(-105%, -50%) scale(.88) rotateY(16deg); opacity: .75; }
+.education-gallery__card--next { z-index: 2; transform: translate(5%, -50%) scale(.88) rotateY(-16deg); opacity: .75; }
+.education-gallery__card--previous:hover,
+.education-gallery__card--next:hover,
+.education-gallery__card--previous:focus-visible,
+.education-gallery__card--next:focus-visible { opacity: 1; }
+
+.education-gallery__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.education-gallery__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #ffffffb0;
+  border-radius: 50%;
+  background: #344f66df;
+  color: white;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.education-gallery__arrow--prev { left: 12px; }
+.education-gallery__arrow--next { right: 12px; }
+.education-gallery__arrow:hover,
+.education-gallery__arrow:focus-visible { background: #253c50; }
+
+.education-gallery figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 15px;
+  color: #51372d;
+  font-size: 13px;
+}
+
+@media (max-width: 620px) {
+  .education-media-grid,
+  .education-media-grid[data-count="3"],
+  .education-media-grid[data-count="4"],
+  .education-media-grid[data-count="5"] { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .education-media-grid[data-count="5"] > * { grid-column: auto !important; }
+  .education-media-grid__image figcaption { font-size: 11px; padding: 7px; }
+  .education-media-grid__placeholder--image { height: auto; }
+  .education-gallery__stage { aspect-ratio: 4 / 3; }
+  .education-gallery__card { width: 76%; height: 84%; }
+  .education-gallery__arrow { width: 36px; height: 36px; font-size: 26px; }
+  .education-interactive__head { flex-wrap: wrap; }
+}

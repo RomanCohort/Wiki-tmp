@@ -1,0 +1,170 @@
+.dose-prediction-explorer {
+  --dose-teal: #087f7e;
+  margin: 0;
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid #c7dddd;
+  border-radius: 8px;
+  background: #fbfdfd;
+  color: var(--route-ink, #173c51);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.dose-prediction-explorer h3 {
+  margin: 0 0 8px;
+  color: var(--route-heading-ink, #153e34);
+  font-size: 18px;
+  font-weight: 700;
+}
+.dose-prediction-explorer p {
+  margin: 0;
+}
+.dose-prediction-explorer > p,
+.dose-prediction-explorer > div {
+  margin-top: 18px;
+}
+.dose-prediction-explorer .dose-prediction-explorer__meta,
+.dose-prediction-explorer .dose-prediction-explorer__help,
+.dose-prediction-explorer .dose-prediction-explorer__footnote {
+  color: var(--route-muted, #547086);
+  font-size: 11px;
+}
+.dose-prediction-explorer__controls {
+  display: grid;
+  grid-template-columns: auto minmax(80px, 1fr) 88px auto;
+  align-items: center;
+  gap: 12px;
+}
+.dose-prediction-explorer__controls input[type="range"] {
+  width: 100%;
+  margin: 0;
+  accent-color: var(--dose-teal);
+  cursor: pointer;
+}
+.dose-prediction-explorer__controls input[type="number"] {
+  width: 100%;
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid #d1e0e7;
+  border-radius: 5px;
+  background: #fff;
+  color: inherit;
+  font: inherit;
+  box-sizing: border-box;
+}
+.dose-prediction-explorer input:focus-visible {
+  outline: 2px solid var(--dose-teal);
+  outline-offset: 3px;
+}
+.dose-prediction-explorer__status [data-passes="true"] {
+  color: var(--dose-teal);
+}
+.dose-prediction-explorer__status [data-passes="false"] {
+  color: #a2502b;
+}
+.dose-prediction-explorer__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding: 0;
+  margin: 18px 0 0;
+  list-style: none;
+  font-size: 11px;
+}
+.dose-prediction-explorer__legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dose-prediction-explorer__legend i {
+  display: inline-block;
+  width: 20px;
+  border-top: 3px solid;
+}
+.dose-prediction-explorer__legend [data-curve="p_effect"] {
+  color: #4b86b7;
+}
+.dose-prediction-explorer__legend [data-curve="p_effect"] i {
+  border-top-style: dotted;
+}
+.dose-prediction-explorer__legend [data-curve="p_screen"] {
+  color: #bd6531;
+}
+.dose-prediction-explorer__legend [data-curve="p_screen"] i {
+  border-top-style: dashed;
+}
+.dose-prediction-explorer__legend [data-curve="p_joint"] {
+  color: var(--dose-teal);
+}
+.dose-prediction-explorer .dose-prediction-explorer__axis {
+  margin-bottom: 0;
+  font-size: 12px;
+}
+.dose-prediction-explorer .dose-prediction-explorer__chart {
+  width: 100%;
+  height: 350px;
+  margin-top: 0;
+}
+.dose-prediction-explorer__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.dose-prediction-explorer__metrics > div,
+.dose-prediction-explorer__volume {
+  padding: 12px;
+  border-radius: 5px;
+  background: #edf5f5;
+}
+.dose-prediction-explorer__metrics small {
+  display: block;
+  color: #58717d;
+  font-size: 10px;
+}
+.dose-prediction-explorer__metrics strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 20px;
+}
+.dose-prediction-explorer__metrics p {
+  font-size: 11px;
+}
+.dose-prediction-explorer__metrics p + p {
+  margin-top: 10px;
+}
+.dose-prediction-explorer__volume strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 15px;
+}
+.dose-prediction-explorer .dose-prediction-explorer__joint {
+  padding: 12px 14px;
+  border-left: 3px solid var(--dose-teal);
+  background: #edf5f5;
+}
+.dose-prediction-explorer a {
+  color: var(--dose-teal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 600px) {
+  .dose-prediction-explorer {
+    padding: 16px 12px;
+  }
+  .dose-prediction-explorer__controls {
+    grid-template-columns: minmax(0, 1fr) 76px auto;
+    gap: 8px;
+  }
+  .dose-prediction-explorer__controls label {
+    grid-column: 1 / -1;
+  }
+  .dose-prediction-explorer__metrics {
+    grid-template-columns: 1fr;
+  }
+  .dose-prediction-explorer__metrics > div {
+    padding: 12px 14px;
+  }
+  .dose-prediction-explorer .dose-prediction-explorer__chart {
+    height: 300px;
+  }
+}

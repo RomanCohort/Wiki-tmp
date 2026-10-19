@@ -1,0 +1,81 @@
+.home-thinking-gallery-wash {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.home-story .home-molecule-gallery__stage.is-thinking-gallery-target {
+  position: fixed;
+  inset: 0;
+  z-index: 31;
+  background: transparent !important;
+}
+
+.is-thinking-gallery-target .home-molecule-gallery__decision {
+  opacity: 0 !important;
+}
+
+.is-thinking-gallery-target .home-molecule-gallery__title {
+  opacity: var(--thinking-title-opacity, 0) !important;
+  visibility: visible !important;
+}
+
+.is-thinking-gallery-source .story-clinical-backdrop,
+.is-thinking-gallery-source
+  #a-new-direction
+  .story-art
+  > :not([data-layer="7"]):not([data-layer="8"]) {
+  opacity: var(--thinking-scene-opacity, 1) !important;
+}
+
+.is-thinking-gallery-source > .story-clinical-backdrop:first-child {
+  opacity: 0 !important;
+}
+
+.is-thinking-gallery-source #a-new-direction [data-layer="4"] {
+  clip-path: inset(var(--thinking-magnifier-cutoff) 0 0 0);
+}
+
+.is-thinking-gallery-source #a-new-direction [data-layer="7"],
+.is-thinking-gallery-source #a-new-direction [data-layer="8"] {
+  opacity: var(--thinking-cloud-opacity, 1) !important;
+}
+
+.home-molecule-gallery__artwork {
+  position: relative;
+}
+
+.home-thinking-gallery-mark {
+  position: absolute;
+  top: 0;
+  left: 1%;
+  width: 7.5%;
+  height: auto;
+  aspect-ratio: 207 / 216;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.home-thinking-gallery-mark--travelling {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 32;
+  will-change: transform;
+}
+
+@media (max-width: 800px) and (max-aspect-ratio: 4/5) {
+  .home-molecule-gallery__artwork > .home-thinking-gallery-mark {
+    width: 9%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-thinking-gallery-wash,
+  .home-thinking-gallery-mark {
+    display: none;
+  }
+}

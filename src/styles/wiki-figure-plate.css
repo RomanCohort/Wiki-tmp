@@ -1,0 +1,52 @@
+.wiki-figure-plate {
+  width: 100%;
+  margin: 0;
+}
+
+.wiki-feature .wiki-figure-plate.wiki-figure {
+  margin: 0 auto !important;
+}
+
+.wiki-figure-plate__grid {
+  display: grid;
+  width: 100%;
+  gap: var(--wiki-space-block, 24px);
+  align-items: start;
+  justify-items: stretch;
+}
+
+.wiki-figure-plate__grid--cols-1 {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+}
+
+.wiki-figure-plate__grid--cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.wiki-figure-plate__grid--cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.wiki-figure-plate img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: min(76vh, 820px);
+  height: auto;
+  margin: 0 auto;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+.wiki-figure-plate--share-number {
+  counter-increment: none;
+}
+
+@media (max-width: 767px) {
+  .wiki-figure-plate__grid--cols-2,
+  .wiki-figure-plate__grid--cols-3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,30 @@
+.wiki-page .wiki-html-embed {
+  min-width: 0;
+  margin: 0;
+}
+
+.wiki-page .wiki-html-embed__actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.wiki-page .wiki-html-embed__actions a {
+  color: var(--route-heading-ink);
+  font-size: 13px;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.wiki-page .wiki-html-embed__actions a:focus-visible {
+  outline: 2px solid var(--route-subheading-ink);
+  outline-offset: 4px;
+}
+
+.wiki-page .wiki-html-embed iframe {
+  display: block;
+  width: 100%;
+  height: var(--wiki-html-height, 680px);
+  border: 0;
+  background: transparent;
+}

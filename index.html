@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function () {
+        var base = "/jlu-fbh/";
+        var path = window.location.pathname;
+        if (path === "/" || path === "" || path === "/jlu-fbh") {
+          window.location.replace(base + window.location.search + window.location.hash);
+        } else if (!path.startsWith(base)) {
+          window.location.replace(base.replace(/\/$/, "") + (path.startsWith("/") ? path : "/" + path) + window.location.search + window.location.hash);
+        }
+      })();
+      // Set this before ScrollTrigger initializes: it captures this value and
+      // restores it after layout refreshes, including the first font load.
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    </script>
+    <link
+      rel="shortcut icon"
+      href="https://static.igem.wiki/common/icons/favicons/igem-2022.svg"
+      type="image/x-icon"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>%VITE_TEAM_NAME% - iGEM %VITE_TEAM_YEAR%</title>
+    <!--
+      Page loader — critical CSS is inlined so the loader paints from the HTML
+      alone, before the app bundle or the main stylesheet arrive (the build
+      makes that stylesheet non-render-blocking, see vite.config.ts). Runtime
+      control lives in src/utils/pageLoader.ts.
+
+      Stage timeline (relative to .is-playing, i.e. once the art has decoded):
+        1  0.00–0.90s  hands rise in over the watercolor, then breathe
+        2  0.45–1.95s  the complete ribbon unfolds left → right with a soft edge
+        3  1.50s       lamb pops 0.9 → 1 with a halo
+        4  1.65s →     petals drift, stars twinkle, dots bounce
+      Only transform / opacity animate, and
+      the whole layer is display:none once hidden, so it costs nothing later.
+    -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="https://static.igem.wiki/teams/6056/wiki/files/fonts/site/fredoka-variable.woff2"
+    />
+    <style>
+      @font-face {
+        font-family: "Fredoka";
+        src: url("https://static.igem.wiki/teams/6056/wiki/files/fonts/site/fredoka-variable.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 300 700;
+        font-display: swap;
+      }
+      html {
+        background: #fde4ca;
+      }
+      .page-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        overflow: hidden;
+        background: #fde4ca;
+        opacity: 1;
+        transition: opacity 0.38s cubic-bezier(0.2, 0.9, 0.3, 1);
+        user-select: none;
+        -webkit-user-select: none;
+        contain: layout paint;
+      }
+      .page-loader[hidden] {
+        display: none;
+      }
+      .page-loader.is-leaving {
+        opacity: 0;
+      }
+      /* Cover: the 1264×711 canvas always fills the viewport. */
+      .page-loader__stage {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: max(100vw, 177.7778vh);
+        height: max(100vh, 56.25vw);
+        transform: translate(-50%, -50%);
+      }
+      .page-loader__stage > * {
+        position: absolute;
+      }
+      .page-loader img,
+      .page-loader svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      /* The watercolor (24 kB) paints the moment it arrives, over a matching
+         base colour, instead of waiting for the rest of the stage. */
+      .pl-bg { inset: 0; }
+      .pl-hands { left: 0; top: 27.567%; width: 100%; height: 72.433%; opacity: 0; }
+      .pl-ribbon { inset: 0; }
+      .pl-glow {
+        left: 52.1%;
+        top: 52.5%;
+        width: 34%;
+        aspect-ratio: 1;
+        margin: -17% 0 0 -17%;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 250, 236, 0.95) 0%,
+          rgba(255, 226, 214, 0.55) 38%,
+          rgba(255, 214, 200, 0) 70%
+        );
+        opacity: 0;
+      }
+      .pl-lamb {
+        left: 30.301%; top: 29.255%; width: 64.32%; height: 47.398%;
+        transform-origin: 33.9% 49%;
+        opacity: 0;
+      }
+      .pl-petals { left: 8.07%; top: 52.743%; width: 57.199%; height: 19.831%; opacity: 0; }
+      .pl-stars { left: 12.342%; top: 4.079%; width: 71.994%; height: 88.608%; opacity: 0; }
+      .pl-ribbon-reveal { transform: translateX(-1484px); }
+      .page-loader.is-playing .pl-hands,
+      .page-loader.is-playing .pl-lamb,
+      .page-loader.is-playing .pl-petals,
+      .page-loader.is-playing .pl-stars {
+        will-change: transform, opacity;
+      }
+
+      /* Caption sits below the lamb on the canvas, but never below the fold
+         on ultrawide screens where the cover canvas overflows vertically. */
+      .page-loader__feedback {
+        position: absolute;
+        left: 50%;
+        top: min(calc(50vh + 0.34 * max(100vh, 56.25vw)), calc(100vh - 8rem));
+        top: min(calc(50vh + 0.34 * max(100vh, 56.25vw)), calc(100svh - 8rem));
+        transform: translate(-50%, -50%);
+        width: calc(100% - 2rem);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.55rem;
+        text-align: center;
+        color: #634f46;
+        font: 400 0.875rem / 1.4 system-ui, sans-serif;
+      }
+      .page-loader__caption {
+        display: flex;
+        align-items: baseline;
+        margin: 0;
+        color: #634f46;
+        font: 500 clamp(1.6rem, 3.2vw, 2.5rem) / 1 "Fredoka", ui-rounded,
+          "Arial Rounded MT Bold", system-ui, sans-serif;
+        letter-spacing: 0.05em;
+        text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+        opacity: 1;
+      }
+      .page-loader__status, .page-loader__wait { margin: 0; }
+      .page-loader__wait { max-width: 28rem; }
+      .page-loader__retry {
+        border: 1px solid #a78875;
+        border-radius: 999px;
+        padding: 0.4rem 1rem;
+        background: #fff3e8;
+        color: #634f46;
+        font: inherit;
+        cursor: pointer;
+      }
+      .page-loader__retry:focus-visible { outline: 2px solid #634f46; outline-offset: 3px; }
+      .page-loader__feedback [hidden] { display: none; }
+      @media (max-height: 500px) and (min-aspect-ratio: 4/3) {
+        .page-loader__feedback {
+          top: auto;
+          bottom: 0.75rem;
+          transform: translateX(-50%);
+          gap: 0.35rem;
+        }
+      }
+      .page-loader__caption span {
+        display: inline-block;
+        margin-left: 2px;
+        font-weight: 700;
+        opacity: 0.3;
+      }
+
+      .page-loader.is-playing .page-loader__caption { animation: pl-fade 0.4s ease-out calc(0.1s - var(--pl-skip, 0s)) both; }
+      .page-loader.is-playing .pl-hands { animation: pl-rise 0.9s cubic-bezier(0.22, 0.8, 0.3, 1) calc(0.05s - var(--pl-skip, 0s)) both; }
+      .page-loader.is-playing .pl-hands img { animation: pl-float 3.8s ease-in-out calc(0.95s - var(--pl-skip, 0s)) infinite; }
+      .page-loader.is-playing .pl-ribbon-reveal {
+        animation: pl-unfold 1.5s cubic-bezier(0.33, 0, 0.67, 1) calc(0.45s - var(--pl-skip, 0s)) both;
+      }
+      .page-loader.is-playing .pl-glow { animation: pl-halo 0.9s ease-out calc(1.5s - var(--pl-skip, 0s)) both; }
+      .page-loader.is-playing .pl-lamb {
+        animation: pl-pop 0.62s cubic-bezier(0.34, 1.56, 0.64, 1) calc(1.5s - var(--pl-skip, 0s)) both;
+      }
+      .page-loader.is-playing .pl-lamb img { animation: pl-breathe 2.8s ease-in-out calc(2.12s - var(--pl-skip, 0s)) infinite; }
+      .page-loader.is-playing .pl-petals { animation: pl-fade 0.6s ease-out calc(1.65s - var(--pl-skip, 0s)) both; }
+      .page-loader.is-playing .pl-petals img { animation: pl-drift 3.2s ease-in-out calc(1.65s - var(--pl-skip, 0s)) infinite; transform-origin: 20% 70%; }
+      .page-loader.is-playing .pl-stars { animation: pl-fade 0.5s ease-out calc(1.65s - var(--pl-skip, 0s)) both; }
+      .page-loader.is-playing .pl-stars img { animation: pl-twinkle 2.2s ease-in-out calc(1.65s - var(--pl-skip, 0s)) infinite; }
+      .page-loader.is-playing .page-loader__caption span {
+        animation: pl-dot 1.25s ease-in-out calc(1.65s - var(--pl-skip, 0s)) infinite;
+      }
+      .page-loader.is-playing .page-loader__caption span:nth-child(2) { animation-delay: calc(1.87s - var(--pl-skip, 0s)); }
+      .page-loader.is-playing .page-loader__caption span:nth-child(3) { animation-delay: calc(2.09s - var(--pl-skip, 0s)); }
+
+      @keyframes pl-fade { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes pl-rise {
+        from { opacity: 0; transform: translate3d(0, 6%, 0); }
+        to { opacity: 1; transform: none; }
+      }
+      @keyframes pl-float { 50% { transform: translate3d(0, -3px, 0); } }
+      /* Reveal the original image with one feathered front. A wide stroked
+         path would expose the crossing out of order and cut holes in it. */
+      @keyframes pl-unfold {
+        from { transform: translateX(-1484px); }
+        to { transform: translateX(0); }
+      }
+      @keyframes pl-halo {
+        0% { opacity: 0; transform: scale(0.55); }
+        45% { opacity: 1; }
+        100% { opacity: 0.6; transform: scale(1.12); }
+      }
+      @keyframes pl-pop {
+        0% { opacity: 0; transform: scale(0.9); }
+        30% { opacity: 1; }
+        100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes pl-breathe { 50% { transform: translate3d(0, -5px, 0) scale(1.02); } }
+      @keyframes pl-drift { 50% { transform: translate3d(0, -8px, 0) rotate(2.5deg); } }
+      @keyframes pl-twinkle {
+        0%, 100% { opacity: 0.55; transform: scale(0.96); }
+        50% { opacity: 1; transform: scale(1.05); }
+      }
+      @keyframes pl-dot {
+        0%, 80%, 100% { opacity: 0.3; transform: none; }
+        40% { opacity: 1; transform: translate3d(0, -6px, 0); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .page-loader *,
+        .page-loader.is-playing * {
+          animation: none !important;
+        }
+        .pl-hands, .pl-lamb, .pl-petals, .pl-stars,
+        .page-loader__caption, .page-loader__caption span {
+          opacity: 1;
+        }
+        .pl-glow { opacity: 0.6; }
+        .pl-ribbon-reveal { transform: translateX(0); }
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="page-loader"
+      class="page-loader"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      <div class="page-loader__stage" aria-hidden="true">
+        <img class="pl-bg" src="https://static.igem.wiki/teams/6056/wiki/files/pages/shared/bg.webp" alt="" fetchpriority="high" />
+        <div class="pl-hands">
+          <img src="https://static.igem.wiki/teams/6056/wiki/files/pages/shared/hands.webp" alt="" fetchpriority="high" data-critical />
+        </div>
+        <svg class="pl-ribbon" viewBox="0 0 1264 711" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="pl-ribbon-edge" gradientUnits="userSpaceOnUse" x1="1264" y1="0" x2="1484" y2="0">
+              <stop offset="0" stop-color="#fff" />
+              <stop offset="0.35" stop-color="#fff" stop-opacity="0.78" />
+              <stop offset="0.7" stop-color="#fff" stop-opacity="0.22" />
+              <stop offset="1" stop-color="#fff" stop-opacity="0" />
+            </linearGradient>
+            <mask id="pl-ribbon-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1264" height="711">
+              <rect
+                class="pl-ribbon-reveal"
+                width="1484"
+                height="711"
+                fill="url(#pl-ribbon-edge)"
+              />
+            </mask>
+          </defs>
+          <image
+            href="https://static.igem.wiki/teams/6056/wiki/files/pages/shared/ribbon.webp"
+            x="0"
+            y="90"
+            width="1264"
+            height="566"
+            preserveAspectRatio="none"
+            mask="url(#pl-ribbon-mask)"
+          />
+        </svg>
+        <div class="pl-glow"></div>
+        <div class="pl-lamb">
+          <img src="https://static.igem.wiki/teams/6056/wiki/files/pages/shared/lamb.webp" alt="" fetchpriority="high" data-critical />
+        </div>
+        <div class="pl-petals"><img src="https://static.igem.wiki/teams/6056/wiki/files/pages/shared/petals.webp" alt="" /></div>
+        <div class="pl-stars"><img src="https://static.igem.wiki/teams/6056/wiki/files/pages/shared/stars.webp" alt="" /></div>
+      </div>
+      <div class="page-loader__feedback">
+        <p class="page-loader__caption" aria-hidden="true">loading<span>.</span><span>.</span><span>.</span></p>
+        <p class="page-loader__status" data-loader-status>Preparing your page…</p>
+        <p class="page-loader__wait" data-loader-wait hidden>Taking a little longer. Your page is still loading.</p>
+        <button class="page-loader__retry" data-loader-retry type="button" hidden>Reload page</button>
+      </div>
+    </div>
+    <script>
+      // Start the stage timeline once the key art has decoded, so the hands
+      // and ribbon never animate while still invisible. Wheel / touch on the
+      // loader must not scroll the page underneath it until content is ready.
+      (function () {
+        var loader = document.getElementById("page-loader");
+        if (!loader) return;
+        var block = function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+        };
+        loader.addEventListener("wheel", block, { passive: false });
+        loader.addEventListener("touchmove", block, { passive: false });
+
+        // Long waits explain what is happening and offer recovery. The app
+        // caps its art and font waits (pageLoader READY_DEADLINE_MS); these
+        // timers only cover a stylesheet or bundle that never arrives.
+        var status = loader.querySelector("[data-loader-status]");
+        var wait = loader.querySelector("[data-loader-wait]");
+        var retry = loader.querySelector("[data-loader-retry]");
+        var slowTimer = 0;
+        var retryTimer = 0;
+        var stopWait = function () {
+          clearTimeout(slowTimer);
+          clearTimeout(retryTimer);
+        };
+        var watchWait = function () {
+          stopWait();
+          status.textContent = "Preparing your page…";
+          wait.hidden = true;
+          retry.hidden = true;
+          slowTimer = setTimeout(function () {
+            if (!loader.hidden) wait.hidden = false;
+          }, 12000);
+          retryTimer = setTimeout(function () {
+            if (!loader.hidden) retry.hidden = false;
+          }, 30000);
+        };
+        var failed = function () {
+          if (loader.hidden) return;
+          stopWait();
+          status.textContent = "The page could not load. Please try again.";
+          wait.hidden = true;
+          retry.hidden = false;
+        };
+        retry.addEventListener("click", function () { window.location.reload(); });
+        loader.addEventListener("loaderstart", watchWait);
+        loader.addEventListener("loaderstatus", function () {
+          status.textContent = loader.dataset.message;
+        });
+        loader.addEventListener("loaderready", function () {
+          stopWait();
+          wait.hidden = true;
+          retry.hidden = true;
+        });
+        loader.addEventListener("loadererror", failed);
+        window.addEventListener("vite:preloadError", failed);
+        window.addEventListener("unhandledrejection", failed);
+        window.addEventListener("error", function (event) {
+          var target = event.target;
+          if (
+            (target && target.tagName === "SCRIPT" && target.type === "module") ||
+            event.error ||
+            !target || target === window
+          ) failed();
+        }, true);
+        watchWait();
+
+        var frame = 0;
+        var play = function () {
+          if (loader.classList.contains("is-playing") || loader.hidden) return;
+          cancelAnimationFrame(frame);
+          loader.dataset.start = String(performance.now());
+          loader.classList.add("is-playing");
+
+          // SVG masks paint on the main thread. Wall-clock CSS playback would
+          // skip the entrance while React/GSAP initialise behind the loader.
+          // Keep finite entrance animations on one clock, allowing at most
+          // 32 ms of progress per rendered frame. Ambient loops stay in CSS.
+          var entrances = loader.getAnimations({ subtree: true }).filter(function (animation) {
+            return animation instanceof CSSAnimation &&
+              animation.effect.getTiming().iterations !== Infinity;
+          });
+          entrances.forEach(function (animation) {
+            animation.pause();
+            animation.currentTime = 0;
+          });
+          var elapsed = 0;
+          var previous = null;
+          var advance = function (now) {
+            frame = 0;
+            if (loader.hidden || !loader.classList.contains("is-playing")) return;
+            if (document.hidden) {
+              previous = null;
+            } else {
+              if (previous !== null) elapsed += Math.min(32, now - previous);
+              previous = now;
+              entrances = entrances.filter(function (animation) {
+                // Reduced-motion can cancel the CSS animation during playback.
+                if (animation.playState === "idle") return false;
+                var end = animation.effect.getComputedTiming().endTime;
+                animation.currentTime = Math.min(elapsed, end);
+                if (elapsed < end) return true;
+                animation.finish();
+                return false;
+              });
+            }
+            if (entrances.length) frame = requestAnimationFrame(advance);
+          };
+          if (entrances.length) frame = requestAnimationFrame(advance);
+          loader.dispatchEvent(new Event("loaderplay"));
+        };
+        // Route replays must use the same clock as the first page load.
+        loader.addEventListener("loaderstart", play);
+        // A slow connection must get a chance to decode the artwork before
+        // its entrance runs; failed requests settle through decode().
+        var fallback = setTimeout(play, 8000);
+        var decode = function (img) {
+          return img.decode ? img.decode().catch(function () {}) : null;
+        };
+        var art = [].slice.call(loader.querySelectorAll("img"));
+        var ribbon = new Image();
+        ribbon.src = loader.querySelector("image").getAttribute("href");
+        art.push(ribbon);
+        Promise.all(art.map(decode)).then(function () {
+          clearTimeout(fallback);
+          play();
+        });
+      })();
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,432 @@
+/* The repeated root class deliberately outranks the manuscript's element resets.
+   Layout queries use the reader width; orbit units use the orbit itself. */
+.cc-achievements.cc-achievements {
+  --cc-ink: #293d4d;
+  --cc-muted: #637787;
+  --cc-blue: #536f87;
+  --cc-ring: #afc0ce;
+  --cc-line: #d3dfe5;
+  --cc-mist: #edf3f7;
+  --cc-paper: #faf8ed;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--cc-ink);
+  font: 15px/1.65 var(--font-body, "Segoe UI", sans-serif);
+  isolation: isolate;
+}
+
+.cc-achievements.cc-achievements,
+.cc-achievements.cc-achievements *,
+.cc-achievements.cc-achievements *::before,
+.cc-achievements.cc-achievements *::after {
+  box-sizing: border-box;
+}
+
+.cc-achievements.cc-achievements button {
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cc-achievements.cc-achievements button:focus-visible {
+  outline: 2px solid var(--route-subheading-ink, #88541e);
+  outline-offset: 4px;
+}
+
+.cc-achievements.cc-achievements .cc-image-definitions {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.cc-achievements.cc-achievements .cc-responsive {
+  container: key-achievements / inline-size;
+}
+
+.cc-achievements.cc-achievements .cc-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(20px, 3cqw, 36px);
+  align-items: start;
+}
+
+.cc-achievements.cc-achievements .cc-navigation {
+  min-width: 0;
+  width: 100%;
+  max-width: 390px;
+  margin: 24px auto 0;
+}
+
+.cc-achievements.cc-achievements .cc-orbit {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  container-type: inline-size;
+}
+
+.cc-achievements.cc-achievements .cc-orbit::before {
+  position: absolute;
+  inset: 12.7%;
+  border: 1.5px solid var(--cc-ring);
+  border-radius: 50%;
+  content: "";
+}
+
+.cc-achievements.cc-achievements .cc-rotor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: rotate(var(--cc-rotation, 0deg));
+  transition: transform 1050ms cubic-bezier(0.35, 0, 0.16, 1);
+}
+
+.cc-achievements.cc-achievements .cc-node-position {
+  position: absolute;
+  width: 23cqw;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+}
+
+.cc-achievements.cc-achievements .cc-bubble {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 8%;
+  border: 1px solid #bdcedb;
+  border-radius: 50%;
+  background: var(--cc-mist);
+  color: #415b70;
+  font-size: clamp(10px, 2.9cqw, 14px);
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  transform: rotate(calc(-1 * var(--cc-rotation, 0deg)));
+  transition:
+    transform 1050ms cubic-bezier(0.35, 0, 0.16, 1),
+    color 200ms,
+    background 200ms,
+    border-color 200ms;
+}
+
+.cc-achievements.cc-achievements .cc-bubble:hover {
+  border-color: #99afbf;
+  background: #e1eaf0;
+}
+
+.cc-achievements.cc-achievements .cc-bubble[aria-pressed="true"] {
+  border-color: var(--cc-blue);
+  background: var(--cc-blue);
+  color: #fff;
+}
+
+.cc-achievements.cc-achievements .cc-centre {
+  position: absolute;
+  inset: 32%;
+  width: 36%;
+  height: 36%;
+  padding: 4px;
+  border: 1.5px solid var(--cc-ring);
+  border-radius: 50%;
+  background: var(--cc-paper);
+  color: var(--cc-blue);
+  font-size: clamp(10.5px, 4.5cqw, 24px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  transition:
+    color 200ms,
+    background 200ms;
+}
+
+.cc-achievements.cc-achievements .cc-centre:hover {
+  background: var(--cc-mist);
+}
+
+.cc-achievements.cc-achievements .cc-centre[aria-pressed="true"] {
+  border-color: var(--cc-blue);
+  background: var(--cc-blue);
+  color: #fff;
+}
+
+.cc-achievements.cc-achievements .cc-hint {
+  max-width: 340px;
+  margin: 16px auto 0;
+  color: var(--cc-muted);
+  font-size: 12px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.cc-achievements.cc-achievements .cc-hint span {
+  display: block;
+}
+.cc-achievements.cc-achievements.cc-rebase .cc-rotor {
+  transition: none;
+}
+.cc-achievements.cc-achievements.cc-rebase .cc-bubble {
+  transition-property: color, background, border-color;
+}
+
+.cc-achievements.cc-achievements .cc-panel {
+  --cc-base-height: clamp(460px, 64svh, 640px);
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--cc-line);
+  border-radius: 12px;
+  background: transparent;
+}
+
+.cc-achievements.cc-achievements .cc-layer {
+  position: relative;
+}
+.cc-achievements.cc-achievements .cc-layer[hidden] {
+  display: none;
+}
+.cc-achievements.cc-achievements .cc-overview {
+  display: flex;
+  flex-direction: column;
+  height: var(--cc-base-height);
+}
+
+.cc-achievements.cc-achievements .cc-panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--cc-line);
+}
+
+.cc-achievements.cc-achievements .cc-panel-heading h3,
+.cc-achievements.cc-achievements .cc-detail-title,
+.cc-achievements.cc-achievements .cc-dialog-bar h3 {
+  margin: 0;
+  color: var(--cc-ink);
+  font-size: 20px;
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+}
+
+.cc-achievements.cc-achievements .cc-expand {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--cc-muted);
+}
+
+.cc-achievements.cc-achievements .cc-expand:hover {
+  background: var(--cc-mist);
+  color: var(--cc-ink);
+}
+.cc-achievements.cc-achievements .cc-expand svg {
+  width: 100%;
+  height: 100%;
+}
+
+.cc-achievements.cc-achievements .cc-overview-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 20px;
+}
+
+.cc-achievements.cc-achievements .cc-overview-image {
+  display: block;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  aspect-ratio: 1394 / 2092;
+}
+
+.cc-achievements.cc-achievements .cc-overview-caption {
+  margin: 0;
+  padding: 0 14px 16px;
+  color: var(--cc-muted);
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.cc-achievements.cc-achievements .cc-detail {
+  display: flex;
+  flex-direction: column;
+}
+.cc-achievements.cc-achievements .cc-copy {
+  padding: 24px 24px 0;
+}
+.cc-achievements.cc-achievements .cc-detail-title {
+  margin-bottom: 18px;
+}
+.cc-achievements.cc-achievements .cc-copy p {
+  margin: 0 0 16px;
+  padding: 0;
+  background: none;
+  color: #465e70;
+  font-size: 14px;
+  line-height: 1.85;
+}
+.cc-achievements.cc-achievements .cc-copy p:last-child {
+  margin-bottom: 0;
+}
+.cc-achievements.cc-achievements .cc-copy code {
+  font: inherit;
+}
+.cc-achievements.cc-achievements .cc-figure-area {
+  margin: 20px 24px 24px;
+}
+.cc-achievements.cc-achievements .cc-figure {
+  display: block;
+  margin: 0;
+  padding: 8px;
+  border: 1px solid var(--cc-line);
+  border-radius: 6px;
+  background: var(--cc-paper);
+}
+.cc-achievements.cc-achievements .cc-crop {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+.cc-achievements.cc-achievements .cc-figure-bottom {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+.cc-achievements.cc-achievements .cc-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Reader translation creates a containing block: fly within this component. */
+.cc-achievements.cc-achievements .cc-flight {
+  position: absolute;
+  z-index: 10;
+  overflow: hidden;
+  pointer-events: none;
+}
+.cc-achievements.cc-achievements .cc-flight svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.cc-achievements.cc-achievements .cc-outgoing {
+  position: absolute;
+  z-index: 2;
+  inset: 0 0 auto;
+  pointer-events: none;
+}
+
+.cc-achievements.cc-achievements .cc-dialog {
+  width: min(1040px, calc(100vw - 32px));
+  max-width: none;
+  max-height: 92svh;
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--cc-line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--cc-ink);
+}
+.cc-achievements.cc-achievements .cc-dialog::backdrop {
+  background: #203444b3;
+}
+.cc-achievements.cc-achievements .cc-dialog-bar {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--cc-line);
+  background: #fff;
+}
+.cc-achievements.cc-achievements .cc-close {
+  padding: 6px 14px;
+  border: 1px solid #cbd8e1;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--cc-ink);
+}
+.cc-achievements.cc-achievements .cc-dialog-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@container key-achievements (max-width: 700px) {
+  .cc-achievements.cc-achievements .cc-workspace {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .cc-achievements.cc-achievements .cc-navigation {
+    max-width: 380px;
+    margin-top: 0;
+  }
+  .cc-achievements.cc-achievements .cc-overview {
+    height: auto;
+  }
+  .cc-achievements.cc-achievements .cc-overview-image {
+    width: 100%;
+    height: auto;
+    max-width: 360px;
+  }
+  .cc-achievements.cc-achievements .cc-hint {
+    font-size: 11px;
+  }
+  .cc-achievements.cc-achievements .cc-copy {
+    padding: 20px 18px 0;
+  }
+  .cc-achievements.cc-achievements .cc-figure-area {
+    margin: 18px;
+  }
+}
+
+@container key-achievements (max-width: 360px) {
+  .cc-achievements.cc-achievements .cc-node-position {
+    width: 25cqw;
+  }
+  .cc-achievements.cc-achievements .cc-bubble {
+    font-size: clamp(8.5px, 2.9cqw, 11px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc-achievements.cc-achievements .cc-rotor,
+  .cc-achievements.cc-achievements .cc-bubble,
+  .cc-achievements.cc-achievements .cc-centre {
+    transition: none;
+  }
+}

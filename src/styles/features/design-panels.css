@@ -1,0 +1,665 @@
+/* ============================================================================
+   Design page · scoped feature styles
+   ----------------------------------------------------------------------------
+   Three page-owned assets live here:
+   1. A choreography opt-out for the page's feature slots (see the block below):
+      the only page-specific scroll-performance decision on this page.
+   2. `.design-construct` — the construct-architecture viewer ported from the
+      team's standalone HTML. Macro sizing is inherited from the reader skin
+      (`--route-page`); only the viewer's own micro dimensions are declared, as
+      variables at the top, per the "no hard-coded size in TSX" contract.
+   3. The page's prose-link skin. The embedded report's card and frame live in
+      the shared document skin (`styles/wiki-documents.css`), not here.
+
+   Panels carry no outer margin: `.wiki-feature` supplies the shared 24px.
+   Citations live in the shared register (`styles/wiki-citations.css`).
+   ========================================================================== */
+
+/* Keep embedded documents and the construct viewer on static layers.
+   Shared reader content is static; only component interactions animate. */
+
+.wiki-page[data-wiki-route="/design"] .wiki-feature,
+.wiki-page[data-wiki-route="/design"] .wiki-feature[data-wiki-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+
+.design-construct {
+  /* Wet Lab chrome, derived from the module palette so there is one colour
+     source. Element glyph fills stay data-driven (see designConstruct.ts). */
+  --cc-line: var(--route-line, #e4e8ee);
+  --cc-line-soft: var(--route-line-strong, #eef1f5);
+  --cc-ink: var(--route-ink, #1f2733);
+  --cc-ink-2: var(--route-muted, #5a6673);
+  --cc-head: var(--route-panel, #f7f9fb);
+  --cc-site: var(--route-heading-ink, #14354c);
+  --cc-site-deep: #0e2534;
+  /* Selection cue for elements. At 5 bp a glyph spans a third of a degree of
+     arc, so the wedge behind it is a hairline and the name has to carry the
+     selection instead. Restriction sites keep the site blue. */
+  --cc-select: #b3261e;
+  --cc-wedge: var(--route-marker-bg, #d7eefb);
+  --cc-panel-bg: var(--route-paper, #fff);
+
+  /* Viewer micro dimensions (single source of truth for this component). */
+  --cc-panel-radius: 10px;
+  --cc-grid-gap: 18px;
+  --cc-head-pad: 9px 14px;
+  --cc-head-size: 12.5px;
+  /* Owned by the component: `measure()` sizes the strand so exactly
+     `SEQUENCE_BASES_PER_ROW` bases fill a row, between 9px and 13.5px. */
+  --cc-strand-size: 12.5px;
+  --cc-strand-line: 1.42;
+  --cc-strand-tracking: 0.235em;
+  --cc-feature-height: 12px;
+  --cc-feature-lane: 15px;
+  --cc-feature-label-min: 46px;
+  --cc-site-lane-height: 18px;
+  --cc-highlight-height: calc(
+    var(--cc-strand-size) * var(--cc-strand-line) * 2
+  );
+  --cc-seq-min-height: 340px;
+  --cc-seq-stacked-height: 460px;
+  --cc-scroll-pad: 12px 12px 20px;
+
+  width: 100%;
+  margin: 0;
+  color: var(--cc-ink);
+  /* Layout isolation: nothing in this widget can affect the article's flow, so a
+     scroll-driven repaint of the article does not reach into it and vice versa.
+     This is the reader's main-thread scroll projection's biggest lever. */
+  contain: layout;
+  /* One finished raster instead of per-frame work. The reader scrolls by
+     projecting the document position onto the article on the main thread
+     (`useWetLabScrollRoute`), so everything the exposed strip contains is
+     re-styled and re-painted each frame. This widget is 82 SVG paths plus 88
+     sequence rows — static after mount — so promoting it lets the compositor
+     translate a raster instead. Revert this line first if the widget ever gains
+     an animation, or if a low-memory device regresses. */
+  will-change: transform;
+}
+
+.design-construct *,
+.design-construct *::before,
+.design-construct *::after {
+  box-sizing: border-box;
+}
+
+.cc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--cc-grid-gap);
+  align-items: stretch;
+}
+
+.cc-right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cc-grid-gap);
+  min-width: 0;
+}
+
+.cc-panel {
+  background: var(--cc-panel-bg);
+  border: 1px solid var(--cc-line);
+  border-radius: var(--cc-panel-radius);
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* Panel headings are sentence case: no uppercase, no widened tracking. */
+.cc-phead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: var(--cc-head-pad);
+  background: var(--cc-head);
+  border-bottom: 1px solid var(--cc-line);
+  font-size: var(--cc-head-size);
+  font-weight: 600;
+  color: var(--cc-ink);
+}
+
+.cc-phead .cc-meta {
+  font-weight: 500;
+  color: var(--cc-ink-2);
+}
+
+/* ------------------------------------------------------------------- map --- */
+
+.cc-mapwrap {
+  padding: 6px 6px 8px;
+}
+
+.design-construct svg.cc-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.design-construct svg.cc-svg text {
+  font-family: inherit;
+}
+
+.cc-tag {
+  cursor: pointer;
+  stroke-width: 0.8;
+}
+
+.cc-hit {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.cc-inlbl {
+  font-size: 10px;
+  fill: var(--cc-ink);
+  pointer-events: none;
+  font-weight: 600;
+}
+
+.cc-lbl {
+  cursor: pointer;
+  font-size: 12.5px;
+  fill: var(--cc-ink);
+}
+
+.cc-lead {
+  fill: none;
+  stroke: #ccd3db;
+  stroke-width: 0.7;
+}
+
+.cc-g:hover .cc-tag {
+  stroke-width: 1.6;
+  stroke: var(--cc-ink);
+}
+
+.cc-g:hover .cc-lbl {
+  fill: var(--cc-ink);
+  font-weight: 700;
+}
+
+.cc-g:hover .cc-lead {
+  stroke: #99a3ae;
+}
+
+/* Selected element: the name (and the lead that ties it to the glyph) turns
+   red, which is what makes a 5 bp insert findable on a 5,267 bp ring. */
+.cc-g.is-on .cc-tag {
+  stroke-width: 1.6;
+  stroke: var(--cc-ink);
+}
+
+.cc-g.is-on .cc-lbl {
+  fill: var(--cc-select);
+  font-weight: 700;
+}
+
+.cc-g.is-on .cc-inlbl {
+  fill: var(--cc-select);
+}
+
+.cc-g.is-on .cc-lead {
+  stroke: var(--cc-select);
+  stroke-width: 1;
+}
+
+/* Restriction sites are drawn unlike the element glyphs on purpose: a cut mark
+   is a stroke, not a block. */
+.cc-cutmark {
+  stroke: var(--cc-ink);
+  stroke-width: 1.3;
+  cursor: pointer;
+}
+
+.cc-slbl {
+  font-size: 12.5px;
+  fill: var(--cc-ink);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cc-spos {
+  fill: #95a0ad;
+  font-weight: 400;
+}
+
+.cc-gsite:hover .cc-cutmark {
+  stroke-width: 2.6;
+  stroke: var(--cc-site);
+}
+
+.cc-gsite:hover .cc-slbl {
+  fill: var(--cc-site);
+}
+
+.cc-gsite.is-on .cc-cutmark {
+  stroke-width: 2.8;
+  stroke: var(--cc-site);
+}
+
+.cc-gsite.is-on .cc-slbl {
+  fill: var(--cc-site);
+}
+
+.cc-ring {
+  fill: none;
+  stroke: #cfd6de;
+  stroke-width: 1.2;
+}
+
+.cc-rtick {
+  stroke: #c7ced6;
+  stroke-width: 0.9;
+}
+
+.cc-rnum {
+  font-size: 10.5px;
+  fill: #8d97a3;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 2.4px;
+  stroke-linejoin: round;
+}
+
+.cc-cname {
+  font-size: 15.5px;
+  font-weight: 700;
+  fill: var(--cc-ink);
+  text-anchor: middle;
+}
+
+.cc-clen {
+  font-size: 11.5px;
+  fill: #8f99a6;
+  text-anchor: middle;
+}
+
+.cc-wedge {
+  fill: var(--cc-wedge);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.cc-wedge-edge {
+  stroke: var(--cc-ink);
+  stroke-width: 1.2;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------- element panel --- */
+
+.cc-info {
+  flex: 0 0 auto;
+}
+
+.cc-info-body {
+  padding: 13px 16px 15px;
+}
+
+.cc-info-top {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 7px 10px;
+  margin-bottom: 7px;
+}
+
+.cc-info-name {
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.cc-chip {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 9px;
+  border-radius: 999px;
+  color: #2f3845;
+  white-space: nowrap;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: var(--chip-fill, #eef2f7);
+}
+
+.cc-bba {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--cc-head);
+  color: var(--cc-site);
+  text-decoration: none;
+  border: 1px solid var(--cc-line);
+  white-space: nowrap;
+}
+
+.cc-bba:hover {
+  background: var(--cc-line-soft);
+  color: var(--cc-site-deep);
+}
+
+.cc-coord {
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+  color: var(--cc-ink-2);
+  white-space: nowrap;
+}
+
+.cc-info-desc {
+  font-size: 13.3px;
+  color: var(--cc-ink);
+  margin: 0;
+}
+
+.cc-info-desc em {
+  font-style: italic;
+}
+
+/* Peptide and nucleotide runs inside a description keep the mono face. */
+.cc-info-desc .cc-aa {
+  font-family: var(--font-mono, monospace);
+  font-size: 12.3px;
+  background: var(--cc-head);
+  padding: 0 4px;
+  border-radius: 3px;
+}
+
+/* ------------------------------------------------------------- sequence --- */
+
+.cc-seqpanel {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  min-height: var(--cc-seq-min-height);
+}
+
+.cc-seqscroll {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  /* A row is a fixed fifty bases wide, so a panel narrower than the floor font
+     size can fit scrolls sideways rather than clipping the last bases. */
+  overflow-x: auto;
+  padding: var(--cc-scroll-pad);
+  scrollbar-width: thin;
+  scrollbar-color: #cdd4dc transparent;
+}
+
+.cc-seqscroll::-webkit-scrollbar {
+  width: 9px;
+}
+
+.cc-seqscroll::-webkit-scrollbar-thumb {
+  background: #cdd4dc;
+  border-radius: 9px;
+  border: 2px solid var(--cc-panel-bg);
+}
+
+.cc-seqscroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cc-row {
+  position: relative;
+  margin-bottom: 17px;
+  padding-top: var(--cc-site-lane, 0px);
+  /* One paint root per row: the sequence browser carries ~90 of these, and the
+     engine can then invalidate and repaint only the rows a scroll exposes. */
+  contain: layout paint;
+}
+
+.cc-strand {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--cc-strand-size);
+  letter-spacing: var(--cc-strand-tracking);
+  white-space: pre;
+  color: #2b3542;
+  line-height: var(--cc-strand-line);
+  position: relative;
+  z-index: 2;
+}
+
+.cc-strand.cc-anti {
+  color: #7d8793;
+}
+
+.cc-hl {
+  position: absolute;
+  left: 0;
+  top: var(--cc-site-lane, 0px);
+  height: var(--cc-highlight-height);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cc-hl i {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 2px;
+  display: block;
+  left: var(--hl-left, 0);
+  width: var(--hl-width, 0);
+  background: var(--hl-fill, transparent);
+  box-shadow: inset 0 0 0 1px var(--hl-ring, transparent);
+}
+
+.cc-feats {
+  position: relative;
+  margin-top: 3px;
+  height: var(--cc-feats-height, 0px);
+}
+
+.cc-fbar {
+  position: absolute;
+  height: var(--cc-feature-height);
+  border-radius: 2.5px;
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid transparent;
+  left: var(--bar-left, 0);
+  width: var(--bar-width, 0);
+  top: var(--bar-top, 0);
+  background: var(--bar-fill, transparent);
+  border-color: var(--bar-stroke, transparent);
+  clip-path: var(--bar-clip, none);
+}
+
+.cc-fbar:hover {
+  filter: brightness(0.96);
+}
+
+.cc-fbar.is-on {
+  box-shadow: 0 0 0 1.5px var(--cc-ink);
+}
+
+/* Bar captions sit on pastel fills, so they keep a fixed dark ink. */
+.cc-fbar span {
+  display: block;
+  font-size: 9px;
+  line-height: 10px;
+  color: #2f3845;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0 6px;
+  font-weight: 600;
+}
+
+.cc-slane {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: var(--cc-site-lane-height);
+}
+
+.cc-schip {
+  position: absolute;
+  bottom: 4px;
+  transform: translateX(-50%);
+  left: var(--chip-left, 0);
+  background: var(--cc-site);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 12px;
+  padding: 0 5px;
+  border-radius: 3px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.cc-schip::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  border: 3.5px solid transparent;
+  border-top-color: var(--cc-site);
+  border-bottom: 0;
+}
+
+.cc-schip.is-on {
+  background: var(--cc-site-deep);
+  box-shadow: 0 0 0 1.5px var(--cc-site-deep);
+}
+
+.cc-schip.is-on::after {
+  border-top-color: var(--cc-site-deep);
+}
+
+.cc-cuts {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--cc-site-lane, 0px);
+  height: var(--cc-cuts-height, 0px);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.cc-cuts i {
+  position: absolute;
+  display: block;
+  width: var(--cut-width, 1.5px);
+  height: var(--cut-height, 1.5px);
+  left: var(--cut-left, 0);
+  top: var(--cut-top, 0);
+  background: var(--cc-site);
+}
+
+.cc-ruler {
+  position: relative;
+  height: 16px;
+  margin-top: 3px;
+  border-top: 1px solid #d8dee5;
+}
+
+/* Decade marks as one repeating gradient instead of ~1,000 tick elements: the
+   reader projects the document scroll onto the article on the main thread every
+   frame, so every node the strip contains is per-frame paint. `--cc-tick-pitch`
+   is 10 bases; `--cc-tick-phase` aligns the marks under the decade labels. */
+.cc-ruler-ticks {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 4px;
+  background-image: repeating-linear-gradient(
+    to right,
+    #c7ced6 0 1px,
+    transparent 1px var(--cc-tick-pitch, 120px)
+  );
+  background-position-x: var(--cc-tick-phase, 0px);
+}
+
+.cc-ruler i {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 4px;
+  background: #c7ced6;
+  left: var(--tick-left, 0);
+}
+
+.cc-ruler b {
+  position: absolute;
+  top: 4px;
+  transform: translateX(-50%);
+  font-family: var(--font-mono, monospace);
+  font-size: 9px;
+  font-weight: 400;
+  color: #9aa4b0;
+  white-space: nowrap;
+  left: var(--tick-left, 0);
+}
+
+.cc-meas {
+  position: absolute;
+  visibility: hidden;
+  white-space: pre;
+  top: -9999px;
+  left: -9999px;
+}
+
+.cc-caption {
+  margin: 14px 0 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--cc-ink-2);
+}
+
+/* Inline Markdown links written by the shared prose renderer (`linkify`): an
+   internal reference becomes a router link, an external source opens in a new
+   tab. Scoped to this page rather than added to the shared skin, so pages that
+   already ship such links (Engineering) are not silently restyled. */
+.wiki-page--design .wiki-prose-link {
+  color: var(--route-accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: color-mix(
+    in srgb,
+    var(--route-accent) 46%,
+    transparent
+  );
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.wiki-page--design .wiki-prose-link:is(:hover, :focus-visible) {
+  color: var(--route-ink);
+  text-decoration-color: currentColor;
+}
+
+.wiki-page--design .wiki-prose-link:focus-visible {
+  outline: 2px solid var(--route-accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1080px) {
+  .cc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cc-seqpanel {
+    height: var(--cc-seq-stacked-height);
+    min-height: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .design-construct {
+    /* Tracking only: the strand size is computed by `measure()` at every width,
+       and an inline value from the component outranks anything declared here. */
+    --cc-strand-tracking: 0.2em;
+  }
+}

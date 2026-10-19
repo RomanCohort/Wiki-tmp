@@ -1,0 +1,662 @@
+/* The supplied paintings remain the visual anchors of these three scenes. */
+.story-tear-transition {
+  --scene-height: calc(100svh - var(--header-height));
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  overflow: hidden;
+  pointer-events: none;
+  visibility: hidden;
+}
+.story-tear-transition .story-tear-room {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+.story-tear-wash {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+.story-tear-sprite {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: center;
+  will-change: transform;
+}
+.story-tear-sprite img,
+.story-tear-grains {
+  position: absolute;
+  pointer-events: none;
+}
+.story-tear-cloud-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  overflow: hidden;
+  pointer-events: none;
+  visibility: hidden;
+}
+.story-chapter-inner.is-tear-cloud-carried {
+  position: fixed;
+  inset: 0;
+  z-index: 31;
+  width: 100%;
+  background: transparent;
+}
+.is-tear-cloud-carried .story-backdrop {
+  visibility: hidden;
+}
+#why-tnbc .is-tear-cloud-carried .story-visual {
+  opacity: 1 !important;
+}
+#why-tnbc .is-tear-cloud-carried .tnbc-map-marker > image,
+#why-tnbc .is-tear-cloud-carried .tnbc-map-copy {
+  /* A separate child preserves marker entrance opacity without a filter. */
+  opacity: var(--tear-cloud-map-reveal, 0);
+}
+/* Static map pieces and these containers have no entrance-opacity tween.
+   Fade them directly to avoid large filter surfaces around the arriving cards. */
+#why-tnbc
+  .is-tear-cloud-carried
+  .story-art--3
+  > :not(.tnbc-map-marker):not([data-map-piece="cloud-northwest"]),
+#why-tnbc .is-tear-cloud-carried .tnbc-map-notes,
+#why-tnbc .is-tear-cloud-carried .tnbc-map-source {
+  opacity: var(--tear-cloud-map-reveal, 0);
+}
+.story-tear-cloud-grains {
+  position: fixed;
+  inset: 0;
+  z-index: 32;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  visibility: hidden;
+}
+.story-tear-bead {
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 0;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+.story-tear-grains {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.story-chapter--clinic {
+  --next-bg: #d9e9f1;
+}
+.story-chapter--tear {
+  --chapter-bg: #d9e9f1;
+  --next-bg: #f9e8e8;
+  --scene-hold: 190svh;
+}
+.story-art--tear {
+  width: min(88%, calc(var(--scene-height) * 4 / 3));
+}
+.story-tear-copy {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 2;
+  width: 24%;
+  color: #3f5869;
+  font: 400 clamp(19px, 1.65vw, 25px)/1.6 var(--font-body);
+}
+.story-tear-copy--before {
+  left: 6%;
+}
+.story-tear-copy--after {
+  right: 6%;
+}
+.story-tear-copy blockquote {
+  margin: 26px 0 0;
+  color: #365d75;
+  font: italic 400 clamp(25px, 2.5vw, 38px)/1.25 var(--font-editorial);
+  text-wrap: balance;
+}
+.has-story-motion .story-tear-dialogue {
+  display: grid;
+}
+.has-story-motion .story-tear-dialogue > blockquote {
+  grid-area: 1 / 1;
+  align-self: start;
+  /* Leave the synthetic italic overhang inside the mask's border box without
+     changing the text's position, available width, or line breaks. */
+  padding-inline: 0.25em;
+  margin-inline: -0.25em;
+}
+.has-story-motion .story-tear-dialogue .story-reading-word {
+  /* Word opacity creates its own surface in Safari. Keep italic contours
+     inside that surface while preserving the original advance and wrapping. */
+  padding-inline: 0.25em;
+  margin-inline: -0.25em;
+}
+.story-tear-question {
+  color: #365d75;
+}
+.story-chapter--tear .story-reading-ink {
+  z-index: 3;
+}
+.story-tear-copy .story-tear-ending {
+  margin: 30px 0 0;
+  color: #365d75;
+  font: 400 clamp(32px, 2.8vw, 44px)/1.13 var(--font-editorial);
+}
+.story-art--thinking {
+  container-type: inline-size;
+}
+.story-art--thinking .story-vaccine-copy {
+  top: 30%;
+  width: 18.5%;
+}
+.story-art--thinking .story-vaccine-copy--question {
+  left: 11%;
+  width: 19.5%;
+}
+.story-art--thinking .story-vaccine-copy--answer {
+  top: 34%;
+  left: 65.5%;
+  width: 25.5%;
+}
+.story-art--thinking .story-vaccine-copy h3 {
+  /* These h3 elements hold scientific body copy, so use the body face. */
+  font-family: var(--font-body) !important;
+  font-size: 2.05cqw;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+.story-art--thinking .story-vaccine-copy .story-vaccine-context {
+  display: block;
+  color: #51434b;
+  font-weight: 400;
+}
+.story-art--thinking .story-vaccine-question {
+  display: block;
+  width: 125%;
+  margin-top: 0.5em;
+  color: #403740;
+  font-size: 1.12em;
+  font-weight: 500;
+  line-height: 1.25;
+}
+.story-art--thinking .story-vaccine-copy--answer h3 {
+  font-size: 2cqw;
+  line-height: 1.22;
+}
+.story-art--thinking .story-vaccine-copy strong {
+  color: var(--vaccine-accent);
+  font-weight: 700;
+}
+.story-art--thinking .story-vaccine-question-ending {
+  color: inherit;
+}
+.story-art--thinking .story-vaccine-answer-title {
+  display: block;
+  margin-bottom: 0.35em;
+  font-size: 1.22em;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.story-art--fan {
+  container-type: inline-size;
+  width: min(94%, calc((var(--scene-height) - 24px) * 16 / 9));
+}
+.story-art--fan > [data-layer="2"] {
+  /* Keep the center divider below the gap in the painted title. */
+  clip-path: polygon(0 0, 47% 0, 47% 21%, 54% 21%, 54% 0, 100% 0, 100% 100%, 0 100%);
+}
+.story-platform-notes {
+  position: absolute;
+  inset: 0;
+}
+.story-art--fan > [data-layer="6"] {
+  left: 17% !important;
+  top: 21% !important;
+  width: 27% !important;
+  height: 30% !important;
+}
+.story-art--fan > [data-layer="4"] {
+  left: 56% !important;
+  top: 21% !important;
+  width: 24% !important;
+  height: 32% !important;
+}
+.story-art--fan > [data-layer="5"] {
+  left: 4% !important;
+  top: 64% !important;
+  width: 20% !important;
+  height: 29% !important;
+}
+.story-art--fan > [data-layer="7"] {
+  left: 77% !important;
+  top: 63% !important;
+  width: 18% !important;
+  height: 29% !important;
+}
+.story-art--fan .story-platform-note {
+  gap: 0.45cqw;
+  width: 24%;
+  color: #765464;
+  text-align: left;
+  justify-items: start;
+}
+.story-art--fan .story-platform-note::before {
+  display: none;
+}
+.story-art--fan .story-platform-note strong {
+  font-family: var(--font-body);
+  font-size: 1.8cqw;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+.story-art--fan .story-platform-note small {
+  max-width: 24ch;
+  font-family: var(--font-body);
+  font-size: 1.15cqw;
+  line-height: 1.5;
+  text-wrap: balance;
+}
+.story-art--fan .story-platform-note--mechanism {
+  top: 54%;
+  left: 31%;
+  right: auto;
+  width: 18%;
+}
+.story-art--fan .story-platform-note--design {
+  top: 54%;
+  left: 56%;
+  bottom: auto;
+  width: 20%;
+}
+.story-art--fan .story-platform-note--structure {
+  top: 82.5%;
+  left: 25%;
+  width: 17%;
+}
+.story-art--fan .story-platform-note--beyond {
+  top: 82.5%;
+  left: 62%;
+  right: auto;
+  bottom: auto;
+  width: 17%;
+}
+
+@media (max-width: 800px) {
+  .story-chapter--tear {
+    --scene-hold: 160svh;
+  }
+  .story-art--tear {
+    top: 50%;
+    width: calc(var(--scene-height) * 0.55 * 4 / 3);
+  }
+  .story-tear-copy {
+    width: min(84%, 460px);
+    left: 50%;
+    right: auto;
+    translate: -50% 0;
+    text-align: center;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  .story-tear-copy--before {
+    top: 4%;
+  }
+  .story-tear-copy--after {
+    top: auto;
+    bottom: 5%;
+    left: 6%;
+    width: 64%;
+    translate: none;
+    text-align: left;
+  }
+  .story-tear-context {
+    margin-bottom: 0 !important;
+  }
+  .story-tear-copy blockquote {
+    margin-top: 12px;
+    font-size: 23px;
+  }
+  .story-tear-copy .story-tear-ending {
+    margin-top: 14px;
+    font-size: 26px;
+  }
+
+  .story-art--thinking {
+    position: relative;
+    top: auto;
+    left: auto;
+    translate: none;
+    width: min(92%, 480px);
+    aspect-ratio: auto;
+    display: grid;
+    gap: 88px;
+    margin: 0 auto;
+  }
+  .story-art--thinking > [data-layer="2"],
+  .story-art--thinking > [data-layer="3"],
+  .story-art--thinking > [data-layer="4"],
+  .story-art--thinking > [data-layer="5"] {
+    display: none;
+  }
+  .story-art--thinking > [data-layer="6"] {
+    left: calc(50% - 40px) !important;
+    top: calc(50% - 26px) !important;
+    width: 80px !important;
+    height: 52px !important;
+    rotate: 90deg;
+  }
+  .story-art--thinking > [data-layer="7"],
+  .story-art--thinking > [data-layer="8"] {
+    left: auto !important;
+    right: 7%;
+    width: 52px !important;
+    height: 60px !important;
+    z-index: 5;
+  }
+  .story-art--thinking > [data-layer="8"] {
+    top: 26px !important;
+  }
+  .story-art--thinking > [data-layer="7"] {
+    top: calc(50% + 66px) !important;
+  }
+  .story-art--thinking > [data-layer="9"],
+  .story-art--thinking > [data-layer="10"] {
+    left: 9% !important;
+    width: 62% !important;
+    height: auto !important;
+    z-index: 5;
+  }
+  .story-art--thinking > [data-layer="9"] {
+    top: 30px !important;
+  }
+  .story-art--thinking > [data-layer="10"] {
+    top: calc(50% + 70px) !important;
+  }
+  .story-art--thinking .story-vaccine-copy {
+    top: auto;
+    left: auto;
+    width: 100%;
+    min-height: 360px;
+    padding: 108px 10% 48px;
+  }
+  .story-art--thinking .story-vaccine-copy h3 {
+    font-size: clamp(25px, 7.4cqw, 33px);
+  }
+  .story-art--thinking .story-vaccine-question {
+    width: 100%;
+  }
+
+  /* Keep the complete fan painting, then read its four notes at phone size. */
+  .story-art--fan {
+    top: 5%;
+    width: 96%;
+    translate: -50% 0;
+  }
+  .story-art--fan > [data-layer="4"],
+  .story-art--fan > [data-layer="5"],
+  .story-art--fan > [data-layer="6"],
+  .story-art--fan > [data-layer="7"] {
+    visibility: visible;
+  }
+  .story-art--fan .story-platform-note {
+    width: 43%;
+    gap: 6px;
+    text-align: left;
+    justify-items: start;
+  }
+  .story-art--fan .story-platform-note strong {
+    min-height: 2.4em;
+    font-size: clamp(17px, 4.6vw, 22px);
+  }
+  .story-art--fan .story-platform-note small {
+    font-size: clamp(13px, 3.5vw, 16px);
+  }
+  .story-art--fan .story-platform-note--mechanism {
+    top: 124%;
+    left: 5%;
+  }
+  .story-art--fan .story-platform-note--design {
+    top: 124%;
+    left: 55%;
+  }
+  .story-art--fan .story-platform-note--structure {
+    top: 194%;
+    left: 5%;
+  }
+  .story-art--fan .story-platform-note--beyond {
+    top: 194%;
+    left: 55%;
+  }
+}
+@media (max-width: 380px), (max-width: 800px) and (max-height: 650px) {
+  .story-art--tear {
+    top: 53%;
+    width: calc(var(--scene-height) * 0.5 * 4 / 3);
+  }
+  .story-tear-copy {
+    font-size: 15px;
+  }
+  .story-tear-copy blockquote {
+    font-size: 20px;
+    margin-top: 8px;
+  }
+  .story-tear-copy .story-tear-ending {
+    font-size: 26px;
+    margin-top: 10px;
+  }
+  .story-tear-copy--before {
+    top: 3%;
+  }
+  .story-tear-copy--after {
+    bottom: 3%;
+  }
+}
+@media (max-width: 380px) {
+  .story-art--fan .story-platform-note {
+    width: 46%;
+    gap: 4px;
+  }
+  .story-art--fan .story-platform-note strong {
+    font-size: 16px;
+  }
+  .story-art--fan .story-platform-note small {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .story-art--fan .story-platform-note--mechanism,
+  .story-art--fan .story-platform-note--design {
+    top: 102%;
+  }
+  .story-art--fan .story-platform-note--structure,
+  .story-art--fan .story-platform-note--beyond {
+    top: 172%;
+  }
+  .story-art--fan .story-platform-note--mechanism,
+  .story-art--fan .story-platform-note--structure {
+    left: 3%;
+  }
+  .story-art--fan .story-platform-note--design,
+  .story-art--fan .story-platform-note--beyond {
+    left: 53%;
+  }
+  .story-art--fan .story-platform-note--structure strong,
+  .story-art--fan .story-platform-note--beyond strong {
+    min-height: 1.2em;
+  }
+}
+/* Size the painting by stage height; note widths belong to the viewport so
+   reducing the painting never compresses its explanations into narrow columns. */
+@media (min-height: 501px) and (max-height: 650px) and (orientation: landscape) {
+  .story-art--fan {
+    --fan-note-column: min(43vw, 350px);
+    top: 2%;
+    width: min(96%, calc((var(--scene-height) - 230px) * 16 / 9));
+    translate: -50% 0;
+  }
+  .story-art--fan .story-platform-note {
+    width: var(--fan-note-column);
+    right: auto;
+    bottom: auto;
+    gap: 6px;
+    text-align: left;
+    justify-items: start;
+  }
+  .story-art--fan .story-platform-note strong {
+    min-height: 1.2em;
+    font-size: 17px;
+  }
+  .story-art--fan .story-platform-note small {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .story-art--fan .story-platform-note--mechanism,
+  .story-art--fan .story-platform-note--design {
+    top: calc(100% + 14px);
+  }
+  .story-art--fan .story-platform-note--structure,
+  .story-art--fan .story-platform-note--beyond {
+    top: calc(100% + 110px);
+  }
+  .story-art--fan .story-platform-note--mechanism,
+  .story-art--fan .story-platform-note--structure {
+    left: calc(50% - var(--fan-note-column) - 10px);
+  }
+  .story-art--fan .story-platform-note--design,
+  .story-art--fan .story-platform-note--beyond {
+    left: calc(50% + 10px);
+  }
+}
+/* Very short landscape has room for one note row beneath the intact artwork. */
+@media (max-height: 500px) and (orientation: landscape) {
+  .story-art--fan {
+    top: 2%;
+    width: min(96%, calc((var(--scene-height) - 138px) * 16 / 9));
+    translate: -50% 0;
+  }
+  .story-art--fan .story-platform-note {
+    top: calc(100% + 16px);
+    right: auto;
+    bottom: auto;
+    width: 22vw;
+    gap: 6px;
+    text-align: left;
+    justify-items: start;
+  }
+  .story-art--fan .story-platform-note strong {
+    min-height: 1.2em;
+    font-size: clamp(14px, 1.8vw, 17px);
+  }
+  .story-art--fan .story-platform-note small {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .story-art--fan .story-platform-note--mechanism {
+    left: calc(50% - 46vw);
+  }
+  .story-art--fan .story-platform-note--design {
+    left: calc(50% - 22vw);
+  }
+  .story-art--fan .story-platform-note--structure {
+    left: calc(50% + 2vw);
+  }
+  .story-art--fan .story-platform-note--beyond {
+    left: calc(50% + 26vw);
+  }
+}
+/* The original figure keeps its own aspect ratio. On phones the explanations
+   occupy normal grid rows below it, rather than percentage-based offsets. */
+@media (max-width: 800px) and (orientation: portrait) {
+  .story-art--fan .story-platform-notes {
+    top: calc(100% + 20px);
+    right: 4%;
+    bottom: auto;
+    left: 4%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 18px;
+  }
+  .story-art--fan .story-platform-notes .story-platform-note {
+    position: static;
+    width: auto;
+    gap: 6px;
+  }
+  .story-art--fan .story-platform-notes .story-platform-note strong {
+    min-height: 2.4em;
+    font-size: clamp(16px, 4.4vw, 21px);
+  }
+  .story-art--fan .story-platform-notes .story-platform-note small {
+    font-size: clamp(13px, 3.4vw, 16px);
+    line-height: 1.5;
+  }
+  /* A short screen can scroll the complete figure instead of clipping its
+     last note row inside a viewport-sized illustration. */
+  .home-story:not(.has-story-motion) .story-rna-sequence
+    #our-platform .story-scene-track {
+    height: auto;
+  }
+  .home-story:not(.has-story-motion) .story-rna-sequence
+    #our-platform .story-chapter-inner {
+    position: relative;
+    height: max(100svh, calc(54vw + var(--header-height) + 360px));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .story-tear-copy .story-reading-word,
+  .story-art--fan .story-platform-note {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) and (max-width: 800px) {
+  .story-chapter--tear .story-scene-track,
+  .story-chapter--tear .story-chapter-inner {
+    height: auto;
+  }
+  .story-chapter--tear .story-chapter-inner {
+    position: relative;
+  }
+  .story-chapter--tear .story-visual {
+    position: relative;
+    inset: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: calc(var(--header-height) + 32px) 24px 36px;
+  }
+  .story-chapter--tear .story-backdrop {
+    inset: 0;
+    height: 100%;
+  }
+  .story-chapter--tear .story-tear-copy {
+    position: relative;
+    inset: auto;
+    width: min(100%, 460px);
+    translate: none;
+    text-align: center;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  .story-chapter--tear .story-tear-copy--before {
+    order: 0;
+  }
+  .story-chapter--tear .story-art--tear {
+    order: 1;
+    position: relative;
+    inset: auto;
+    width: min(100%, 440px);
+    translate: none;
+    margin: 24px 0;
+  }
+  .story-chapter--tear .story-tear-copy--after {
+    order: 2;
+  }
+}
